@@ -1,0 +1,70 @@
+.wish-list-empty {
+  padding: 30px 0px 60px 0px;
+  height: 75vh;
+  padding-top: 7%;
+}
+.wish-list-empty h2 {
+  line-height: 40px;
+  padding-bottom: 20px;
+  font-size: 35px;
+}
+.wish-list-empty p {
+  font-size: 19px;
+  line-height: 30px;
+}
+.wish-list-page-container {
+  width: 70%;
+  margin: 0 auto;
+}
+.wish-list-wraper {
+  margin-bottom: 40px;
+  display: flex;
+}
+.all-item-heading {
+  padding-bottom: 20px;
+}
+.wish-list-item-img {
+  width: 20%;
+}
+.wish-list-item-content {
+  width: 80%;
+  margin-left: 25px;
+}
+.heading-with-close-btn {
+  display: flex;
+  justify-content: space-between;
+}
+.wish-list-item-content h3 {
+  line-height: 40px;
+  font-size: 18px;
+}
+.wish-list-item-content select {
+  margin: 15px 0px;
+}
+.heading-with-close-btn img[data-v-7764b8be] {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.move-bag-btn-div {
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 767px) {
+  .wish-list-page-container {
+    padding: 0px 15px;
+    width: 100%;
+  }
+  .wish-list-item-content h3 {
+    font-size: 16px;
+    line-height: 27px;
+  }
+  .heading-with-close-btn h2 {
+    font-size: 20px;
+  }
+  .heading-with-close-btn img {
+    width: 15px !important;
+    height: 24px !important;
+  }
+}

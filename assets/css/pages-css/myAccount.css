@@ -1,0 +1,651 @@
+.acc-page {
+  padding-bottom: 30px;
+}
+.new-ord {
+  margin: 20px -20px 0;
+  overflow: hidden;
+}
+.cus-ore {
+  padding: 0 20px;
+  float: left;
+}
+.cus-address {
+  width: 25%;
+}
+.accountMenu {
+  margin-bottom: 20px;
+}
+.accountMenu ul {
+  list-style: none;
+}
+.accountMenu ul li {
+  margin-bottom: 5px;
+}
+.cus-order-del {
+  width: 75%;
+}
+.rte p,
+.rte h2,
+.rte h3,
+.rte h4,
+.rte h5,
+.rte div {
+  margin-bottom: 15px;
+}
+
+.customer-head {
+  text-transform: uppercase;
+}
+.customer-head h2 {
+  margin-bottom: 0;
+}
+aside {
+  display: flex;
+  flex-wrap: wrap;
+}
+aside .my-profile {
+  max-width: 50%;
+  flex: 0 0 50%;
+}
+aside .my-profile .profile-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+aside .my-profile .profile-content .profile-data {
+  padding: 0 20px;
+  max-width: 80%;
+  flex: 0 0 80%;
+}
+aside .my-profile .profile-content .profile-data h2,
+aside .my-profile .profile-content .profile-data h3 {
+  text-transform: uppercase;
+}
+aside .my-profile .profile-content .profile-data p.name,
+aside .my-profile .profile-content .profile-data p.address,
+aside .my-profile .profile-content .profile-data p.email,
+aside .my-profile .profile-content .profile-data p.password {
+  margin-bottom: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.5em;
+}
+.hr-small {
+  height: 2px;
+  background: #e5e5e5;
+  margin-top: 15px;
+}
+aside .my-profile .profile-content .profile-data .edit a {
+  text-transform: uppercase;
+  border-bottom: 1px solid #000;
+}
+.edit a {
+  text-transform: uppercase;
+  border-bottom: 1px solid #000;
+}
+aside .my-profile .profile-content .profile-data p.name span,
+aside .my-profile .profile-content .profile-data p.address span,
+aside .my-profile .profile-content .profile-data p.email span,
+aside .my-profile .profile-content .profile-data p.password span {
+  font-weight: normal;
+  text-transform: none;
+}
+aside .my-addressbook {
+  max-width: 50%;
+  flex: 0 0 50%;
+}
+aside .my-addressbook .profile-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+aside .my-addressbook .profile-content .profile-data {
+  padding: 0 20px;
+  max-width: 80%;
+  flex: 0 0 80%;
+}
+aside .my-addressbook .profile-content .profile-data h2 {
+  text-transform: uppercase;
+}
+aside .my-addressbook .profile-content .profile-data p.name,
+aside .my-addressbook .profile-content .profile-data p.address {
+  margin-bottom: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.5em;
+}
+aside .my-addressbook .profile-content .profile-data p.name span,
+aside .my-addressbook .profile-content .profile-data p.address span {
+  font-weight: normal;
+  text-transform: none;
+}
+
+img {
+  border: 0px;
+  max-width: 100%;
+}
+.hr {
+  height: 5px;
+  background: #000;
+}
+.my-orders .profile-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+.my-orders .profile-content .profile-data {
+  flex-grow: 1;
+  padding: 0 20px;
+}
+.my-orders .profile-content .profile-data h2 {
+  text-transform: uppercase;
+}
+
+/* for my profile  page*/
+
+.systemForm {
+  max-width: inherit !important;
+  display: table;
+  width: 75%;
+}
+.systemForm .inputWrapper,
+.systemForm .btnWrapper,
+.systemForm .checkboxouter {
+  margin-bottom: 30px;
+}
+.halfWidth {
+  width: 50% !important;
+}
+select,
+select.select {
+  height: 37px;
+  padding: 0 25px 0 5px;
+  background: #fff url("../../images/down.png") no-repeat;
+  background-position: right 8px center;
+  background-size: 10px;
+  border: 1px solid #ddd;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  outline: none !important;
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 37px;
+}
+
+#Profile input,
+select {
+  border: 1px solid black !important;
+}
+
+.quarterly {
+  width: 25% !important;
+  margin: auto;
+}
+#inline {
+  width: 100%;
+  display: table;
+}
+.storediv {
+  margin-right: 10px;
+  float: left;
+}
+.myrow {
+  padding: 20px 0px;
+}
+.All {
+  border-bottom: 2px dotted;
+}
+.mycheckSpan {
+  padding-right: 10px !important;
+}
+.inputWrapper .btn {
+  width: 25%;
+}
+
+.button:hover:not(.slick-arrow),
+.button:focus:not(.slick-arrow),
+button:not(.slick-arrow):hover:not(.slick-arrow),
+button:not(.slick-arrow):focus:not(.slick-arrow),
+input[type="submit"]:hover:not(.slick-arrow),
+input[type="submit"]:focus:not(.slick-arrow),
+input[type="button"]:hover:not(.slick-arrow),
+input[type="button"]:focus:not(.slick-arrow) {
+  background: #999;
+  color: #fff;
+}
+
+/* edit profile */
+.profile_customer .profile-left {
+  width: 50%;
+  float: left;
+}
+.profile_customer .profile-right {
+  width: 50%;
+  display: inline-block;
+}
+
+.profile_customer h2 {
+  font-size: 25px;
+  line-height: 27px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.profile_customer form {
+  width: 50%;
+}
+
+.acc-page .profile_customer input.form-control {
+  padding: 7px 4px;
+  border-color: #000;
+}
+
+.acc-page .profile_customer input,
+.acc-page .profile_customer select {
+  margin-bottom: 20px;
+}
+.acc-page input,
+.acc-page select {
+  width: 100%;
+}
+.profile_customer .submit-button {
+  background: #000000;
+  cursor: pointer;
+  border: 2px solid #041944;
+  font-weight: bold;
+  padding: 3px 20px;
+  height: 33px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: inline-block;
+  width: auto;
+}
+
+.profile_customer a.cancle_profile {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 13px;
+  color: #000000;
+  text-transform: uppercase;
+  text-decoration: underline;
+  margin-left: 10px;
+  line-height: 33px;
+}
+
+.email-error {
+  border-color: red !important;
+}
+
+/* addresses pages */
+.inner-login {
+  margin: 0px;
+  overflow: hidden;
+  /* margin-top: 20px; */
+}
+
+.inner-login .login-col {
+  width: 50%;
+  float: left;
+  padding: 0 30px;
+}
+/* .inner-login .login-col.col-1 {
+    height: 600px;
+    background-color: red;
+} */
+.padd-top .noteArea input {
+  width: 20%;
+}
+.acc-page table {
+  width: 100%;
+}
+.edit_address .customer_address_table input,
+.edit_address .customer_address_table select {
+  margin-bottom: 10px;
+  border: 1px solid #ddd !important;
+}
+input.new-btn {
+  width: auto;
+  display: block;
+  text-align: center;
+  margin: 20px auto 10px;
+}
+
+.return-content {
+  margin-top: 20px;
+}
+.return-content p {
+  margin-bottom: 15px;
+}
+.return-content .grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: row;
+  margin: 5% auto;
+}
+
+.return-content .grid .__cell:first-child {
+  margin-bottom: 2em;
+}
+.return-content .grid .__cell {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  width: 100%;
+}
+.return-content .box {
+  padding: 10%;
+}
+.return-content .box h4 {
+  margin-bottom: 1em;
+  font-size: 1.2em;
+  line-height: 1.5;
+  text-align: center;
+}
+.return-content .box p {
+  margin-bottom: 2em;
+  font-size: 1em;
+  line-height: 1.5;
+}
+.return-content .box [role="button"] {
+  display: table;
+  max-width: 300px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1em;
+  border: 1px solid black;
+  font-size: 1em;
+  text-align: center;
+  color: white;
+  background-color: black;
+  transition: all 0.3s ease-in-out;
+}
+
+.return-content .box [role="button"]:hover,
+.return-content .box [role="button"]:focus,
+.return-content .box [role="button"]:active {
+  color: black;
+  background-color: white;
+}
+
+.return-content .left-boder {
+  border-left: 3px solid #000;
+}
+
+/* my order */
+
+.profile-data table {
+  width: 100%;
+  margin-bottom: 25px;
+  border: none !important;
+}
+.profile-data table td {
+  padding: 12px 0;
+  text-align: left;
+  border: none;
+  border-bottom: 2px dotted #ddd;
+}
+.add-new-address button {
+  margin-bottom: 30px;
+}
+/* ================== adress page css ===== */
+.ship-adress-area {
+  border: 1px solid #000;
+  padding: 7px 30px;
+  margin-bottom: 30px;
+}
+/* .ship-adress{ border: 1px solid #000; padding: 30px;background-color: #f5f5f5;} */
+.ship-adress h2 {
+  padding-bottom: 10px;
+}
+.remove-address {
+  padding: 20px 0px;
+}
+.remove-address a {
+  padding-right: 10px;
+  display: inline-block;
+}
+.remove-address a img {
+  width: 18px;
+}
+
+#add_address_title {
+  padding: 10px 30px;
+  font-size: 22px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.add-box-width .ship-adress-area {
+  border: 1px solid #000;
+  padding: 24px 30px 10px 30px;
+  margin-bottom: 30px;
+  max-width: 419px;
+  background-color: #efefef;
+}
+
+.model-bg {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  padding: 0px 20px;
+}
+
+.model-bg .modal-dialog {
+  background-color: #fff;
+  margin: 18% auto;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-dialog .modal-header {
+  width: 100%;
+  /* background: red; */
+  padding: 10px;
+  position: relative;
+}
+
+.modal-dialog .modal-header .close {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.modal-dialog .modal-header .modal-title {
+  font-size: 30px;
+}
+
+.modal-dialog .modal-body {
+  width: 100%;
+}
+.modal-dialog .input-text {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.modal-dialog .sp-black-btn {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 992px) {
+  .new-ord {
+    margin: 20px 0px 0;
+  }
+  .cus-ore {
+    padding-bottom: 20px;
+  }
+  .cus-ore,
+  .inner-login .login-col {
+    padding: 0 10px;
+  }
+  .cus-address,
+  .cus-order-del {
+    width: 100%;
+  }
+  /* my profile */
+  .systemForm {
+    width: 100%;
+    max-width: 700px !important;
+  }
+  .return-content .grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    flex-direction: column;
+    margin: 5% auto;
+  }
+  .return-content .box {
+    padding: 2%;
+  }
+  .return-content .left-boder {
+    border-left: none;
+  }
+  .inner-login {
+    margin: 0px;
+    overflow: hidden;
+    margin-top: 20px;
+    float: left;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .new-ord {
+    margin: 20px 0px 0;
+  }
+  aside {
+    display: block;
+  }
+  aside .my-profile {
+    max-width: 100%;
+  }
+  aside .my-addressbook {
+    max-width: 100%;
+  }
+  .storediv select {
+    width: 100%;
+  }
+  .cus-ore,
+  .inner-login .login-col {
+    padding-left: 0px;
+  }
+  .profile_customer form {
+    width: 100%;
+  }
+  .profile_customer .profile-left {
+    padding-right: 15px;
+  }
+  .profile_customer .profile-right {
+    padding-left: 15px;
+  }
+  .inner-login .login-col {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .halfWidth {
+    width: 100% !important;
+  }
+  .quarterly {
+    width: 48% !important;
+  }
+  .storediv {
+    float: none;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .storediv select {
+    width: 100%;
+  }
+  .profile_customer .profile-left {
+    padding-right: 0px;
+  }
+  .acc-page .profile_customer input[data-v-480a4297],
+  .acc-page .profile_customer select[data-v-480a4297] {
+    margin-bottom: 20px;
+  }
+  .profile_customer .profile-left {
+    width: 70%;
+  }
+  .profile_customer .profile-right {
+    width: 70%;
+  }
+}
+
+.active-account-sidebar {
+  color: #16b3aa;
+  font-weight: 900;
+}
+
+.align-center {
+  text-align: center !important;
+}
+.order-list {
+  width: 250px;
+  /* background: red; */
+  max-width: 100%;
+  display: inline-block;
+  margin-bottom: 0px !important;
+}
+.order-list .order-img {
+  float: left;
+  width: 40%;
+  text-align: center;
+  margin-bottom: 0px !important;
+}
+.order-list .order-img img {
+  width: 50%;
+}
+.order-list .order-info {
+  float: right;
+  width: 60%;
+  margin-bottom: 0px !important;
+}
+
+.order-list .order-info h2 {
+  font-size: 18px;
+  margin: 0px;
+}
+.order-list .order-info p {
+  font-size: 14px;
+  margin-bottom: 0px !important;
+}
+.addaddress-btn {
+  width: 100%;
+  display: inline-block;
+  margin: 10px 0px;
+}
+.addaddress-btn .add_address {
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+.addaddress-btn .back_address {
+  width: 50%;
+  float: left;
+}
+.addaddress-btn input {
+  margin: 0px !important;
+}
+.order-detail {
+  width: 50%;
+  float: left;
+}
+.font-bold {
+  font-weight: bold;
+}

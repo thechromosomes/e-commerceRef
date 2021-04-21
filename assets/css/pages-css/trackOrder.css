@@ -1,0 +1,137 @@
+.track-order-wraper{ width: 1140px;padding: 60px 0px;;}
+.order-status-sec > h2{ padding-bottom: 20px;}
+.order-staus-con small{ font-size: 16px; display: block;}
+.order-staus-con button{ text-align: center; display: block; margin: 0 auto; margin-top: 20px;;}
+.order-staus-con .order-id{ width: 300px; display:block; margin: 0 auto; border: 0px; border-bottom: 1px solid #000;}
+.orderid-text h3{ font-weight:600; font-size: 25px;line-height: 40px;}
+.order-progress-bar-div{ display: inline-block; width: 100%;
+    margin-top: 40px;
+    border-top: 1px solid #d9d9d9;}
+    .order-progress-bar-left{ width: 25%; display: inline-block;}
+.order-progress-bar-div .track-order-sidebar{ display: inline-flex;
+    padding: 10px 20px 10px 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #d9d9d9;
+    border-top: 0px;}
+.order-progress-bar-div .track-order-sidebar h4{ font-size: 16px;padding-left: 15px;}
+.order-progress-bar-div .track-order-sidebar img{ width: 70px;}
+.order-progress-right{width: 74%;
+    padding-left: 15px;
+    display: inline-block;
+    vertical-align: top;}
+    
+    .order-progress-right ol.progtrckr {
+        display: flex;
+    padding: 50px 58px 0px 25px;
+    margin: 0px;
+    }
+    .order-progress-right ol.progtrckr li {
+        display: block;
+        width: 100%;
+        padding-top: 50px;
+        position: relative;
+    }
+    .order-progress-right ol.progtrckr li::before {
+        content: "";
+        height: 18px;
+        width: 18px;
+        background-color: #14cda8;
+        border-radius: 50%;
+        display: block;
+        margin: -11px;
+    }
+    .order-progress-right ol.progtrckr li > span {
+        position: absolute;
+        top: -40%;
+        left: 0%;
+        transform: translate(-50%, 0%);
+        font-size: 16px;
+        text-align: center;
+        width: max-content;
+        text-transform: capitalize;
+    }
+    ol.progtrckr li > span span {
+        display: block;
+        text-align: center;
+        font-size: 14px;
+        position: relative;
+        top: -2px;
+       line-height: 20px;
+        max-width: 119px;
+    }
+    .order-progress-right ol.progtrckr li.active::after {
+        background-color: #14cda8;
+        border: 1.5px solid #14cda8;
+    }
+    .order-progress-right ol.progtrckr li::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 0px;
+        overflow: hidden;
+        border-top: 3px dotted #14cda8;
+        left: 0;
+        bottom: 0;
+    }
+    .order-progress-right ol.progtrckr li:last-child {
+        width: 0px;
+    }
+    .track-result table {
+        width: 100%;
+        margin-top: 50px;
+    }
+    .track-result table tr:first-child td {
+        border-top: 1px solid #f0f0f0;
+    }
+    .track-result table td {
+        padding: 10px 2%;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .track-result table p {
+        font-size: 14px;
+    margin: 0px;
+    padding-bottom: 8px;
+    }
+
+
+    @media only screen and (max-width: 1199px) {
+        .order-progress-right ol.progtrckr li{
+           
+            width: 35%;
+           
+        }
+        .track-order-wraper{ width: 100%;padding: 0px 30px;}
+        .order-progress-right ol.progtrckr{
+           
+            padding: 50px 0px 0px 25px;}
+            .order-progress-bar-left{
+                width: 40%;
+               
+            }
+            .order-progress-right {
+                width: 55%;
+               
+            }
+
+    }
+    @media only screen and (max-width: 767px) {
+
+        .order-progress-bar-left{
+            width: 100%!important;
+        }
+        .track-order-wraper {
+           
+            padding: 0px 15px;
+        }
+        .order-progress-right {
+            width: 100%;
+        }
+        .order-progress-bar-div .track-order-sidebar{ width: 100%;}
+        .order-progress-right{ width: 100%;}
+        .order-progress-right{
+            width: 100%;
+            display: block;
+        }
+
+    }

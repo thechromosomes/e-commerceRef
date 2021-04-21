@@ -1,0 +1,60 @@
+.find-store-nav{
+    background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid #EEEEEE;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;text-align: center;
+  }
+  .find-store-nav .loctor-nav-div{ width: 34%; text-align: center;}
+   .find-store-nav .loctor-nav-div input{ width: 100%;}
+  .map-cont {
+    width: 32%;
+    float: left;
+    height: 400px;
+    overflow-y:scroll;
+}
+  .store-loc-page h1.text-center{font-size: 35px;
+    text-transform: uppercase;
+    padding: 20px;}
+  .map-div{ width: 65%; float: right;}
+  .map-cont ul li p span{ display:block;}
+  .map-cont ul li .name{ font-weight: 600; font-size: 20px;}
+  .map-cont ul li p{line-height: 21px;
+    font-size: 16px;
+    padding: 10px 0px;}
+    .map-cont ul li {
+      padding: 15px 5px 15px 35px;
+      min-height: 30px;
+      list-style: none;
+      border-top: 1px dotted #DDDDDD;
+      position: relative;
+  }
+  .map-cont ul{ min-height: 400px; overflow: hidden;}
+  .map-cont ul li img{ position:absolute; left: 0;}
+
+
+  @media screen and (max-width: 1024px) {
+    .map-cont {
+       
+        height: 413px;
+        overflow: hidden;
+    }
+  }
+
+    @media screen and (max-width: 767px) {
+        /* =============== store locater cs=============== */
+        .map-cont ,.map-div{
+          width: 100%; float: none;
+      }
+      .map-cont {
+        height: auto;
+        overflow: hidden;
+    }
+    .map-div{ margin-bottom: 30px;}
+    .find-store-nav{ flex-wrap: wrap;}
+    .find-store-nav p{padding: 5px 0px;}
+    .find-store-nav div{ padding: 5px 0px;}
+
+}
