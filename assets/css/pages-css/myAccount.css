@@ -161,7 +161,7 @@ select,
 select.select {
   height: 37px;
   padding: 0 25px 0 5px;
-  background: #fff url("../../images/down.png") no-repeat;
+  background: #fff url("../../img/down.png") no-repeat;
   background-position: right 8px center;
   background-size: 10px;
   border: 1px solid #ddd;
