@@ -23,191 +23,37 @@
               <div class="close" id="close-btn"></div>
             </div>
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
+              <li class="nav-item" v-for="(item, index) in header" :key="index">
                 <span class="stripeImage"></span>
-                <a class="nav-link first" href="list.html">MAN</a>
-                <div class="dropdown_menu">
+                <a class="nav-link first">{{ item.name }}</a>
+                <div
+                  class="dropdown_menu"
+                  v-if="item.childs && item.childs.length > 0"
+                >
                   <div class="level-2">
                     <ul class="navbar-nav">
-                      <li class="nav-item">
-                        <a href="list.html" class="nav-link pl-0"
-                          >NEW ARRIVALS</a
+                      <li
+                        class="nav-item"
+                        v-for="(childItem, childIndex) in item.childs"
+                        :key="childIndex"
+                      >
+                        <Nuxt-link
+                          class="nav-link pl-0"
+                          :to="`/collections/${childItem.menu_url_key}/`"
+                          >{{ childItem.name }}</Nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
-                        <!-- <span class="stripeImage "></span> -->
-                        <a href="list.html" class="nav-link">JEANS</a>
-                        <div class="dropdown_menu_level-3">
-                          <div class="level-3">
-                            <div class="row">
-                              <div class="col-md-12 col-lg-3">
-                                <ul>
-                                  <li><a href="list.html">All Apparel</a></li>
-                                  <li><a href="list.html">Jackets</a></li>
-                                  <li><a href="list.html">Denim Jackets</a></li>
-                                  <li>
-                                    <a href="list.html">Leather Jackets</a>
-                                  </li>
-                                  <li><a href="list.html">Knitwear</a></li>
-                                  <li><a href="list.html">Sweaters</a></li>
-                                  <li><a href="list.html">T-shirts</a></li>
-                                  <li><a href="list.html">Shirts</a></li>
-                                  <li><a href="list.html">Polos</a></li>
-                                </ul>
-                              </div>
-                              <div class="col-md-12 col-lg-3">
-                                <ul>
-                                  <li><a href="#">All Apparel</a></li>
-                                  <li><a href="#">Jackets</a></li>
-                                  <li><a href="#">Denim Jackets</a></li>
-                                  <li><a href="#">Leather Jackets</a></li>
-                                  <li><a href="#">Knitwear</a></li>
-                                </ul>
-                              </div>
-                              <div class="col-md-12 col-lg-2">
-                                <ul>
-                                  <li>
-                                    <a href="#" class="font-weight-bold"
-                                      >DISCOVER BY</a
-                                    >
-                                  </li>
-                                  <li><a href="#">New Arrivals Apparel</a></li>
-                                  <li><a href="#">Diesel x Diesel</a></li>
-                                  <li><a href="#">Green Label: Apparel</a></li>
-                                  <li><a href="#">Upfreshing Collection</a></li>
-                                </ul>
-                              </div>
-                              <div class="col-md-12 col-lg-4">
-                                <div class="menu_img-section">
-                                  <img
-                                    src="~/assets/img/new_arrivals-menu.jpg"
-                                    alt="img"
-                                    class="w-100"
-                                  />
-                                </div>
-                                <a href="#" class="link">NEW ARRIVALS</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">APPAREL</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">SHOES </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">ACCESSORIES </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">WATCHES</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">SPECIAL COLLECTIONS</a>
-                      </li>
                     </ul>
                   </div>
                 </div>
-              </li>
-              <li class="nav-item">
-                <span class="stripeImage"></span>
-                <a class="nav-link" href="#">WOMAN</a>
-                <div class="dropdown_menu">
-                  <div class="level-2">
-                    <ul class="navbar-nav">
-                      <li class="nav-item">
-                        <a href="#" class="nav-link pl-0">NEW ARRIVALS</a>
-                      </li>
-                      <li class="nav-item">
-                        <!-- <span class="stripeImage "></span> -->
-                        <a href="#" class="nav-link">JEANS</a>
-                        <div class="dropdown_menu_level-3">
-                          <div class="level-3">
-                            <div class="row">
-                              <div class="col-md-12 col-lg-3">
-                                <ul>
-                                  <li><a href="#">All Apparel</a></li>
-                                  <li><a href="#">Jackets</a></li>
-                                  <li><a href="#">Denim Jackets</a></li>
-                                  <li><a href="#">Leather Jackets</a></li>
-                                  <li><a href="#">Knitwear</a></li>
-                                  <li><a href="#">Sweaters</a></li>
-                                  <li><a href="#">T-shirts</a></li>
-                                  <li><a href="#">Shirts</a></li>
-                                  <li><a href="#">Polos</a></li>
-                                </ul>
-                              </div>
-                              <div class="col-md-12 col-lg-3">
-                                <ul>
-                                  <li><a href="#">All Apparel</a></li>
-                                  <li><a href="#">Jackets</a></li>
-                                  <li><a href="#">Denim Jackets</a></li>
-                                  <li><a href="#">Leather Jackets</a></li>
-                                  <li><a href="#">Knitwear</a></li>
-                                </ul>
-                              </div>
-                              <div class="col-md-12 col-lg-2">
-                                <ul>
-                                  <li>
-                                    <a href="#" class="font-weight-bold"
-                                      >DISCOVER BY</a
-                                    >
-                                  </li>
-                                  <li><a href="#">New Arrivals Apparel</a></li>
-                                  <li><a href="#">Diesel x Diesel</a></li>
-                                  <li><a href="#">Green Label: Apparel</a></li>
-                                  <li><a href="#">Upfreshing Collection</a></li>
-                                </ul>
-                              </div>
-                              <div class="col-md-12 col-lg-4">
-                                <div class="menu_img-section">
-                                  <img
-                                    src="~/assets/img/new_arrivals-menu.jpg"
-                                    alt="img"
-                                    class="w-100"
-                                  />
-                                </div>
-                                <a href="#" class="link">NEW ARRIVALS</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">APPAREL</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">SHOES </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">ACCESSORIES </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">WATCHES</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">SPECIAL COLLECTIONS</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li class="nav-item">
-                <span class="stripeImage"></span>
-                <a class="nav-link" href="#">KID</a>
-              </li>
-              <li class="nav-item">
-                <span class="stripeImage"></span>
-                <a class="nav-link" href="#">Home</a>
               </li>
             </ul>
           </div>
         </div>
         <div class="site-logo">
-          <a class="navbar-brand" href="index.html"
+          <NuxtLink class="navbar-brand" to="/"
             ><img src="~/assets//img/logo.svg" alt="logo"
-          /></a>
+          /></NuxtLink>
         </div>
         <div class="search_box">
           <button class="btn">Search</button>
@@ -216,3 +62,17 @@
     </nav>
   </header>
 </template>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+  data() {
+    return {};
+  },
+
+  computed: {
+    ...mapState(["header"]),
+  },
+};
+</script>

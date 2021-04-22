@@ -39,9 +39,9 @@ export const state = () => ({
   header: [],
   pageLoader: false,
   // base URL is using in og tags and log generator API >>> all product
-  // BASE_URL: "https://sm.hostx1.de",
-  // BASE_URL: "http://localhost:5000",
-  BASE_URL: "https://shop.stevemadden.in",
+  // BASE_URL: "https://di.hostx1.de",
+  BASE_URL: "http://localhost:9000",
+  pimApi: "https://dipim.hostx1.de/pim/",
   isMobile: false,
   instaPost: [],
   bestSellerWomen: [],
@@ -57,7 +57,7 @@ export const actions = {
     let request = data.params;
     var authOptions = {
       method: data.method,
-      url: context.state.token.pimApi + data.url,
+      url: context.state.pimApi + data.url,
       headers: {
         "Content-Type": "application/json",
       },
@@ -76,53 +76,6 @@ export const actions = {
           reject(error);
         });
     });
-  },
-
-  async getInstaPost({ commit }, { token }) {
-    try {
-      var authOptions = {
-        method: "get",
-        url: `https://graph.instagram.com/me/media?fields=media_url,media_type,permalink,thumbnail_url&count=6&access_token=${token}`,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      let response = await this.$axios(authOptions);
-      if (response.status == 200) {
-        commit("updateInstaPost", { posts: response });
-      } else {
-        throw "encountered error while fetching instagram data";
-      }
-    } catch (error) {
-      console.log("error from get insta post", error);
-    }
-  },
-
-  // fetching data for the home page best seller
-  async getBestSeller(context, form) {
-    try {
-      var authOptions1 = {
-        method: form.method,
-        url: context.state.token.pimApi + form.url,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        params: form.params,
-      };
-
-      let tempResponse = await this.$axios(authOptions1);
-
-      if (tempResponse.data.response.success == 1) {
-        context.commit("updateBestSeller", {
-          postsFemale: tempResponse.data.result.womens,
-          postsMale: tempResponse.data.result.mens,
-        });
-      } else {
-        throw "encountered error while fetching best seller data";
-      }
-    } catch (error) {
-      console.log("error from the get best seller Store action >>", error);
-    }
   },
 };
 
@@ -146,10 +99,6 @@ export const mutations = {
       this.$globalError(`error from setCmsData mutation >>> ${error}`);
       state.cmsError = error;
     }
-  },
-
-  st_search(state, searchInput) {
-    state.list.search_input = searchInput;
   },
 
   // prepare state for product parameters before call
@@ -246,9 +195,14 @@ export const mutations = {
   },
 
   // update filter array
-
-  updateFilterArray(state, { item }) {
-    let filterParam = `${item.code}~${item.value_key}`;
+  updateFilterArray(state, { item, paramsData }) {
+    let filterParam;
+    if (item) {
+      filterParam = `${item.code}~${item.value_key}`;
+    }
+    if (paramsData) {
+      filterParam = paramsData;
+    }
     if (state.list.applied_filters.length == 0) {
       state.list.applied_filters.push(filterParam);
       this.$router.push({
@@ -308,31 +262,5 @@ export const mutations = {
   // update loader status
   updatePageLoader(state, { display }) {
     state.pageLoader = display;
-  },
-
-  // update reviews data
-  updateReviews(state, { payload }) {
-    state.singleProductList.reviews_list = payload.reviews;
-    state.singleProductList.total_review = payload.total_review;
-    state.singleProductList.average_rating = payload.average_rating;
-  },
-
-  // update device information
-  updateDeviceInfo(state, { payload }) {
-    state.isMobile = payload;
-  },
-
-  updateInstaPost(state, { posts }) {
-    state.instaPost = posts.data.data;
-  },
-
-  updateBestSeller(state, { postsFemale, postsMale }) {
-    state.bestSellerMan = postsMale;
-    state.bestSellerWomen = postsFemale;
-  },
-
-  // set banner data
-  setBannerData(state, payload) {
-    state.bannerData = payload;
   },
 };

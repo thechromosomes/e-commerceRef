@@ -9,15 +9,25 @@
             >
               <span class="icon-arrow-black-left" role="navigation"></span>
             </div>
-            <div class="search-banner-title-mobile">LOUNGEWEAR</div>
+            <div
+              class="search-banner-title-mobile"
+              v-if="list.Product_list.length > 0"
+            >
+              {{ list.pageHead.toUpperCase() }}
+            </div>
             <div class="search-banner-result-count-mobile">
-              <span> 165 Results </span>
+              <span> {{ calculateResult }} Results </span>
             </div>
           </div>
         </div>
         <div class="search-banner-desktop desktop_only">
           <div class="search-banner-content">
-            <h1 class="search-banner-title search-black">LOUNGEWEAR</h1>
+            <h1
+              class="search-banner-title search-black"
+              v-if="list.Product_list.length > 0"
+            >
+              {{ list.pageHead.toUpperCase() }}
+            </h1>
           </div>
         </div>
 
@@ -33,17 +43,21 @@
       </div>
     </div>
 
-    <div class="refinements-holder desktop_only">
+    <div class="refinements-holder desktop_only" v-if="list.filters.length > 0">
       <div class="container-fluid">
         <div class="filter_box">
           <div class="filter-header">
             <span>Filter By</span>
           </div>
           <div class="refinements">
-            <div class="card refinement refinement-category">
+            <div
+              class="card refinement refinement-category"
+              v-for="(filter, filterIndex) in list.filters"
+              :key="filterIndex"
+            >
               <h2 class="js_card-header card-header" tabindex="0">
-                <span class="filter-title js_title"
-                  >Category
+                <span class="filter-title js_title">
+                  {{ filter.filter_lable }}
                   <span
                     class="js_total-selected total-selected d-lg-none"
                     data-selected="0"
@@ -56,134 +70,26 @@
               </h2>
               <div class="hidden_filtter">
                 <ul class="sort-options">
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box selected-box">Cases</span>
-                    </a>
-                  </li>
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box not-selected-box"
-                        >Ring stands</span
-                      >
-                    </a>
-                  </li>
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box not-selected-box"
-                        >Universal pockets</span
-                      >
-                    </a>
-                  </li>
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box not-selected-box"
-                        >Universal straps</span
-                      >
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="card refinement refinement-category">
-              <h2 class="js_card-header card-header" tabindex="0">
-                <span class="filter-title js_title"
-                  >Category
-                  <span
-                    class="js_total-selected total-selected d-lg-none"
-                    data-selected="0"
+                  <li
+                    class="sort-option best-matches"
+                    v-for="(item, index) in filter.options"
+                    :key="index"
                   >
-                  </span>
-                </span>
-                <span
-                  class="select-arrow icon-arrow-mid-down-black js_select-arrow"
-                ></span>
-              </h2>
-              <div class="hidden_filtter">
-                <ul class="sort-options">
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box selected-box">Cases</span>
-                    </a>
-                  </li>
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box not-selected-box"
-                        >Ring stands</span
-                      >
-                    </a>
-                  </li>
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box not-selected-box"
-                        >Universal pockets</span
-                      >
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="card refinement refinement-category">
-              <h2 class="js_card-header card-header" tabindex="0">
-                <span class="filter-title js_title"
-                  >Color
-                  <span
-                    class="js_total-selected total-selected d-lg-none"
-                    data-selected="0"
-                  >
-                  </span>
-                </span>
-                <span
-                  class="select-arrow icon-arrow-mid-down-black js_select-arrow"
-                ></span>
-              </h2>
-              <div class="hidden_filtter">
-                <ul class="sort-options">
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box selected-box">Read</span>
-                    </a>
-                  </li>
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box not-selected-box">Black</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="card refinement refinement-category">
-              <h2 class="js_card-header card-header" tabindex="0">
-                <span class="filter-title js_title"
-                  >Size
-                  <span
-                    class="js_total-selected total-selected d-lg-none"
-                    data-selected="0"
-                  >
-                  </span>
-                </span>
-                <span
-                  class="select-arrow icon-arrow-mid-down-black js_select-arrow"
-                ></span>
-              </h2>
-              <div class="hidden_filtter">
-                <ul class="sort-options">
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box not-selected-box">Cases</span>
-                    </a>
-                  </li>
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box not-selected-box"
-                        >Ring stands</span
-                      >
-                    </a>
-                  </li>
-                  <li class="sort-option best-matches">
-                    <a href="#">
-                      <span class="selection-box not-selected-box"
-                        >Universal pockets</span
+                    <a
+                      @click.prevent="
+                        $store.commit('updateFilterArray', { item })
+                      "
+                    >
+                      <a
+                        class="selection-box"
+                        :class="
+                          list.applied_filters.findIndex(
+                            (x) => x === `${item.code}~${item.value_key}`
+                          ) >= 0
+                            ? 'selected-box'
+                            : 'not-selected-box'
+                        "
+                        >{{ item.value }}</a
                       >
                     </a>
                   </li>
@@ -195,22 +101,22 @@
       </div>
     </div>
 
-    <div class="desktop_only">
+    <!-- applied filters -->
+    <div class="desktop_only" v-if="list.applied_filters.length > 0">
       <div class="filter-bar">
         <div class="filter-clearall-container">
-          <a class="reset" href="#"> Clear all </a>
+          <a class="reset" @click.prevent="removeAllFilters()"> Clear all </a>
         </div>
         <ul class="filters-close-main-container">
-          <li class="filter-value">
-            <a class="filter-close-container" href="#">
+          <li
+            class="filter-value"
+            v-for="(appliedFilter, filterIndex) in list.applied_filters"
+            :key="filterIndex"
+            @click="removeFilter(appliedFilter)"
+          >
+            <a class="filter-close-container">
+              {{ appliedFilter }}
               <div class="icon-close-black icon-close-black-filter"></div>
-              Black
-            </a>
-          </li>
-          <li class="filter-value">
-            <a class="filter-close-container" href="#">
-              <div class="icon-close-black icon-close-black-filter"></div>
-              Black
             </a>
           </li>
         </ul>
@@ -225,7 +131,9 @@
         <div class="container-fluid">
           <div class="product-results-container">
             <div class="search-result-options">
-              <div class="showing-results">Showing: 165 Products</div>
+              <div class="showing-results">
+                Showing: {{ calculateResult }} Product(s)
+              </div>
               <div class="sort-order">
                 <div class="sort-list">
                   <div class="sort-label">
@@ -248,57 +156,51 @@
               </div>
             </div>
 
-            <div class="product_lists">
+            <div class="product_lists" v-if="list.Product_list.length > 0">
               <div class="row">
-                <div class="col-lg-3 col-md-6 col-6"  v-for="(item, index) in 12" :key="index">
+                <div
+                  class="col-lg-3 col-md-6 col-6"
+                  v-for="(singleProd, prodIndex) in list.Product_list"
+                  :key="prodIndex"
+                >
                   <div class="product_list_item">
                     <div class="list_slide">
                       <VueSlickCarousel v-bind="productSetting">
-                        <div class="item">
-                          <a href="product_details.html">
+                        <div
+                          class="item"
+                          v-for="(image, imgIndex) in 5"
+                          :key="imgIndex"
+                        >
+                          <Nuxt-link :to="`/product/${singleProd.url_key}`">
                             <img
                               src="~/assets/img/p1.jpg"
                               alt="img"
                               class="w-100"
                             />
-                          </a>
-                        </div>
-                        <div class="item">
-                          <a href="product_details.html">
-                            <img
-                              src="~/assets/img/p2.jpg"
-                              alt="img"
-                              class="w-100"
-                            />
-                          </a>
-                        </div>
-                        <div class="item">
-                          <a href="product_details.html"
-                            ><img
-                              src="~/assets/img/p3.jpg"
-                              alt="img"
-                              class="w-100"
-                            />
-                          </a>
-                        </div>
-                        <div class="item">
-                          <a href="product_details.html"
-                            ><img
-                              src="~/assets/img/p4.jpg"
-                              alt="img"
-                              class="w-100"
-                            />
-                          </a>
+                          </Nuxt-link>
                         </div>
                       </VueSlickCarousel>
                     </div>
                     <div class="title-body">
-                      <p>Black</p>
-                      <a href="#">Legging-shorts with logo waistband</a>
+                      <p>{{ singleProd.color }}</p>
+                      <Nuxt-link :to="`/product/${singleProd.url_key}`">{{
+                        singleProd.name
+                      }}</Nuxt-link>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div
+              class="no_products text-center"
+              v-if="
+                list.Product_list.length == 0 &&
+                $store.state.pageLoader == false
+              "
+            >
+              <h1>Sorry !</h1>
+              <p>{{ list.page_error }}</p>
+              <img src="@/assets/img/no_product.png" alt="no-product" />
             </div>
 
             <div class="show-more">
@@ -307,7 +209,8 @@
                 style="display: none"
               ></div>
               <div class="you-have-seen js_you-have-seen">
-                You've seen 100 of 165 products
+                You've seen {{ list.Product_list.length }} of
+                {{ calculateResult }} product(s)
               </div>
               <button
                 class="button button-load-more js_button-load-more pointer"
@@ -324,7 +227,7 @@
 
             <div class="you_like_slide">
               <VueSlickCarousel v-bind="settings">
-                <div class="item"  v-for="(item, index) in 10" :key="index">
+                <div class="item" v-for="(item, index) in 10" :key="index">
                   <img src="~/assets/img/like-1.jpg" alt="img" class="w-100" />
                   <div class="title-body">
                     <a href="#">Legging-shorts with logo waistband</a>
@@ -341,6 +244,8 @@
 
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
+import { mapState } from "vuex";
+
 export default {
   components: { VueSlickCarousel },
   data() {
@@ -386,6 +291,198 @@ export default {
         centerMode: true,
       },
     };
+  },
+
+  head() {
+    return {
+      title: this.list.meta_title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.list.meta_description,
+        },
+        {
+          hid: "keyword",
+          name: "keyword",
+          content: this.list.meta_keyword,
+        },
+        {
+          hid: "og:title",
+          content: this.title,
+          property: "og:title",
+        },
+        {
+          hid: "og:description",
+          content: this.description,
+          property: "og:description",
+        },
+        {
+          hid: "og:url",
+          content: this.url,
+          property: "og:url",
+        },
+      ],
+    };
+  },
+
+  methods: {
+    async getProductList(page) {
+      let pageNumber;
+      page != undefined ? (pageNumber = page) : (pageNumber = 1);
+      try {
+        await this.$store.commit("prepareState", {
+          routeParam: this.$route.params.productCategory,
+          pageNo: pageNumber,
+        });
+        let {
+          service,
+          store,
+          pass_url_key,
+          page,
+          count,
+        } = this.$store.state.list;
+
+        let form = {};
+        form.service = service;
+        form.store = store;
+        form.url_key = pass_url_key;
+        form.page = page;
+        form.count = count;
+        if (this.$route.query.sort) {
+          form.sort_by = this.$route.query.sort;
+        }
+        if (this.$route.query.sort_dir) {
+          form.sort_dir = this.$route.query.sort_dir;
+        }
+        if (this.$route.query.filter) {
+          if (typeof this.$route.query.filter == "string") {
+            form.filter = this.$route.query.filter;
+          } else {
+            form.filter = this.$route.query.filter.join();
+          }
+        }
+
+        // to disable default loader gif
+        if (pageNumber > 1) {
+          form.noLoader = true;
+        }
+
+        let response = await this.$store.dispatch("pimAjax", {
+          method: "post",
+          url: `/pimresponse.php`,
+          params: form,
+        });
+
+        if (response) {
+          await this.$store.commit("updateState", {
+            error: null,
+            data: response,
+          });
+          // // google tag manager
+          // this.gtm_product_impressions = [];
+          // var appliedFilter = "none";
+          // if (response.query.filter) {
+          //   appliedFilter = response.query.filter;
+          // }
+          // if (response.result.products.length > 0) {
+          //   for (let [index, i] of response.result.products.entries()) {
+          //     let name = i.name;
+          //     let id = i.sku;
+          //     let price = i.selling_price;
+          //     let category = i.category;
+          //     let list = "product List";
+          //     let position = index + 1;
+          //     this.gtm_product_impressions.push({
+          //       name,
+          //       id,
+          //       price,
+          //       category,
+          //       list,
+          //       position,
+          //       appliedFilter,
+          //     });
+          //   }
+          //   this.$gtm.push({
+          //     event: "impressionSent",
+          //     action: "Product Impression",
+          //     label: "Product List page",
+          //     category: response.result.products[0].category,
+          //     ecommerce: {
+          //       currencyCode: "INR",
+          //       impressions: this.gtm_product_impressions,
+          //     },
+          //   });
+          // }
+          if (process.browser && pageNumber == 1) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        } else {
+          throw "there is error from all product page >> no response";
+        }
+      } catch (error) {
+        this.$globalError(`error from all product page >>>> ${error}`);
+        if (error.message === "Network Error") {
+          this.$store.commit("updateState", {
+            error:
+              "Oops there seems to be some Network issue, please try again",
+          });
+        }
+      }
+    },
+    async removeAllFilters() {
+      this.$router.push(this.$route.path);
+    },
+
+    removeFilter(paramsData) {
+      this.$store.commit("updateFilterArray", { paramsData });
+    },
+  },
+
+  computed: {
+    calculateResult() {
+      if (this.list.Product_list.length < 12) {
+        return this.list.Product_list.length;
+      } else {
+      }
+      return this.list.total_page * 12;
+    },
+    ...mapState(["list"]),
+    // render seo tags
+    title() {
+      if (this.list.meta_title != "") return this.list.meta_title;
+      return "STEVE MADDEN ALL PRODUCT";
+    },
+    description() {
+      if (this.list.meta_description !== "") return this.list.meta_description;
+      return "STEVE MADDEN";
+    },
+    url() {
+      return this.$store.state.BASE_URL + this.$route.fullPath;
+    },
+  },
+
+  async fetch() {
+    try {
+      // fetching products from the backend
+      await this.getProductList();
+    } catch (error) {
+      this.$globalError(`error from the all product page ${error}`);
+    }
+  },
+
+  watch: {
+    "$route.query": function () {
+      this.getProductList();
+    },
+
+    "$store.state.list.sortingData": {
+      deep: true,
+      handler: function () {
+        this.sorting.code = this.list.sortingData.code;
+        this.sorting.dir = this.list.sortingData.dir;
+      },
+    },
   },
 };
 </script>

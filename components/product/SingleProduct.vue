@@ -1,37 +1,13 @@
 <template>
   <div class="product_details main_section">
     <div class="product-images product_images_slide mobile_only">
-      <div class="item">
+      <div
+        class="item"
+        v-for="(image, imgIndex) in singleProductList.single_prod_data.gallery"
+        :key="imgIndex"
+      >
         <img
           src="~/assets/img/00ST1N_0AAZR_900_F.jpg"
-          alt="img"
-          class="w-100"
-        />
-      </div>
-      <div class="item">
-        <img
-          src="~/assets/img/00ST1N_0AAZR_900_A.jpg"
-          alt="img"
-          class="w-100"
-        />
-      </div>
-      <div class="item">
-        <img
-          src="~/assets/img/00ST1N_0AAZR_900_E.jpg"
-          alt="img"
-          class="w-100"
-        />
-      </div>
-      <div class="item">
-        <img
-          src="~/assets/img/00ST1N_0AAZR_900_F.jpg"
-          alt="img"
-          class="w-100"
-        />
-      </div>
-      <div class="item">
-        <img
-          src="~/assets/img/00ST1N_0AAZR_900_R.jpg"
           alt="img"
           class="w-100"
         />
@@ -51,30 +27,14 @@
         <div class="col-md-12 col-lg-8 col-12">
           <div class="product-images desktop_only">
             <div class="desk-img">
-              <div class="image-box">
+              <div
+                class="image-box"
+                v-for="(image, imgIndex) in singleProductList.single_prod_data
+                  .gallery"
+                :key="imgIndex"
+              >
                 <img
                   src="~/assets/img/00ST1N_0AAZR_900_F.jpg"
-                  alt="img"
-                  class="w-100"
-                />
-              </div>
-              <div class="image-box">
-                <img
-                  src="~/assets/img/00ST1N_0AAZR_900_A.jpg"
-                  alt="img"
-                  class="w-100"
-                />
-              </div>
-              <div class="image-box">
-                <img
-                  src="~/assets/img/00ST1N_0AAZR_900_E.jpg"
-                  alt="img"
-                  class="w-100"
-                />
-              </div>
-              <div class="image-box">
-                <img
-                  src="~/assets/img/00ST1N_0AAZR_900_R.jpg"
                   alt="img"
                   class="w-100"
                 />
@@ -90,65 +50,49 @@
             </h2>
             <ul class="product-attributes">
               <li class="variation-attribute">
-                <span class="attribute-label color"> Choose COLOR: </span>
-                <span class="attribute-label-value"> Black</span>
+                <span class="attribute-label color"> COLOR: </span>
+                <span class="attribute-label-value">
+                  {{ singleProductList.single_prod_data.color }}</span
+                >
                 <ul class="swatch-attribute-values color">
-                  <li class="swatch-attribute-values-img">
+                  <li
+                    class="swatch-attribute-values-img"
+                    v-for="(color, index) in singleProductList.single_prod_data
+                      .color_variation"
+                    :key="index"
+                  >
                     <a href="#"
                       ><img
                         src="~/assets/img/00ST1N_0AAZR_5FR_F.jpg"
                         alt="img"
-                        class=""
-                    /></a>
-                  </li>
-                  <li class="swatch-attribute-values-img">
-                    <a href="#"
-                      ><img
-                        src="~/assets/img/00ST1N_0AAZR_900_F_2.jpg"
-                        alt="img"
-                        class="active"
-                    /></a>
-                  </li>
-                  <li class="swatch-attribute-values-img">
-                    <a href="#"
-                      ><img
-                        src="~/assets/img/00ST1N_0AAZR_8AT_F.jpg"
-                        alt="img"
-                        class=""
-                    /></a>
-                  </li>
-                  <li class="swatch-attribute-values-img">
-                    <a href="#"
-                      ><img
-                        src="~/assets/img/00ST1N_0AAZR_96X_F.jpg"
-                        alt="img"
-                        class=""
-                    /></a>
-                  </li>
-                  <li class="swatch-attribute-values-img">
-                    <a href="#"
-                      ><img
-                        src="~/assets/img/00ST1N_0AAZR_129_F.jpg"
-                        alt="img"
-                        class=""
+                        :class="[
+                          $route.params.productDetail == color.url_key
+                            ? 'active'
+                            : '',
+                        ]"
                     /></a>
                   </li>
                 </ul>
               </li>
               <li class="variation-attribute">
-                <span class="attribute-label color"> CHOOSE SIZE </span>
+                <span class="attribute-label color">
+                  CHOOSE SIZE
+                  <span v-if="selectedSizeAttr"
+                    >: {{selectedSizeAttr.configrable_atribute_value }}
+                  </span>
+                </span>
                 <!-- <span class="attribute-label-value"> Black</span> -->
                 <ul class="swatch-attribute-values color">
-                  <li class="attribute-value js_attribute-value unavailable">
-                    XS
+                  <li
+                    class="attribute-value js_attribute-value"
+                    v-for="(size, index) in singleProductList.single_prod_data
+                      .variation"
+                    :key="index"
+                    :class="[size.quantity == 0 ? 'unavailable' : '']"
+                    @click="hanldeSize(size)"
+                  >
+                    {{ size.configrable_atribute_value }}
                   </li>
-                  <li class="attribute-value js_attribute-value">S</li>
-                  <li class="attribute-value js_attribute-value unavailable">
-                    M
-                  </li>
-                  <li class="attribute-value js_attribute-value">L</li>
-                  <li class="attribute-value js_attribute-value">XL</li>
-                  <li class="attribute-value js_attribute-value">XXL</li>
                 </ul>
               </li>
             </ul>
@@ -287,19 +231,169 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {
       CareInstructions: false,
       pickup: false,
       size: false,
+      selectedSizeAttr: "",
+      sizeAlert: false,
     };
+  },
+
+  head() {
+    return {
+      title: this.singleProductList.single_prod_data.meta_title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.singleProductList.single_prod_data.meta_description,
+        },
+        {
+          hid: "keyword",
+          name: "keyword",
+          content: this.singleProductList.single_prod_data.meta_keyword,
+        },
+        {
+          hid: "og:title",
+          content: this.title,
+          property: "og:title",
+        },
+        {
+          hid: "og:description",
+          content: this.description,
+          property: "og:description",
+        },
+        {
+          hid: "og:url",
+          content: this.url,
+          property: "og:url",
+        },
+        {
+          hid: "og:image",
+          content: this.image,
+          property: "og:image",
+        },
+      ],
+    };
+  },
+
+  computed: {
+    ...mapState(["singleProductList"]),
+    renderDescription() {
+      let {
+        description,
+        material,
+        color,
+        occasion,
+        pattern,
+        sleeve,
+        warranty,
+      } = this.singleProductList.single_prod_data;
+
+      let obj = {
+        description,
+        material,
+        color,
+        occasion,
+        pattern,
+        sleeve,
+        warranty,
+      };
+
+      let finaObj = Object.entries(obj).reduce(
+        (a, [k, v]) => (v == null ? a : ((a[k] = v), a)),
+        {}
+      );
+      return finaObj;
+    },
+
+    // render seo tags
+    title() {
+      if (this.singleProductList.single_prod_data.meta_title != "")
+        return this.singleProductList.single_prod_data.meta_title;
+      return "STEVE MADDEN SINGLE PRODUCT";
+    },
+    description() {
+      if (this.singleProductList.single_prod_data.meta_description !== "")
+        return this.singleProductList.single_prod_data.meta_description;
+      return "STEVE MADDEN";
+    },
+    url() {
+      return this.$store.state.BASE_URL + this.$route.fullPath;
+    },
+    image() {
+      return this.singleProductList.single_prod_data.image;
+    },
   },
 
   methods: {
     toggleDropDown(state) {
       this[state] = !this[state];
     },
+
+    hanldeSize(size) {
+      if (size.quantity == 0) return;
+      this.sizeAlert = false;
+      this.selectedSizeAttr = size;
+    },
+
+    // get product detail
+    async getProductDetail() {
+      try {
+        await this.$store.commit("prepareStateForSingleProd", {
+          routeParam: this.$route.params.productDetail,
+        });
+        let { service, store, url_key } = this.$store.state.singleProductList;
+        var form = {};
+        form.service = service;
+        form.store = store;
+        form.url_key = url_key;
+
+        if (this.$route.query.filter) {
+          form.filter = this.$route.query.filter;
+        }
+        let response = await this.$store.dispatch("pimAjax", {
+          method: "post",
+          url: `/pimresponse.php`,
+          params: form,
+        });
+
+        if (response) {
+          this.$store.commit("updateSingleProdState", {
+            error: null,
+            data: response,
+          });
+        } else {
+          throw "no response from api";
+        }
+      } catch (error) {
+        this.$globalError(`error from getProductDetail >>>> ${error}`);
+        if (error.message === "Network Error") {
+          this.$store.commit("updateSingleProdState", {
+            error:
+              "Oops there seems to be some Network issue, please try again",
+          });
+        }
+      }
+    },
+  },
+
+  async fetch() {
+    // to fetch single product detail
+    await this.getProductDetail();
+    // render from single variation
+    if (
+      this.singleProductList.single_prod_data &&
+      Object.keys(this.singleProductList.single_prod_data.variation).length == 1
+    ) {
+      var obj = this.singleProductList.single_prod_data.variation;
+      this.selectedSizeAttr = obj[Object.keys(obj)[0]];
+    }
   },
 };
 </script>

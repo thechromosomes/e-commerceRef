@@ -41,7 +41,7 @@ export default {
   plugins: [
     { src: "@/plugins/globalErrorHandler", ssr: true },
     // { src: "@plugins/fetchCookies", ssr: false },
-    // { src: "@/plugins/tokenAndCms.js" , ssr: true},
+    { src: "@/plugins/tokenAndCms.js" , ssr: true},
     { src: "@/plugins/axios", ssr: true },
     { src: "@plugins/thirdPartyModules", ssr: true },
   ],
@@ -111,7 +111,7 @@ export default {
         app.use(async (error, req, res, next) => {
           if (error) {
             let finalError = await error;
-            console.log()
+            console.log("finalError", finalError)
             // CreateLog.error({
             //   error: `>>> ${finalError}`,
             //   metaInformation: req.rawHeaders,

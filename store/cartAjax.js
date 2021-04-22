@@ -1,4 +1,5 @@
 export const state = () => ({
+  cartApi: "",
   cart_id: "",
   cart_session: "",
   cart_token: "",
@@ -33,7 +34,7 @@ export const actions = {
     let request = data.params;
     var authOptions = {
       method: data.method,
-      url: rootState.token.cartApi + data.url,
+      url: state.cartApi + data.url,
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + state.cart_token,
