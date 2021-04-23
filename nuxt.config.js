@@ -130,6 +130,6 @@ export default {
   server: {
     port: 9000,
     // configure local area network
-    host: "0"
+    // host: "0"
   },
 };

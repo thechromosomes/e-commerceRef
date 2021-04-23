@@ -124,10 +124,7 @@
         <div class="content_new_in">
           <h2 class="swiper-header">NEW IN</h2>
           <div class="slide_new_in">
-            <VueSlickCarousel
-              ref="slick"
-              v-bind="settings"
-            >
+            <VueSlickCarousel ref="slick" v-bind="settings">
               <div class="item">
                 <a href="#"
                   ><img
@@ -244,33 +241,42 @@ export default {
   data() {
     return {
       settings: {
-        focusOnSelect: true,
         infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        touchThreshold: 5,
-        arrows: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: false,
         autoplay: true,
-        centerMode: true,
+        autoplaySpeed: 2000,
         responsive: [
           {
-            breakpoint: 800,
+            breakpoint: 991,
             settings: {
-              slidesToShow: 2,
-              autoplay: true,
-              slidesToScroll: 2,
-            },
+              arrows: false,
+              centerMode: false,
+              centerPadding: "40px",
+              slidesToShow: 2.5
+            }
+          },
+          {
+            breakpoint: 767,
+            settings: {
+              arrows: false,
+              centerMode: false,
+              centerPadding: "40px",
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 480,
             settings: {
-              slidesToShow: 2,
-              autoplay: true,
-              slidesToScroll: 2,
-            },
-          },
-        ],
+              arrows: false,
+              centerMode: false,
+              centerPadding: "20px",
+              slidesToShow: 1
+            }
+          }
+        ]
       },
       settings2: {
         focusOnSelect: true,
@@ -288,20 +294,20 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
+              slidesToScroll: 1
+            }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
-          },
-        ],
-      },
+              slidesToScroll: 1
+            }
+          }
+        ]
+      }
     };
-  },
+  }
 };
 </script>

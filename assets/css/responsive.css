@@ -213,7 +213,7 @@
     margin: 0;
     padding: 0;
     position: absolute;
-    bottom: 0px;
+    bottom: 10px;
     width: auto;
     left: 25px;
   }
@@ -426,6 +426,44 @@
     position: static;
     max-width: 100%;
   }
+  .no-product_img {
+    width: 80% !important;
+  }
+  /* 404 css */
+
+  .not_found_page .not_found_img .content .main-404-title {
+    position: absolute;
+    top: 0;
+    font-size: 27px;
+    margin: 15px;
+  }
+  .not_found_page .not_found_img .content .btn-block {
+    padding: 15px;
+    max-width: 100%;
+    background: black;
+  }
+  .not_found_page .not_found_img .content .btn-block a.button {
+    display: inline-block;
+    font-family: "Roboto Condensed", sans-serif;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 40px;
+    letter-spacing: 1px;
+  }
+  .not_found_page .not_found_img .content {
+    position: static;
+    top: unset;
+    left: unset;
+    transform: unset;
+    padding: 0px;
+  }
+  .shop-latest-for .content-asset .shop-latest-container .shop-latest-block {
+    width: 100%;
+  }
+  /* 404 css  end*/
 }
 
 @media (max-width: 767px) {

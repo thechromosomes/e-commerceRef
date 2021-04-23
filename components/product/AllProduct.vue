@@ -84,7 +84,7 @@
                         class="selection-box"
                         :class="
                           list.applied_filters.findIndex(
-                            (x) => x === `${item.code}~${item.value_key}`
+                            x => x === `${item.code}~${item.value_key}`
                           ) >= 0
                             ? 'selected-box'
                             : 'not-selected-box'
@@ -195,12 +195,16 @@
               class="no_products text-center"
               v-if="
                 list.Product_list.length == 0 &&
-                $store.state.pageLoader == false
+                  $store.state.pageLoader == false
               "
             >
               <h1>Sorry !</h1>
               <p>{{ list.page_error }}</p>
-              <img src="@/assets/img/no_product.png" alt="no-product" />
+              <img
+                src="@/assets/img/no_product.png"
+                alt="no-product"
+                class="no-product_img"
+              />
             </div>
 
             <div class="show-more">
@@ -253,43 +257,51 @@ export default {
       settings: {
         focusOnSelect: true,
         infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        touchThreshold: 5,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        dots: false,
         arrows: true,
         autoplay: true,
-        centerMode: true,
+        autoplaySpeed: 2000,
         responsive: [
           {
-            breakpoint: 800,
+            breakpoint: 991,
             settings: {
-              slidesToShow: 2,
-              autoplay: true,
-              slidesToScroll: 2,
-            },
+              arrows: false,
+              centerMode: true,
+              centerPadding: "0px",
+              slidesToShow: 2.5
+            }
+          },
+          {
+            breakpoint: 767,
+            settings: {
+              arrows: false,
+              centerMode: false,
+              centerPadding: "0px",
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 480,
             settings: {
-              slidesToShow: 2,
-              autoplay: true,
-              slidesToScroll: 2,
-            },
-          },
-        ],
+              arrows: false,
+              centerMode: false,
+              centerPadding: "20px",
+              slidesToShow: 1.5
+            }
+          }
+        ]
       },
 
       productSetting: {
         focusOnSelect: true,
         infinite: true,
-        speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        arrows: true,
-        autoplay: false,
-        centerMode: true,
-      },
+        dots: false,
+        arrows: true
+      }
     };
   },
 
@@ -300,29 +312,29 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.list.meta_description,
+          content: this.list.meta_description
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.list.meta_keyword,
+          content: this.list.meta_keyword
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title",
+          property: "og:title"
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description",
+          property: "og:description"
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url",
-        },
-      ],
+          property: "og:url"
+        }
+      ]
     };
   },
 
@@ -333,14 +345,14 @@ export default {
       try {
         await this.$store.commit("prepareState", {
           routeParam: this.$route.params.productCategory,
-          pageNo: pageNumber,
+          pageNo: pageNumber
         });
         let {
           service,
           store,
           pass_url_key,
           page,
-          count,
+          count
         } = this.$store.state.list;
 
         let form = {};
@@ -371,13 +383,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
           await this.$store.commit("updateState", {
             error: null,
-            data: response,
+            data: response
           });
           // // google tag manager
           // this.gtm_product_impressions = [];
@@ -424,8 +436,7 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
@@ -436,7 +447,7 @@ export default {
 
     removeFilter(paramsData) {
       this.$store.commit("updateFilterArray", { paramsData });
-    },
+    }
   },
 
   computed: {
@@ -459,7 +470,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
+    }
   },
 
   async fetch() {
@@ -472,17 +483,17 @@ export default {
   },
 
   watch: {
-    "$route.query": function () {
+    "$route.query": function() {
       this.getProductList();
     },
 
     "$store.state.list.sortingData": {
       deep: true,
-      handler: function () {
+      handler: function() {
         this.sorting.code = this.list.sortingData.code;
         this.sorting.dir = this.list.sortingData.dir;
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>

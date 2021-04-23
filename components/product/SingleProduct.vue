@@ -1,17 +1,20 @@
 <template>
   <div class="product_details main_section">
     <div class="product-images product_images_slide mobile_only">
-      <div
-        class="item"
-        v-for="(image, imgIndex) in singleProductList.single_prod_data.gallery"
-        :key="imgIndex"
-      >
-        <img
-          src="~/assets/img/00ST1N_0AAZR_900_F.jpg"
-          alt="img"
-          class="w-100"
-        />
-      </div>
+      <VueSlickCarousel ref="slick" v-bind="settings">
+        <div
+          class="item"
+          v-for="(image, imgIndex) in singleProductList.single_prod_data
+            .gallery"
+          :key="imgIndex"
+        >
+          <img
+            src="~/assets/img/00ST1N_0AAZR_900_F.jpg"
+            alt="img"
+            class="w-100"
+          />
+        </div>
+      </VueSlickCarousel>
     </div>
 
     <div class="container-fluid">
@@ -68,7 +71,7 @@
                         :class="[
                           $route.params.productDetail == color.url_key
                             ? 'active'
-                            : '',
+                            : ''
                         ]"
                     /></a>
                   </li>
@@ -78,7 +81,7 @@
                 <span class="attribute-label color">
                   CHOOSE SIZE
                   <span v-if="selectedSizeAttr"
-                    >: {{selectedSizeAttr.configrable_atribute_value }}
+                    >: {{ selectedSizeAttr.configrable_atribute_value }}
                   </span>
                 </span>
                 <!-- <span class="attribute-label-value"> Black</span> -->
@@ -231,9 +234,11 @@
 </template>
 
 <script>
+import VueSlickCarousel from "vue-slick-carousel";
 import { mapState } from "vuex";
 
 export default {
+  components: { VueSlickCarousel },
   data() {
     return {
       CareInstructions: false,
@@ -241,6 +246,15 @@ export default {
       size: false,
       selectedSizeAttr: "",
       sizeAlert: false,
+      settings: {
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 2000
+      }
     };
   },
 
@@ -251,34 +265,34 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.singleProductList.single_prod_data.meta_description,
+          content: this.singleProductList.single_prod_data.meta_description
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.singleProductList.single_prod_data.meta_keyword,
+          content: this.singleProductList.single_prod_data.meta_keyword
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title",
+          property: "og:title"
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description",
+          property: "og:description"
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url",
+          property: "og:url"
         },
         {
           hid: "og:image",
           content: this.image,
-          property: "og:image",
-        },
-      ],
+          property: "og:image"
+        }
+      ]
     };
   },
 
@@ -292,7 +306,7 @@ export default {
         occasion,
         pattern,
         sleeve,
-        warranty,
+        warranty
       } = this.singleProductList.single_prod_data;
 
       let obj = {
@@ -302,7 +316,7 @@ export default {
         occasion,
         pattern,
         sleeve,
-        warranty,
+        warranty
       };
 
       let finaObj = Object.entries(obj).reduce(
@@ -328,7 +342,7 @@ export default {
     },
     image() {
       return this.singleProductList.single_prod_data.image;
-    },
+    }
   },
 
   methods: {
@@ -346,7 +360,7 @@ export default {
     async getProductDetail() {
       try {
         await this.$store.commit("prepareStateForSingleProd", {
-          routeParam: this.$route.params.productDetail,
+          routeParam: this.$route.params.productDetail
         });
         let { service, store, url_key } = this.$store.state.singleProductList;
         var form = {};
@@ -360,13 +374,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
           this.$store.commit("updateSingleProdState", {
             error: null,
-            data: response,
+            data: response
           });
         } else {
           throw "no response from api";
@@ -375,12 +389,11 @@ export default {
         this.$globalError(`error from getProductDetail >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateSingleProdState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
-    },
+    }
   },
 
   async fetch() {
@@ -394,6 +407,6 @@ export default {
       var obj = this.singleProductList.single_prod_data.variation;
       this.selectedSizeAttr = obj[Object.keys(obj)[0]];
     }
-  },
+  }
 };
 </script>

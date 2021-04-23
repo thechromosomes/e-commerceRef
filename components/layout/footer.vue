@@ -51,7 +51,7 @@
         <p class="copyright">
           Copyright © 2021 Diesel SpA - All rights reserved - VAT 00642650246 -
           <a
-            href="#"
+            href=""
             class="postscript"
             data-toggle="modal"
             data-target="#vendorPopupModal"
