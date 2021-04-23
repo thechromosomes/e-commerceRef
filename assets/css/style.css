@@ -85,6 +85,7 @@ button:hover {
   font-weight: bold;
   font-family: "Roboto Condensed", sans-serif;
   transition: all 0.5s;
+  cursor: pointer;
 }
 .header .navbar .navbar-collapse .navbar-nav:hover .nav-item .nav-link {
   opacity: 0.5;
