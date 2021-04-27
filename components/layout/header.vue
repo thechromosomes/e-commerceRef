@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :class="[scrollPosition > 30 ? 'header-fixed' : '']">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
         <div class="mobile-screen-icon">
@@ -64,8 +64,15 @@
             ><img src="~/assets//img/logo.svg" alt="logo"
           /></NuxtLink>
         </div>
-        <div class="search_box" @click="searchActive = true">
-          <button class="btn">Search</button>
+        <div class="search_box">
+          <span class="widshlist">
+            <img src="~/assets//img/heart.png" alt="cart" />
+          </span>
+          <span class="carts"
+            ><img src="~/assets//img/cart.png" alt="cart" />
+            <span class="cart_val"> 0</span>
+          </span>
+          <button class="btn " @click="searchActive = true">Search</button>
         </div>
       </div>
     </nav>
@@ -102,12 +109,26 @@ export default {
   data() {
     return {
       showMobileMenu: false,
-      searchActive: false
+      searchActive: false,
+      scrollPosition: null
     };
+  },
+  async mounted() {
+    // for sticky header
+    window.addEventListener("scroll", this.updateScroll);
   },
 
   computed: {
     ...mapState(["header"])
+  },
+
+  methods: {
+    updateScroll() {
+      this.scrollPosition = window.scrollY;
+    }
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.updateScroll);
   }
 };
 </script>
