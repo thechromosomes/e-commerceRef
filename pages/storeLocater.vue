@@ -16,10 +16,10 @@
                     placeholder="start searching here"
                     autocomplete="off"
                     v-model="search"
-                  />
+                    />
                 </form>
               </div>
-            </div>
+              </div>
           </div>
         </div>
         <div class="row">
@@ -32,9 +32,8 @@
                   @click="toggleInfoWindow(addressList, index)"
                   style="cursor: pointer"
                 >
-                  <a click.prevent class="name">
-                    {{ addressList.infoText.name }}</a
-                  >
+                  <img src="@/assets/img/map-pin-black2.png" />
+                  <a click.prevent class="name"> {{ addressList.infoText.name }}</a>
                   <p>
                     {{ addressList.infoText.address }}
                   </p>
@@ -42,11 +41,11 @@
                     <font-awesome-icon :icon="['fas', 'phone-alt']" />
                     {{ addressList.infoText.phone }}
                   </p>
-                  <div>
+                  <!-- <div>
                     <a href="http://www.stevemadden.in" target="_blank"
                       >stevemadden.in</a
                     >
-                  </div>
+                  </div> -->
                 </li>
               </ul>
             </div>
@@ -59,7 +58,8 @@
                 :zoom="zoom"
                 map-type-id="terrain"
                 ref="map"
-                style="width: 100%; height: 400px"
+                  style="width: 100%; height: 400px"
+
               >
                 <gmap-info-window
                   :options="infoOptions"
@@ -107,14 +107,6 @@
 </template>
 
 <script>
-import Vue from "vue";
-import * as VueGoogleMaps from "vue2-google-maps";
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: "AIzaSyAaPz61j0i-KfeXoKMZgu9kukvH4c92myY",
-    libraries: "places,geometry",
-  },
-});
 export default {
   data() {
     return {
@@ -172,31 +164,31 @@ export default {
             this.serviceCenters = response.result;
             this.serviceCenters.map((element) => {
               if (element.lat != "") {
-                this.markers.push({
-                  position: {
-                    lat: Number(element.lat),
-                    lng: Number(element.lng),
-                  },
-                  infoText: {
-                    search:
-                      element.name +
-                      " " +
-                      element.address +
-                      " " +
-                      element.city +
-                      " " +
-                      element.email +
-                      " " +
-                      element.phone,
-                    name: element.name,
-                    address: element.address,
-                    city: element.city,
-                    state: element.state,
-                    zip: element.postcode,
-                    phone: element.phone,
-                    email: element.email,
-                  },
-                });
+                // this.markers.push({
+                //   position: {
+                //     lat: Number(element.lat),
+                //     lng: Number(element.lng),
+                //   },
+                //   infoText: {
+                //     search:
+                //       element.name +
+                //       " " +
+                //       element.address +
+                //       " " +
+                //       element.city +
+                //       " " +
+                //       element.email +
+                //       " " +
+                //       element.phone,
+                //     name: element.name,
+                //     address: element.address,
+                //     city: element.city,
+                //     state: element.state,
+                //     zip: element.postcode,
+                //     phone: element.phone,
+                //     email: element.email,
+                //   },
+                // });
               }
             });
           } else {
@@ -221,10 +213,10 @@ export default {
           .includes(this.search.toLowerCase());
       });
     },
-  },
+  },  
 
   mounted() {
-    // this.getStore();
+    this.getStore();
   },
 };
 </script>

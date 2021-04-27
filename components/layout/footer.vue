@@ -23,7 +23,9 @@
           </div>
           <div class="footer-items">
             <div class="footer-navigation">
-              <span class="footer-link-text">STORE LOCATOR</span>
+              <span class="footer-link-text"
+                ><NuxtLink to="/storelocater">STORE LOCATOR</NuxtLink></span
+              >
             </div>
           </div>
           <div class="footer-items">
@@ -81,7 +83,7 @@
                 ></div>
 
                 <div class="content-asset">
-                  <span class="modal-title">Diesel S.p.A.</span>
+                  <span class="modal-title">Diesel S.P.A.</span>
                   <div class="modal-text-container">
                     <span class="modal-text"
                       >Via dell’Industria, 4/6 – Breganze (Vicenza), Italy</span

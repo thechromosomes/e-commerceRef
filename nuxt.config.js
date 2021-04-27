@@ -33,6 +33,7 @@ export default {
   css: [
     "~/assets/css/bootstrap.css",
     "~/assets/css/style.css",
+    // "~/assets/css/style2.css",
     "~/assets/css/slick.css",
     "~/assets/css/responsive.css",
   ],
@@ -40,10 +41,11 @@ export default {
   // Plugins to run before rendering page
   plugins: [
     { src: "@/plugins/globalErrorHandler", ssr: true },
-    // { src: "@plugins/fetchCookies", ssr: false },
-    { src: "@/plugins/tokenAndCms.js" , ssr: true},
     { src: "@/plugins/axios", ssr: true },
-    { src: "@plugins/thirdPartyModules", ssr: true },
+    { src: "@/plugins/tokenAndCms.js" , ssr: true},
+    {src: "@/plugins/vue-cookies", ssr: true},
+    { src: "@plugins/thirdPartyModules", ssr: false },
+    { src: "@plugins/fetchCookies", ssr: false },
   ],
 
   //  Customize the progress bar color

@@ -1,5 +1,5 @@
 export const state = () => ({
-  cartApi: "",
+  cartApi: "https://dicart.hostx1.de/api/v1",
   cart_id: "",
   cart_session: "",
   cart_token: "",
