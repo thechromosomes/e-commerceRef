@@ -42,8 +42,11 @@
         </div>
       </div>
     </div>
-
-    <div class="refinements-holder desktop_only" v-if="list.filters.length > 0">
+    <!-- desktop_only class add  -->
+    <div
+      class="refinements-holder desktop_only "
+      v-if="list.filters.length > 0"
+    >
       <div class="container-fluid">
         <div class="filter_box">
           <div class="filter-header">
