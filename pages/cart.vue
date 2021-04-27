@@ -1,16 +1,16 @@
 <template>
   <div>
     <client-only>
-      <div id="cart">
+      <div id="cart" class="cart">
         <div class="container">
           <div class="row">
-            <div class="span12">
+            <div class="col-12">
               <h1 class="title text-center">Your cart</h1>
               <div
                 v-if="$store.state.cartAjax.cart_product.length == 0"
                 class="cart-empty"
               >
-                <p class="empty-head">phew! your cart is empty</p>
+                <p class="empty-head-title">phew! your cart is empty</p>
 
                 <img
                   src="@/assets/img/empty-cart.png"
@@ -19,16 +19,16 @@
                 />
               </div>
               <form v-if="$store.state.cartAjax.cart_product.length != 0">
-                <div class="clearboth">
-                  <div class="cartItemProducts">
-                    <div
-                      class="clearboth productItem"
-                      v-for="(product, index) in $store.state.cartAjax
-                        .cart_product"
-                      :key="index"
-                    >
-                      <div class="image-info display-inline">
-                        <div class="clearboth">
+                <div class="row">
+                  <div class="col-md-12 col-lg-8 col-12">
+                    <div class="cartItemProducts">
+                      <div
+                        class="productItem"
+                        v-for="(product, index) in $store.state.cartAjax
+                          .cart_product"
+                        :key="index"
+                      >
+                        <div class="image-info">
                           <div class="product_image display-inline">
                             <a
                               :href="`/collections/product/${product.url_key}`"
@@ -40,167 +40,146 @@
                             </a>
                           </div>
                         </div>
-                      </div>
-                      <div class="item-info display-inline">
-                        <div class="clearboth">
-                          <div class="item display-inline">
-                            <a href="#" class="text-info">
-                              <strong>{{ product.name }}</strong> <br />
-                              <span
-                                class="product_options-cart"
-                                v-if="JSON.parse(product.size).color"
-                                >Color :
-                                {{ JSON.parse(product.size).color }}</span
-                              >
-                              <span
-                                class="product_options-cart"
-                                v-if="JSON.parse(product.size).size"
-                                >Size :
-                                {{ JSON.parse(product.size).size }}</span
-                              >
-                              <span
-                                class="product_options-cart Loyalty_LineItem hide_permanent"
-                              ></span>
-                              <span
-                                class="product_options-cart Loyalty_LineItem hide_permanent"
-                              ></span>
-                              <span
-                                class="product_options-cart Loyalty_LineItem hide_permanent"
-                              ></span>
-                              Pre-ordered items: {{ product.qty }}
-                              <br />
-                              <span
-                                ><div
-                                  class="cart__meta-text pre-order-message"
-                                  data-product-id="5172417462405"
-                                ></div>
-                              </span>
-                            </a>
-                          </div>
-                          <div class="remove display-inline mobileOnly">
+
+                        <div class="item_name">
+                          <a href="#" class="">
+                            <strong>{{ product.name }}</strong> <br />
+                            <span
+                              class="product_options-cart"
+                              v-if="JSON.parse(product.size).color"
+                              >Color :
+                              {{ JSON.parse(product.size).color }}</span
+                            >
+                            <span
+                              class="product_options-cart"
+                              v-if="JSON.parse(product.size).size"
+                              >Size : {{ JSON.parse(product.size).size }}</span
+                            >
+                            <span
+                              class="product_options-cart Loyalty_LineItem hide_permanent"
+                            ></span>
+                            <span
+                              class="product_options-cart Loyalty_LineItem hide_permanent"
+                            ></span>
+                            <span
+                              class="product_options-cart Loyalty_LineItem hide_permanent"
+                            ></span>
+                            Pre-ordered items: {{ product.qty }}
+                            <br />
+                            <span
+                              ><div
+                                class="cart__meta-text pre-order-message"
+                                data-product-id="5172417462405"
+                              ></div>
+                            </span>
+                          </a>
+                        </div>
+                        <div class="qty_info">
+                          <div class="">
                             <a
-                              @click.prevent="removeCartItem(product)"
-                              class="cart"
-                              ><img
-                                src="@/assets/img/remove.webp"
-                                alt="Remove"
-                            /></a>
-                          </div>
-                          <div class="qty display-inline">
-                            <div class="product-single__quantity">
-                              <a
-                                class="minus-symbol"
-                                @click.prevent="addCartVal('minus', product)"
-                                >-</a
-                              >
-                              <input
-                                name="updates[]"
-                                class="cart__product-qty tc item-quantity"
-                                :value="product.qty"
-                                type="text"
-                                disabled
-                              />
-                              <a
-                                class="plus-symbol"
-                                @click.prevent="addCartVal('add', product)"
-                                >+</a
-                              >
-                            </div>
-                          </div>
-                          <div class="remove display-inline desktopOnly">
+                              class="minus-symbol"
+                              @click.prevent="addCartVal('minus', product)"
+                              >-</a
+                            >
+                            <input
+                              name="updates[]"
+                              class="cart__product-qty tc item-quantity"
+                              :value="product.qty"
+                              type="text"
+                              disabled
+                            />
                             <a
-                              @click.prevent="removeCartItem(product)"
-                              class="cart"
-                              ><img
-                                src="@/assets/img/remove.webp"
-                                alt="Remove"
-                            /></a>
-                          </div>
-                          <div class="price display-inline">
-                            <span class="price price_icon">₹</span
-                            ><span class="price"> {{ product.price }}</span>
+                              class="plus-symbol"
+                              @click.prevent="addCartVal('add', product)"
+                              >+</a
+                            >
                           </div>
                         </div>
-                      </div>
-                      <div>
-                        <p class="clearnceMsg" v-show="product.max_qty == 0">
-                          Requested quentity is out of stock.
-                        </p>
+
+                        <div class="remove  desktopOnly">
+                          <a
+                            @click.prevent="removeCartItem(product)"
+                            class="cart"
+                            ><img src="@/assets/img/remove.webp" alt="Remove"
+                          /></a>
+                        </div>
+                        <div class="price_info">
+                          <span class="price">₹{{ product.price }}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div class="col-md-12 col-lg-4 col-12">
+                    <div class="cartItemSidebar">
+                      <h4 class="total">
+                        Total:
+                        <strong>
+                          <span class="price"
+                            >₹{{ $store.state.cartAjax.cart_total }}</span
+                          >
+                        </strong>
+                      </h4>
+                      <h4
+                        class="total"
+                        v-if="
+                          $store.state.cartAjax.discount_amount != '' &&
+                            $store.state.cartAjax.discount_amount != null
+                        "
+                      >
+                        Dsicount:
+                        <strong>
+                          <span class="price "
+                            >₹{{ $store.state.cartAjax.discount_amount }}</span
+                          >
+                        </strong>
+                      </h4>
 
-                  <div class="cartItemSidebar">
-                    <h4 class="total">
-                      Total:
-                      <strong>
-                        <span class="price price_icon">₹</span
-                        ><span class="price">
-                          {{ $store.state.cartAjax.cart_total }}</span
-                        >
-                      </strong>
-                    </h4>
-                    <h4
-                      class="total"
-                      v-if="
-                        $store.state.cartAjax.discount_amount != '' &&
-                        $store.state.cartAjax.discount_amount != null
-                      "
-                    >
-                      Dsicount:
-                      <strong>
-                        <span class="price price_icon">₹</span
-                        ><span class="price">
-                          {{ $store.state.cartAjax.discount_amount }}</span
-                        >
-                      </strong>
-                    </h4>
-                    <div
-                      class="tooltiptext red"
-                      id="preOrderDate"
-                      v-if="
-                        $store.state.cartAjax.discount_code == '' ||
-                        $store.state.cartAjax.discount_code == null
-                      "
-                    >
-                      <input
-                        type="text"
-                        placeholder="Apply coupon"
-                        name="coupon"
-                        value="Coupon"
-                        ref="applied_coupon"
-                        v-model="applied_coupon"
-                        style="padding-top: 8px"
-                        autocomplete="off"
-                      />
-                      <button @click.prevent="addRemoveCoupon('add')">
-                        Apply
-                      </button>
-                    </div>
-                    <div class="tooltiptext red" id="preOrderDate" v-else>
-                      <input
-                        type="text"
-                        placeholder="remove coupon"
-                        name="coupon"
-                        value="Coupon"
-                        ref="applied_coupon"
-                        v-model="$store.state.cartAjax.discount_code"
-                        disabled
-                        style="padding-top: 8px"
-                        autocomplete="off"
-                      />
-                      <button @click.prevent="addRemoveCoupon('remove')">
-                        Remove
-                      </button>
-                    </div>
-                    <div class="buttons clearfix">
-                      <input
-                        type="submit"
-                        class="btn"
-                        name="checkout"
-                        value="Checkout"
-                        @click.prevent="() => $router.push('/checkout')"
-                      />
+                      <div
+                        class="tooltiptext"
+                        id="preOrderDate"
+                        v-if="
+                          $store.state.cartAjax.discount_code == '' ||
+                            $store.state.cartAjax.discount_code == null
+                        "
+                      >
+                        <input
+                          type="text"
+                          placeholder="Apply coupon"
+                          name="coupon"
+                          value="Coupon"
+                          ref="applied_coupon"
+                          v-model="applied_coupon"
+                          autocomplete="off"
+                        />
+                        <button @click.prevent="addRemoveCoupon('add')">
+                          Apply
+                        </button>
+                      </div>
+                      <div class="tooltiptext red" id="preOrderDate" v-else>
+                        <input
+                          type="text"
+                          placeholder="remove coupon"
+                          name="coupon"
+                          value="Coupon"
+                          ref="applied_coupon"
+                          v-model="$store.state.cartAjax.discount_code"
+                          disabled
+                          autocomplete="off"
+                        />
+                        <button @click.prevent="addRemoveCoupon('remove')">
+                          Remove
+                        </button>
+                      </div>
+
+                      <div class="buttons-checkout">
+                        <input
+                          type="submit"
+                          class="btn"
+                          name="checkout"
+                          value="Checkout"
+                          @click.prevent="() => $router.push('/checkout')"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -218,7 +197,7 @@ export default {
   data() {
     return {
       addToCartVal: 0,
-      applied_coupon: "",
+      applied_coupon: ""
     };
   },
 
@@ -236,13 +215,13 @@ export default {
           method: "post",
           url: `/product/remove-product`,
           token: this.$store.state.cartAjax.cart_token,
-          params: form,
+          params: form
         });
         if (response) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
             data: response,
-            vm: this,
+            vm: this
           });
           if (response.success) {
             this.$gtm.push({
@@ -256,11 +235,11 @@ export default {
                       id: item.master_sku,
                       price: item.selling_price,
                       variant: item.fynd_size,
-                      quantity: item.qty,
-                    },
-                  ],
-                },
-              },
+                      quantity: item.qty
+                    }
+                  ]
+                }
+              }
             });
           }
         } else {
@@ -286,13 +265,13 @@ export default {
           method: "post",
           url: `/product/update-product`,
           token: this.$store.state.cartAjax.cart_token,
-          params: form,
+          params: form
         });
         if (response) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
             data: response,
-            vm: this,
+            vm: this
           });
         } else {
           throw "no response from api";
@@ -362,13 +341,13 @@ export default {
           method: "post",
           url,
           token,
-          params: form,
+          params: form
         });
 
         if (response.success) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
-            data: response,
+            data: response
           });
           this.$toast.open(response.message);
         } else {
@@ -377,32 +356,32 @@ export default {
       } catch (error) {
         console.log("error form the add coupon foo >>", error);
       }
-    },
+    }
   },
   watch: {
-    "$store.state.cartAjax.cart_page_message": function () {
+    "$store.state.cartAjax.cart_page_message": function() {
       if (
         this.$store.state.cartAjax.cart_page_message != "" &&
         this.$store.state.cartAjax.cart_page_message != null
       ) {
         this.$toast.open(this.$store.state.cartAjax.cart_page_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: "",
+          data: ""
         });
       }
     },
-    "$store.state.cartAjax.cart_page_erro_page": function () {
+    "$store.state.cartAjax.cart_page_erro_page": function() {
       if (
         this.$store.state.cartAjax.cart_page_error_message != "" &&
         this.$store.state.cartAjax.cart_page_error_message != null
       ) {
         this.$toast.error(this.$store.state.cartAjax.cart_page_error_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: "",
+          data: ""
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

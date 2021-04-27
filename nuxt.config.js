@@ -61,7 +61,7 @@ export default {
   // Modules for dev and build
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
-    "@nuxtjs/vuetify",
+    // "@nuxtjs/vuetify",
   ],
 
   modules: ["@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/device"],

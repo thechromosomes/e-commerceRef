@@ -1623,3 +1623,118 @@ button:hover {
 .show-more .button.button-load-more {
   width: 100%;
 }
+
+.main-container {
+  padding: 30px 0px;
+}
+
+.cart .title {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 20px 0px;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+}
+.cartItemProducts {
+  width: 100%;
+}
+.cartItemProducts .productItem {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 0px;
+  border-bottom: 1px solid #ddd;
+}
+.cartItemProducts .productItem .image-info {
+  width: 20%;
+}
+.cartItemProducts .productItem .image-info img {
+  width: 100%;
+}
+
+.cartItemProducts .productItem .item_name {
+  width: 30%;
+  padding: 10px 20px;
+}
+.cartItemProducts .productItem .item_name strong {
+  font-size: 20px;
+}
+.cartItemProducts .productItem .item_name a {
+  color: #000;
+}
+.cartItemProducts .productItem .qty_info {
+  width: 30%;
+  text-align: center;
+}
+.cartItemProducts .productItem .qty_info a {
+  background-color: #000;
+  color: #fff;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+.cartItemProducts .productItem .qty_info input {
+  width: 20%;
+  padding: 13px 2px;
+  text-align: center;
+  background: transparent;
+  border: none;
+}
+.cartItemProducts .productItem .remove {
+  width: 10%;
+  text-align: center;
+}
+.cartItemProducts .productItem .remove a {
+  cursor: pointer;
+}
+
+.cartItemProducts .productItem .price_info {
+  width: 10%;
+  text-align: center;
+}
+.cartItemProducts .productItem .price_info span {
+  font-size: 20px;
+  font-weight: 700;
+}
+.cartItemSidebar {
+  width: 100%;
+  background: #fafafa;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  position: sticky;
+  top: 20px;
+}
+
+.cartItemSidebar .total {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 10px 0px;
+}
+.cartItemSidebar input {
+  padding: 10px 10px;
+  border-radius: 0px;
+  border: none;
+  margin: 10px 0px;
+}
+.buttons-checkout {
+  width: 100%;
+}
+.buttons-checkout input {
+  background-color: #000;
+  width: 100%;
+  color: #fff;
+}
+.buttons-checkout input:hover {
+  color: #fff;
+  opacity: 0.7;
+}
+.cart-empty {
+  width: 100%;
+  margin: 50px 0px;
+  text-align: center;
+}
+.cart-empty .empty-head-title {
+  font-size: 25px;
+  font-weight: 700;
+}

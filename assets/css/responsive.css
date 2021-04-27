@@ -506,6 +506,28 @@
   .refinement.card .card-header {
     border-bottom: 1px solid #ddd;
   }
+  .cartItemProducts .productItem {
+    flex-wrap: wrap;
+  }
+  .cartItemProducts .productItem .item_name {
+    width: 80%;
+  }
+  .cartItemProducts .productItem .qty_info {
+    width: 30%;
+    text-align: left;
+  }
+  .cartItemProducts .productItem .qty_info a {
+    padding: 10px 15px;
+  }
+  .cartItemProducts .productItem .qty_info input {
+    padding: 8px 2px;
+  }
+  .cartItemProducts .productItem .remove {
+    width: 30%;
+  }
+  .cartItemProducts .productItem .price_info {
+    width: 30%;
+  }
 }
 
 @media (max-width: 767px) {
