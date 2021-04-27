@@ -263,4 +263,9 @@ export const mutations = {
   updatePageLoader(state, { display }) {
     state.pageLoader = display;
   },
+
+  // update device information
+  updateDeviceInfo(state, { payload }) {
+    state.isMobile = payload;
+  },
 };
