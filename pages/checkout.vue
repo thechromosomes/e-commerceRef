@@ -11,13 +11,13 @@
 
       <div class="banner">
         <div class="wrap" style="display: none">
-          <!-- <NuxtLink class="logo logo--left" to="/">
+          <NuxtLink class="logo logo--left" to="/">
             <img
               alt="Steve Madden"
               class="logo__image logo__image--medium"
-              src="@/assets/img/logo_large.png"
+              src="@/assets/img/logo.svg"
             />
-          </NuxtLink> -->
+          </NuxtLink>
         </div>
       </div>
       <aside role="complementary">
@@ -65,13 +65,13 @@
                 <!-- main__header -->
                 <div class="checkout_page_head">
                   <div class="checkout_logo">
-                    <!-- <a href="/" class="logo logo-left">
+                    <a href="/" class="logo logo-left">
                       <img
-                        src="@/assets/img/logo_large.png"
+                        src="@/assets/img/logo.svg"
                         alt="logo"
                         class="logo__image logo__image-medium"
                       />
-                    </a> -->
+                    </a>
                   </div>
                   <div class="checkout_link">
                     <nav>
@@ -1098,16 +1098,16 @@ export default {
               vm: this,
             });
             this.showPaymentMethods = true;
-            this.$gtm.push({
-              event: "checkout",
-              action: "Checkout",
-              ecommerce: {
-                checkout: {
-                  actionField: { step: 4, option: "Address selected" },
-                  product: this.$store.state.cartAjax.gtm_product,
-                },
-              },
-            });
+            // this.$gtm.push({
+            //   event: "checkout",
+            //   action: "Checkout",
+            //   ecommerce: {
+            //     checkout: {
+            //       actionField: { step: 4, option: "Address selected" },
+            //       product: this.$store.state.cartAjax.gtm_product,
+            //     },
+            //   },
+            // });
           } else {
             throw response.message;
           }
@@ -1142,21 +1142,20 @@ export default {
             error: null,
             data: response,
           });
-          // this.$toast.success(response.message);
           this.showPaymentMethods = true;
-          this.$gtm.push({
-            event: "checkout",
-            action: "Checkout",
-            ecommerce: {
-              checkout: {
-                actionField: {
-                  step: 4,
-                  option: "Address selected",
-                },
-                product: this.$store.state.cartAjax.gtm_product,
-              },
-            },
-          });
+          // this.$gtm.push({
+          //   event: "checkout",
+          //   action: "Checkout",
+          //   ecommerce: {
+          //     checkout: {
+          //       actionField: {
+          //         step: 4,
+          //         option: "Address selected",
+          //       },
+          //       product: this.$store.state.cartAjax.gtm_product,
+          //     },
+          //   },
+          // });
         } else {
           this.$toast.error(response.message);
           throw response.message;
@@ -1190,16 +1189,16 @@ export default {
               vm: this,
             });
             this.selectedPaymentMethods = value;
-            this.$gtm.push({
-              event: "checkout",
-              action: "Checkout",
-              ecommerce: {
-                checkout: {
-                  actionField: { step: 5, option: value },
-                  product: this.$store.state.cartAjax.gtm_product,
-                },
-              },
-            });
+            // this.$gtm.push({
+            //   event: "checkout",
+            //   action: "Checkout",
+            //   ecommerce: {
+            //     checkout: {
+            //       actionField: { step: 5, option: value },
+            //       product: this.$store.state.cartAjax.gtm_product,
+            //     },
+            //   },
+            // });
           }
         } else {
           this.$toast.error("please select the payment method");
@@ -1234,18 +1233,18 @@ export default {
         });
         if (response.success) {
 
-           this.$gtm.push({
-              event: "checkout",
-              category: "Ecommerce",
-              action: "Checkout",
-              label: "5",
-              ecommerce: {
-                checkout: {
-                  actionField: { step: 5, option: value },
-                  product: this.$store.state.cartAjax.gtm_product,
-                },
-              },
-            });
+          //  this.$gtm.push({
+          //     event: "checkout",
+          //     category: "Ecommerce",
+          //     action: "Checkout",
+          //     label: "5",
+          //     ecommerce: {
+          //       checkout: {
+          //         actionField: { step: 5, option: value },
+          //         product: this.$store.state.cartAjax.gtm_product,
+          //       },
+          //     },
+          //   });
 
           if (value == "cod") {
             this.$router.push("thankyou");
@@ -1384,31 +1383,31 @@ export default {
     },
   },
   mounted() {
-    // if (!this.$device.isMobile) {
-    //   this.showSummary = true;
-    // }
+    if (!this.$device.isMobile) {
+      this.showSummary = true;
+    }
 
-    // if (this.$store.state.cartAjax.cart_product.length == 0) {
-    //   this.$router.push("/");
-    //   return;
-    // }
+    if (this.$store.state.cartAjax.cart_product.length == 0) {
+      this.$router.push("/");
+      return;
+    }
 
-    // if (
-    //   this.$store.state.cartAjax.customer_session == "" ||
-    //   this.$store.state.cartAjax.customer_id == ""
-    // ) {
-    //   this.$router.push("/login");
-    //   return;
-    // }
+    if (
+      this.$store.state.cartAjax.customer_session == "" ||
+      this.$store.state.cartAjax.customer_id == ""
+    ) {
+      this.$router.push("/login");
+      return;
+    }
 
-    // if (
-    //   this.$store.state.cartAjax.customer_id == "" &&
-    //   this.$store.state.cartAjax.customer_session == ""
-    // ) {
-    //   this.$store.commit("cartAjax/toggleLogin", { display: true });
-    // } else {
-    //   this.$store.commit("cartAjax/toggleLogin", { display: false });
-    // }
+    if (
+      this.$store.state.cartAjax.customer_id == "" &&
+      this.$store.state.cartAjax.customer_session == ""
+    ) {
+      this.$store.commit("cartAjax/toggleLogin", { display: true });
+    } else {
+      this.$store.commit("cartAjax/toggleLogin", { display: false });
+    }
 
     // this.$gtm.push({
     //   event: "checkout",
@@ -1432,7 +1431,7 @@ export default {
 };
 </script>
 <style scoped>
-/* @import url("@/assets/css/pages-css/shipping.css"); */
-/* @import url("@/assets/css/pages-css/loader.css"); */
+@import url("@/assets/css/pages-css/shipping.css");
+@import url("@/assets/css/pages-css/loader.css");
 </style>
 

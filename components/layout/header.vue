@@ -47,6 +47,7 @@
                         :key="childIndex"
                       >
                         <Nuxt-link
+                          @click.native="showMobileMenu = false"
                           class="nav-link pl-0"
                           :to="`/collections/${childItem.menu_url_key}/`"
                           >{{ childItem.name }}</Nuxt-link
@@ -65,14 +66,27 @@
           /></NuxtLink>
         </div>
         <div class="search_box">
-          <span class="widshlist">
-            <img src="~/assets//img/heart.png" alt="cart" />
-          </span>
-          <span class="carts"
-            ><img src="~/assets//img/cart.png" alt="cart" />
-            <span class="cart_val"> 0</span>
-          </span>
-          <button class="btn " @click="searchActive = true">Search</button>
+          <NuxtLink to="/wishlist">
+            <span class="carts" style="margin-right: 10px"
+              ><img src="~/assets//img/heart.png" alt="cart" />
+              <span
+                class="cart_val"
+                v-if="Object.keys($store.state.cartAjax.wishlist).length != 0"
+              >
+                {{ $store.state.cartAjax.wishlist.product.split(",").length }}
+              </span>
+              <span class="cart_val" v-else> 0 </span>
+            </span>
+          </NuxtLink>
+          <NuxtLink to="/cart">
+            <span class="carts"
+              ><img src="~/assets//img/cart.png" alt="cart" />
+              <span class="cart_val">
+                {{ $store.state.cartAjax.cart_product.length }}
+              </span>
+            </span>
+          </NuxtLink>
+          <button class="btn" @click="searchActive = true">Search</button>
         </div>
       </div>
     </nav>
@@ -110,7 +124,7 @@ export default {
     return {
       showMobileMenu: false,
       searchActive: false,
-      scrollPosition: null
+      scrollPosition: null,
     };
   },
   async mounted() {
@@ -119,16 +133,16 @@ export default {
   },
 
   computed: {
-    ...mapState(["header"])
+    ...mapState(["header"]),
   },
 
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
-    }
+    },
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  }
+  },
 };
 </script>

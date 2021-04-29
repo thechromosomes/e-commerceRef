@@ -253,7 +253,7 @@
   height: 8px;
   margin-left: -5px;
   margin-top: -4px;
-  background-image: url("../../images/checkbox-tick.svg"), none;
+  background-image: url("../../img/checkbox-tick.svg"), none;
 }
 .checkbox__input .input-checkbox:checked:after,
 .checkbox__input .input-radio:checked:after {
@@ -843,7 +843,7 @@ table {
 }
 .paying-div:after {
   content: "";
-  background-image: url("../../images/check.png") !important;
+  background-image: url("../../img/check.png") !important;
   height: 21px;
   width: 27px;
   font-size: 15px;
@@ -1022,7 +1022,7 @@ table {
 }
 .ship-adress-area:after {
   content: "";
-  background-image: url("../../images/check.png") !important;
+  background-image: url("../../img/check.png") !important;
   height: 21px;
   width: 27px;
   font-size: 15px;

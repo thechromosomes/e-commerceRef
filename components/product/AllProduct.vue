@@ -140,7 +140,7 @@
               <div class="sort-order">
                 <div class="sort-list">
                   <div class="sort-label">
-                    <span class="sort-selected-option"> Sort By </span>
+                    <span class="sort-selected-option"> Sort By {{sorting}}</span>
                     <span class="select-arrow icon-arrow-mid-down-black"></span>
                   </div>
                   <ul class="sort-options" aria-hidden="true">
@@ -148,7 +148,7 @@
                       class="sort-option best-matches"
                       v-for="(sort, sortIndex) in list.sort"
                       :key="sortIndex"
-                      @click="sortProduct"
+                      @click="sortProduct(sort)"
                     >
                       {{ sort.label }}
                     </li>
@@ -304,7 +304,7 @@ export default {
         arrows: true,
       },
 
-      sorting: { code: "default", dir: "desc" },
+      sorting: "default"
 
     };
   },
@@ -456,11 +456,13 @@ export default {
 
     // sort Product list
     sortProduct(event) {
+      console.log("event", event)
+      this.sorting = event.label
       this.$router.push({
         query: {
           ...this.$route.query,
-          sort: this.sorting.code,
-          sort_dir: this.sorting.dir,
+          sort: event.code,
+          sort_dir: event.dir,
         },
       });
     },

@@ -42,9 +42,10 @@ export default {
   plugins: [
     { src: "@/plugins/globalErrorHandler", ssr: true },
     { src: "@/plugins/axios", ssr: true },
-    { src: "@/plugins/tokenAndCms.js" , ssr: true},
-    {src: "@/plugins/vue-cookies", ssr: true},
+    { src: "@/plugins/tokenAndCms.js", ssr: true },
+    { src: "@/plugins/vue-cookies", ssr: true },
     { src: "@plugins/thirdPartyModules", ssr: false },
+    { src: "@plugins/thirdPartyModulesSsr", ssr: true },
     { src: "@plugins/fetchCookies", ssr: false },
   ],
 
@@ -64,7 +65,26 @@ export default {
     // "@nuxtjs/vuetify",
   ],
 
-  modules: ["@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/device"],
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxtjs/pwa",
+    "@nuxtjs/device",
+    [
+      "nuxt-fontawesome",
+      {
+        imports: [
+          {
+            set: "@fortawesome/free-solid-svg-icons",
+            icons: ["fas"],
+          },
+          {
+            set: "@fortawesome/free-brands-svg-icons",
+            icons: ["fab"],
+          },
+        ],
+      },
+    ],
+  ],
 
   // PWA module configuration
   pwa: {
@@ -95,7 +115,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
-   // google tag manger
+  // google tag manger
   gtm: {
     id: "GTM-MTLQ39Z",
     enabled: false,
@@ -113,7 +133,7 @@ export default {
         app.use(async (error, req, res, next) => {
           if (error) {
             let finalError = await error;
-            console.log("finalError", finalError)
+            console.log("finalError", finalError);
             // CreateLog.error({
             //   error: `>>> ${finalError}`,
             //   metaInformation: req.rawHeaders,

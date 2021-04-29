@@ -83,7 +83,7 @@
         @expired="onExpired"
         @error="recaptchaError"
         size="invisible"
-        sitekey="6LeZuHIaAAAAAOfY5B-aYuxSz07b6RoydD4uEQQz"
+        sitekey="6LdmY7QaAAAAALNMQFmqg3seM9k-RkXKz7-CYzEh"
         :loadRecaptchaScript="true"
       ></vue-recaptcha>
     </client-only>
@@ -236,13 +236,13 @@ export default {
   },
 
   beforeMount() {
-    // if (
-    //   this.$store.state.cartAjax.customer_session != "" ||
-    //   this.$store.state.cartAjax.customer_id != ""
-    // ) {
-    //   this.$router.push("/");
-    //   return;
-    // }
+    if (
+      this.$store.state.cartAjax.customer_session != "" ||
+      this.$store.state.cartAjax.customer_id != ""
+    ) {
+      this.$router.push("/");
+      return;
+    }
   },
   watch: {
     mobileNumber: function () {
@@ -258,7 +258,7 @@ export default {
     },
   },
   beforeDestroy() {
-    // clearTimeout(this.timeout);
+    clearTimeout(this.timeout);
   },
 };
 </script>

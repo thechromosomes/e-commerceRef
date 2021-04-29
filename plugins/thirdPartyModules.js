@@ -7,3 +7,15 @@ Vue.use(VueToast, {
     queue: true
 });
 
+
+import SimpleVueValidation from 'simple-vue-validator';
+Vue.use(SimpleVueValidation);
+
+
+import * as VueGoogleMaps from "vue2-google-maps";
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyB_w48EfCO6yaYhPsrbKiQ-8yBUcJVTUpw",
+    libraries: "places,geometry",
+  },
+});
