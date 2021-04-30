@@ -71,6 +71,9 @@ button:hover {
 .header .navbar .search_box {
   width: 35%;
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .header .navbar .site-logo {
   width: 30%;
@@ -1761,10 +1764,70 @@ button:hover {
   top: -11px;
 }
 .search_box .carts img {
-  width: 30px;
+  width: 25px;
   cursor: pointer;
+  margin: 0px 2px;
 }
 .search_box .widshlist img {
   width: 30px;
+  cursor: pointer;
+}
+.claose_filter {
+  display: block;
+  background-image: url("../img/sprite_icons.svg");
+  background-position: -945px 0px;
+  width: 35px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* .main-footer {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+} */
+
+/* login-box */
+
+.login-box {
+  width: 100%;
+  padding: 50px 30px;
+}
+.login-box .systemForm {
+  max-width: 480px;
+  margin: 0 auto;
+  /* background-color: red; */
+  padding: 20px 15px;
+}
+.login-box .systemForm .title {
+  text-align: center;
+  font-size: 35px;
+  font-weight: 700;
+}
+.login-box .systemForm .inputWrapper {
+  margin-bottom: 20px;
+}
+.login-box .systemForm .label {
+  display: block;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+.login-box .systemForm input.input-box {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #000;
+}
+.login-box .action_bottom {
+  width: 100%;
+}
+.login-box .action_bottom input {
+  background: #000;
+  color: #fff;
+  width: 100%;
+  border-radius: 0;
+  letter-spacing: 0.5px;
   cursor: pointer;
 }

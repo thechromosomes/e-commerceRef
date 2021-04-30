@@ -44,13 +44,18 @@
     </div>
     <!-- desktop_only class add  -->
     <div
-      class="refinements-holder desktop_only "
+      class="refinements-holder  "
+      :class="openFiltter == true ? '' : 'desktop_only'"
       v-if="list.filters.length > 0"
     >
       <div class="container-fluid">
         <div class="filter_box">
           <div class="filter-header">
             <span>Filter By</span>
+            <span
+              class="mobile_only claose_filter"
+              @click="openFiltter = false"
+            ></span>
           </div>
           <div class="refinements">
             <div
@@ -87,7 +92,7 @@
                         class="selection-box"
                         :class="
                           list.applied_filters.findIndex(
-                            (x) => x === `${item.code}~${item.value_key}`
+                            x => x === `${item.code}~${item.value_key}`
                           ) >= 0
                             ? 'selected-box'
                             : 'not-selected-box'
@@ -125,22 +130,44 @@
         </ul>
       </div>
     </div>
-
-    <button class="product-sort mobile_sortby mobile_only">Sort by</button>
-    <button class="mobile-filter mobile_filtter mobile_only">Filter</button>
+    <button
+      class="product-sort mobile_sortby mobile_only"
+      @click="openSort = false"
+      v-if="openSort"
+    >
+      Close
+    </button>
+    <button
+      v-else
+      class="product-sort mobile_sortby mobile_only dd"
+      @click="openSort = true"
+    >
+      Sort by
+    </button>
+    <button
+      class="mobile-filter mobile_filtter mobile_only"
+      @click="openFiltter = true"
+    >
+      Filter
+    </button>
 
     <div class="search-results">
       <div class="tab-content">
         <div class="container-fluid">
           <div class="product-results-container">
-            <div class="search-result-options">
+            <div
+              class="search-result-options"
+              :class="openSort == true ? 'active' : ''"
+            >
               <div class="showing-results">
                 Showing: {{ calculateResult }} Product(s)
               </div>
               <div class="sort-order">
                 <div class="sort-list">
                   <div class="sort-label">
-                    <span class="sort-selected-option"> Sort By {{sorting}}</span>
+                    <span class="sort-selected-option">
+                      Sort By {{ sorting }}</span
+                    >
                     <span class="select-arrow icon-arrow-mid-down-black"></span>
                   </div>
                   <ul class="sort-options" aria-hidden="true">
@@ -196,7 +223,7 @@
               class="no_products text-center"
               v-if="
                 list.Product_list.length == 0 &&
-                $store.state.pageLoader == false
+                  $store.state.pageLoader == false
               "
             >
               <h1>Sorry !</h1>
@@ -271,8 +298,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -280,8 +307,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 480,
@@ -289,10 +316,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
+              slidesToShow: 1.5
+            }
+          }
+        ]
       },
 
       productSetting: {
@@ -301,11 +328,12 @@ export default {
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: false,
-        arrows: true,
+        arrows: true
       },
 
-      sorting: "default"
-
+      sorting: "default",
+      openFiltter: false,
+      openSort: false
     };
   },
 
@@ -316,29 +344,29 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.list.meta_description,
+          content: this.list.meta_description
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.list.meta_keyword,
+          content: this.list.meta_keyword
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title",
+          property: "og:title"
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description",
+          property: "og:description"
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url",
-        },
-      ],
+          property: "og:url"
+        }
+      ]
     };
   },
 
@@ -349,14 +377,14 @@ export default {
       try {
         await this.$store.commit("prepareState", {
           routeParam: this.$route.params.productCategory,
-          pageNo: pageNumber,
+          pageNo: pageNumber
         });
         let {
           service,
           store,
           pass_url_key,
           page,
-          count,
+          count
         } = this.$store.state.list;
 
         let form = {};
@@ -387,13 +415,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
           await this.$store.commit("updateState", {
             error: null,
-            data: response,
+            data: response
           });
           // // google tag manager
           // this.gtm_product_impressions = [];
@@ -440,8 +468,7 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
@@ -456,16 +483,16 @@ export default {
 
     // sort Product list
     sortProduct(event) {
-      console.log("event", event)
-      this.sorting = event.label
+      console.log("event", event);
+      this.sorting = event.label;
       this.$router.push({
         query: {
           ...this.$route.query,
           sort: event.code,
-          sort_dir: event.dir,
-        },
+          sort_dir: event.dir
+        }
       });
-    },
+    }
   },
 
   computed: {
@@ -488,7 +515,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
+    }
   },
 
   async fetch() {
@@ -501,17 +528,17 @@ export default {
   },
 
   watch: {
-    "$route.query": function () {
+    "$route.query": function() {
       this.getProductList();
     },
 
     "$store.state.list.sortingData": {
       deep: true,
-      handler: function () {
+      handler: function() {
         // this.sorting.code = this.list.sortingData.code;
         // this.sorting.dir = this.list.sortingData.dir;
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>

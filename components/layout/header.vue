@@ -66,6 +66,16 @@
           /></NuxtLink>
         </div>
         <div class="search_box">
+          <span @click="searchActive = true">
+            <span class="carts"
+              ><img src="~/assets//img/search.png" alt="cart" />
+            </span>
+          </span>
+          <NuxtLink to="/login">
+            <span class="carts"
+              ><img src="~/assets//img/user.png" alt="cart" />
+            </span>
+          </NuxtLink>
           <NuxtLink to="/wishlist">
             <span class="carts" style="margin-right: 10px"
               ><img src="~/assets//img/heart.png" alt="cart" />
@@ -78,6 +88,7 @@
               <span class="cart_val" v-else> 0 </span>
             </span>
           </NuxtLink>
+
           <NuxtLink to="/cart">
             <span class="carts"
               ><img src="~/assets//img/cart.png" alt="cart" />
@@ -86,7 +97,7 @@
               </span>
             </span>
           </NuxtLink>
-          <button class="btn" @click="searchActive = true">Search</button>
+          <!-- <button class="btn">Search</button> -->
         </div>
       </div>
     </nav>
@@ -124,7 +135,7 @@ export default {
     return {
       showMobileMenu: false,
       searchActive: false,
-      scrollPosition: null,
+      scrollPosition: null
     };
   },
   async mounted() {
@@ -133,16 +144,16 @@ export default {
   },
 
   computed: {
-    ...mapState(["header"]),
+    ...mapState(["header"])
   },
 
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
-    },
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  },
+  }
 };
 </script>

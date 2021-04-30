@@ -32,6 +32,7 @@ export default {
   // Global CSS
   css: [
     "~/assets/css/bootstrap.css",
+    // "~/assets/css/icomoon.css",
     "~/assets/css/style.css",
     // "~/assets/css/style2.css",
     "~/assets/css/slick.css",

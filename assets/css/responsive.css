@@ -334,7 +334,7 @@
     bottom: 0;
     right: 0px;
     background: #fff;
-    z-index: 2;
+    z-index: 9;
     /* display: unset; */
   }
   .sort-order {
@@ -419,7 +419,7 @@
     text-align-last: center;
     left: 0px;
     height: 45px !important;
-    z-index: 9;
+    z-index: 10;
     border-radius: 0;
     background: #fff;
     font-weight: bold;
@@ -505,6 +505,13 @@
   }
   .refinement.card .card-header {
     border-bottom: 1px solid #ddd;
+    padding: 10px 0px;
+  }
+  .refinement.card .hidden_filtter ul {
+    margin: 0px;
+  }
+  .search-result-options.active {
+    display: block;
   }
   .cartItemProducts .productItem {
     flex-wrap: wrap;
@@ -527,6 +534,12 @@
   }
   .cartItemProducts .productItem .price_info {
     width: 30%;
+  }
+  .refinements-holder .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
   }
 }
 

@@ -1,0 +1,160 @@
+@font-face {
+  font-family: "icomoon";
+  src: url("../fonts/icomoon.eot?6cn7b8");
+  src: url("../fonts/icomoon.eot?6cn7b8#iefix") format("embedded-opentype"),
+    url("../fonts/icomoon.ttf?6cn7b8") format("truetype"),
+    url("../fonts/icomoon.woff?6cn7b8") format("woff"),
+    url("../fonts/icomoon.svg?6cn7b8#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-check:before {
+  content: "\e5ca";
+}
+.icon-carriage:before {
+  content: "\e900";
+}
+.icon-2up:before {
+  content: "\e901";
+}
+.icon-4up:before {
+  content: "\e902";
+}
+.icon-user:before {
+  content: "\e903";
+}
+.icon-bag:before {
+  content: "\e904";
+}
+.icon-like:before {
+  content: "\e905";
+}
+.icon-burger:before {
+  content: "\e906";
+}
+.icon-pin:before {
+  content: "\e907";
+}
+.icon-rightarrow:before {
+  content: "\e908";
+}
+.icon-1up:before {
+  content: "\e909";
+}
+.icon-arrow-down:before {
+  content: "\e90a";
+}
+.icon-leftarrow:before {
+  content: "\e90b";
+}
+.icon-arrow-up:before {
+  content: "\e90c";
+}
+.icon-close:before {
+  content: "\e90d";
+}
+.icon-wechat:before {
+  content: "\e90e";
+}
+.icon-google-plus:before {
+  content: "\e90f";
+}
+.icon-comment:before {
+  content: "\e910";
+}
+.icon-facebook:before {
+  content: "\e911";
+}
+.icon-instagram:before {
+  content: "\e912";
+}
+.icon-pinterest:before {
+  content: "\e913";
+}
+.icon-snapchat:before {
+  content: "\e914";
+}
+.icon-twitter:before {
+  content: "\e915";
+}
+.icon-weibo:before {
+  content: "\e916";
+}
+.icon-youtube-play:before {
+  content: "\e917";
+}
+.icon-share:before {
+  content: "\e918";
+}
+.icon-full-heart:before {
+  content: "\e919";
+}
+.icon-search:before {
+  content: "\e91a";
+}
+.icon-play-video:before {
+  content: "\e91b";
+}
+.icon-mute-sound:before {
+  content: "\e91c";
+}
+.icon-sound-on:before {
+  content: "\e91d";
+}
+.icon-plus:before {
+  content: "\e91e";
+}
+.icon-start-again:before {
+  content: "\e91f";
+}
+.icon-tooltip:before {
+  content: "\e920";
+}
+.icon-radio-enabled:before {
+  content: "\e921";
+}
+.icon-radio-disabled:before {
+  content: "\e922";
+}
+.icon-near-me:before {
+  content: "\e923";
+}
+.icon-new-tab:before {
+  content: "\e924";
+}
+.icon-info:before {
+  content: "\e925";
+}
+.icon-checkbox-checked:before {
+  content: "\e926";
+}
+.icon-checkbox:before {
+  content: "\e927";
+}
+.icon-thin-cross:before {
+  content: "\e928";
+}
+.icon-menu:before {
+  content: "\e929";
+}
+.icon-logo-coach:before {
+  content: "\e92a";
+}
