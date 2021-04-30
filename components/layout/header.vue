@@ -65,8 +65,8 @@
             ><img src="~/assets//img/logo.svg" alt="logo"
           /></NuxtLink>
         </div>
-        <div class="search_box">
-          <span @click="searchActive = true">
+        <div class="search_box ">
+          <span @click="searchActive = true" class="desktop_only">
             <span class="carts"
               ><img src="~/assets//img/search.png" alt="cart" />
             </span>

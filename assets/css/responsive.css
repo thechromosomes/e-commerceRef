@@ -60,10 +60,16 @@
     flex-direction: column;
   }
   .header .mobile-screen-icon {
-    width: 12%;
+    width: 25%;
     display: flex;
     justify-content: left;
     align-items: center;
+  }
+  .header .navbar .search_box {
+    width: 25%;
+  }
+  .search_box .carts img {
+    width: 20px;
   }
   .header .navbar {
     width: 100%;
@@ -120,7 +126,7 @@
   }
 
   .header .navbar .site-logo {
-    width: calc(100% - 12%);
+    width: 50%;
   }
   .search-icon-mobile {
     display: block;
