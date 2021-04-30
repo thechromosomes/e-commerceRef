@@ -2,7 +2,7 @@
   <div class="product_details main_section">
     <div
       class="product-images product_images_slide mobile_only"
-      v-if="singleProductList.single_prod_data.length > 0"
+      v-if="Object.keys(singleProductList.single_prod_data).length > 0"
     >
       <VueSlickCarousel ref="slick" v-bind="settings">
         <div
@@ -11,11 +11,7 @@
             .gallery"
           :key="imgIndex"
         >
-          <img
-            src="~/assets/img/00ST1N_0AAZR_900_F.jpg"
-            alt="img"
-            class="w-100"
-          />
+          <img :src="image.image" alt="img" class="w-100" />
         </div>
       </VueSlickCarousel>
     </div>
@@ -39,11 +35,7 @@
                   .gallery"
                 :key="imgIndex"
               >
-                <img
-                  src="~/assets/img/00ST1N_0AAZR_900_F.jpg"
-                  alt="img"
-                  class="w-100"
-                />
+                <img :src="image.image" alt="img" class="w-100" />
               </div>
             </div>
           </div>
@@ -67,9 +59,9 @@
                       .color_variation"
                     :key="index"
                   >
-                    <a href="#"
+                    <a
                       ><img
-                        src="~/assets/img/00ST1N_0AAZR_5FR_F.jpg"
+                        :src="color.image"
                         alt="img"
                         :class="[
                           $route.params.productDetail == color.url_key
@@ -149,7 +141,7 @@
               >
                 <h2>Care instructions <span class="title"></span></h2>
 
-                <div class="care-instructions product-expand-block">
+                <!-- <div class="care-instructions product-expand-block">
                   <div class="care-instruction">
                     <img
                       class="care-instruction-image"
@@ -194,7 +186,22 @@
                       >Iron at max 110 °C</span
                     >
                   </div>
-                </div>
+                </div> -->
+                <ul>
+                  <li
+                    v-for="(desc, descKey) in renderDescription"
+                    :key="descKey"
+                  >
+                    {{ descKey.toUpperCase() }} : {{ desc }}
+                  </li>
+                  <li
+                    v-for="(details, i) in singleProductList.single_prod_data
+                      .visible_attributes"
+                    :key="i"
+                  >
+                    <span>{{ details.label }}: </span>{{ details.value }}
+                  </li>
+                </ul>
               </div>
               <!-- expand-open for open class -->
               <div

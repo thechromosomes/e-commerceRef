@@ -79,62 +79,62 @@ export default {
     };
   },
   async created() {
-    // try {
-    //   if (
-    //     this.$store.state.cartAjax.customer_session == "" &&
-    //     this.$store.state.cartAjax.customer_id == ""
-    //   ) {
-    //     this.$router.push("/login");
-    //     return;
-    //   }
-    //   if (Object.keys(this.$store.state.cartAjax.wishlist).length != 0) {
-    //     var form = {};
-    //     form.service = "wishlist";
-    //     form.sku = this.$store.state.cartAjax.wishlist.product;
-    //     form.store = this.$store.state.list.store;
-    //     let response = await this.$store.dispatch("pimAjax", {
-    //       method: "post",
-    //       url: `/pimresponse.php`,
-    //       params: form,
-    //     });
-    //     this.gtm_product_impressions = [];
-    //     if (response.response.success) {
-    //       this.wislistProducts = response.result;
-    //       for (let i = 0; i < response.result.length; i++) {
-    //         this.selectedSize[i] = "";
-    //         let name = response.result[i].name;
-    //         let id = response.result[i].sku;
-    //         let price = response.result[i].selling_price;
-    //         let category = response.result[i].category;
-    //         let list = "List";
-    //         let position = i + 1;
-    //         this.gtm_product_impressions.push({
-    //           name,
-    //           id,
-    //           price,
-    //           category,
-    //           list,
-    //           position,
-    //         });
-    //       }
+    try {
+      if (
+        this.$store.state.cartAjax.customer_session == "" &&
+        this.$store.state.cartAjax.customer_id == ""
+      ) {
+        this.$router.push("/login");
+        return;
+      }
+      if (Object.keys(this.$store.state.cartAjax.wishlist).length != 0) {
+        var form = {};
+        form.service = "wishlist";
+        form.sku = this.$store.state.cartAjax.wishlist.product;
+        form.store = this.$store.state.list.store;
+        let response = await this.$store.dispatch("pimAjax", {
+          method: "post",
+          url: `/pimresponse.php`,
+          params: form,
+        });
+        this.gtm_product_impressions = [];
+        if (response.response.success) {
+          this.wislistProducts = response.result;
+          for (let i = 0; i < response.result.length; i++) {
+            this.selectedSize[i] = "";
+            let name = response.result[i].name;
+            let id = response.result[i].sku;
+            let price = response.result[i].selling_price;
+            let category = response.result[i].category;
+            let list = "List";
+            let position = i + 1;
+            this.gtm_product_impressions.push({
+              name,
+              id,
+              price,
+              category,
+              list,
+              position,
+            });
+          }
 
-    //       this.$gtm.push({
-    //         event: "impressionSent",
-    //         action: "Product Impression",
-    //         label: "Wishlist page",
-    //         ecommerce: {
-    //           currencyCode: "INR",
-    //           impressions: this.gtm_product_impressions,
-    //         },
-    //       });
-    //     } else {
-    //       throw "No data found";
-    //     }
-    //   }
-    // } catch (error) {
-    //   this.$globalError(`error from the wishlist page fetch>>>> ${error}`);
-    //   console.log("error from the wishlist page >>> ", error);
-    // }
+          // this.$gtm.push({
+          //   event: "impressionSent",
+          //   action: "Product Impression",
+          //   label: "Wishlist page",
+          //   ecommerce: {
+          //     currencyCode: "INR",
+          //     impressions: this.gtm_product_impressions,
+          //   },
+          // });
+        } else {
+          throw "No data found";
+        }
+      }
+    } catch (error) {
+      this.$globalError(`error from the wishlist page fetch>>>> ${error}`);
+      console.log("error from the wishlist page >>> ", error);
+    }
   },
 
   methods: {

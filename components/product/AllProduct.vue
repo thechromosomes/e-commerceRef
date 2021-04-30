@@ -44,7 +44,7 @@
     </div>
     <!-- desktop_only class add  -->
     <div
-      class="refinements-holder  "
+      class="refinements-holder"
       :class="openFiltter == true ? '' : 'desktop_only'"
       v-if="list.filters.length > 0"
     >
@@ -92,7 +92,7 @@
                         class="selection-box"
                         :class="
                           list.applied_filters.findIndex(
-                            x => x === `${item.code}~${item.value_key}`
+                            (x) => x === `${item.code}~${item.value_key}`
                           ) >= 0
                             ? 'selected-box'
                             : 'not-selected-box'
@@ -201,7 +201,7 @@
                         >
                           <Nuxt-link :to="`/product/${singleProd.url_key}`">
                             <img
-                              src="~/assets/img/p1.jpg"
+                              :src="singleProd.image"
                               alt="img"
                               class="w-100"
                             />
@@ -223,7 +223,7 @@
               class="no_products text-center"
               v-if="
                 list.Product_list.length == 0 &&
-                  $store.state.pageLoader == false
+                $store.state.pageLoader == false
               "
             >
               <h1>Sorry !</h1>
@@ -298,8 +298,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -307,8 +307,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 480,
@@ -316,10 +316,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5
-            }
-          }
-        ]
+              slidesToShow: 1.5,
+            },
+          },
+        ],
       },
 
       productSetting: {
@@ -328,12 +328,12 @@ export default {
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: false,
-        arrows: true
+        arrows: true,
       },
 
       sorting: "default",
       openFiltter: false,
-      openSort: false
+      openSort: false,
     };
   },
 
@@ -344,29 +344,29 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.list.meta_description
+          content: this.list.meta_description,
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.list.meta_keyword
+          content: this.list.meta_keyword,
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title"
+          property: "og:title",
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description"
+          property: "og:description",
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url"
-        }
-      ]
+          property: "og:url",
+        },
+      ],
     };
   },
 
@@ -377,14 +377,14 @@ export default {
       try {
         await this.$store.commit("prepareState", {
           routeParam: this.$route.params.productCategory,
-          pageNo: pageNumber
+          pageNo: pageNumber,
         });
         let {
           service,
           store,
           pass_url_key,
           page,
-          count
+          count,
         } = this.$store.state.list;
 
         let form = {};
@@ -415,13 +415,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
 
         if (response) {
           await this.$store.commit("updateState", {
             error: null,
-            data: response
+            data: response,
           });
           // // google tag manager
           // this.gtm_product_impressions = [];
@@ -468,7 +468,8 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error: "Oops there seems to be some Network issue, please try again"
+            error:
+              "Oops there seems to be some Network issue, please try again",
           });
         }
       }
@@ -489,10 +490,10 @@ export default {
         query: {
           ...this.$route.query,
           sort: event.code,
-          sort_dir: event.dir
-        }
+          sort_dir: event.dir,
+        },
       });
-    }
+    },
   },
 
   computed: {
@@ -515,7 +516,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    }
+    },
   },
 
   async fetch() {
@@ -528,17 +529,17 @@ export default {
   },
 
   watch: {
-    "$route.query": function() {
+    "$route.query": function () {
       this.getProductList();
     },
 
     "$store.state.list.sortingData": {
       deep: true,
-      handler: function() {
+      handler: function () {
         // this.sorting.code = this.list.sortingData.code;
         // this.sorting.dir = this.list.sortingData.dir;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>

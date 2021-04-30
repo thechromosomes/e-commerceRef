@@ -65,13 +65,34 @@
             ><img src="~/assets//img/logo.svg" alt="logo"
           /></NuxtLink>
         </div>
-        <div class="search_box ">
+        <div class="search_box">
           <span @click="searchActive = true" class="desktop_only">
             <span class="carts"
               ><img src="~/assets//img/search.png" alt="cart" />
             </span>
           </span>
-          <NuxtLink to="/login">
+          <NuxtLink
+            v-show="
+              this.$store.state.cartAjax.customer_id != null &&
+              this.$store.state.cartAjax.customer_id != '' &&
+              this.$store.state.cartAjax.customer_session != '' &&
+              this.$store.state.cartAjax.customer_session != null
+            "
+            to="/account"
+          >
+            <span class="carts"
+              ><img src="~/assets//img/user.png" alt="cart" />
+            </span>
+          </NuxtLink>
+          <NuxtLink
+            v-show="
+              this.$store.state.cartAjax.customer_id == null ||
+              this.$store.state.cartAjax.customer_id == '' ||
+              this.$store.state.cartAjax.customer_session == '' ||
+              this.$store.state.cartAjax.customer_session == null
+            "
+            to="/account"
+          >
             <span class="carts"
               ><img src="~/assets//img/user.png" alt="cart" />
             </span>
@@ -135,7 +156,7 @@ export default {
     return {
       showMobileMenu: false,
       searchActive: false,
-      scrollPosition: null
+      scrollPosition: null,
     };
   },
   async mounted() {
@@ -144,16 +165,16 @@ export default {
   },
 
   computed: {
-    ...mapState(["header"])
+    ...mapState(["header"]),
   },
 
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
-    }
+    },
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  }
+  },
 };
 </script>
