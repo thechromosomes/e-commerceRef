@@ -3,33 +3,40 @@
     <div class="ship-adress">
       <h2>Shipping Address</h2>
       <template v-if="$store.state.cartAjax.address.length">
-        <div
-          class="ship-adress-area"
-          v-for="(item, index) in $store.state.cartAjax.address"
-          :key="index"
-        >
-          <div>
-            <div>
-              <p><strong>{{ `${item.full_name}, ${item.phone}` }}</strong></p>
-              <p>
-                {{
-                  `${item.street_address}, ${item.state}, ${item.city},  ${item.pin_code}`
-                }}
-              </p>
-              <p>{{ `Address Type: ${item.address_type}` }}</p>
+        <div class="address-list">
+          <div
+            class="ship-adress-area"
+            v-for="(item, index) in $store.state.cartAjax.address"
+            :key="index"
+          >
+            <p class="name">
+              name: <span>{{ `${item.full_name}` }}</span>
+            </p>
+            <p class="name">
+              mobile: <span>{{ ` ${item.phone}` }}</span>
+            </p>
+            <p class="name">
+              Address:
+              <span>{{
+                `${item.street_address}, ${item.state}, ${item.city},  ${item.pin_code}`
+              }}</span>
+            </p>
+            <p class="name">
+              Address Type: <span>{{ item.address_type }}</span>
+            </p>
+
+            <div class="remove-address">
+              <a @click.prevent="removeAddress(index, item.id)">
+                <img src="@/assets/img/remove.webp" alt="Remove" />
+              </a>
+              <a @click.prevent="$emit('editAddress', item)">
+                <img src="@/assets/img/edit.svg" alt="edit" width="30px" />
+              </a>
             </div>
-          </div>
-          <div class="remove-address">
-            <a @click.prevent="removeAddress(index, item.id)">
-              <img src="@/assets/img/remove.webp" alt="Remove" />
-            </a>
-            <a @click.prevent="$emit('editAddress', item)">
-              <img src="@/assets/img/edit.svg" alt="edit" width="30px" />
-            </a>
           </div>
         </div>
       </template>
-      <template v-else >
+      <template v-else>
         <div style="margin-bottom:10px;">
           <h4>Ahh! No address added yet. please try adding new address</h4>
         </div>
@@ -60,14 +67,14 @@ export default {
           method: "post",
           url: `/customer/delete-address`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         });
 
         if (response.success) {
           this.$toast.success(response.message);
           this.$store.commit("cartAjax/spliceAddress", {
             index,
-            customerDetail: response,
+            customerDetail: response
           });
         } else {
           throw `error from api ${response.message}`;
@@ -79,7 +86,7 @@ export default {
 
     editAddress(item) {
       this.$emit("clicked-show-detail", product);
-    },
+    }
   },
   mounted() {
     if (
@@ -87,7 +94,7 @@ export default {
       this.$store.state.cartAjax.customer_session == ""
     )
       return this.$router.push("/login");
-  },
+  }
 };
 </script>
 <style scoped>

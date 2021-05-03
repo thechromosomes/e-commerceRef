@@ -1,61 +1,60 @@
 <template>
   <div>
-    <div class="container acc-page">
-      <div class="row">
-        <div class="span12">
-          <h1 class="title clearfix">My Account</h1>
+    <div class="account-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="title clearfix">My Account</h1>
+          </div>
         </div>
-      </div>
-      <div class="row new-ord same-table clearboth">
-        <!-- side bar code -->
-        <Sidebar />
-        <div
-          class="cur-or cus-order-del cus-ore rte profile-data"
-          v-if="myOrders.length > 0"
-        >
-          <table
-            style="border-collapse: collapse; margin-bottom: 15px"
-            role="presentation"
-            width="100%"
-            border="0"
-            class="Delivery-Information table_responsive"
-          >
-            <thead>
-              <tr>
-                <th scope="col">Order#</th>
-                <th scope="col">Date</th>
-                <th scope="col">Ship To</th>
-                <th scope="col">Order Total</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(item, index) in myOrders" :key="index">
-                <td class="align-center" data-label="Order#">
-                  {{ item.fynd_order_id }}
-                </td>
-                <td class="align-center" data-label="Date">
-                  {{ item.order_date }}
-                </td>
-                <td class="align-center" data-label="Ship To">
-                  {{ item.shipping_name }}
-                </td>
-                <td class="align-center" data-label="Order Total">
-                  {{ item.order_subtotal }}
-                </td>
-                <td class="align-center" data-label="Action">
-                  <NuxtLink :to="`/order/${item.order_quote_id}`"
-                    >View & Track</NuxtLink
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div v-else>
-          <h3>
-            No order forund please head to product page and get awesome product!
-          </h3>
+        <div class="row">
+          <div class="col-md-12 col-lg-3 col-12">
+            <Sidebar />
+          </div>
+          <div class="col-md-12 col-lg-9 col-12">
+            <div class="table" v-if="myOrders.length > 0">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Order#</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Ship To</th>
+                      <th scope="col">Order Total</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(item, index) in myOrders" :key="index">
+                      <td class="align-center" data-label="Order#">
+                        {{ item.fynd_order_id }}
+                      </td>
+                      <td class="align-center" data-label="Date">
+                        {{ item.order_date }}
+                      </td>
+                      <td class="align-center" data-label="Ship To">
+                        {{ item.shipping_name }}
+                      </td>
+                      <td class="align-center" data-label="Order Total">
+                        {{ item.order_subtotal }}
+                      </td>
+                      <td class="align-center" data-label="Action">
+                        <NuxtLink :to="`/order/${item.order_quote_id}`"
+                          >View & Track</NuxtLink
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div v-else>
+              <h3>
+                No order forund please head to product page and get awesome
+                product!
+              </h3>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -65,11 +64,11 @@
 import Sidebar from "@/components/my-account/Sidebar.vue";
 export default {
   components: {
-    Sidebar,
+    Sidebar
   },
   data() {
     return {
-      myOrders: [],
+      myOrders: []
     };
   },
 
@@ -97,14 +96,14 @@ export default {
         let form = {
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          store: this.$store.state.list.store,
+          store: this.$store.state.list.store
         };
 
         let response = await this.$store.dispatch("cartAjax/actCartAjax", {
           method: "post",
           url: `/customer/account-details`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         });
 
         if (response.success) {
@@ -122,8 +121,8 @@ export default {
         }
         console.log("error form the get order page", error);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>

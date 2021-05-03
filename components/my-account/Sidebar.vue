@@ -1,52 +1,36 @@
 <template>
   <div>
-    <div class="cus-address cus-ore customer_profile">
-      <div class="accountMenu">
-        <ul>
-          <li>
-            <nuxt-link
-              :class="[
-                $route.path == '/Dashboard' ? 'active-account-sidebar' : '',
-              ]"
-              to="/Dashboard"
-              >Account Dashboard</nuxt-link
-            >
-          </li>
-          <!-- <li>
-            <nuxt-link
-              :class="[
-                $route.path == '/MyProfile' ? 'active-account-sidebar' : '',
-              ]"
-              to="/MyProfile"
-              >My Profile</nuxt-link
-            >
-          </li> -->
-          <li>
-            <nuxt-link
-              :class="[
-                $route.path == '/addresses' ? 'active-account-sidebar' : '',
-              ]"
-              to="/addresses"
-              >My Address Book</nuxt-link
-            >
-          </li>
-          <li>
-            <nuxt-link
-              :class="[
-                $route.path == '/myorder' ? 'active-account-sidebar' : '',
-              ]"
-              to="/myorder"
-              >My Orders</nuxt-link
-            >
-          </li>
-          <!-- <li>
-            <nuxt-link to="/Returns">Generate Return Label</nuxt-link>
-          </li> -->
-          <li style="cursor: pointer">
-            <a @click.prevent="logOut">Logout</a>
-          </li>
-        </ul>
-      </div>
+    <div class="sidebar">
+      <ul>
+        <li>
+          <nuxt-link
+            :class="[
+              $route.path == '/Dashboard' ? 'active-account-sidebar' : ''
+            ]"
+            to="/Dashboard"
+            >Account Dashboard</nuxt-link
+          >
+        </li>
+        <li>
+          <nuxt-link
+            :class="[
+              $route.path == '/addresses' ? 'active-account-sidebar' : ''
+            ]"
+            to="/addresses"
+            >My Address Book</nuxt-link
+          >
+        </li>
+        <li>
+          <nuxt-link
+            :class="[$route.path == '/myorder' ? 'active-account-sidebar' : '']"
+            to="/myorder"
+            >My Orders</nuxt-link
+          >
+        </li>
+        <li>
+          <a @click.prevent="logOut">Logout</a>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -55,7 +39,7 @@
 export default {
   name: "sidebar",
   methods: {
-    logOut: async function () {
+    logOut: async function() {
       var form = {};
       form.customer_id = this.$store.state.cartAjax.customer_id;
       form.customer_session = this.$store.state.cartAjax.customer_session;
@@ -64,9 +48,9 @@ export default {
           method: "post",
           url: `/customer/logout`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         })
-        .then(async (response) => {
+        .then(async response => {
           if (response.data.success === true) {
             $cookies.remove(
               window.location.hostname.substring(10, 4) + "_cart_token"
@@ -95,11 +79,11 @@ export default {
             this.$router.push("/");
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.log("error from the log out page", error);
         });
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>

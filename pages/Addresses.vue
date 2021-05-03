@@ -1,242 +1,212 @@
 <template>
   <div>
-    <div class="container acc-page add-box-width">
-      <div class="row">
-        <div class="span12">
-          <h1 class="title clearfix">My Account</h1>
+    <div class="address-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="title clearfix">My Account</h1>
+          </div>
         </div>
-      </div>
-      <div class="row new-ord same-table clearboth">
-        <!-- side bar code -->
-        <Sidebar />
-        <!-- side bar code end -->
-        <div class="inner-login">
-          <!-- old address -->
-          <AllAddresses
-            v-if="showOldAddress && !showForm"
-            @editAddress="updateForm"
-          />
+        <div class="row">
+          <div class="col-md-12 col-lg-3 col-12">
+            <Sidebar />
+          </div>
+          <div class="col-md-12 col-lg-9 col-12">
+            <div class="">
+              <AllAddresses
+                v-if="showOldAddress && !showForm"
+                @editAddress="updateForm"
+              />
 
-          <div class="login-col">
-            <div class="customer_address edit_address" v-if="showForm">
-              <form>
-                <table class="customer_address_table">
-                  <tbody>
-                    <tr>
-                      <td class="label">
-                        <label for="address_first_name_new">First Name</label>
-                      </td>
-                      <td class="value">
-                        <input
-                          type="text"
-                          id="address_first_name_new"
-                          class="address_form"
-                          v-model="user.firstName"
-                          autocomplete="off"
-                        />
-                        <!-- an error display tags -->
-                        <span v-if="validation.hasError('user.firstName')">
-                          <p class="input-error">
-                            {{ validation.firstError("user.firstName") }}
-                          </p>
-                        </span>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td class="label">
-                        <label for="address_last_name_new">Last Name</label>
-                      </td>
-                      <td class="value">
-                        <input
-                          type="text"
-                          id="address_last_name_new"
-                          class="address_form"
-                          size="40"
-                          v-model="user.lastName"
-                          autocomplete="off"
-                        />
-                        <!-- an error display tags -->
-                        <span v-if="validation.hasError('user.lastName')">
-                          <p class="input-error">
-                            {{ validation.firstError("user.lastName") }}
-                          </p>
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="label">
-                        <label for="address_address1_new">Address 1</label>
-                      </td>
-                      <td class="value">
-                        <input
-                          type="text"
-                          id="address_address1_new"
-                          class="address_form"
-                          v-model="user.address"
-                          size="40"
-                          autocomplete="off"
-                        />
-                        <!-- an error display tags -->
-                        <span v-if="validation.hasError('user.address')">
-                          <p class="input-error">
-                            {{ validation.firstError("user.address") }}
-                          </p>
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="label">
-                        <label for="address_address2_new">Address2</label>
-                      </td>
-                      <td class="value">
-                        <input
-                          type="text"
-                          id="address_address2_new"
-                          class="address_form"
-                          v-model="user.address2"
-                          size="40"
-                          autocomplete="off"
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="label">
-                        <label for="address_zip_new">Zip</label>
-                      </td>
-                      <td class="value">
-                        <input
-                          type="text"
-                          id="address_zip_new"
-                          class="address_form"
-                          size="40"
-                          v-model="user.pinCode"
-                          autocomplete="off"
-                        />
-                        <!-- an error display tags -->
-                        <span v-if="validation.hasError('user.pinCode')">
-                          <p class="input-error">
-                            {{ validation.firstError("user.pinCode") }}
-                          </p>
-                        </span>
-                        <!-- error or success message -->
-                        <template>
-                          <div v-if="pin_code_error !== ''">
-                            <p class="input-error">
-                              {{ pin_code_error }}
-                            </p>
-                          </div>
-                          <div v-else>
-                            <p class="input-success">
-                              {{ pin_code_success }}
-                            </p>
-                          </div>
-                        </template>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="label">
-                        <label for="address_city_new">City</label>
-                      </td>
-                      <td class="value">
-                        <input
-                          type="text"
-                          id="address_city_new"
-                          class="address_form"
-                          v-model="user.city"
-                          size="40"
-                          autocomplete="off"
-                        />
-                        <!-- an error display tags -->
-                        <span v-if="validation.hasError('user.city')">
-                          <p class="input-error">
-                            {{ validation.firstError("user.city") }}
-                          </p>
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="label">
-                        <label for="address_country_new">Country</label>
-                      </td>
-                      <td class="value">
-                        <select id="address_country_new" disabled>
-                          <option value="India">India</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr id="address_province_container_new" style="">
-                      <td class="label">
-                        <label for="address_province_new">State</label>
-                      </td>
-                      <td class="value">
-                        <input
-                          placeholder=""
-                          :value="user.state"
-                          disabled
-                          class="address_form"
-                          size="40"
-                          type="text"
-                          autocomplete="off"
-                        />
-                        <!-- an error display tags -->
-                        <span v-if="validation.hasError('user.state')">
-                          <p class="input-error">
-                            {{ validation.firstError("user.state") }}
-                          </p>
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="label">
-                        <label for="address_phone_new">Phone</label>
-                      </td>
-                      <td class="value">
-                        <input
-                          type="text"
-                          id="address_phone_new"
-                          class="address_form"
-                          size="40"
-                          v-model="user.mobileNo"
-                          autocomplete="off"
-                        />
-                        <!-- an error display tags -->
-                        <span v-if="validation.hasError('user.mobileNo')">
-                          <p class="input-error">
-                            {{ validation.firstError("user.mobileNo") }}
-                          </p>
-                        </span>
-                      </td>
-                    </tr>
-                    <tr class="padd-top">
-                      <td class="label"></td>
-                      <td
-                        class="value clearfix checkboxouter greyColor checkbox noteArea"
+              <div class="customer_address edit_address" v-if="showForm">
+                <div class="row">
+                  <div class="col-md-6 col-12">
+                    <label for="address_first_name_new">First Name</label>
+                    <input
+                      type="text"
+                      id="address_first_name_new"
+                      class="address_form form-control"
+                      v-model="user.firstName"
+                      autocomplete="off"
+                    />
+                    <!-- an error display tags -->
+                    <span v-if="validation.hasError('user.firstName')">
+                      <p class="input-error">
+                        {{ validation.firstError("user.firstName") }}
+                      </p>
+                    </span>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <label for="address_last_name_new">Last Name</label>
+                    <input
+                      type="text"
+                      id="address_last_name_new"
+                      class="address_form form-control"
+                      size="40"
+                      v-model="user.lastName"
+                      autocomplete="off"
+                    />
+                    <!-- an error display tags -->
+                    <span v-if="validation.hasError('user.lastName')">
+                      <p class="input-error">
+                        {{ validation.firstError("user.lastName") }}
+                      </p>
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 col-12">
+                    <label for="address_address1_new">Address 1</label>
+                    <input
+                      type="text"
+                      id="address_address1_new"
+                      class="address_form form-control"
+                      v-model="user.address"
+                      size="40"
+                      autocomplete="off"
+                    />
+                    <!-- an error display tags -->
+                    <span v-if="validation.hasError('user.address')">
+                      <p class="input-error">
+                        {{ validation.firstError("user.address") }}
+                      </p>
+                    </span>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <label for="address_address2_new">Address2</label>
+                    <input
+                      type="text"
+                      id="address_address2_new"
+                      class="address_form form-control"
+                      v-model="user.address2"
+                      size="40"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 col-12">
+                    <label for="address_zip_new">Zip</label>
+                    <input
+                      type="text"
+                      id="address_zip_new"
+                      class="address_form form-control"
+                      size="40"
+                      v-model="user.pinCode"
+                      autocomplete="off"
+                    />
+                    <!-- an error display tags -->
+                    <span v-if="validation.hasError('user.pinCode')">
+                      <p class="input-error">
+                        {{ validation.firstError("user.pinCode") }}
+                      </p>
+                    </span>
+                    <!-- error or success message -->
+                    <template>
+                      <div v-if="pin_code_error !== ''">
+                        <p class="input-error">
+                          {{ pin_code_error }}
+                        </p>
+                      </div>
+                      <div v-else>
+                        <p class="input-success">
+                          {{ pin_code_success }}
+                        </p>
+                      </div>
+                    </template>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <label for="address_city_new">City</label>
+                    <input
+                      type="text"
+                      id="address_city_new"
+                      class="address_form form-control"
+                      v-model="user.city"
+                      size="40"
+                      autocomplete="off"
+                    />
+                    <!-- an error display tags -->
+                    <span v-if="validation.hasError('user.city')">
+                      <p class="input-error">
+                        {{ validation.firstError("user.city") }}
+                      </p>
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 col-12">
+                    <label for="address_country_new">Country</label>
+                    <select
+                      id="address_country_new"
+                      class="form-control form-control"
+                      disabled
+                    >
+                      <option value="India">India</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <label for="address_province_new">State</label>
+                    <input
+                      placeholder=""
+                      :value="user.state"
+                      disabled
+                      class="address_form form-control"
+                      size="40"
+                      type="text"
+                      autocomplete="off"
+                    />
+                    <!-- an error display tags -->
+                    <span v-if="validation.hasError('user.state')">
+                      <p class="input-error">
+                        {{ validation.firstError("user.state") }}
+                      </p>
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 col-12">
+                    <label for="address_phone_new">Phone</label>
+                    <input
+                      type="text"
+                      id="address_phone_new"
+                      class="address_form form-control"
+                      size="40"
+                      v-model="user.mobileNo"
+                      autocomplete="off"
+                    />
+                    <!-- an error display tags -->
+                    <span v-if="validation.hasError('user.mobileNo')">
+                      <p class="input-error">
+                        {{ validation.firstError("user.mobileNo") }}
+                      </p>
+                    </span>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="default-address">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="new-address"
+                        v-model="user.defaultAddress"
+                      />
+                      <label class="form-check-label" for="new-address"
+                        >Set as Default Address?</label
                       >
-                        <input
-                          type="checkbox"
-                          id="new-address"
-                          v-model="user.defaultAddress"
-                        />
-                        <label for="new-address">Set as Default Address?</label>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="field field--required field--show-floating-label">
-                  <div
-                    class="field__input-wrapper field__input-wrapper--icon-right"
-                  >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-12">
                     <label
-                      class="field__label field__label--visible shipping-adress-label"
-                      for="checkout_shipping_address_phone"
+                      class="form-check-label address-type"
+                      for="form-check-label"
                       >Address type</label
                     >
-
-                    <div class="adress-option-div">
-                      <div class="input-box-1">
+                    <div class="address-type-box">
+                      <div class="p-2">
                         <input
-                          class="field__input field__input--numeric input-both"
+                          class="form-check-input"
                           type="radio"
                           value="home"
                           v-model="user.address_type"
@@ -244,10 +214,9 @@
                         />
                         <label for="home-radio">Home</label>
                       </div>
-
-                      <div class="input-box-1">
+                      <div class="p-2">
                         <input
-                          class="field__input field__input--numeric input-both"
+                          class="form-check-input"
                           type="radio"
                           value="office"
                           v-model="user.address_type"
@@ -256,24 +225,20 @@
                         <label for="office-radio">Office</label>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="action_bottom">
-                  <div class="addaddress-btn">
-                    <div class="back_address">
-                      <input class="btn new-btn" type="submit" value="Back" />
-                    </div>
-                    <div class="add_address">
-                      <input
-                        class="btn new-btn"
-                        type="submit"
-                        value="Add Address"
-                        @click.prevent="submitDetail()"
-                      />
+                    <div class="col-md-12 col-12 p-0">
+                      <div class="submit_box mt-4">
+                        <input class="btn new-btn" type="submit" value="Back" />
+                        <input
+                          class="btn new-btn ml-3"
+                          type="submit"
+                          value="Add Address"
+                          @click.prevent="submitDetail()"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -283,11 +248,12 @@
 </template>
 <script>
 import { Validator } from "simple-vue-validator";
-import Sidebar from '@/components/my-account/Sidebar.vue';
-import AllAddresses from '@/components/my-account/AllAddresses.vue';
+import Sidebar from "@/components/my-account/Sidebar.vue";
+import AllAddresses from "@/components/my-account/AllAddresses.vue";
 export default {
   components: {
-    Sidebar,AllAddresses
+    Sidebar,
+    AllAddresses
   },
   data() {
     return {
@@ -308,39 +274,39 @@ export default {
         city: "",
         address_type: "home",
         address_id: "",
-        defaultAddress: false,
-      },
+        defaultAddress: false
+      }
     };
   },
 
   // form validatiors
   validators: {
-    "user.firstName": function (value) {
+    "user.firstName": function(value) {
       return Validator.value(value).required();
     },
-    "user.lastName": function (value) {
+    "user.lastName": function(value) {
       return Validator.value(value).required();
     },
-    "user.address": function (value) {
+    "user.address": function(value) {
       return Validator.value(value).required();
     },
-    "user.pinCode": function (value) {
+    "user.pinCode": function(value) {
       return Validator.value(value)
         .required()
         .integer()
         .minLength(6)
         .maxLength(6);
     },
-    "user.mobileNo": function (value) {
+    "user.mobileNo": function(value) {
       return Validator.value(value)
         .required()
         .integer()
         .minLength(10)
         .maxLength(10);
     },
-    "user.city": function (value) {
+    "user.city": function(value) {
       return Validator.value(value).required();
-    },
+    }
   },
 
   methods: {
@@ -379,7 +345,7 @@ export default {
           address2,
           address_type,
           address_id,
-          defaultAddress,
+          defaultAddress
         } = this.user;
         if (
           state &&
@@ -391,9 +357,14 @@ export default {
           city &&
           validation
         ) {
-          if(this.$store.state.cartAjax.cart_session == "" && this.$store.state.cartAjax.cart_id == ""){
-            this.$toast.error("your cart is empty please try adding itmes first")
-            return
+          if (
+            this.$store.state.cartAjax.cart_session == "" &&
+            this.$store.state.cartAjax.cart_id == ""
+          ) {
+            this.$toast.error(
+              "your cart is empty please try adding itmes first"
+            );
+            return;
           }
           var form = {};
           form.customer_id = this.$store.state.cartAjax.customer_id;
@@ -415,24 +386,22 @@ export default {
           if (address_id != "") {
             url = `/customer/edit-address`;
             token = this.$store.state.cartAjax.customer_token;
-
           } else {
             url = `/customer/add-address`;
             token = this.$store.state.cartAjax.customer_token;
-
           }
 
           let response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url,
             token,
-            params: form,
+            params: form
           });
 
           if (response.success) {
             this.$store.commit("cartAjax/updateAddress", {
               payload: response,
-              vm: this,
+              vm: this
             });
             this.showForm = false;
           } else {
@@ -443,13 +412,15 @@ export default {
           throw "please fill the form data first";
         }
       } catch (error) {
-        this.$globalError(`error form the shipping page (submitDetail)>>>> ${error}`);
+        this.$globalError(
+          `error form the shipping page (submitDetail)>>>> ${error}`
+        );
         console.log("error form the shipping page >>> ", error);
       }
     },
 
     // get detil via pin code
-    fetchUserDetail: function () {
+    fetchUserDetail: function() {
       var pin_code = /^([0-9]{6,})+$/;
       if (
         this.user.pinCode != null &&
@@ -466,9 +437,9 @@ export default {
           .dispatch("pimAjax", {
             method: "post",
             url: `/pimresponse.php`,
-            params: form,
+            params: form
           })
-          .then((response) => {
+          .then(response => {
             if (response.result == "") {
               this.pin_code_error = "Sorry this pincode is not serviceable.";
               this.pin_code_success = "";
@@ -486,7 +457,7 @@ export default {
               this.pin_code_error = "";
             }
           })
-          .catch((error) => {
+          .catch(error => {
             console.log("error from the shipping page >>> ", error);
             this.$globalError(
               `error from the shipping page (fetchUserDetail) >>>> ${error}`
@@ -502,7 +473,7 @@ export default {
         this.pin_code_error = "Please enter valid Pin code";
         this.pin_code_success = "";
       }
-    },
+    }
   },
   mounted() {
     if (
@@ -512,12 +483,12 @@ export default {
       return this.$router.push("/login");
   },
   watch: {
-    "user.pinCode": function () {
+    "user.pinCode": function() {
       if (this.user.pinCode >= 1000) {
         this.fetchUserDetail();
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
