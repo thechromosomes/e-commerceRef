@@ -1,5 +1,12 @@
 <template>
   <header class="header" :class="[scrollPosition > 30 ? 'header-fixed' : '']">
+    <!-- vue loader -->
+    <div class="page-loader" v-if="$store.state.pageLoader">
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
         <div class="mobile-screen-icon">
@@ -178,3 +185,6 @@ export default {
   },
 };
 </script>
+<style scoped>
+@import url("@/assets/css/pages-css/loader.css");
+</style>

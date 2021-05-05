@@ -3,16 +3,16 @@
 export default async (context) => {
   try {
 
-    // let form = {};
-    // form.service = "cms_page";
-    // form.store = 1;
+    let form = {};
+    form.service = "cms_page";
+    form.store = 1;
 
-    // let cmsData = await context.store.dispatch("pimAjax", {
-    //   method: "get",
-    //   url: `pimresponse.php`,
-    //   params: form,
-    // });
-    // context.store.commit("setCmsData", cmsData);
+    let cmsData = await context.store.dispatch("pimAjax", {
+      method: "get",
+      url: `pimresponse.php`,
+      params: form,
+    });
+    context.store.commit("setCmsData", cmsData);
 
 
     // set header menu
@@ -23,6 +23,16 @@ export default async (context) => {
       method: "get",
       url: `pimresponse.php`,
       params: header,
+    });
+
+    // get new in slider data
+    let bestSellerForm = {};
+    bestSellerForm.service = "is_new";
+    bestSellerForm.store = 1;
+    context.store.dispatch("getBestSeller", {
+      method: "get",
+      url: `pimresponse.php`,
+      params: bestSellerForm,
     });
 
     if (headerData.result.length > 0 && headerData.response.success == 1) {

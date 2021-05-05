@@ -37,16 +37,15 @@ export const state = () => ({
   homePageData: {},
   cmsPagesData: {},
   header: [],
-  pageLoader: false,
+  pageLoader: true,
   // base URL is using in og tags and log generator API >>> all product
   // BASE_URL: "https://di.hostx1.de",
   BASE_URL: "http://localhost:9000",
   pimApi: "https://dipim.hostx1.de/pim/",
   isMobile: false,
   instaPost: [],
-  bestSellerWomen: [],
-  bestSellerMan: [],
   bannerData: [],
+  is_new: []
 });
 
 export const actions = {
@@ -76,6 +75,32 @@ export const actions = {
           reject(error);
         });
     });
+  },
+
+  // fetching data for the home page best seller
+  async getBestSeller(context, form) {
+    try {
+      var authOptions1 = {
+        method: form.method,
+        url: context.state.pimApi + form.url,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        params: form.params,
+      };
+
+      let tempResponse = await this.$axios(authOptions1);
+
+      if (tempResponse.data.response.success == 1) {
+        context.commit("updateBestSeller", {
+          is_new: tempResponse.data.result.is_new,
+        });
+      } else {
+        throw "encountered error while fetching best seller data";
+      }
+    } catch (error) {
+      console.log("error from the get best seller Store action >>", error);
+    }
   },
 };
 
@@ -267,5 +292,10 @@ export const mutations = {
   // update device information
   updateDeviceInfo(state, { payload }) {
     state.isMobile = payload;
+  },
+
+  // update new in data
+  updateBestSeller(state, { is_new }) {
+    state.is_new = is_new;
   },
 };

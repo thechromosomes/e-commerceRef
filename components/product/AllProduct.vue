@@ -240,12 +240,17 @@
                 class="loading-small show-more-spinner js_show-more-spinner"
                 style="display: none"
               ></div>
-              <div class="you-have-seen js_you-have-seen">
+              <div
+                class="you-have-seen js_you-have-seen"
+                v-show="list.Product_list.length > 0"
+              >
                 You've seen {{ list.Product_list.length }} of
                 {{ calculateResult }} product(s)
               </div>
               <button
                 class="button button-load-more js_button-load-more pointer"
+                v-show="list.Product_list.length >= 12"
+                @click="loadMore()"
               >
                 Load more
               </button>
@@ -494,6 +499,14 @@ export default {
         },
       });
     },
+
+    async loadMore() {
+      await this.$store.commit("universalListMutate", {
+        data: Number(this.list.page) + 1,
+        changeState: "page",
+      });
+      this.getProductList(this.list.page);
+    },
   },
 
   computed: {
@@ -543,3 +556,4 @@ export default {
   },
 };
 </script>
+

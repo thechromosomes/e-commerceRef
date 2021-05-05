@@ -1,35 +1,9 @@
 <template>
   <div>
-    <section class="slide-img">
-      <div class="content content-desk">
-        <img
-          src="~/assets/img/2-DXD-full-bleed-desk.png"
-          alt="img"
-          class="w-100"
-        />
-        <div class="content-text">
-          <h4>
-            'FAKE SMILES' , THE NEW CAMPAIGN THAT ACCOMPANIES THE LAUNCH <br />
-            OF DIESEL X DIESEL COLLECTION.
-          </h4>
-          <a class="button primary-btn" href="#" role="button">DISCOVER NOW</a>
-        </div>
-      </div>
-      <div class="content content-mobile">
-        <img
-          src="~/assets/img/2-DXD-full-bleed-mobile.jpg"
-          alt="img"
-          class="w-100"
-        />
-        <div class="content-text">
-          <h4>
-            'FAKE SMILES' , THE NEW CAMPAIGN THAT ACCOMPANIES THE LAUNCH <br />
-            OF DIESEL X DIESEL COLLECTION.
-          </h4>
-          <a class="button primary-btn" href="#" role="button">DISCOVER NOW</a>
-        </div>
-      </div>
-    </section>
+    <!-- home page cms -->
+    <div v-if="Object.keys(homePageData).length != 0">
+      <span v-html="homePageData.content"></span>
+    </div>
 
     <div class="collections_slide">
       <div class="slide_content">
@@ -123,78 +97,17 @@
       <div class="container-fluid">
         <div class="content_new_in">
           <h2 class="swiper-header">NEW IN</h2>
-          <div class="slide_new_in">
+          <div class="slide_new_in" v-if="is_new.length > 0">
             <VueSlickCarousel ref="slick" v-bind="settings">
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_1.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
+              <div class="item" v-for="(item, index) in is_new" :key="index">
+                <NuxtLink :to="`product/${item.url_key}`"
+                  ><img :src="item.image" alt="img" class="w-100"
+                /></NuxtLink>
                 <div class="tile-body">
-                  <p>Light Blue</p>
-                  <a href="#"> Super skinny - Slandy</a>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_2.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Black</p>
-                  <a href="#"> Super skinny - Slandy</a>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_3.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Blue</p>
-                  <a href="#"> High-heel ankle boots in denim</a>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_4.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Light Blue</p>
-                  <a href="#"> Super skinny - Slandy</a>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_5.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Light Blue</p>
-                  <a href="#"> Super skinny - Slandy</a>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_6.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Light Blue</p>
-                  <a href="#"> Super skinny - Slandy</a>
+                  <p>{{ item.color }}</p>
+                  <NuxtLink :to="`product/${item.url_key}`">
+                    {{ item.name }}
+                  </NuxtLink>
                 </div>
               </div>
             </VueSlickCarousel>
@@ -203,38 +116,15 @@
       </div>
     </section>
 
-    <section class="fullbleed">
-      <div class="content-box">
-        <img
-          src="~/assets/img/living-hp-banner-5.jpg"
-          alt="img"
-          class="desktop_only w-100"
-        />
-        <img
-          src="~/assets/img/living-hp-banner-mobile.jpg"
-          alt="img"
-          class="mobile_only w-100"
-        />
-      </div>
-      <div class="text-content">
-        <div class="fullbleed-center">
-          <h2 class="module-head">FOR RESPONSIBLE LIVING</h2>
-          <p class="module-text">
-            Diesel commits to implement a responsible business that is
-            respectful of people and the environment. Building upon our
-            philosophy and positively disruptive outlook, our sustainability
-            strategy is called Diesel For Responsible Living.
-          </p>
-          <a class="button secondary-white-btn" href="#">DISCOVER NOW</a>
-          <a class="button secondary-white-btn" href="#">SHOP GREEN LABEL</a>
-        </div>
-      </div>
-    </section>
+    <!-- Start of bottom images Section -->
+    <span v-html="homePageData.content_1"></span>
   </div>
 </template>
 
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
+import { mapState } from "vuex";
+
 export default {
   components: { VueSlickCarousel },
 
@@ -255,8 +145,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -264,8 +154,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -273,10 +163,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
+              slidesToShow: 1,
+            },
+          },
+        ],
       },
       settings2: {
         focusOnSelect: true,
@@ -294,20 +184,68 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1
-            }
+              slidesToScroll: 1,
+            },
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      }
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      },
     };
-  }
+  },
+  // head() {
+  //   return {
+  //     title: this.homePageData.meta_title,
+  //     meta: [
+  //       {
+  //         hid: this.homePageData.meta_description,
+  //         name: this.homePageData.meta_description,
+  //         content: this.homePageData.meta_description,
+  //       },
+  //       {
+  //         hid: "og:title",
+  //         content: this.title,
+  //         property: "og:title",
+  //       },
+  //       {
+  //         hid: "og:description",
+  //         content: this.description,
+  //         property: "og:description",
+  //       },
+  //       {
+  //         hid: "og:url",
+  //         content: this.url,
+  //         property: "og:url",
+  //       },
+  //     ],
+  //   };
+  // },
+
+  computed: {
+    ...mapState(["homePageData", "bannerData", "is_new"]),
+
+    // render seo tags
+    title() {
+      if (this.homePageData.meta_title != "") {
+        return this.homePageData.meta_title;
+      }
+      return "STEVE MADDEN ALL PRODUCT";
+    },
+    description() {
+      if (this.homePageData.meta_description !== "") {
+        return this.homePageData.meta_description;
+      }
+      return "STEVE MADDEN";
+    },
+    url() {
+      return this.$store.state.BASE_URL + this.$route.fullPath;
+    },
+  },
 };
 </script>
