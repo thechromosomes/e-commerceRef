@@ -210,7 +210,7 @@ export default {
             }),
               this.$store.commit("cartAjax/flushCart");
           } else {
-            // this.$router.push("/");
+            this.$router.push("/");
           }
         });
     }
