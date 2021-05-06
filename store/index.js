@@ -20,6 +20,7 @@ export const state = () => ({
     pageHead: "",
     applied_filters: [],
     sortingData: { code: "", dir: "desc" },
+    totalProduct: 0
   },
 
   singleProductList: {
@@ -157,6 +158,7 @@ export const mutations = {
         state.list.meta_title = data.result.meta_title;
         state.list.meta_description = data.result.meta_description;
         state.list.meta_keyword = data.result.meta_keyword;
+        state.list.totalProduct = data.result.product_count
         // state.list.Product_list = data.result.products;
         state.list.Product_list = state.list.Product_list.concat(
           data.result.products

@@ -4,8 +4,8 @@
       <div class="footer-wrapper">
         <div class="flex-content">
           <!-- dropdown-open class -->
-          <div class="footer-items dropdown-open">
-            <div class="footer-navigation">
+          <div class="footer-items" :class="wodOpen ? 'dropdown-open' : ''">
+            <div class="footer-navigation" @click="() => (wodOpen = !wodOpen)">
               <span class="footer-link-text">WORLD OF DIESEL</span>
               <span class="dropdown-arrow_icon"></span>
             </div>
@@ -33,8 +33,11 @@
               <span class="footer-link-text">SHIP TO</span>
             </div>
           </div>
-          <div class="footer-items">
-            <div class="footer-navigation">
+          <div class="footer-items" :class="langOpen ? 'dropdown-open' : ''">
+            <div
+              class="footer-navigation"
+              @click="() => (langOpen = !langOpen)"
+            >
               <span class="footer-link-text">LANGUAGE</span>
               <span class="dropdown-arrow_icon"></span>
             </div>
@@ -63,7 +66,7 @@
             <div class="modal-content">
               <div class="modal-body">
                 <div
-                  class="icon-close-black  modal-close"
+                  class="icon-close-black modal-close"
                   @click.prevent="modelShow = false"
                 ></div>
 
@@ -100,8 +103,10 @@
 export default {
   data() {
     return {
-      modelShow: false
+      modelShow: false,
+      wodOpen: false,
+      langOpen: false
     };
-  }
+  },
 };
 </script>
