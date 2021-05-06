@@ -807,7 +807,16 @@ button:hover {
   background-repeat: no-repeat;
   width: 24px;
   height: 24px;
+  transition: all 0.5s;
   text-indent: -9999px;
+}
+.footer
+  .footer-wrapper
+  .flex-content
+  .footer-items.dropdown-open
+  .footer-navigation
+  .dropdown-arrow_icon {
+  transform: rotate(180deg);
 }
 
 .footer .footer-wrapper .flex-content .footer-items .footer-link-content {
@@ -850,6 +859,7 @@ button:hover {
   opacity: 1;
   max-height: 360px;
   max-height: 22.5rem;
+  width: 100%;
 }
 
 .footer-container {
@@ -875,8 +885,12 @@ button:hover {
   position: absolute;
   right: 30px;
   outline: none;
+  cursor: pointer;
 }
-
+.vendor-popup {
+  display: block !important;
+  background: rgba(0, 0, 0, 0.5);
+}
 .vendor-popup .modal-content {
   border-radius: 0px !important;
 }
@@ -1452,7 +1466,7 @@ button:hover {
   vertical-align: middle;
 }
 
-.icon-close-black {
+/* .icon-close-black {
   content: "";
   display: inline-block;
   background-image: url(../img/sprite_icons.svg);
@@ -1463,10 +1477,10 @@ button:hover {
   text-indent: -9999px;
   margin-right: 10px;
   margin-top: -2px;
-  right: unset;
+  right: 10px;
   left: -20px;
   cursor: pointer;
-}
+} */
 
 .search-box {
   background-color: rgba(0, 0, 0, 0.5);

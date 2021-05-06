@@ -177,8 +177,26 @@
 .btn-box {
   width: 100%;
 }
-.btn-box input,
-.btn-box a {
+.address .add-new-address {
+  border: none;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 30px;
+}
+
+#add_address_title {
+  font-size: 25px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+.action_bottom {
+  margin-top: 20px;
+}
+.action_bottom input,
+.action_bottom a {
   text-transform: uppercase;
   padding: 8px 20px;
   border: 1px solid #000;
@@ -187,12 +205,15 @@
   font-size: 14px;
 }
 
-.btn-box input:hover,
-.btn-box a:hover {
+.action_bottom input:hover,
+.action_bottom a:hover {
   background-color: #000;
   color: #fff;
 }
-
+.action_bottom a {
+  padding: 10px 20px;
+  margin-left: 5px;
+}
 @media (max-width: 991px) {
 }
 @media (max-width: 767px) {

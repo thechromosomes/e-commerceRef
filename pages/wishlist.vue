@@ -1,69 +1,78 @@
 <template>
   <div>
     <client-only>
-      <section
-        class="wish-list-empty text-center"
-        v-if="wislistProducts.length == 0"
-      >
-        <div class="wish-list-page-container">
-          <h2>YOUR WISHLIST IS CURRENTLY EMPTY</h2>
-          <p>
-            Want to keep track of all your favourite pieces?<br />
-            Simple select your size the product page and click on the Heart icon
-          </p>
-        </div>
-      </section>
-      <section class="wish-list-item-row" v-else>
-        <div class="wish-list-page-container">
-          <h2 class="all-item-heading">ALL ITEMS</h2>
-          <div
-            class="wish-list-wraper"
-            v-for="(item, mainIndex) in wislistProducts"
-            :key="mainIndex"
+      <div id="cart" class="wishlist">
+        <div class="container">
+          <section
+            class="wish-list-empty text-center"
+            v-if="wislistProducts.length == 0"
           >
-            <div class="wish-list-item-img">
-              <img :src="item.image" />
+            <div class="wish-list-page-container">
+              <h2>YOUR WISHLIST IS CURRENTLY EMPTY</h2>
+              <p>
+                Want to keep track of all your favourite pieces?<br />
+                Simple select your size the product page and click on the Heart
+                icon
+              </p>
             </div>
-            <div class="wish-list-item-content">
-              <div class="heading-with-close-btn" style="cursor: pointer">
-                <h2>{{ item.name }}</h2>
+          </section>
+
+          <section class="wish-list-item" v-else>
+            <h2 class="all-item-heading">ALL ITEMS</h2>
+
+            <div
+              class="wish-list-wraper"
+              v-for="(item, mainIndex) in wislistProducts"
+              :key="mainIndex"
+            >
+              <div class="wishlist-close">
                 <img
                   src="@/assets/img/close.png"
                   alt="close button"
                   @click="reomoveFromCart(item, mainIndex)"
                 />
               </div>
-              <h3><strong>Item Code:</strong> {{ item.group_id }}</h3>
-              <h4><strong>Color:</strong> {{ item.color }}</h4>
-              <select v-model="selectedSize[mainIndex]">
-                <option value="" disabled>Select Size</option>
-                <option
-                  v-for="(size, index) in item.variation"
-                  :key="index"
-                  :disabled="size.quantity == 0"
-                >
-                  {{ size.configrable_atribute_value }}
-                </option>
-              </select>
-              <div
-                v-if="sizeAlert && sizeAlertIndes == mainIndex"
-                style="clear: both"
-              >
-                <p class="promotion-text">please select the size</p>
+
+              <div class="wish-list-item-img">
+                <img :src="item.image" />
               </div>
-              <div class="move-bag-btn-div">
-                <a @click.prevent="addToCart(item, mainIndex)" class="button"
-                  >MOVE TO BAG</a
+              <div class="wish-list-info">
+                <h2>{{ item.name }}</h2>
+                <h3><strong>Item Code:</strong> {{ item.group_id }}</h3>
+                <h4><strong>Color:</strong> {{ item.color }}</h4>
+              </div>
+              <div class="wishlist-action">
+                <div class="">
+                  <select v-model="selectedSize[mainIndex]">
+                    <option value="" disabled>Select Size</option>
+                    <option
+                      v-for="(size, index) in item.variation"
+                      :key="index"
+                      :disabled="size.quantity == 0"
+                    >
+                      {{ size.configrable_atribute_value }}
+                    </option>
+                  </select>
+                  <div
+                    v-if="sizeAlert && sizeAlertIndes == mainIndex"
+                    style="clear: both"
+                  >
+                    <p class="promotion-text">please select the size</p>
+                  </div>
+                </div>
+                <a @click.prevent="addToCart(item, mainIndex)" class="">
+                  Move to bag</a
                 >
+              </div>
+              <div class="wishlist-price">
                 <a @click.prevent>
-                  <span class="price price_icon">₹</span
-                  ><span class="price"> {{ item.price }}</span></a
+                  <span class="price">₹{{ item.price }}</span></a
                 >
               </div>
             </div>
-          </div>
+          </section>
         </div>
-      </section>
+      </div>
     </client-only>
   </div>
 </template>
@@ -75,7 +84,7 @@ export default {
       selectedSizeAttr: {},
       sizeAlert: false,
       selectedSize: [],
-      sizeAlertIndes: "",
+      sizeAlertIndes: ""
     };
   },
   async created() {
@@ -95,7 +104,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
         this.gtm_product_impressions = [];
         if (response.response.success) {
@@ -114,7 +123,7 @@ export default {
               price,
               category,
               list,
-              position,
+              position
             });
           }
 
@@ -144,18 +153,18 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id,
+          group_id: item.group_id
         };
         var response = await this.$store.dispatch("cartAjax/actCartAjax", {
           method: "post",
           url: `/wishlist/remove-wishlist`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         });
 
         if (response.success) {
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data,
+            payload: response.data
           });
 
           this.$gtm.push({
@@ -170,11 +179,11 @@ export default {
                     name: item.name,
                     id: item.sku,
                     price: item.selling_price,
-                    category: item.sub_category,
-                  },
-                ],
-              },
-            },
+                    category: item.sub_category
+                  }
+                ]
+              }
+            }
           });
         } else {
           this.$toast.error(response.message);
@@ -202,7 +211,7 @@ export default {
           var form = {};
           var product_options_json = JSON.stringify({
             size: this.selectedSize[sizeIndex],
-            color: item.color,
+            color: item.color
           });
           form.product_id =
             item.variation[this.selectedSize[sizeIndex]].id_product;
@@ -243,12 +252,12 @@ export default {
             method: "post",
             url: `/product/add-product`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
           if (response) {
             await this.$store.commit("cartAjax/updateCartDetail", {
               error: null,
-              data: response,
+              data: response
             });
             if (response.success) this.reomoveFromCart(item, sizeIndex);
             // google tag manager
@@ -269,11 +278,11 @@ export default {
                         variant:
                           item.variation[this.selectedSize[sizeIndex]]
                             .configrable_atribute_value,
-                        quantity: "1",
-                      },
-                    ],
-                  },
-                },
+                        quantity: "1"
+                      }
+                    ]
+                  }
+                }
               });
             }
           } else {
@@ -287,13 +296,13 @@ export default {
           if (error.message === "Network Error") {
             this.$store.commit("updateSingleProdState", {
               error:
-                "Oops there seems to be some Network issue, please try again",
+                "Oops there seems to be some Network issue, please try again"
             });
           }
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>

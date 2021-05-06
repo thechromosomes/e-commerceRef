@@ -12,59 +12,129 @@
   font-size: 19px;
   line-height: 30px;
 }
-.wish-list-page-container {
-  width: 70%;
-  margin: 0 auto;
+
+.wish-list-item {
+  padding: 50px 20px;
 }
-.wish-list-wraper {
-  margin-bottom: 40px;
-  display: flex;
-}
-.all-item-heading {
-  padding-bottom: 20px;
-}
-.wish-list-item-img {
-  width: 20%;
-}
-.wish-list-item-content {
-  width: 80%;
-  margin-left: 25px;
-}
-.heading-with-close-btn {
-  display: flex;
-  justify-content: space-between;
-}
-.wish-list-item-content h3 {
-  line-height: 40px;
-  font-size: 18px;
-}
-.wish-list-item-content select {
-  margin: 15px 0px;
-}
-.heading-with-close-btn img[data-v-7764b8be] {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
+.wish-list-item .all-item-heading {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 20px 0px;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
 }
 
-.move-bag-btn-div {
+.wish-list-item .wish-list-wraper {
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 0px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
 }
-@media only screen and (max-width: 767px) {
-  .wish-list-page-container {
-    padding: 0px 15px;
-    width: 100%;
+.wish-list-item .wish-list-wraper .wishlist-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+.wish-list-item .wish-list-wraper .wishlist-close img {
+  width: 25px;
+  cursor: pointer;
+}
+.wish-list-item .wish-list-wraper .wish-list-item-img {
+  width: 30%;
+}
+.wish-list-item .wish-list-wraper .wish-list-item-img img {
+  width: 100%;
+}
+.wish-list-item .wish-list-wraper .wish-list-info {
+  width: 30%;
+  padding: 0px 20px;
+}
+.wish-list-item .wish-list-wraper .wish-list-info h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+.wish-list-item .wish-list-wraper .wish-list-info h3,
+.wish-list-item .wish-list-wraper .wish-list-info h4 {
+  font-size: 20px;
+}
+
+.wish-list-item .wish-list-wraper .wishlist-action {
+  width: 20%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.wish-list-item .wish-list-wraper .wishlist-action select {
+  padding: 10px 20px;
+  border: 1px solid #000;
+  color: #000;
+  margin: 10px 10px;
+}
+.wish-list-item .wish-list-wraper .wishlist-action a {
+  padding: 10px 25px;
+  border: 1px solid #000;
+  color: #000;
+  text-align: center;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.promotion-text {
+  color: red;
+}
+.wish-list-item .wish-list-wraper .wishlist-price {
+  width: 20%;
+  text-align: center;
+}
+.wish-list-item .wish-list-wraper .wishlist-price a {
+  font-size: 25px;
+  font-weight: 700;
+}
+@media only screen and (max-width: 991px) {
+  .wish-list-item .wish-list-wraper {
+    flex-wrap: wrap;
   }
-  .wish-list-item-content h3 {
-    font-size: 16px;
-    line-height: 27px;
+  .wish-list-item .wish-list-wraper .wish-list-item-img {
+    width: 40%;
   }
-  .heading-with-close-btn h2 {
+  .wish-list-item .wish-list-wraper .wish-list-info {
+    width: 60%;
+    padding: 0 10px;
+  }
+  .wish-list-item .wish-list-wraper .wishlist-action {
+    width: 80%;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .wish-list-item .wish-list-wraper .wishlist-action select {
+    padding: 5px 5px;
+    border: 1px solid #000;
+    color: #000;
+    margin: 0px;
+  }
+  .wish-list-item .wish-list-wraper .wishlist-action a {
+    padding: 5px 10px;
+    border: 1px solid #000;
+    color: #000;
+    margin: 0px;
+    margin-left: 5px;
+    font-size: 13px;
+  }
+  .wish-list-item .wish-list-wraper .wish-list-info h2 {
+    font-size: 25px;
+  }
+  .wish-list-item .wish-list-wraper .wish-list-info h3,
+  .wish-list-item .wish-list-wraper .wish-list-info h4 {
+    font-size: 18px;
+  }
+  .wish-list-item .wish-list-wraper .wishlist-close {
+    width: 20px;
+  }
+  .wish-list-item .wish-list-wraper .wishlist-price a {
     font-size: 20px;
-  }
-  .heading-with-close-btn img {
-    width: 15px !important;
-    height: 24px !important;
   }
 }

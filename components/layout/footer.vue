@@ -4,7 +4,7 @@
       <div class="footer-wrapper">
         <div class="flex-content">
           <!-- dropdown-open class -->
-          <div class="footer-items">
+          <div class="footer-items dropdown-open">
             <div class="footer-navigation">
               <span class="footer-link-text">WORLD OF DIESEL</span>
               <span class="dropdown-arrow_icon"></span>
@@ -52,34 +52,19 @@
       <div class="copyright-notice">
         <p class="copyright">
           Copyright © 2021 Diesel SpA - All rights reserved - VAT 00642650246 -
-          <a
-            href=""
-            class="postscript"
-            data-toggle="modal"
-            data-target="#vendorPopupModal"
-          >
+          <a href="#" class="postscript" @click.prevent="modelShow = true">
             Vendor information.</a
           >
           <small aria-hidden="true" class="version">v4.5.5</small>
         </p>
 
-        <div
-          class="modal vendor-popup"
-          id="vendorPopupModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="vendnorpopup"
-          aria-hidden="true"
-        >
+        <div class="modal vendor-popup" id="vendorPopupModal" v-if="modelShow">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-body">
                 <div
                   class="icon-close-black icon-close-black-filter modal-close"
-                  role="button"
-                  tabindex="0"
-                  aria-label="Close dialog"
-                  data-dismiss="modal"
+                  @click.prevent="modelShow = false"
                 ></div>
 
                 <div class="content-asset">
@@ -110,3 +95,13 @@
     </div>
   </footer>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      modelShow: false
+    };
+  }
+};
+</script>

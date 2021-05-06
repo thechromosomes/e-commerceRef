@@ -13,10 +13,16 @@
 </template>
 
 <script>
-import Header from '../components/layout/header'
-import Footer from '../components/layout/footer'
+import Header from "../components/layout/header";
+import Footer from "../components/layout/footer";
 
 export default {
-  components: {Header, Footer}
-}
+  components: { Header, Footer }
+};
 </script>
+
+<style scoped>
+.main-container {
+  min-height: 750px;
+}
+</style>
