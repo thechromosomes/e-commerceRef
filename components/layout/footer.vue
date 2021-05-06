@@ -63,7 +63,7 @@
             <div class="modal-content">
               <div class="modal-body">
                 <div
-                  class="icon-close-black icon-close-black-filter modal-close"
+                  class="icon-close-black  modal-close"
                   @click.prevent="modelShow = false"
                 ></div>
 

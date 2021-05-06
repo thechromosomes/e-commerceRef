@@ -1466,7 +1466,7 @@ button:hover {
   vertical-align: middle;
 }
 
-/* .icon-close-black {
+.icon-close-black.icon-close-black-filter {
   content: "";
   display: inline-block;
   background-image: url(../img/sprite_icons.svg);
@@ -1475,12 +1475,11 @@ button:hover {
   width: 22px;
   height: 22px;
   text-indent: -9999px;
-  margin-right: 10px;
-  margin-top: -2px;
-  right: 10px;
-  left: -20px;
+  position: absolute;
+  left: -30px;
+  outline: none;
   cursor: pointer;
-} */
+}
 
 .search-box {
   background-color: rgba(0, 0, 0, 0.5);

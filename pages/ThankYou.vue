@@ -1,54 +1,48 @@
 <template>
-  <div class="thank-you-page thnk-you table">
-    <div class="page_container">
-      <div class="checkout-success">
-        <h3>YAY, YOU JUST MADE AN AWESOME PURCHASE!</h3>
-        <p class="email-success">
-          You will be receiving a confirmation email from us soon.
-        </p>
-      </div>
-      <div class="order-short-details">
-        <p class="details"><b>Order Date:</b> {{ order_date }}</p>
-        <p class="details"><b>Status:</b> {{ status }}</p>
-        <p class="details"><b>Your Order Number:</b> {{ order_no }}</p>
-        <p class="details">
-          <b> Deliver To: </b> {{ this.shipping_address.name }},
-          {{ this.shipping_address.address }}, {{ this.shipping_address.city }},
-          {{ this.shipping_address.state }}, {{ this.shipping_address.pincode
-          }}<br />
-          T: {{ this.shipping_address.phone }}
-        </p>
-      </div>
-      <div class="order-details-wrap">
-        <div class="order-details">
-          <div class="order-id">
-            <div class="id-inline">
-              <h2 class="id-in">Order Summary</h2>
-            </div>
+  <div class="thakupage">
+    <div class="container">
+      <div class="thank-you-page thnk-you table">
+        <div class="page_container">
+          <div class="checkout-success">
+            <h3>YAY, YOU JUST MADE AN AWESOME PURCHASE!</h3>
+            <p class="email-success">
+              You will be receiving a confirmation email from us soon.
+            </p>
           </div>
-          <div>
-            <div class="table-container">
-              <table
-                style="border-collapse: collapse; margin-bottom: 15px"
-                role="presentation"
-                width="100%"
-                border="0"
-              >
-                <tbody>
+          <div class="order-short-details">
+            <p class="details"><b>Order Date:</b> {{ order_date }}</p>
+            <p class="details"><b>Status:</b> {{ status }}</p>
+            <p class="details"><b>Your Order Number:</b> {{ order_no }}</p>
+            <p class="details">
+              <b> Deliver To: </b> {{ this.shipping_address.name }},
+              {{ this.shipping_address.address }},
+              {{ this.shipping_address.city }},
+              {{ this.shipping_address.state }},
+              {{ this.shipping_address.pincode }}<br />
+              T: {{ this.shipping_address.phone }}
+            </p>
+          </div>
+          <div class="table-data">
+            <h2 class="title">Order Summary</h2>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
                   <tr>
                     <th scope="col">
-                      <h3><strong>Order Information</strong></h3>
+                      <p><strong>Order Information</strong></p>
                     </th>
                     <th scope="col">
-                      <h3><strong>Billing Address</strong></h3>
+                      <p><strong>Billing Address</strong></p>
                     </th>
                     <th scope="col">
-                      <h3><strong>Payment Method</strong></h3>
+                      <p><strong>Payment Method</strong></p>
                     </th>
                     <th scope="col">
-                      <h3><strong>Payment Total</strong></h3>
+                      <p><strong>Payment Total</strong></p>
                     </th>
                   </tr>
+                </thead>
+                <tbody>
                   <tr>
                     <td scope="row">
                       <strong>Order Date:</strong> {{ order_date }}
@@ -90,45 +84,40 @@
                 </tbody>
               </table>
             </div>
-          </div>
-          <div class="show-order mc-show">
-            <b class="mc-show-header">Delivery Information</b>
-
-            <table
-              style="border-collapse: collapse; margin-bottom: 15px"
-              role="presentation"
-              width="100%"
-              border="0"
-              class="Delivery-Information"
-            >
-              <tbody>
-                <tr>
-                  <th scope="col">
-                    <h3><strong>Item</strong></h3>
-                  </th>
-                  <th scope="col">
-                    <h3><strong>Item Price</strong></h3>
-                  </th>
-                  <th scope="col">
-                    <h3><strong>Quantity</strong></h3>
-                  </th>
-                  <th scope="col">
-                    <h3><strong>Sub Total</strong></h3>
-                  </th>
-                </tr>
-                <tr v-for="(item, index) in order" :key="index">
-                  <td scope="row">
-                    <div>
-                      <img class="" :src="item.image" alt="BPLAYED" />
-                      <span>{{ item.name }}</span>
-                    </div>
-                  </td>
-                  <td scope="row">₹ {{ item.price }}</td>
-                  <td scope="row">{{ item.qty }}</td>
-                  <td scope="row">₹ {{ sub_total }}</td>
-                </tr>
-              </tbody>
-            </table>
+            <h2 class="title mt-2">Delivery Information</h2>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      <p><strong>Item</strong></p>
+                    </th>
+                    <th scope="col">
+                      <p><strong>Item Price</strong></p>
+                    </th>
+                    <th scope="col">
+                      <p><strong>Quantity</strong></p>
+                    </th>
+                    <th scope="col">
+                      <p><strong>Sub Total</strong></p>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(item, index) in order" :key="index">
+                    <td scope="row">
+                      <div>
+                        <img class="" :src="item.image" alt="BPLAYED" />
+                        <span>{{ item.name }}</span>
+                      </div>
+                    </td>
+                    <td scope="row">₹ {{ item.price }}</td>
+                    <td scope="row">{{ item.qty }}</td>
+                    <td scope="row">₹ {{ sub_total }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -151,7 +140,7 @@ export default {
         pincode: "",
         city: "",
         state: "",
-        phone: "",
+        phone: ""
       },
       payment_method: "",
       order_no: "",
@@ -161,7 +150,7 @@ export default {
       gtm_product: [],
       delivery_msg: "",
       wigzo_sku: [],
-      team_sku: "",
+      team_sku: ""
     };
   },
 
@@ -177,9 +166,9 @@ export default {
           method: "post",
           url: `/order/get-order`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         })
-        .then((response) => {
+        .then(response => {
           if (response.success === true) {
             this.order = response.data.products;
             this.total = response.data.grand_total;
@@ -213,22 +202,22 @@ export default {
                     revenue: this.total,
                     tax: "0",
                     shipping: "0",
-                    coupon: this.discount_code,
+                    coupon: this.discount_code
                   },
-                  products: this.$store.state.cartAjax.gtm_product,
-                },
-              },
+                  products: this.$store.state.cartAjax.gtm_product
+                }
+              }
             }),
               this.$store.commit("cartAjax/flushCart");
           } else {
-            this.$router.push("/");
+            // this.$router.push("/");
           }
         });
-    },
+    }
   },
   mounted() {
     this.getOrder();
-  },
+  }
 };
 </script>
 <style scoped>

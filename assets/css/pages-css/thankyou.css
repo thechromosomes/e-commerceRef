@@ -1,64 +1,35 @@
-.thank-you-page .checkout-success h3 {
-  color: #000;
-  font-size: 30px;
-}
-.thank-you-page .checkout-success p {
-  font-size: 18px;
-  padding: 8px 0px 20px 0px;
-}
-.thank-you-page .order-short-details .details {
-  padding: 5px 0px;
+.page_container {
+  width: 100%;
+  padding: 30px 0px;
 }
 
-/* --------------------------------------- */
-.thnk-you table {
-  border: 1px solid #000;
-}
-.details.thnk-you table th {
-  background-color: #2dbab2;
-}
-.details.thnk-you table th h3 {
+.page_container h3 {
+  font-size: 25px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
   margin-bottom: 0px;
-  font-size: 14px;
-  padding: 2px 0;
-}
-.thnk-you table td,
-.thnk-you table th {
-  padding: 7px;
+  text-transform: uppercase;
   text-align: center;
-  border: 1px solid #e9e9e9;
 }
-.details.thnk-you table th {
-  background-color: #2dbab2;
+.page_container .email-success {
+  font-size: 16px;
+  text-align: center;
 }
 
-.Delivery-Information tr td img {
-  width: 70px;
+.table-data {
+  width: 100%;
 }
-.Delivery-Information tr td div {
-  display: flex;
-  align-items: center;
-  justify-content: left;
+
+.title {
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
-.mc-show-header {
-  padding: 20px 0px;
-  display: inline-block;
-  font-size: 22px;
+.table-responsive p {
+  margin-bottom: 0px;
 }
-.id-inline {
-  display: flex;
-  padding: 20px 0px;
-  justify-content: space-between;
-}
+
 /* -----------------------------responsive ------------------ */
 @media only screen and (max-width: 767px) {
-  .thnk-you table td,
-  .thnk-you table th {
-    padding: 5px;
-    font-size: 12px;
-  }
-  table th h3 {
-    font-size: 14px;
-    line-height: 18px;
-  }
 }
