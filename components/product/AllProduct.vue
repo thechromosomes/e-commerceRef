@@ -186,12 +186,12 @@
                       <VueSlickCarousel v-bind="productSetting">
                         <div
                           class="item"
-                          v-for="(image, imgIndex) in 5"
+                          v-for="(image, imgIndex) in singleProd.gallery"
                           :key="imgIndex"
                         >
                           <Nuxt-link :to="`/product/${singleProd.url_key}`">
                             <img
-                              :src="singleProd.image"
+                              :src="image.image"
                               alt="img"
                               class="w-100"
                             />
