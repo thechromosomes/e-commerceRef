@@ -44,7 +44,7 @@
           <div class="product-content">
             <div class="wish-list-icon single">
               <span
-                class="wishlist_blank add"
+                class="wishlist_blank "
                 :id="$store.state.cartAjax.wishlist.group"
                 :class="renderWishList"
                 @click="addRemoveWishList(renderWishList)"

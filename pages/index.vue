@@ -14,27 +14,9 @@
               alt="img"
               class="desktop_only w-100"
             />
-            <img
-              src="~/assets/img/collections_slide_MP1.jpg"
-              alt="img"
-              class="mobile_only w-100"
-            />
+            <img :src="item.mobile_image" alt="img" class="mobile_only w-100" />
             <div class="img_content">
               <div class="" v-html="item.description"></div>
-              <!-- {{ item.description }} -->
-              <!-- <h4>READY-TO-WEAR</h4>
-              <h5>SUMMER 2021</h5>
-              <p class="module-text">
-                We've got all sorts of influences in our bold new collections,
-                <br />
-                featuring military styles with 90s vibes and cyber-punk prints.
-              </p>
-              <a class="button secondary-white-btn" href="#" role="button"
-                >FOR HIM</a
-              >
-              <a class="button secondary-white-btn" href="#" role="button"
-                >FOR HER</a
-              > -->
             </div>
           </div>
         </VueSlickCarousel>
@@ -56,6 +38,82 @@
                   <NuxtLink :to="`product/${item.url_key}`">
                     {{ item.name }}
                   </NuxtLink>
+                </div>
+              </div>
+            </VueSlickCarousel>
+          </div>
+          <div class="slide_new_in" v-else>
+            <VueSlickCarousel ref="slick" v-bind="settings">
+              <div class="item">
+                <a href="#"
+                  ><img
+                    src="~/assets/img/new_slide_1.jpg"
+                    alt="img"
+                    class="w-100"
+                /></a>
+                <div class="tile-body">
+                  <p>Light Blue</p>
+                  <a href="#"> Super skinny - Slandy</a>
+                </div>
+              </div>
+              <div class="item">
+                <a href="#"
+                  ><img
+                    src="~/assets/img/new_slide_2.jpg"
+                    alt="img"
+                    class="w-100"
+                /></a>
+                <div class="tile-body">
+                  <p>Black</p>
+                  <a href="#"> Super skinny - Slandy</a>
+                </div>
+              </div>
+              <div class="item">
+                <a href="#"
+                  ><img
+                    src="~/assets/img/new_slide_3.jpg"
+                    alt="img"
+                    class="w-100"
+                /></a>
+                <div class="tile-body">
+                  <p>Blue</p>
+                  <a href="#"> High-heel ankle boots in denim</a>
+                </div>
+              </div>
+              <div class="item">
+                <a href="#"
+                  ><img
+                    src="~/assets/img/new_slide_4.jpg"
+                    alt="img"
+                    class="w-100"
+                /></a>
+                <div class="tile-body">
+                  <p>Light Blue</p>
+                  <a href="#"> Super skinny - Slandy</a>
+                </div>
+              </div>
+              <div class="item">
+                <a href="#"
+                  ><img
+                    src="~/assets/img/new_slide_5.jpg"
+                    alt="img"
+                    class="w-100"
+                /></a>
+                <div class="tile-body">
+                  <p>Light Blue</p>
+                  <a href="#"> Super skinny - Slandy</a>
+                </div>
+              </div>
+              <div class="item">
+                <a href="#"
+                  ><img
+                    src="~/assets/img/new_slide_6.jpg"
+                    alt="img"
+                    class="w-100"
+                /></a>
+                <div class="tile-body">
+                  <p>Light Blue</p>
+                  <a href="#"> Super skinny - Slandy</a>
                 </div>
               </div>
             </VueSlickCarousel>
