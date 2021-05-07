@@ -6,11 +6,11 @@
     </div>
 
     <div class="collections_slide">
-      <div class="slide_content">
+      <div class="slide_content" v-if="bannerSlide.length > 0">
         <VueSlickCarousel ref="slick" v-bind="settings2">
-          <div class="item">
+          <div class="item" v-for="(item, index) in bannerSlide" :key="index">
             <img
-              src="~/assets/img/collections_slide_HP1.jpg"
+              :src="item.desktop_image"
               alt="img"
               class="desktop_only w-100"
             />
@@ -20,7 +20,9 @@
               class="mobile_only w-100"
             />
             <div class="img_content">
-              <h4>READY-TO-WEAR</h4>
+              <div class="" v-html="item.description"></div>
+              <!-- {{ item.description }} -->
+              <!-- <h4>READY-TO-WEAR</h4>
               <h5>SUMMER 2021</h5>
               <p class="module-text">
                 We've got all sorts of influences in our bold new collections,
@@ -32,61 +34,7 @@
               >
               <a class="button secondary-white-btn" href="#" role="button"
                 >FOR HER</a
-              >
-            </div>
-          </div>
-          <div class="item">
-            <img
-              src="~/assets/img/collections_slide_HP2.jpg"
-              alt="img"
-              class="desktop_only w-100"
-            />
-            <img
-              src="~/assets/img/collections_slide_MP2.jpg"
-              alt="img"
-              class="mobile_only w-100"
-            />
-            <div class="img_content">
-              <h4>READY-TO-WEAR</h4>
-              <h5>SUMMER 2021</h5>
-              <p class="module-text">
-                We've got all sorts of influences in our bold new collections,
-                <br />
-                featuring military styles with 90s vibes and cyber-punk prints.
-              </p>
-              <a class="button secondary-white-btn" href="#" role="button"
-                >FOR HIM</a
-              >
-              <a class="button secondary-white-btn" href="#" role="button"
-                >FOR HER</a
-              >
-            </div>
-          </div>
-          <div class="item">
-            <img
-              src="~/assets/img/collections_slide_HP2.jpg"
-              alt="img"
-              class="desktop_only w-100"
-            />
-            <img
-              src="~/assets/img/collections_slide_MP3.jpg"
-              alt="img"
-              class="mobile_only w-100"
-            />
-            <div class="img_content">
-              <h4>READY-TO-WEAR</h4>
-              <h5>SUMMER 2021</h5>
-              <p class="module-text">
-                We've got all sorts of influences in our bold new collections,
-                <br />
-                featuring military styles with 90s vibes and cyber-punk prints.
-              </p>
-              <a class="button secondary-white-btn" href="#" role="button"
-                >FOR HIM</a
-              >
-              <a class="button secondary-white-btn" href="#" role="button"
-                >FOR HER</a
-              >
+              > -->
             </div>
           </div>
         </VueSlickCarousel>
@@ -130,6 +78,7 @@ export default {
 
   data() {
     return {
+      bannerSlide: [],
       settings: {
         infinite: true,
         slidesToShow: 4,
@@ -145,8 +94,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -154,8 +103,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 480,
@@ -163,10 +112,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
+              slidesToShow: 1
+            }
+          }
+        ]
       },
       settings2: {
         focusOnSelect: true,
@@ -184,19 +133,19 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
+              slidesToScroll: 1
+            }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
-          },
-        ],
-      },
+              slidesToScroll: 1
+            }
+          }
+        ]
+      }
     };
   },
   // head() {
@@ -245,7 +194,19 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
+    }
   },
+  async created() {
+    let response = await this.$store.dispatch("pimAjax", {
+      method: "get",
+      url: `/pimresponse.php`,
+      params: {
+        service: "banner_slider",
+        store: 1
+      }
+    });
+    // console.log(response.result.banner);
+    this.bannerSlide = response.result.banner;
+  }
 };
 </script>
