@@ -20,7 +20,7 @@ export const state = () => ({
     pageHead: "",
     applied_filters: [],
     sortingData: { code: "", dir: "desc" },
-    totalProduct: 0
+    totalProduct: 0,
   },
 
   singleProductList: {
@@ -32,6 +32,7 @@ export const state = () => ({
     total_review: 0,
     average_rating: 0,
     reviews_list: [],
+    breadcrumb: [],
   },
 
   cmsError: "",
@@ -46,7 +47,7 @@ export const state = () => ({
   isMobile: false,
   instaPost: [],
   bannerData: [],
-  is_new: []
+  is_new: [],
 });
 
 export const actions = {
@@ -158,7 +159,7 @@ export const mutations = {
         state.list.meta_title = data.result.meta_title;
         state.list.meta_description = data.result.meta_description;
         state.list.meta_keyword = data.result.meta_keyword;
-        state.list.totalProduct = data.result.product_count
+        state.list.totalProduct = data.result.product_count;
         // state.list.Product_list = data.result.products;
         state.list.Product_list = state.list.Product_list.concat(
           data.result.products
@@ -212,6 +213,7 @@ export const mutations = {
             "No product found, please try by removing last applied filter.";
         }
         state.singleProductList.single_prod_data = data.result;
+        state.singleProductList.breadcrumb = JSON.parse(data.result.breadcrumb);
       } else {
         state.singleProductList.page_error = data.response.error_message;
         state.singleProductList.product_loader = false;

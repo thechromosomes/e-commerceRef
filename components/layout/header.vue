@@ -85,10 +85,10 @@
               this.$store.state.cartAjax.customer_session != '' &&
               this.$store.state.cartAjax.customer_session != null
             "
-            to="/account"
+            to="/dashboard"
           >
             <span class="carts"
-              ><img src="~/assets//img/user.png" alt="cart" />
+              ><img src="~/assets//img/user.png" alt="user" />
             </span>
           </NuxtLink>
           <NuxtLink
@@ -98,10 +98,10 @@
               this.$store.state.cartAjax.customer_session == '' ||
               this.$store.state.cartAjax.customer_session == null
             "
-            to="/account"
+            to="/dashboard"
           >
             <span class="carts"
-              ><img src="~/assets//img/user.png" alt="cart" />
+              ><img src="~/assets//img/user.png" alt="user" />
             </span>
           </NuxtLink>
           <NuxtLink to="/wishlist">

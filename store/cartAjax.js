@@ -37,7 +37,7 @@ export const actions = {
       url: state.cartApi + data.url,
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + state.cart_token,
+        Authorization: "Bearer " + data.token,
       },
       params: request,
     };
@@ -237,6 +237,7 @@ export const mutations = {
         if (state.showLogIn) {
           state.showLogIn = false;
         } else {
+          vm.$router.push("/");
           vm.$router.back();
         }
       } else {

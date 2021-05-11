@@ -82,7 +82,7 @@
                     <input
                       type="submit"
                       class="btn submit-button"
-                      value="Update My Email"
+                      value="Update"
                       id="updateemail"
                     />
                     <a

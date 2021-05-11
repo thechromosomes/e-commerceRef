@@ -42,82 +42,6 @@
               </div>
             </VueSlickCarousel>
           </div>
-          <div class="slide_new_in" v-else>
-            <VueSlickCarousel ref="slick" v-bind="settings">
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_1.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Light Blue</p>
-                  <a href="#"> Super skinny - Slandy</a>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_2.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Black</p>
-                  <a href="#"> Super skinny - Slandy</a>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_3.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Blue</p>
-                  <a href="#"> High-heel ankle boots in denim</a>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_4.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Light Blue</p>
-                  <a href="#"> Super skinny - Slandy</a>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_5.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Light Blue</p>
-                  <a href="#"> Super skinny - Slandy</a>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#"
-                  ><img
-                    src="~/assets/img/new_slide_6.jpg"
-                    alt="img"
-                    class="w-100"
-                /></a>
-                <div class="tile-body">
-                  <p>Light Blue</p>
-                  <a href="#"> Super skinny - Slandy</a>
-                </div>
-              </div>
-            </VueSlickCarousel>
-          </div>
         </div>
       </div>
     </section>
@@ -152,8 +76,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -161,8 +85,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -170,10 +94,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
+              slidesToShow: 1,
+            },
+          },
+        ],
       },
       settings2: {
         focusOnSelect: true,
@@ -191,19 +115,19 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1
-            }
+              slidesToScroll: 1,
+            },
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      }
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      },
     };
   },
   // head() {
@@ -252,7 +176,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    }
+    },
   },
   async created() {
     let response = await this.$store.dispatch("pimAjax", {
@@ -260,11 +184,11 @@ export default {
       url: `/pimresponse.php`,
       params: {
         service: "banner_slider",
-        store: 1
-      }
+        store: 1,
+      },
     });
     // console.log(response.result.banner);
     this.bannerSlide = response.result.banner;
-  }
+  },
 };
 </script>
