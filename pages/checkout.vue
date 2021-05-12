@@ -75,7 +75,7 @@
                   </div>
                   <div class="checkout_link">
                     <nav>
-                      <ul class="breadcrumb">
+                      <ul class="breadcrumb-box">
                         <li
                           class="breadcrumb__item breadcrumb__item--completed"
                         >
@@ -93,7 +93,7 @@
                           :class="[
                             $route.path == '/checkout' && !showPaymentMethods
                               ? 'active-stepper'
-                              : '',
+                              : ''
                           ]"
                         >
                           <NuxtLink to="/checkout" class="breadcrumb__link"
@@ -108,7 +108,7 @@
                         <li class="breadcrumb__item breadcrumb__item--blank">
                           <a
                             :class="[
-                              showPaymentMethods ? 'active-stepper' : '',
+                              showPaymentMethods ? 'active-stepper' : ''
                             ]"
                             class="breadcrumb__link"
                             >Payment</a
@@ -233,7 +233,7 @@
                                   Please note we do not ship to PO boxes.
                                 </p>
                               </div>
-                              <div
+                              <!-- <div
                                 class="field field--required"
                                 data-address-field="first_name"
                               >
@@ -246,7 +246,7 @@
                                     v-model="user.address2"
                                   />
                                 </div>
-                              </div>
+                              </div> -->
 
                               <div class="field field--required field--third">
                                 <div class="field__input-wrapper">
@@ -510,8 +510,8 @@
                   class="ship-adress"
                   v-if="
                     !addNewAddress &&
-                    $store.state.cartAjax.address.length > 0 &&
-                    !showPaymentMethods
+                      $store.state.cartAjax.address.length > 0 &&
+                      !showPaymentMethods
                   "
                 >
                   <h2>Shipping Address</h2>
@@ -523,7 +523,7 @@
                     )"
                     :key="index"
                     :class="[
-                      selectedAddressiId == item.id ? '' : 'active-address',
+                      selectedAddressiId == item.id ? '' : 'active-address'
                     ]"
                   >
                     <div>
@@ -548,7 +548,7 @@
                     class="ship-add-new-add"
                     v-if="
                       $store.state.cartAjax.address.length > 3 &&
-                      showMoreAddress != $store.state.cartAjax.address.length
+                        showMoreAddress != $store.state.cartAjax.address.length
                     "
                   >
                     <a
@@ -565,7 +565,7 @@
                     class="ship-add-new-add"
                     v-if="
                       $store.state.cartAjax.address.length != 3 &&
-                      showMoreAddress == $store.state.cartAjax.address.length
+                        showMoreAddress == $store.state.cartAjax.address.length
                     "
                   >
                     <a @click.prevent="() => (showMoreAddress = 3)"> Hide </a>
@@ -592,7 +592,7 @@
                       :class="[
                         selectedPaymentMethods === 'razorpay'
                           ? ''
-                          : 'paying-div-disable',
+                          : 'paying-div-disable'
                       ]"
                     >
                       <img src="@/assets/img/prepaid.png" />
@@ -613,7 +613,7 @@
                       :class="[
                         selectedPaymentMethods === 'cod'
                           ? ''
-                          : 'paying-div-disable',
+                          : 'paying-div-disable'
                       ]"
                     >
                       <img src="@/assets/img/COD.png" />
@@ -683,7 +683,7 @@
                                     class="product__description__variant order-summary__small-text"
                                     v-if="
                                       JSON.parse(item.size).color &&
-                                      JSON.parse(item.size).size
+                                        JSON.parse(item.size).size
                                     "
                                     >{{ JSON.parse(item.size).color }} /
                                     {{ JSON.parse(item.size).size }}</span
@@ -728,7 +728,7 @@
                               class="field__input-btn-wrapper"
                               v-if="
                                 $store.state.cartAjax.discount_code == '' ||
-                                $store.state.cartAjax.discount_code == null
+                                  $store.state.cartAjax.discount_code == null
                               "
                             >
                               <div class="field__input-wrapper">
@@ -806,7 +806,7 @@
                               class="total-line total-line--shipping"
                               v-if="
                                 $store.state.cartAjax.shipping_charge != '' &&
-                                $store.state.cartAjax.shipping_charge != null
+                                  $store.state.cartAjax.shipping_charge != null
                               "
                             >
                               <th class="total-line__name" scope="row">
@@ -825,7 +825,7 @@
                               class="total-line total-line--shipping"
                               v-if="
                                 $store.state.cartAjax.cod_charge != '' &&
-                                $store.state.cartAjax.cod_charge != null
+                                  $store.state.cartAjax.cod_charge != null
                               "
                             >
                               <th class="total-line__name" scope="row">
@@ -844,7 +844,7 @@
                               class="total-line total-line--shipping"
                               v-if="
                                 $store.state.cartAjax.discount_amount != '' &&
-                                $store.state.cartAjax.discount_amount != null
+                                  $store.state.cartAjax.discount_amount != null
                               "
                             >
                               <th class="total-line__name" scope="row">
@@ -918,7 +918,7 @@ export default {
         mobileNo: "",
         email: "",
         city: "",
-        address_type: "home",
+        address_type: "home"
       },
       pin_code_success: "",
       cod_msg: "",
@@ -938,50 +938,52 @@ export default {
         prefill: {
           name: "",
           email: "",
-          contact: "",
+          contact: ""
         },
         notes: {
           address: "",
-          id: "",
+          id: ""
         },
         theme: {
-          color: "",
-        },
-      },
+          color: ""
+        }
+      }
     };
   },
 
   // form validatiors
   validators: {
-    "user.email": function (value) {
-      return Validator.value(value).required().email();
+    "user.email": function(value) {
+      return Validator.value(value)
+        .required()
+        .email();
     },
-    "user.firstName": function (value) {
+    "user.firstName": function(value) {
       return Validator.value(value).required();
     },
-    "user.lastName": function (value) {
+    "user.lastName": function(value) {
       return Validator.value(value).required();
     },
-    "user.address": function (value) {
+    "user.address": function(value) {
       return Validator.value(value).required();
     },
-    "user.pinCode": function (value) {
+    "user.pinCode": function(value) {
       return Validator.value(value)
         .required()
         .integer()
         .minLength(6)
         .maxLength(6);
     },
-    "user.mobileNo": function (value) {
+    "user.mobileNo": function(value) {
       return Validator.value(value)
         .required()
         .integer()
         .minLength(10)
         .maxLength(10);
     },
-    "user.city": function (value) {
+    "user.city": function(value) {
       return Validator.value(value).required();
-    },
+    }
   },
 
   methods: {
@@ -990,7 +992,7 @@ export default {
     },
 
     // get detil via pin code
-    fetchUserDetail: function () {
+    fetchUserDetail: function() {
       var pin_code = /^([0-9]{6,})+$/;
       if (
         this.user.pinCode != null &&
@@ -1007,9 +1009,9 @@ export default {
           .dispatch("pimAjax", {
             method: "post",
             url: `/pimresponse.php`,
-            params: form,
+            params: form
           })
-          .then((response) => {
+          .then(response => {
             if (response.result == "") {
               this.pin_code_error = "Sorry this pincode is not serviceable.";
               this.pin_code_success = "";
@@ -1027,7 +1029,7 @@ export default {
               this.pin_code_error = "";
             }
           })
-          .catch((error) => {
+          .catch(error => {
             this.$globalError(
               `error from the shipping page (fetchUserDetail) >>>> ${error}`
             );
@@ -1059,7 +1061,7 @@ export default {
           city,
           email,
           address2,
-          address_type,
+          address_type
         } = this.user;
         if (
           state &&
@@ -1090,12 +1092,12 @@ export default {
             method: "post",
             url: `/customer/add-address`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
           if (response.success) {
             this.$store.commit("cartAjax/updateAddress", {
               payload: response,
-              vm: this,
+              vm: this
             });
             this.showPaymentMethods = true;
             // this.$gtm.push({
@@ -1134,13 +1136,13 @@ export default {
           method: "post",
           url: `/customer/assign-address`,
           token: this.$store.state.cartAjax.cart_token,
-          params: form,
+          params: form
         });
 
         if (response.success === true) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
-            data: response,
+            data: response
           });
           this.showPaymentMethods = true;
           // this.$gtm.push({
@@ -1180,13 +1182,13 @@ export default {
             method: "post",
             url: `/cart/switch-payment-method`,
             token: this.$store.state.cartAjax.cart_token,
-            params: form,
+            params: form
           });
 
           if (response.success === true) {
             this.$store.commit("cartAjax/updatePaymentMethod", {
               payload: response,
-              vm: this,
+              vm: this
             });
             this.selectedPaymentMethods = value;
             // this.$gtm.push({
@@ -1229,10 +1231,9 @@ export default {
           method: "post",
           token: this.$store.state.cart_token,
           url: `/order/add-order`,
-          params: form,
+          params: form
         });
         if (response.success) {
-
           //  this.$gtm.push({
           //     event: "checkout",
           //     category: "Ecommerce",
@@ -1288,7 +1289,7 @@ export default {
         description: this.razorpay_form.description,
         image: this.razorpay_form.image,
         order_id: this.razorpay_form.id,
-        handler: (response) => {
+        handler: response => {
           var form = {};
           form.cart_id = this.$store.state.cartAjax.cart_id;
           form.cart_session = this.$store.state.cartAjax.cart_session;
@@ -1300,16 +1301,16 @@ export default {
               method: "post",
               url: `/order/razorpay-order`,
               token: this.$store.state.cartAjax.cart_token,
-              params: form,
+              params: form
             })
-            .then((response) => {
+            .then(response => {
               if (response.success === true) {
                 this.$router.push("thankyou");
               } else {
                 this.$toast.error(response.message);
               }
             })
-            .catch((error) => {
+            .catch(error => {
               this.$globalError(`this is from razorpayFunction >>>> ${error}`);
               if (error.message === "Network Error") {
                 this.$toast.error(
@@ -1321,14 +1322,14 @@ export default {
         prefill: {
           name: this.razorpay_form.prefill.name,
           email: this.razorpay_form.prefill.email,
-          contact: this.razorpay_form.prefill.contact,
+          contact: this.razorpay_form.prefill.contact
         },
         notes: {
-          order_id: this.razorpay_form.notes.id,
+          order_id: this.razorpay_form.notes.id
         },
         theme: {
-          color: this.razorpay_form.theme.color,
-        },
+          color: this.razorpay_form.theme.color
+        }
       };
       const rzp = new Razorpay(options);
       rzp.open();
@@ -1365,13 +1366,13 @@ export default {
           method: "post",
           url,
           token: this.$store.state.cartAjax.cart_token,
-          params: form,
+          params: form
         });
 
         if (response.success) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
-            data: response,
+            data: response
           });
           this.$toast.open(response.message);
         } else {
@@ -1380,7 +1381,7 @@ export default {
       } catch (error) {
         console.log("error form the add coupon foo >>", error);
       }
-    },
+    }
   },
   mounted() {
     if (!this.$device.isMobile) {
@@ -1422,16 +1423,15 @@ export default {
   },
 
   watch: {
-    "user.pinCode": function () {
+    "user.pinCode": function() {
       if (this.user.pinCode >= 1000) {
         this.fetchUserDetail();
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
 @import url("@/assets/css/pages-css/shipping.css");
 @import url("@/assets/css/pages-css/loader.css");
 </style>
-

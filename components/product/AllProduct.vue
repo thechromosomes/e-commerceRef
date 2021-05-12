@@ -67,7 +67,12 @@
                 ></span>
               </h2>
               <div class="hidden_filtter">
-                <ul class="sort-options">
+                <ul
+                  class="sort-options"
+                  :class="[
+                    Object.keys(filter.options).length >= 5 ? 'column' : ''
+                  ]"
+                >
                   <li
                     class="sort-option best-matches"
                     v-for="(item, index) in filter.options"
@@ -82,7 +87,7 @@
                         class="selection-box"
                         :class="
                           list.applied_filters.findIndex(
-                            (x) => x === `${item.code}~${item.value_key}`
+                            x => x === `${item.code}~${item.value_key}`
                           ) >= 0
                             ? 'selected-box'
                             : 'not-selected-box'
@@ -213,6 +218,19 @@
                       </VueSlickCarousel>
                     </div>
                     <div class="title-body">
+                      <p class="p-price">
+                        <span
+                          v-if="
+                            singleProd.discount != '' && singleProd.discount > 0
+                          "
+                        >
+                          ₹{{ singleProd.selling_price }}
+                          <span class="line-throu"
+                            >₹{{ singleProd.price }}</span
+                          >
+                        </span>
+                        <span v-else>₹{{ singleProd.price }}</span>
+                      </p>
                       <p>{{ singleProd.color }}</p>
                       <Nuxt-link :to="`/product/${singleProd.url_key}`">{{
                         singleProd.name
@@ -226,7 +244,7 @@
               class="no_products text-center"
               v-if="
                 list.Product_list.length == 0 &&
-                $store.state.pageLoader == false
+                  $store.state.pageLoader == false
               "
             >
               <h1>Sorry !</h1>
@@ -272,14 +290,14 @@
                   v-for="(item, index) in likeData"
                   :key="index"
                 >
-                 <NuxtLink :to="`/product/${item.url_key}`">
-                  <img :src="item.image" alt="img" class="w-100" />
-                  <div class="title-body">
-                    <NuxtLink :to="`/product/${item.url_key}`">{{
-                      item.name
-                    }}</NuxtLink>
-                  </div>
-                 </NuxtLink>
+                  <NuxtLink :to="`/product/${item.url_key}`">
+                    <img :src="item.image" alt="img" class="w-100" />
+                    <div class="title-body">
+                      <NuxtLink :to="`/product/${item.url_key}`">{{
+                        item.name
+                      }}</NuxtLink>
+                    </div>
+                  </NuxtLink>
                 </div>
               </VueSlickCarousel>
             </div>
@@ -314,8 +332,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -323,8 +341,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 480,
@@ -332,10 +350,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
+              slidesToShow: 1.5
+            }
+          }
+        ]
       },
 
       productSetting: {
@@ -344,13 +362,13 @@ export default {
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: false,
-        arrows: true,
+        arrows: true
       },
 
       sorting: "default",
       openFiltter: false,
       openSort: false,
-      likeData: [],
+      likeData: []
     };
   },
 
@@ -361,29 +379,29 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.list.meta_description,
+          content: this.list.meta_description
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.list.meta_keyword,
+          content: this.list.meta_keyword
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title",
+          property: "og:title"
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description",
+          property: "og:description"
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url",
-        },
-      ],
+          property: "og:url"
+        }
+      ]
     };
   },
 
@@ -394,14 +412,14 @@ export default {
       try {
         await this.$store.commit("prepareState", {
           routeParam: this.$route.params.productCategory,
-          pageNo: pageNumber,
+          pageNo: pageNumber
         });
         let {
           service,
           store,
           pass_url_key,
           page,
-          count,
+          count
         } = this.$store.state.list;
 
         let form = {};
@@ -432,13 +450,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
           await this.$store.commit("updateState", {
             error: null,
-            data: response,
+            data: response
           });
           // // google tag manager
           // this.gtm_product_impressions = [];
@@ -485,8 +503,7 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
@@ -507,15 +524,15 @@ export default {
         query: {
           ...this.$route.query,
           sort: event.code,
-          sort_dir: event.dir,
-        },
+          sort_dir: event.dir
+        }
       });
     },
 
     async loadMore() {
       await this.$store.commit("universalListMutate", {
         data: Number(this.list.page) + 1,
-        changeState: "page",
+        changeState: "page"
       });
       this.getProductList(this.list.page);
     },
@@ -528,10 +545,10 @@ export default {
       if (Object.keys(wishList).length != 0) {
         const groupResult = wishList.group
           .split(",")
-          .filter((word) => word == groupId);
+          .filter(word => word == groupId);
         const productResult = wishList.product
           .split(",")
-          .filter((word) => word == ProductId);
+          .filter(word => word == ProductId);
 
         if (groupResult.length > 0 && productResult.length > 0) {
           return "wishlist-active";
@@ -554,7 +571,7 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id,
+          group_id: item.group_id
         };
 
         if (data === "add") {
@@ -562,21 +579,21 @@ export default {
             method: "post",
             url: `/wishlist/add-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
         } else {
           var response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/wishlist/remove-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
         }
 
         if (response.success) {
           this.$toast.open(response.message);
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data,
+            payload: response.data
           });
 
           this.$gtm.push({
@@ -592,11 +609,11 @@ export default {
                     id: item.sku,
                     price: item.selling_price,
                     category: item.category,
-                    position: 1,
-                  },
-                ],
-              },
-            },
+                    position: 1
+                  }
+                ]
+              }
+            }
           });
         } else {
           throw "no response from api";
@@ -604,7 +621,7 @@ export default {
       } catch (error) {
         this.$globalError(`error from add addRemoveWishList >>>> ${error}`);
       }
-    },
+    }
   },
 
   computed: {
@@ -627,7 +644,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
+    }
   },
 
   async fetch() {
@@ -641,8 +658,8 @@ export default {
         token: this.$store.state.cartAjax.customer_token,
         params: {
           service: "like",
-          store: 1,
-        },
+          store: 1
+        }
       });
       if (like.response) {
         this.likeData = like.result.likes;
@@ -653,17 +670,17 @@ export default {
   },
 
   watch: {
-    "$route.query": function () {
+    "$route.query": function() {
       this.getProductList();
     },
 
     "$store.state.list.sortingData": {
       deep: true,
-      handler: function () {
+      handler: function() {
         // this.sorting.code = this.list.sortingData.code;
         // this.sorting.dir = this.list.sortingData.dir;
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>

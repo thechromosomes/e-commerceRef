@@ -73,7 +73,25 @@
           /></NuxtLink>
         </div>
         <div class="search_box">
-          <span @click="searchActive = true" class="desktop_only">
+          <div
+            class="searchbox desktop_only"
+            :class="[scrollPosition > 30 ? 'hidden' : '']"
+          >
+            <span class="carts"
+              ><img src="~/assets//img/search.png" alt="cart"
+            /></span>
+            <input
+              type="search"
+              placeholder="What are you looking for?"
+              autocomplete="off"
+            />
+          </div>
+
+          <span
+            @click="searchActive = true"
+            class="desktop_only"
+            :class="[scrollPosition > 30 ? '' : 'hidden']"
+          >
             <span class="carts"
               ><img src="~/assets//img/search.png" alt="cart" />
             </span>
@@ -81,9 +99,9 @@
           <NuxtLink
             v-show="
               this.$store.state.cartAjax.customer_id != null &&
-              this.$store.state.cartAjax.customer_id != '' &&
-              this.$store.state.cartAjax.customer_session != '' &&
-              this.$store.state.cartAjax.customer_session != null
+                this.$store.state.cartAjax.customer_id != '' &&
+                this.$store.state.cartAjax.customer_session != '' &&
+                this.$store.state.cartAjax.customer_session != null
             "
             to="/dashboard"
           >
@@ -94,9 +112,9 @@
           <NuxtLink
             v-show="
               this.$store.state.cartAjax.customer_id == null ||
-              this.$store.state.cartAjax.customer_id == '' ||
-              this.$store.state.cartAjax.customer_session == '' ||
-              this.$store.state.cartAjax.customer_session == null
+                this.$store.state.cartAjax.customer_id == '' ||
+                this.$store.state.cartAjax.customer_session == '' ||
+                this.$store.state.cartAjax.customer_session == null
             "
             to="/dashboard"
           >
@@ -105,7 +123,7 @@
             </span>
           </NuxtLink>
           <NuxtLink to="/wishlist">
-            <span class="carts" style="margin-right: 10px"
+            <span class="carts"
               ><img src="~/assets//img/heart.png" alt="cart" />
               <span
                 class="cart_val"
@@ -163,7 +181,7 @@ export default {
     return {
       showMobileMenu: false,
       searchActive: false,
-      scrollPosition: null,
+      scrollPosition: null
     };
   },
   async mounted() {
@@ -172,17 +190,17 @@ export default {
   },
 
   computed: {
-    ...mapState(["header"]),
+    ...mapState(["header"])
   },
 
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
-    },
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  },
+  }
 };
 </script>
 <style scoped>

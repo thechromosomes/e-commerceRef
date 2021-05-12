@@ -45,17 +45,17 @@
 .shipping-top .wrap .main .logo {
   height: inherit;
 }
-.breadcrumb {
+.breadcrumb-box {
   display: flex;
   flex-wrap: wrap;
 }
-.breadcrumb .breadcrumb__item {
+.breadcrumb-box .breadcrumb__item {
   display: flex;
   align-items: center;
   font-size: 14px;
   color: #737373;
 }
-.breadcrumb .breadcrumb__item img {
+.breadcrumb-box .breadcrumb__item img {
   width: 7px;
   margin: 0 8px;
   margin-top: 3px;
@@ -164,8 +164,8 @@
   line-height: inherit;
 }
 .field__input-wrapper .field__input {
-  padding-top: 1.5em;
-  padding-bottom: 0.3571428571em;
+  /* padding-top: 1.5em;
+  padding-bottom: 0.3571428571em; */
 }
 .fieldset-description {
   margin-top: 0.9285714286em;
@@ -645,8 +645,8 @@ table {
   opacity: 0;
 }
 .floating-labels .field--show-floating-label .field__input {
-  padding-top: 1.5em;
-  padding-bottom: 0.3571428571em;
+  /* padding-top: 1.5em;
+  padding-bottom: 0.3571428571em; */
 }
 .field__input--select {
   padding-right: 2.0714285714em;
@@ -900,12 +900,12 @@ table {
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
   content: "";
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
   background: #000;
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 0px;
+  left: 0px;
   border-radius: 100%;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
@@ -1170,7 +1170,7 @@ table {
     margin-top: 10px !important;
   }
   .order-summary-toggle {
-    margin-top: 50px;
+    margin-top: 80px;
   }
 }
 
@@ -1200,7 +1200,7 @@ table {
     position: relative;
     color: #535353;
     padding-right: 5%;
-    /* background-color: #f7f7f7; */
+    background-color: #f7f7f7;
     height: 100vh;
   }
   .shipping-top .wrap .main .main__header {
@@ -1310,6 +1310,7 @@ table {
   display: flex;
   padding-left: 0px;
   z-index: 4;
+  border-bottom: 1px solid #e1e1e1;
 }
 .checkout_page_head img.logo__image {
   width: 233px !important;
@@ -1331,6 +1332,14 @@ table {
   justify-content: left;
   display: flex;
 }
+.step__footer #continue_button {
+  background: black;
+  border-radius: 0;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
 @media only screen and (max-width: 767px) {
   .main__footer {
     padding: 1em 0;

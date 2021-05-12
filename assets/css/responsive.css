@@ -518,6 +518,10 @@
   .refinement.card .hidden_filtter ul {
     margin: 0px;
   }
+  .refinement.card .hidden_filtter ul.column {
+    column-count: unset;
+    column-gap: 0px;
+  }
   .search-result-options.active {
     display: block;
   }
