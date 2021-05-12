@@ -403,6 +403,11 @@ button:hover {
   border: none;
 }
 
+.selected-size {
+  font-size: xx-large;
+  font-weight: 400;
+}
+
 .attribute-value.unavailable {
   color: #cacaca;
 }

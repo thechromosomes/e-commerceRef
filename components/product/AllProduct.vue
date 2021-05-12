@@ -36,7 +36,7 @@
     <div
       class="refinements-holder"
       :class="openFiltter == true ? '' : 'desktop_only'"
-      v-if="list.filters.length > 0"
+      v-if="list.filters.length > 0 && list.Product_list.length > 0"
     >
       <div class="container-fluid">
         <div class="filter_box">
@@ -154,10 +154,10 @@
               class="search-result-options"
               :class="openSort == true ? 'active' : ''"
             >
-              <div class="showing-results">
+              <div class="showing-results" v-show="list.Product_list.length > 0"> 
                 Showing: {{ calculateResult }} Product(s)
               </div>
-              <div class="sort-order">
+              <div class="sort-order" v-show="list.Product_list.length > 0">
                 <div class="sort-list">
                   <div class="sort-label">
                     <span class="sort-selected-option">
