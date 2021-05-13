@@ -105,7 +105,7 @@
     </div>
 
     <!-- applied filters -->
-    <div class="desktop_only" v-if="list.applied_filters.length > 0">
+    <div class="" v-if="list.applied_filters.length > 0">
       <div class="filter-bar">
         <div class="filter-clearall-container">
           <a class="reset" @click.prevent="removeAllFilters()"> Clear all </a>
@@ -154,7 +154,10 @@
               class="search-result-options"
               :class="openSort == true ? 'active' : ''"
             >
-              <div class="showing-results" v-show="list.Product_list.length > 0"> 
+              <div
+                class="showing-results"
+                v-show="list.Product_list.length > 0"
+              >
                 Showing: {{ calculateResult }} Product(s)
               </div>
               <div class="sort-order" v-show="list.Product_list.length > 0">
