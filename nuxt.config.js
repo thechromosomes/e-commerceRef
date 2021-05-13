@@ -3,7 +3,7 @@ import CreateLog from "./server-middleware/globalErrorMiddleware";
 
 export default {
   head: {
-    titleTemplate: "%s - diesel",
+    titleTemplate: "%s  Diesel",
     title: "Diesel Online Store: jeans, clothing, shoes, bags and watches.",
     meta: [
       { charset: "utf-8" },

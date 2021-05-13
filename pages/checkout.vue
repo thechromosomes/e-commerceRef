@@ -226,9 +226,8 @@
                                   </span>
                                 </div>
                                 <p
-                                  class="pobox plaese-note-para"
+                                  class="pobox plaese-note-para input-success"
                                   id="checkoutAddressError"
-                                  style="color: grey"
                                 >
                                   Please note we do not ship to PO boxes.
                                 </p>
@@ -251,7 +250,7 @@
                               <div class="field field--required field--third">
                                 <div class="field__input-wrapper">
                                   <label
-                                    class=""
+                                    class="w-100"
                                     for="checkout_shipping_address_zip"
                                     >ZIP code
                                     <input
@@ -288,7 +287,7 @@
                                   </template>
                                 </div>
                               </div>
-                              <div
+                              <!-- <div
                                 class="field field--required field--third field--show-floating-label"
                               >
                                 <label
@@ -303,13 +302,13 @@
                                     :value="user.country"
                                   />
                                 </label>
-                              </div>
+                              </div> -->
 
                               <div
                                 class="field field--required field--show-floating-label field--third"
                               >
                                 <label
-                                  class=""
+                                  class="w-100"
                                   for="checkout_shipping_address_zip"
                                   >State
                                   <input
@@ -327,27 +326,28 @@
                                   </p>
                                 </span>
                               </div>
-
                               <div
-                                class="field field--required"
-                                data-address-field="first_name"
+                                class="field field--required field--show-floating-label field--third"
                               >
-                                <div class="field__input-wrapper">
+                                <label
+                                  class="w-100"
+                                  for="checkout_shipping_address_zip"
+                                  >City
                                   <input
                                     placeholder="City"
                                     autocorrect="off"
                                     autocomplete="off"
                                     v-model="user.city"
-                                    class="field__input"
+                                    class="field__input shipping-label-pb-input-st"
                                     type="text"
                                   />
-                                  <!-- an error display tags -->
-                                  <span v-if="validation.hasError('user.city')">
-                                    <p class="input-error">
-                                      {{ validation.firstError("user.city") }}
-                                    </p>
-                                  </span>
-                                </div>
+                                </label>
+                                <!-- an error display tags -->
+                                <span v-if="validation.hasError('user.city')">
+                                  <p class="input-error">
+                                    {{ validation.firstError("user.city") }}
+                                  </p>
+                                </span>
                               </div>
 
                               <div

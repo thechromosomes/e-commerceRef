@@ -76,8 +76,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -85,8 +85,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 480,
@@ -94,10 +94,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
+              slidesToShow: 1
+            }
+          }
+        ]
       },
       settings2: {
         focusOnSelect: true,
@@ -115,19 +115,19 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
+              slidesToScroll: 1
+            }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
-          },
-        ],
-      },
+              slidesToScroll: 1
+            }
+          }
+        ]
+      }
     };
   },
   // head() {
@@ -176,7 +176,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
+    }
   },
   async created() {
     let response = await this.$store.dispatch("pimAjax", {
@@ -184,11 +184,11 @@ export default {
       url: `/pimresponse.php`,
       params: {
         service: "banner_slider",
-        store: 1,
-      },
+        store: 1
+      }
     });
     // console.log(response.result.banner);
     this.bannerSlide = response.result.banner;
-  },
+  }
 };
 </script>

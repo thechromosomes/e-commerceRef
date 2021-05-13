@@ -312,6 +312,7 @@ button:hover {
 .product_details.main_section {
   width: 100%;
   padding: 60px 20px;
+  padding-top: 0px;
 }
 .product_details .back-to-container {
   width: 100%;
@@ -397,15 +398,14 @@ button:hover {
   margin-bottom: 15px;
 }
 
-.attribute-value.selected {
-  background: #000;
-  color: #fff;
-  border: none;
-}
-
 .selected-size {
-  font-size: xx-large;
-  font-weight: 400;
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 
 .attribute-value.unavailable {
@@ -425,8 +425,8 @@ button:hover {
   cursor: pointer;
   height: 41px;
   margin: 3px;
-  padding: 0 5px;
-  padding: 0 0.3125rem;
+  /* padding: 0 5px;
+  padding: 0 0.3125rem; */
 }
 .attribute-value:hover {
   border: 1px solid #000;
@@ -802,7 +802,7 @@ button:hover {
   padding: 20px 0;
 }
 .footer .footer-wrapper .flex-content .footer-items {
-  padding: 0 0 0 15px;
+  /* padding: 0 0 0 15px; */
 }
 
 .footer .footer-wrapper .flex-content .footer-items .footer-navigation {
@@ -1011,8 +1011,6 @@ button:hover {
 
 .product_list_page {
   width: 100%;
-  padding: 60px 0px;
-  padding-bottom: 0px;
 }
 .product_list_page .search-banner {
   display: flex;
@@ -1124,22 +1122,21 @@ button:hover {
   transition: max-height 0.5s;
 }
 .refinement.card .hidden_filtter ul {
-  margin-top: 10px;
-  padding: 20px 10px;
+  padding: 0px 10px;
 }
 .refinement.card .hidden_filtter ul.column {
   column-count: 2;
   column-gap: 2px;
 }
 .refinement.card .hidden_filtter ul li {
-  padding: 5px 5px;
+  padding: 7px 0;
 }
 
 .refinement.card .selection-box {
   color: #000;
   position: relative;
-  line-height: 35px;
-  padding-left: 23px;
+  /* line-height: 35px; */
+  padding-left: 18px;
   cursor: pointer;
 }
 .refinement.card .selection-box.not-selected-box::before {
@@ -1232,7 +1229,7 @@ button:hover {
   align-items: center;
   background-color: #fff;
   width: 100%;
-  padding: 4px 0px;
+  padding: 4px 8px;
   font-family: Roboto, sans-serif;
 }
 .icon-arrow-mid-down-black {
@@ -1274,7 +1271,7 @@ button:hover {
 }
 .sort-order .sort-option {
   list-style-type: none;
-  padding: 12px 0px;
+  padding: 10px 0px;
   font-family: Roboto, sans-serif;
 }
 .sort-order .sort-list:hover .sort-order .sort-options {
@@ -1292,6 +1289,10 @@ p.p-price {
   font-size: 16px !important;
   font-weight: bold;
   margin-bottom: 0;
+}
+p.p-price .pricr-title {
+  font-weight: 400;
+  font-size: 15px;
 }
 p.p-price span.line-throu {
   text-decoration: line-through;
@@ -1750,20 +1751,21 @@ p.p-price span.line-throu {
   border-bottom: 1px solid #ddd;
 }
 .cartItemProducts .productItem .image-info {
-  width: 15%;
+  width: 10%;
 }
 .cartItemProducts .productItem .image-info img {
   width: 100%;
 }
 .input-error {
   color: red;
+  margin-bottom: 5px;
 }
 .cartItemProducts .productItem .item_name {
-  width: 35%;
-  padding: 10px 20px;
+  width: 40%;
+  padding: 5px 20px;
 }
 .cartItemProducts .productItem .item_name strong {
-  font-size: 20px;
+  font-size: 18px;
 }
 .cartItemProducts .productItem .item_name a {
   color: #000;
@@ -1775,7 +1777,7 @@ p.p-price span.line-throu {
 .cartItemProducts .productItem .qty_info a {
   background-color: #000;
   color: #fff;
-  padding: 15px 20px;
+  padding: 8px 16px;
   cursor: pointer;
 }
 .cartItemProducts .productItem .qty_info input {
@@ -1792,10 +1794,16 @@ p.p-price span.line-throu {
 .cartItemProducts .productItem .remove a {
   cursor: pointer;
 }
-
+.cartItemProducts .productItem .remove a img {
+  width: 22px;
+}
 .cartItemProducts .productItem .price_info {
   width: 10%;
   text-align: center;
+}
+.input-success {
+  color: green;
+  margin: 0;
 }
 .cartItemProducts .productItem .price_info span {
   font-size: 20px;
@@ -1856,14 +1864,15 @@ p.p-price span.line-throu {
 }
 .search_box .carts .cart_val {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   color: #fff;
   background: #000;
   text-align: center;
-  border-radius: 50px;
-  right: -8px;
-  top: -11px;
+  border-radius: 50%;
+  right: -4px;
+  top: -8px;
+  font-size: 11px;
 }
 .search_box .carts img {
   width: 25px;
@@ -1874,6 +1883,12 @@ p.p-price span.line-throu {
   width: 30px;
   cursor: pointer;
 }
+
+.search_box a,
+.search_box span {
+  margin: 0 1px;
+}
+
 .claose_filter {
   display: block;
   background-image: url("../img/sprite_icons.svg");

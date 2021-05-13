@@ -22,7 +22,7 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <span class="search-icon-mobile"></span>
+          <span class="search-icon-mobile" @click="searchActive = true"></span>
         </div>
         <div
           class="collapse navbar-collapse"

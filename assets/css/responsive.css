@@ -2,10 +2,20 @@
   .slide-img .content.content-mobile {
     display: block;
   }
+  .cartItemProducts .productItem .image-info {
+    width: 20%;
+    margin-bottom: 10px;
+  }
+  .cart .title {
+    text-align: left !important;
+    margin: 10px 0;
+  }
   .slide-img .content.content-desk {
     display: none;
   }
-
+  .search-box {
+    top: 52px;
+  }
   /* mobile menu design  */
   .header .navbar .navbar-collapse .navbar-nav .nav-item {
     position: relative;

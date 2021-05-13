@@ -151,6 +151,7 @@
   border: 1px solid #000;
   border-radius: 4px;
   padding: 10px 20px;
+  margin-left: 0;
 }
 .ship-adress-area .name span {
   font-weight: normal;
@@ -165,7 +166,7 @@
   padding: 10px 0px;
 }
 .remove-address a img {
-  width: 25px;
+  width: 20px;
   cursor: pointer;
 }
 
@@ -179,6 +180,12 @@
 
 .btn-box {
   width: 100%;
+}
+.btn-box input,
+.btn-box a {
+  background-color: #000;
+  color: #fff;
+  border-radius: 0px;
 }
 .address .add-new-address {
   border: none;
