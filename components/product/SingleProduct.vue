@@ -81,10 +81,12 @@
                 @click="addRemoveWishList(renderWishList())"
               ></span>
             </div>
-            <h1 class="product-title">UMLB-PETER</h1>
-            <h2 class="product-short-description">
+            <h1 class="product-title">
+              {{ singleProductList.single_prod_data.name.toUpperCase() }}
+            </h1>
+            <!-- <h2 class="product-short-description">
               Sweatpants with Mohawk logo
-            </h2>
+            </h2> -->
             <p class="p-price">
               <span
                 v-if="

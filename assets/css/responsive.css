@@ -585,6 +585,9 @@
   .filter-value {
     display: block;
   }
+  .wish-list-icon.single {
+    top: 77px;
+  }
 }
 
 @media (max-width: 767px) {

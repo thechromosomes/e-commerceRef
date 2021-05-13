@@ -235,10 +235,12 @@
   margin-left: 5px;
 }
 @media (max-width: 991px) {
+  .address-page,
   .account-page {
     margin: 20px 0;
   }
-  .sidebar {
+
+  .address-page {
     margin-bottom: 50px;
   }
 }

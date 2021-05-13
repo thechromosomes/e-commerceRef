@@ -227,7 +227,12 @@
                     </div>
                     <div class="col-md-12 col-12 p-0">
                       <div class="submit_box mt-4">
-                        <input class="btn new-btn" type="submit" value="Back" />
+                        <input
+                          class="btn new-btn"
+                          type="submit"
+                          value="Back"
+                          @click="showForm = false"
+                        />
                         <input
                           class="btn new-btn ml-3"
                           type="submit"

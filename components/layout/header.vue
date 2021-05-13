@@ -103,7 +103,7 @@
                 this.$store.state.cartAjax.customer_session != '' &&
                 this.$store.state.cartAjax.customer_session != null
             "
-            to="/dashboard"
+            to="/Dashboard"
           >
             <span class="carts"
               ><img src="~/assets//img/user.png" alt="user" />
@@ -116,7 +116,7 @@
                 this.$store.state.cartAjax.customer_session == '' ||
                 this.$store.state.cartAjax.customer_session == null
             "
-            to="/dashboard"
+            to="/Dashboard"
           >
             <span class="carts"
               ><img src="~/assets//img/user.png" alt="user" />

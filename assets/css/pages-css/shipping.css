@@ -1305,7 +1305,7 @@ table {
 
 @media (min-width: 750px) {
   .main__content {
-    padding-bottom: 4em;
+    /* padding-bottom: 4em; */
   }
   .section__header {
     margin-bottom: 1.5em;
