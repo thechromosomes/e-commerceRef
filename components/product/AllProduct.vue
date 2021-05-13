@@ -105,7 +105,7 @@
     </div>
 
     <!-- applied filters -->
-    <div class="desktop_only" v-if="list.applied_filters.length > 0">
+    <div class="" v-if="list.applied_filters.length > 0">
       <div class="filter-bar">
         <div class="filter-clearall-container">
           <a class="reset" @click.prevent="removeAllFilters()"> Clear all </a>

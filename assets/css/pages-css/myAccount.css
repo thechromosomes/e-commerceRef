@@ -78,10 +78,17 @@
   text-align: center; */
 }
 .sidebar ul li a {
-  padding: 5px 0px;
-  display: block;
   text-transform: uppercase;
+  padding: 12px 15px;
+  color: #252525;
+  border: 1px solid #eee;
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
   letter-spacing: 0.5px;
+}
+.sidebar ul li a:hover {
+  background-color: #eee;
 }
 .sidebar ul li.active {
   background-color: #000;
@@ -177,7 +184,10 @@
   margin-bottom: 0px;
   text-transform: uppercase;
 }
-
+.active-account-sidebar {
+  font-weight: bold;
+  background-color: #eee;
+}
 .btn-box {
   width: 100%;
 }
@@ -225,6 +235,12 @@
   margin-left: 5px;
 }
 @media (max-width: 991px) {
+  .account-page {
+    margin: 20px 0;
+  }
+  .sidebar {
+    margin-bottom: 50px;
+  }
 }
 @media (max-width: 767px) {
   .address-list .ship-adress-area {

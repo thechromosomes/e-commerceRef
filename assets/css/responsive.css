@@ -524,6 +524,7 @@
   .refinement.card .card-header {
     border-bottom: 1px solid #ddd;
     padding: 10px 0px;
+    padding-left: 10px;
   }
   .refinement.card .hidden_filtter ul {
     margin: 0px;
@@ -562,6 +563,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0;
+    padding-bottom: 10px;
   }
   .filter-bar {
     display: unset;
@@ -596,5 +598,10 @@
     .nav-item
     .dropdown_menu_level-3 {
     padding: 20px 10px;
+  }
+}
+@media (max-width: 1010px) {
+  .header .navbar .search_box .searchbox input {
+    width: auto;
   }
 }
