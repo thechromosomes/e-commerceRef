@@ -46,7 +46,7 @@ export const state = () => ({
   pimApi: "https://dipim.hostx1.de/pim/",
   isMobile: false,
   instaPost: [],
-  bannerData: [],
+  bannerSlide: [],
   is_new: [],
 });
 
@@ -96,6 +96,32 @@ export const actions = {
       if (tempResponse.data.response.success == 1) {
         context.commit("updateBestSeller", {
           is_new: tempResponse.data.result.is_new,
+        });
+      } else {
+        throw "encountered error while fetching best seller data";
+      }
+    } catch (error) {
+      console.log("error from the get best seller Store action >>", error);
+    }
+  },
+
+  // fetching home page banner slider
+  async getBannerSlider(context, form) {
+    try {
+      var authOpt = {
+        method: form.method,
+        url: context.state.pimApi + form.url,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        params: form.params,
+      };
+
+      let bannerSliderData = await this.$axios(authOpt);
+
+      if (bannerSliderData.data.response.success == 1) {
+        context.commit("updateBannerSlider", {
+          bannerSlide: bannerSliderData.data.result.banner,
         });
       } else {
         throw "encountered error while fetching best seller data";
@@ -301,5 +327,10 @@ export const mutations = {
   // update new in data
   updateBestSeller(state, { is_new }) {
     state.is_new = is_new;
+  },
+
+  // update banner slider
+  updateBannerSlider(state, { bannerSlide }) {
+    state.bannerSlide = bannerSlide;
   },
 };

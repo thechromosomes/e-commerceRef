@@ -135,7 +135,6 @@
                     >: {{ selectedSizeAttr.configrable_atribute_value }}
                   </span>
                 </span>
-                <!-- <span class="attribute-label-value"> selected Black</span> -->
                 <ul class="swatch-attribute-values color">
                   <li
                     class="attribute-value js_attribute-value"

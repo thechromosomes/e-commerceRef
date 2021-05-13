@@ -88,7 +88,7 @@ export default async (context) => {
     }
 
     // fetch wish list
-    if ((customerSession && customerId && customerToken, customerId)) {
+    if ((customerSession && customerId && customerToken)) {
       let response = await context.store.dispatch("cartAjax/actCartAjax", {
         method: "post",
         url: `/wishlist/customer-wishlist`,

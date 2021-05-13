@@ -60,7 +60,6 @@ export default {
 
   data() {
     return {
-      bannerSlide: [],
       settings: {
         infinite: true,
         slidesToShow: 4,
@@ -159,7 +158,7 @@ export default {
   // },
 
   computed: {
-    ...mapState(["homePageData", "bannerData", "is_new"]),
+    ...mapState(["homePageData", "bannerSlide", "is_new"]),
 
     // render seo tags
     title() {
@@ -178,17 +177,31 @@ export default {
       return this.$store.state.BASE_URL + this.$route.fullPath;
     },
   },
-  async created() {
-    let response = await this.$store.dispatch("pimAjax", {
-      method: "get",
-      url: `/pimresponse.php`,
-      params: {
-        service: "banner_slider",
-        store: 1,
-      },
-    });
-    // console.log(response.result.banner);
-    this.bannerSlide = response.result.banner;
-  },
+  // async fetch() {
+  //   let response = await this.$store.dispatch("pimAjax", {
+  //     method: "get",
+  //     url: `/pimresponse.php`,
+  //     params: {
+  //       service: "banner_slider",
+  //       store: 1,
+  //     },
+  //   });
+  //   if (response.response.success) {
+  //     this.bannerSlide = response.result.banner;
+  //   }
+
+  //   // is new api call
+  //   let bestSellerForm = {};
+  //   bestSellerForm.service = "is_new";
+  //   bestSellerForm.store = 1;
+  //   let newInData = await this.$store.dispatch("getBestSeller", {
+  //     method: "get",
+  //     url: `pimresponse.php`,
+  //     params: bestSellerForm,
+  //   });
+  //    if (newInData.response.success) {
+  //     this.bannerSlide = response.result.banner;
+  //   }
+  // },
 };
 </script>

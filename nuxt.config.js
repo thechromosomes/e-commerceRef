@@ -1,5 +1,4 @@
-// import colors from "vuetify/es5/util/colors";
-import CreateLog from "./server-middleware/globalErrorMiddleware";
+// import CreateLog from "./server-middleware/globalErrorMiddleware";
 
 export default {
   head: {
@@ -32,21 +31,19 @@ export default {
   // Global CSS
   css: [
     "~/assets/css/bootstrap.css",
-    // "~/assets/css/icomoon.css",
     "~/assets/css/style.css",
-    // "~/assets/css/style2.css",
     "~/assets/css/slick.css",
     "~/assets/css/responsive.css",
   ],
 
   // Plugins to run before rendering page
   plugins: [
+    { src: "@/plugins/tokenAndCms.js", ssr: true },
     { src: "@/plugins/globalErrorHandler", ssr: true },
     { src: "@/plugins/axios", ssr: true },
-    { src: "@/plugins/tokenAndCms.js", ssr: true },
     { src: "@/plugins/vue-cookies", ssr: true },
-    { src: "@plugins/thirdPartyModules", ssr: false },
     { src: "@plugins/thirdPartyModulesSsr", ssr: true },
+    { src: "@plugins/thirdPartyModules", ssr: false },
     { src: "@plugins/fetchCookies", ssr: false },
   ],
 
@@ -93,25 +90,6 @@ export default {
       lang: "en",
     },
   },
-
-  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
-  // vuetify: {
-  //   customVariables: ["~/assets/variables.scss"],
-  //   theme: {
-  //     dark: true,
-  //     themes: {
-  //       dark: {
-  //         primary: colors.blue.darken2,
-  //         accent: colors.grey.darken3,
-  //         secondary: colors.amber.darken3,
-  //         info: colors.teal.lighten1,
-  //         warning: colors.amber.base,
-  //         error: colors.deepOrange.accent4,
-  //         success: colors.green.accent3,
-  //       },
-  //     },
-  //   },
-  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

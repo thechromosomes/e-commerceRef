@@ -84,7 +84,7 @@ export default {
       selectedSizeAttr: {},
       sizeAlert: false,
       selectedSize: [],
-      sizeAlertIndes: ""
+      sizeAlertIndes: "",
     };
   },
   async created() {
@@ -97,6 +97,70 @@ export default {
         return;
       }
       if (Object.keys(this.$store.state.cartAjax.wishlist).length != 0) {
+        this.getProduct();
+      }
+    } catch (error) {
+      this.$globalError(`error from the wishlist page fetch>>>> ${error}`);
+      console.log("error from the wishlist page >>> ", error);
+    }
+  },
+
+  methods: {
+    async reomoveFromCart(item, index) {
+      try {
+        let form = {
+          product_id: item.id_product,
+          customer_id: this.$store.state.cartAjax.customer_id,
+          customer_session: this.$store.state.cartAjax.customer_session,
+          group_id: item.group_id,
+        };
+        var response = await this.$store.dispatch("cartAjax/actCartAjax", {
+          method: "post",
+          url: `/wishlist/remove-wishlist`,
+          token: this.$store.state.cartAjax.customer_token,
+          params: form,
+        });
+
+        if (response.success) {
+          this.$store.commit("cartAjax/updateWishList", {
+            payload: response.data,
+          });
+          this.getProduct();
+
+          // this.$gtm.push({
+          //   event: "removeFromWishlist",
+          //   action: "removeFromWishlist",
+          //   category: item.sub_category,
+          //   ecommerce: {
+          //     currencyCode: "INR",
+          //     remove: {
+          //       product: [
+          //         {
+          //           name: item.name,
+          //           id: item.sku,
+          //           price: item.selling_price,
+          //           category: item.sub_category
+          //         }
+          //       ]
+          //     }
+          //   }
+          // });
+        } else {
+          this.$toast.error(response.message);
+          throw "no response from api";
+        }
+        this.wislistProducts.splice(index, 1);
+      } catch (error) {
+        this.$globalError(
+          `error from the wishlist page (reomoveFromCart) >>>> ${error}`
+        );
+
+        console.log("error from the wishlist page >>>", error);
+      }
+    },
+
+    async getProduct() {
+      try {
         var form = {};
         form.service = "wishlist";
         form.sku = this.$store.state.cartAjax.wishlist.product;
@@ -104,7 +168,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
         this.gtm_product_impressions = [];
         if (response.response.success) {
@@ -123,7 +187,7 @@ export default {
               price,
               category,
               list,
-              position
+              position,
             });
           }
 
@@ -139,63 +203,10 @@ export default {
         } else {
           throw "No data found";
         }
-      }
-    } catch (error) {
-      this.$globalError(`error from the wishlist page fetch>>>> ${error}`);
-      console.log("error from the wishlist page >>> ", error);
-    }
-  },
-
-  methods: {
-    async reomoveFromCart(item, index) {
-      try {
-        let form = {
-          product_id: item.id_product,
-          customer_id: this.$store.state.cartAjax.customer_id,
-          customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id
-        };
-        var response = await this.$store.dispatch("cartAjax/actCartAjax", {
-          method: "post",
-          url: `/wishlist/remove-wishlist`,
-          token: this.$store.state.cartAjax.customer_token,
-          params: form
-        });
-
-        if (response.success) {
-          this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data
-          });
-
-          this.$gtm.push({
-            event: "removeFromWishlist",
-            action: "removeFromWishlist",
-            category: item.sub_category,
-            ecommerce: {
-              currencyCode: "INR",
-              remove: {
-                product: [
-                  {
-                    name: item.name,
-                    id: item.sku,
-                    price: item.selling_price,
-                    category: item.sub_category
-                  }
-                ]
-              }
-            }
-          });
-        } else {
-          this.$toast.error(response.message);
-          throw "no response from api";
-        }
-        this.wislistProducts.splice(index, 1);
       } catch (error) {
         this.$globalError(
-          `error from the wishlist page (reomoveFromCart) >>>> ${error}`
+          `error from the wishlist page (getProduct) >>>> ${error}`
         );
-
-        console.log("error from the wishlist page >>>", error);
       }
     },
 
@@ -211,7 +222,7 @@ export default {
           var form = {};
           var product_options_json = JSON.stringify({
             size: this.selectedSize[sizeIndex],
-            color: item.color
+            color: item.color,
           });
           form.product_id =
             item.variation[this.selectedSize[sizeIndex]].id_product;
@@ -252,12 +263,12 @@ export default {
             method: "post",
             url: `/product/add-product`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
           if (response) {
             await this.$store.commit("cartAjax/updateCartDetail", {
               error: null,
-              data: response
+              data: response,
             });
             if (response.success) this.reomoveFromCart(item, sizeIndex);
             // google tag manager
@@ -278,11 +289,11 @@ export default {
                         variant:
                           item.variation[this.selectedSize[sizeIndex]]
                             .configrable_atribute_value,
-                        quantity: "1"
-                      }
-                    ]
-                  }
-                }
+                        quantity: "1",
+                      },
+                    ],
+                  },
+                },
               });
             }
           } else {
@@ -296,13 +307,13 @@ export default {
           if (error.message === "Network Error") {
             this.$store.commit("updateSingleProdState", {
               error:
-                "Oops there seems to be some Network issue, please try again"
+                "Oops there seems to be some Network issue, please try again",
             });
           }
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

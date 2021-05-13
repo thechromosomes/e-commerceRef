@@ -39,7 +39,7 @@ export const actions = {
         "Content-Type": "application/json",
         Authorization: "Bearer " + data.token,
       },
-      params: request,
+      data: request,
     };
 
     return new Promise((resolve, reject) => {
