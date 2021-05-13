@@ -50,20 +50,25 @@
                               >Color :
                               {{ JSON.parse(product.size).color }}</span
                             >
+                            <br />
                             <span
                               class="product_options-cart"
                               v-if="JSON.parse(product.size).size"
                               >Size : {{ JSON.parse(product.size).size }}</span
                             >
+
                             <span
                               class="product_options-cart Loyalty_LineItem hide_permanent"
                             ></span>
+
                             <span
                               class="product_options-cart Loyalty_LineItem hide_permanent"
                             ></span>
+
                             <span
                               class="product_options-cart Loyalty_LineItem hide_permanent"
                             ></span>
+
                             Pre-ordered items: {{ product.qty }}
                             <br />
                             <span

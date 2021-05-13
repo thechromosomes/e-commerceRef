@@ -75,8 +75,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -84,8 +84,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 480,
@@ -93,10 +93,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
+              slidesToShow: 1
+            }
+          }
+        ]
       },
       settings2: {
         focusOnSelect: true,
@@ -114,19 +114,19 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
+              slidesToScroll: 1
+            }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
-          },
-        ],
-      },
+              slidesToScroll: 1
+            }
+          }
+        ]
+      }
     };
   },
   // head() {
@@ -175,33 +175,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
+    }
   },
-  // async fetch() {
-  //   let response = await this.$store.dispatch("pimAjax", {
-  //     method: "get",
-  //     url: `/pimresponse.php`,
-  //     params: {
-  //       service: "banner_slider",
-  //       store: 1,
-  //     },
-  //   });
-  //   if (response.response.success) {
-  //     this.bannerSlide = response.result.banner;
-  //   }
-
-  //   // is new api call
-  //   let bestSellerForm = {};
-  //   bestSellerForm.service = "is_new";
-  //   bestSellerForm.store = 1;
-  //   let newInData = await this.$store.dispatch("getBestSeller", {
-  //     method: "get",
-  //     url: `pimresponse.php`,
-  //     params: bestSellerForm,
-  //   });
-  //    if (newInData.response.success) {
-  //     this.bannerSlide = response.result.banner;
-  //   }
-  // },
 };
 </script>

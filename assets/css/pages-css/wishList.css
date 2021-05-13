@@ -43,22 +43,22 @@
   cursor: pointer;
 }
 .wish-list-item .wish-list-wraper .wish-list-item-img {
-  width: 30%;
+  width: 10%;
 }
 .wish-list-item .wish-list-wraper .wish-list-item-img img {
   width: 100%;
 }
 .wish-list-item .wish-list-wraper .wish-list-info {
-  width: 30%;
+  width: 50%;
   padding: 0px 20px;
 }
 .wish-list-item .wish-list-wraper .wish-list-info h2 {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: bold;
 }
 .wish-list-item .wish-list-wraper .wish-list-info h3,
 .wish-list-item .wish-list-wraper .wish-list-info h4 {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .wish-list-item .wish-list-wraper .wishlist-action {
@@ -97,6 +97,7 @@
 @media only screen and (max-width: 991px) {
   .wish-list-item .wish-list-wraper {
     flex-wrap: wrap;
+    align-items: flex-start;
   }
   .wish-list-item .wish-list-wraper .wish-list-item-img {
     width: 40%;
@@ -125,16 +126,22 @@
     font-size: 13px;
   }
   .wish-list-item .wish-list-wraper .wish-list-info h2 {
-    font-size: 25px;
+    font-size: 18px;
   }
   .wish-list-item .wish-list-wraper .wish-list-info h3,
   .wish-list-item .wish-list-wraper .wish-list-info h4 {
-    font-size: 18px;
+    font-size: 16px;
   }
   .wish-list-item .wish-list-wraper .wishlist-close img {
     width: 15px;
   }
   .wish-list-item .wish-list-wraper .wishlist-price a {
     font-size: 20px;
+  }
+  .wish-list-item .wish-list-wraper .wishlist-close {
+    right: 0;
+  }
+  .wish-list-item .wish-list-wraper .wish-list-item-img {
+    margin-bottom: 10px;
   }
 }
