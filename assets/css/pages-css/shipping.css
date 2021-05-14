@@ -1032,6 +1032,8 @@ table {
 }
 .ship-adress-area.active-address button {
   margin-top: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 .ship-adress-area:before {
   content: "";
