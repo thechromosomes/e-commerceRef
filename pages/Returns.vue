@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="return-content">
-      <div class="container">
+      <div class="container-fluid">
         <p>
           We gladly accept returns of UNWORN merchandise within 30 days of
           delivery except clearance items, which are final sale and may not be

@@ -30,7 +30,7 @@
 
 .account-page .my-profile .profile-data h2 {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 22px;
   text-transform: uppercase;
 }
 .account-page .my-profile .profile-data h3 {
@@ -178,7 +178,7 @@
 }
 
 .editprofile-page h2 {
-  font-size: 25px;
+  font-size: 20px;
   letter-spacing: 0.5px;
   font-weight: bold;
   margin-bottom: 0px;

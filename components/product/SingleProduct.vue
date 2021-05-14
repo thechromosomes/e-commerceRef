@@ -98,16 +98,6 @@
               <span class="pricr-title">Price inclusive of all taxes</span>
             </p>
             <ul class="product-attributes">
-              <li class="variation-attribute mb-0">
-                <div class="wish-list-icon single">
-                  <span
-                    class="wishlist_blank"
-                    :id="$store.state.cartAjax.wishlist.group"
-                    :class="renderWishList()"
-                    @click="addRemoveWishList(renderWishList())"
-                  ></span>
-                </div>
-              </li>
               <li class="variation-attribute">
                 <span class="attribute-label color"> COLOR: </span>
                 <span class="attribute-label-value">
@@ -172,6 +162,14 @@
               >
                 Add to cart
               </button>
+              <div class="wish-list-icon single">
+                <span
+                  class="wishlist_blank"
+                  :id="$store.state.cartAjax.wishlist.group"
+                  :class="renderWishList()"
+                  @click="addRemoveWishList(renderWishList())"
+                ></span>
+              </div>
             </div>
 
             <div class="product_info">

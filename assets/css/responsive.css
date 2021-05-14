@@ -588,6 +588,10 @@
   .wish-list-icon.single {
     top: 77px;
   }
+  .wish-list-icon.single .wishlist_blank.add,
+  .wish-list-icon.single .wishlist_blank.wishlist-active {
+    margin-top: -20px;
+  }
 }
 
 @media (max-width: 767px) {

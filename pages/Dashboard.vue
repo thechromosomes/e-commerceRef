@@ -2,7 +2,7 @@
   <client-only>
     <div>
       <div class="account-page">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
             <div class="col-12">
               <h1 class="title clearfix">My Account</h1>

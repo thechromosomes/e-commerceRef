@@ -1107,7 +1107,7 @@ table {
 }
 .ship-adress {
   padding-bottom: 60px;
-  padding-right: 10%;
+  /* padding-right: 10%; */
 }
 .step__sections {
   padding-right: 10%;

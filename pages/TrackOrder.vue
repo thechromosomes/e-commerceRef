@@ -28,14 +28,17 @@
           :key="trackIndex + 'trackIndex'"
           v-for="(item, trackIndex) in order.shipments"
         >
-          <div class="order-progress-bar-left"  :key="trackIndexR + 'trackIndexR'"
-          v-for="(itemR, trackIndexR) in item.bags">
+          <div
+            class="order-progress-bar-left"
+            :key="trackIndexR + 'trackIndexR'"
+            v-for="(itemR, trackIndexR) in item.bags"
+          >
             <div class="track-order-sidebar active">
               <img
                 :src="itemR.item.image[0]"
                 title="The Green Navigator Shirt"
               />
-              <h4 class="font-bold">{{itemR.item.name}}</h4>
+              <h4 class="font-bold">{{ itemR.item.name }}</h4>
             </div>
           </div>
           <div
@@ -74,7 +77,7 @@ export default {
     return {
       showProductDetail: false,
       order_id: "",
-      orders: [],
+      orders: []
     };
   },
   methods: {
@@ -90,9 +93,9 @@ export default {
         .dispatch("cartAjax/actCartAjax", {
           method: "post",
           url: `/cart/track-order`,
-          params: form,
+          params: form
         })
-        .then((response) => {
+        .then(response => {
           if (response.success === true) {
             this.showProductDetail = true;
             this.orders = response.data.orders;
@@ -100,7 +103,7 @@ export default {
             this.$toast.error(response.message);
           }
         });
-    },
+    }
   },
 
   mounted() {
@@ -111,7 +114,7 @@ export default {
       this.$router.push("/login");
       return;
     }
-  },
+  }
 };
 </script>
 <style scoped>

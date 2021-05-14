@@ -448,10 +448,13 @@ button:hover {
 }
 .product_details .print_btn {
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   /* margin:  10px 0px ; */
 }
 .product_details .print_btn button.full-with-btn {
-  width: 100%;
+  width: 90%;
   text-transform: uppercase;
   font-family: roboto condensed, sans-serif;
   font-size: 0.875rem;
@@ -1378,6 +1381,13 @@ p.p-price span.line-throu {
   height: 38px;
   cursor: pointer;
 }
+
+.wish-list-icon.single .wishlist_blank.add,
+.wish-list-icon.single .wishlist_blank.wishlist-active {
+  margin-top: -22px;
+  transform: scale(2);
+}
+
 .wish-list-icon .wishlist_blank.wishlist-active {
   content: "";
   display: inline-block;

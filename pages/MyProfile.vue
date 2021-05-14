@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container acc-page">
+    <div class="container-fluid acc-page">
       <div class="row">
         <div class="span12">
           <h1 class="title clearfix">My Profile</h1>
@@ -143,7 +143,7 @@
 import Sidebar from "@/components/my-account/Sidebar.vue";
 export default {
   components: {
-    Sidebar,
+    Sidebar
   },
   data() {
     return {
@@ -159,20 +159,20 @@ export default {
         "Sep",
         "Oct",
         "Nov",
-        "Dec",
+        "Dec"
       ],
       sizes: [0.5, 5.5, 0.6, 6.5, 0.7, 7.5, 0.8, 8.5, 0.9, 9.5],
       categoies: {
         man: false,
         woman: false,
         accessories: false,
-        handbags: false,
+        handbags: false
       },
-      wantAll: false,
+      wantAll: false
     };
   },
   methods: {
-    wantAllCheck: function () {
+    wantAllCheck: function() {
       this.wantAll = !this.wantAll;
       if (this.wantAll === true) {
         (this.categoies.man = true),
@@ -185,7 +185,7 @@ export default {
           (this.categoies.handbags = false),
           (this.categoies.accessories = false);
       }
-    },
+    }
   },
   beforeMount() {
     if (
@@ -194,7 +194,7 @@ export default {
     ) {
       this.$router.push("/login");
     }
-  },
+  }
 };
 </script>
 <style scoped>
