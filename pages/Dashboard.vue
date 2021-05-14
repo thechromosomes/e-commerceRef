@@ -17,7 +17,7 @@
               v-if="Object.keys(customer).length != 0"
             >
               <div class="customer-head">
-                <h2 class="customer-name">hi, {{ customer.full_name }}!</h2>
+                <!-- <h2 class="customer-name">hi, {{ customer.full_name }}!</h2> -->
                 <p>
                   You can review and edit your account settings and orders here
                 </p>

@@ -1,5 +1,6 @@
 .account-page {
   margin: 100px 0px;
+  padding: 0px 20px;
 }
 .account-page .title {
   font-size: 30px;
@@ -100,6 +101,7 @@
 /* address-page */
 .address-page {
   margin: 100px 0px;
+  padding: 0 20px;
 }
 .address-page .title {
   font-size: 30px;
