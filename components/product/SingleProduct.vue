@@ -77,7 +77,7 @@
               {{ singleProductList.single_prod_data.name.toUpperCase() }}
             </h1>
             <!-- <h2 class="product-short-description">
-              Sweatpants with Mohawk logo
+              {{ singleProductList.single_prod_data.occasion }}
             </h2> -->
             <p class="p-price">
               <span
@@ -171,6 +171,13 @@
                 ></span>
               </div>
             </div>
+            <div class="store-locator-link">
+              <span
+                role="presentation"
+                class="store-locator-pin icon-pin"
+              ></span>
+              <p>In-store pickup</p>
+            </div>
 
             <div class="product_info">
               <div class="content-asset">
@@ -181,12 +188,12 @@
                 >
                   <h3 class="product-desc-title">
                     <span class="promo-title">
-                      <img
+                      <!-- <img
                         alt="curbside-pickup"
                         height="26"
                         src="~/assets/img/car.jpg"
-                      />
-                      <span>CURBSIDE PICKUP IS NOW AVAILABLE! </span>
+                      /> -->
+                      <span>CURBSIDE PICKUP IS NOW AVAILABLE!</span>
                     </span>
                   </h3>
                   <div class="product-expand-block promo-content">

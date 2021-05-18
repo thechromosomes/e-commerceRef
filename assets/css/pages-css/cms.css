@@ -105,3 +105,29 @@
     text-align: center;
   }
 }
+
+/* cms pages css  */
+.cms-pages_content {
+  width: 100%;
+}
+.cms-pages_content .cms-hedding {
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 30px 0px;
+  text-transform: uppercase;
+}
+
+.content h5 {
+  font-weight: 700;
+  margin: 20px 0px;
+  text-transform: uppercase;
+}
+.content {
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+  margin: 10px 0px;
+}

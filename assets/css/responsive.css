@@ -590,7 +590,22 @@
   }
   .wish-list-icon.single .wishlist_blank.add,
   .wish-list-icon.single .wishlist_blank.wishlist-active {
-    margin-top: -20px;
+    margin-top: -10px;
+  }
+  #bb-footer-original .newsletter-social .content-asset .form-box {
+    width: 100%;
+  }
+  .privacy-policy-newsletter {
+    text-align: left;
+  }
+  #bb-footer-original .button-signup-container .button-signup {
+    width: 100%;
+  }
+  .footer-containerp {
+    padding: 10px 0px;
+  }
+  .social-media h4 {
+    margin-top: 10px;
   }
 }
 
@@ -605,6 +620,18 @@
     .nav-item
     .dropdown_menu_level-3 {
     padding: 20px 10px;
+  }
+  .complete-registration {
+    flex-direction: column;
+  }
+  .complete-registration .complete-registration__body {
+    padding: 40px 0;
+  }
+  .footer-container {
+    padding: 10px 0;
+  }
+  .newsletter-social {
+    padding-top: 0;
   }
 }
 @media (max-width: 1010px) {
