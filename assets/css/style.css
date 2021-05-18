@@ -857,15 +857,21 @@ button:hover {
 .footer .footer-wrapper .flex-content .footer-items .footer-link-content {
   transition: all 0.7s ease-out;
   transition-delay: 0.3s;
-  position: absolute;
   padding-left: 0;
   z-index: 1;
   opacity: 0;
   text-align: left;
   overflow: hidden;
   max-height: 0;
-  /* margin-right: -10vw; */
+  margin-right: -10vw;
   position: relative;
+}
+.footer
+  .footer-wrapper
+  .flex-content
+  .footer-items.dropdown-open
+  .footer-link-content:last-child {
+  margin-right: 0vw;
 }
 .footer
   .footer-wrapper
@@ -1986,9 +1992,10 @@ p.p-price span.line-throu {
 #bb-footer-original .newsletter-social [type="radio"]:checked + label,
 #bb-footer-original .newsletter-social [type="radio"]:not(:checked) + label {
   position: relative;
-  padding-left: 28px;
+  padding-left: 40px;
   cursor: pointer;
-  /* line-height: 20px; */
+  line-height: 24px;
+  font-size: 14px;
   display: inline-block;
   color: #fff;
 }
@@ -2082,6 +2089,7 @@ p.p-price span.line-throu {
 .privacy-policy-newsletter {
   font-size: 10px;
   color: #fff;
+  opacity: 0.5;
 }
 #bb-footer-original .more {
   color: #fff;
@@ -2102,7 +2110,7 @@ p.p-price span.line-throu {
   position: relative;
   max-width: 1270px;
   padding: 20px 15px;
-  padding-top: 40px;
+  /* padding-top: 40px; */
   margin: 0 auto;
 }
 .complete-registration {
