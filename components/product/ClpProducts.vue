@@ -70,7 +70,7 @@
                 <ul
                   class="sort-options"
                   :class="[
-                    Object.keys(filter.options).length >= 5 ? 'column' : '',
+                    Object.keys(filter.options).length >= 5 ? 'column' : ''
                   ]"
                 >
                   <li
@@ -87,7 +87,7 @@
                         class="selection-box"
                         :class="
                           list.applied_filters.findIndex(
-                            (x) => x === `${item.code}~${item.value_key}`
+                            x => x === `${item.code}~${item.value_key}`
                           ) >= 0
                             ? 'selected-box'
                             : 'not-selected-box'
@@ -163,598 +163,26 @@
               </div>
             </div>
 
-            <div class="product_lists">
-              <!-- clp 2 left image  -->
-              <div class="clp_page">
-                <div class="row">
-                  <div class="col-md-12 col-lg-6 col-12">
-                    <div class="w-100">
-                      <img
-                        src="@/assets/img/clp_img.jpg"
-                        alt="img"
-                        class="w-100"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    class="col-md-12 col-lg-6 col-12"
-                    v-for="(singleProd, prodIndex) in list.Product_list"
-                    :key="prodIndex"
-                  >
-                    <div class="row">
-                      <div class="col-lg-6 col-md-6 col-6">
-                        <div class="product_list_item">
-                          <div
-                            class="list_slide"
-                            v-if="singleProd.gallery.length > 0"
-                          >
-                            <VueSlickCarousel v-bind="productSetting">
-                              <div
-                                class="item"
-                                v-for="(image, imgIndex) in singleProd.gallery"
-                                :key="imgIndex"
-                              >
-                                <Nuxt-link
-                                  :to="`/product/${singleProd.url_key}`"
-                                >
-                                  <img
-                                    :src="image.image"
-                                    alt="img"
-                                    class="w-100"
-                                  />
-                                </Nuxt-link>
-                              </div>
-                            </VueSlickCarousel>
-                          </div>
-                          <div class="title-body">
-                            <p class="p-price">
-                              <span
-                                v-if="
-                                  singleProd.discount != '' &&
-                                  singleProd.discount > 0
-                                "
-                              >
-                                ₹{{ singleProd.selling_price }}
-                                <span class="line-throu"
-                                  >₹{{ singleProd.price }}</span
-                                >
-                              </span>
-                              <span v-else>₹{{ singleProd.price }}</span>
-                            </p>
-                            <p>{{ singleProd.color }}</p>
-                            <Nuxt-link :to="`/product/${singleProd.url_key}`">{{
-                              singleProd.name
-                            }}</Nuxt-link>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="col-lg-6 col-md-6 col-6"
-                        v-for="(singleProd, prodIndex) in list.Product_list"
-                        :key="prodIndex"
-                      >
-                        <div class="product_list_item">
-                          <div
-                            class="list_slide"
-                            v-if="singleProd.gallery.length > 0"
-                          >
-                            <VueSlickCarousel v-bind="productSetting">
-                              <div
-                                class="item"
-                                v-for="(image, imgIndex) in singleProd.gallery"
-                                :key="imgIndex"
-                              >
-                                <Nuxt-link
-                                  :to="`/product/${singleProd.url_key}`"
-                                >
-                                  <img
-                                    :src="image.image"
-                                    alt="img"
-                                    class="w-100"
-                                  />
-                                </Nuxt-link>
-                              </div>
-                            </VueSlickCarousel>
-                          </div>
-                          <div class="title-body">
-                            <p class="p-price">
-                              <span
-                                v-if="
-                                  singleProd.discount != '' &&
-                                  singleProd.discount > 0
-                                "
-                              >
-                                ₹{{ singleProd.selling_price }}
-                                <span class="line-throu"
-                                  >₹{{ singleProd.price }}</span
-                                >
-                              </span>
-                              <span v-else>₹{{ singleProd.price }}</span>
-                            </p>
-                            <p>{{ singleProd.color }}</p>
-                            <Nuxt-link :to="`/product/${singleProd.url_key}`">{{
-                              singleProd.name
-                            }}</Nuxt-link>
-                          </div>
-                        </div>
-                      </div>
+            <div class="clp_page">
+              <div
+                class="row"
+                v-for="([firstColumn, secondColumn],
+                prodIndex) in preProccessData(list.Product_list)"
+                :key="prodIndex"
+              >
+                <div class="col-md-12 col-lg-6 col-12">
+                  <div class="row">
+                    <div
+                      v-for="(singleProd, index) in firstColumn"
+                      :key="index"
+                      class=" col-lg-6 col-md-6 col-6"
+                    >
+                      <ClpProductItem :singleProd="singleProd" />
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-3 col-md-6 col-6">
-                  <div class="product_list_item">
-                    <div class="list_slide">
-                      <div class="item">
-                        <a href="product_details.html">
-                          <img
-                            src="@/assets/img/p1.jpg"
-                            alt="img"
-                            class="w-100"
-                          />
-                        </a>
-                      </div>
-                      <div class="item">
-                        <a href="product_details.html">
-                          <img
-                            src="@/assets/img/p2.jpg"
-                            alt="img"
-                            class="w-100"
-                          />
-                        </a>
-                      </div>
-                      <div class="item">
-                        <a href="product_details.html"
-                          ><img
-                            src="@/assets/img/p3.jpg"
-                            alt="img"
-                            class="w-100"
-                          />
-                        </a>
-                      </div>
-                      <div class="item">
-                        <a href="product_details.html"
-                          ><img
-                            src="@/assets/img/p4.jpg"
-                            alt="img"
-                            class="w-100"
-                          />
-                        </a>
-                      </div>
-                    </div>
-                    <div class="title-body">
-                      <p>Black</p>
-                      <a href="#">Legging-shorts with logo waistband</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6">
-                  <div class="product_list_item">
-                    <div class="list_slide">
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p1.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p2.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p3.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p4.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                    </div>
-                    <div class="title-body">
-                      <p>Black</p>
-                      <a href="#">Legging-shorts with logo waistband</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6">
-                  <div class="product_list_item">
-                    <div class="list_slide">
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p1.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p2.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p3.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p4.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                    </div>
-                    <div class="title-body">
-                      <p>Black</p>
-                      <a href="#">Legging-shorts with logo waistband</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6">
-                  <div class="product_list_item">
-                    <div class="list_slide">
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p1.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p2.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p3.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                      <div class="item">
-                        <img
-                          src="@/assets/img/p4.jpg"
-                          alt="img"
-                          class="w-100"
-                        />
-                      </div>
-                    </div>
-                    <div class="title-body">
-                      <p>Black</p>
-                      <a href="#">Legging-shorts with logo waistband</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- clp 2 right image  -->
-              <div class="clp_page">
-                <div class="row">
-                  <div class="col-md-12 col-lg-6 col-12">
-                    <div class="row">
-                      <div class="col-lg-6 col-md-6 col-6">
-                        <div class="product_list_item">
-                          <div class="list_slide">
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p1.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p2.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p3.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p4.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                          </div>
-                          <div class="title-body">
-                            <p>Black</p>
-                            <a href="#">Legging-shorts with logo waistband</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-6">
-                        <div class="product_list_item">
-                          <div class="list_slide">
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p1.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p2.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p3.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p4.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                          </div>
-                          <div class="title-body">
-                            <p>Black</p>
-                            <a href="#">Legging-shorts with logo waistband</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-lg-6 col-12">
-                    <div class="w-100">
-                      <img
-                        src="@/assets/img/clp_img.jpg"
-                        alt="img"
-                        class="w-100"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- clp 4  -->
-              <div class="clp_page">
-                <div class="row">
-                  <div class="col-md-12 col-lg-6 col-12">
-                    <div class="row">
-                      <div class="col-lg-6 col-md-6 col-6">
-                        <div class="product_list_item">
-                          <div class="list_slide">
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p1.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p2.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p3.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p4.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                          </div>
-                          <div class="title-body">
-                            <p>Black</p>
-                            <a href="#">Legging-shorts with logo waistband</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-6">
-                        <div class="product_list_item">
-                          <div class="list_slide">
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p1.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p2.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p3.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p4.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                          </div>
-                          <div class="title-body">
-                            <p>Black</p>
-                            <a href="#">Legging-shorts with logo waistband</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-6">
-                        <div class="product_list_item">
-                          <div class="list_slide">
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p1.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p2.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p3.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p4.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                          </div>
-                          <div class="title-body">
-                            <p>Black</p>
-                            <a href="#">Legging-shorts with logo waistband</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-6">
-                        <div class="product_list_item">
-                          <div class="list_slide">
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p1.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html">
-                                <img
-                                  src="@/assets/img/p2.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p3.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                            <div class="item">
-                              <a href="product_details.html"
-                                ><img
-                                  src="@/assets/img/p4.jpg"
-                                  alt="img"
-                                  class="w-100"
-                                />
-                              </a>
-                            </div>
-                          </div>
-                          <div class="title-body">
-                            <p>Black</p>
-                            <a href="#">Legging-shorts with logo waistband</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-lg-6 col-12">
-                    <div class="w-100">
-                      <img
-                        src="@/assets/img/clp-4.jpg"
-                        alt="img"
-                        class="w-100"
-                      />
-                    </div>
-                  </div>
+                <div v-if="!!secondColumn" class="col-md-12 col-lg-6 col-12">
+                  <ClpProductItem :singleProd="secondColumn" />
                 </div>
               </div>
             </div>
@@ -796,8 +224,13 @@
 import VueSlickCarousel from "vue-slick-carousel";
 import { mapState } from "vuex";
 
+import ClpProductItem from "./ClpProductItem";
+
 export default {
-  components: { VueSlickCarousel },
+  components: {
+    VueSlickCarousel,
+    ClpProductItem
+  },
   data() {
     return {
       settings: {
@@ -816,8 +249,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -825,8 +258,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 480,
@@ -834,10 +267,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
+              slidesToShow: 1.5
+            }
+          }
+        ]
       },
 
       productSetting: {
@@ -846,13 +279,13 @@ export default {
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: false,
-        arrows: true,
+        arrows: true
       },
 
       sorting: "default",
       openFiltter: false,
       openSort: false,
-      likeData: [],
+      likeData: []
     };
   },
 
@@ -863,47 +296,60 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.list.meta_description,
+          content: this.list.meta_description
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.list.meta_keyword,
+          content: this.list.meta_keyword
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title",
+          property: "og:title"
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description",
+          property: "og:description"
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url",
-        },
-      ],
+          property: "og:url"
+        }
+      ]
     };
   },
 
   methods: {
+    preProccessData(data) {
+      var newData = [];
+      for (let i = 0; i < Math.ceil(data.length / 5); i++) {
+        var row = data.slice(i * 5, (i + 1) * 5);
+        const newRow = [];
+        newRow.push(row.slice(0, 4));
+        if (row.length > 4) {
+          newRow.push(row[row.length - 1]);
+        }
+        newData.push(newRow);
+      }
+      return newData;
+    },
     async getProductList(page) {
       let pageNumber;
       page != undefined ? (pageNumber = page) : (pageNumber = 1);
       try {
         await this.$store.commit("prepareState", {
           routeParam: this.$route.params.productCategory,
-          pageNo: pageNumber,
+          pageNo: pageNumber
         });
         let {
           service,
           store,
           pass_url_key,
           page,
-          count,
+          count
         } = this.$store.state.list;
 
         let form = {};
@@ -934,13 +380,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
           await this.$store.commit("updateState", {
             error: null,
-            data: response,
+            data: response
           });
           // // google tag manager
           // this.gtm_product_impressions = [];
@@ -987,8 +433,7 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
@@ -1009,15 +454,15 @@ export default {
         query: {
           ...this.$route.query,
           sort: event.code,
-          sort_dir: event.dir,
-        },
+          sort_dir: event.dir
+        }
       });
     },
 
     async loadMore() {
       await this.$store.commit("universalListMutate", {
         data: Number(this.list.page) + 1,
-        changeState: "page",
+        changeState: "page"
       });
       this.getProductList(this.list.page);
     },
@@ -1030,10 +475,10 @@ export default {
       if (Object.keys(wishList).length != 0) {
         const groupResult = wishList.group
           .split(",")
-          .filter((word) => word == groupId);
+          .filter(word => word == groupId);
         const productResult = wishList.product
           .split(",")
-          .filter((word) => word == ProductId);
+          .filter(word => word == ProductId);
 
         if (groupResult.length > 0 && productResult.length > 0) {
           return "wishlist-active";
@@ -1056,7 +501,7 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id,
+          group_id: item.group_id
         };
 
         if (data === "add") {
@@ -1064,21 +509,21 @@ export default {
             method: "post",
             url: `/wishlist/add-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
         } else {
           var response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/wishlist/remove-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
         }
 
         if (response.success) {
           this.$toast.open(response.message);
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data,
+            payload: response.data
           });
 
           this.$gtm.push({
@@ -1094,11 +539,11 @@ export default {
                     id: item.sku,
                     price: item.selling_price,
                     category: item.category,
-                    position: 1,
-                  },
-                ],
-              },
-            },
+                    position: 1
+                  }
+                ]
+              }
+            }
           });
         } else {
           throw "no response from api";
@@ -1106,7 +551,7 @@ export default {
       } catch (error) {
         this.$globalError(`error from add addRemoveWishList >>>> ${error}`);
       }
-    },
+    }
   },
 
   computed: {
@@ -1129,7 +574,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
+    }
   },
 
   async fetch() {
@@ -1143,8 +588,8 @@ export default {
         token: this.$store.state.cartAjax.customer_token,
         params: {
           service: "like",
-          store: 1,
-        },
+          store: 1
+        }
       });
       if (like.response) {
         this.likeData = like.result.likes;
@@ -1155,17 +600,17 @@ export default {
   },
 
   watch: {
-    "$route.query": function () {
+    "$route.query": function() {
       this.getProductList();
     },
 
     "$store.state.list.sortingData": {
       deep: true,
-      handler: function () {
+      handler: function() {
         // this.sorting.code = this.list.sortingData.code;
         // this.sorting.dir = this.list.sortingData.dir;
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>
