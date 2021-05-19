@@ -49,7 +49,7 @@
           </div>
           <div class="refinements">
             <div
-              class="card refinement refinement-category"
+              class="card refinement refinement-category "
               v-for="(filter, filterIndex) in list.filters"
               :key="filterIndex"
             >
@@ -67,18 +67,13 @@
                 ></span>
               </h2>
               <div class="hidden_filtter">
-                <ul
-                  class="sort-options"
-                  :class="[
-                    Object.keys(filter.options).length >= 5 ? 'column' : '',
-                  ]"
-                >
+                <ul class="sort-options">
                   <li
                     class="sort-option best-matches"
                     v-for="(item, index) in filter.options"
                     :key="index"
                   >
-                    <a
+                    <span
                       @click.prevent="
                         $store.commit('updateFilterArray', { item })
                       "
@@ -94,7 +89,7 @@
                         "
                         >{{ item.value }}</a
                       >
-                    </a>
+                    </span>
                   </li>
                 </ul>
               </div>

@@ -26,7 +26,8 @@ h6 {
   font-family: "Roboto Condensed", sans-serif;
 }
 body {
-  font-size: 0.875rem;
+  font-size: 14px;
+  font-family: Roboto, sans-serif;
 }
 button {
   border: none;
@@ -300,6 +301,7 @@ button:hover {
   font-weight: 700;
   transition: all 0.5s;
   text-decoration: none;
+  font-family: Roboto, sans-serif;
 }
 
 .slide-img .content-text .button:hover {
@@ -350,6 +352,7 @@ button:hover {
   letter-spacing: 0.05rem;
   font-weight: 700;
   color: #000;
+  text-transform: uppercase;
 }
 .product-short-description {
   font-size: 0.875rem;
@@ -669,11 +672,11 @@ button:hover {
   font-size: 14px;
   line-height: 1.9;
   margin: 20px 0;
-  font-family: roboto condensed, sans-serif;
+  font-family: Roboto, sans-serif;
   letter-spacing: 1px;
 }
 .collections_slide .slide_content .item .img_content a {
-  font-family: roboto condensed, sans-serif;
+  font-family: Roboto, sans-serif;
   font-size: 14px;
   color: #000;
   margin: 0px 10px 10px 0px;
@@ -882,6 +885,7 @@ button:hover {
   white-space: nowrap;
   list-style-type: none;
   padding: 15px 0;
+  font-family: Roboto, sans-serif;
 }
 .footer
   .footer-wrapper
@@ -911,6 +915,7 @@ button:hover {
   margin: 0px;
   font-size: 12px;
   margin: 5px 0px;
+  font-family: Roboto, sans-serif;
 }
 
 .icon-close-black {
@@ -992,7 +997,25 @@ button:hover {
 .product-care-instructions.expand-close ul {
   display: none;
 }
-
+.product-care-instructions.care ul {
+  margin-left: 20px;
+}
+.product-care-instructions.care ul li {
+  margin: 10px 0px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+.product-care-instructions.care ul li::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  width: 5px;
+  height: 5px;
+  background: black;
+  top: 8px;
+  transform: rotate(45deg);
+}
 .product-description-and-detail {
   line-height: 26px;
   letter-spacing: 0.5px;
@@ -1065,7 +1088,7 @@ button:hover {
 
 .refinements-holder .filter-header {
   /* float: left; */
-  font-size: 0.75rem;
+  font-size: 14px;
   line-height: normal;
   text-transform: uppercase;
   margin: 9px 0 0;
@@ -1075,25 +1098,29 @@ button:hover {
 }
 .refinements {
   max-width: 100%;
+  width: 80%;
   display: flex;
-  -ms-flex-align: start;
   align-items: flex-start;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .refinement.card {
+  display: unset;
+  width: calc((100% / 6) - 20px);
+  margin: 5px 10px;
+  max-height: 45px;
+  max-width: 156px;
   border: 0;
   padding: 0;
-  /* transition: max-height .5s; */
+  transition: max-height 0.5s;
   background-color: #fff;
-  width: 200px;
+  position: static;
+  overflow: hidden;
 }
-.refinement.card {
-  margin: 5px 10px;
-  /* max-height: 45px; */
-  max-width: 156px;
+.refinement.card:hover {
+  max-height: none;
+  overflow: visible;
 }
 .refinement.card .card-header {
   background-color: #fff;
@@ -1102,7 +1129,7 @@ button:hover {
   font-weight: 400;
   margin: 0;
   font-family: Roboto, sans-serif;
-  font-size: 0.875rem;
+  font-size: 14px;
   white-space: nowrap;
   animation-direction: normal;
   animation-duration: 0.5s;
@@ -1110,41 +1137,38 @@ button:hover {
   animation-iteration-count: 1;
   display: flex;
   cursor: pointer;
-  align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
   line-height: 20px;
-  border-radius: 0px;
-  width: 100%;
+  align-items: center;
 }
 
 .refinement.card .hidden_filtter {
-  position: absolute;
-  background: #ffff;
-  top: 100%;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 99;
-  height: 0px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 0;
   transition: max-height 0.5s;
+  width: 100vw;
+  max-height: none !important;
+  position: relative;
 }
 .refinement.card .hidden_filtter ul {
-  padding: 0px 10px;
+  display: inline-flex;
+  flex-flow: column wrap;
+  max-height: 200px;
+  margin: 5px 0px 0px 0px;
+  padding: 0;
 }
-.refinement.card .hidden_filtter ul.column {
-  column-count: 2;
-  column-gap: 2px;
-}
+
 .refinement.card .hidden_filtter ul li {
-  padding: 7px 0;
+  padding: 5px 10px;
+  background: #fff;
+  display: block;
+  width: inherit;
 }
 
 .refinement.card .selection-box {
   color: #000;
   position: relative;
-  /* line-height: 35px; */
   padding-left: 18px;
   cursor: pointer;
 }
@@ -1319,6 +1343,7 @@ p.p-price span.line-throu {
   width: 100%;
   color: #000;
   margin-top: -2px;
+  font-family: Roboto, sans-serif;
 }
 .product_list_item .slick-arrow {
   position: absolute;

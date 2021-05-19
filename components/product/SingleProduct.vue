@@ -74,7 +74,7 @@
         <div class="col-md-12 col-lg-4 col-12">
           <div class="product-content">
             <h1 class="product-title">
-              {{ singleProductList.single_prod_data.name.toUpperCase() }}
+              {{ singleProductList.single_prod_data.name }}
             </h1>
             <!-- <h2 class="product-short-description">
               {{ singleProductList.single_prod_data.occasion }}
@@ -184,9 +184,11 @@
                 <div
                   class="product-additional-promo-asset"
                   :class="[pickup ? 'expand-open' : 'expand-close']"
-                  @click="toggleDropDown('pickup')"
                 >
-                  <h3 class="product-desc-title">
+                  <h3
+                    class="product-desc-title"
+                    @click="toggleDropDown('pickup')"
+                  >
                     <span class="promo-title">
                       <!-- <img
                         alt="curbside-pickup"
@@ -209,11 +211,12 @@
             </div>
             <div class="product-collapsible-sections">
               <div
-                class="product-care-instructions"
+                class="product-care-instructions care"
                 :class="[CareInstructions ? 'expand-open' : 'expand-close']"
-                @click="toggleDropDown('CareInstructions')"
               >
-                <h2>Care instructions <span class="title"></span></h2>
+                <h2 @click="toggleDropDown('CareInstructions')">
+                  Care instructions <span class="title"></span>
+                </h2>
                 <ul>
                   <li
                     v-for="(desc, descKey) in renderDescription"
@@ -356,8 +359,8 @@ export default {
         material,
         color,
         occasion,
-        pattern,
-        sleeve,
+        // pattern,
+        // sleeve,
         warranty
       } = this.singleProductList.single_prod_data;
 
@@ -366,8 +369,8 @@ export default {
         material,
         color,
         occasion,
-        pattern,
-        sleeve,
+        // pattern,
+        // sleeve,
         warranty
       };
 
