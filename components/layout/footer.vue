@@ -60,11 +60,11 @@
                 ><span class="complete-registration__text"
                   >Complete your registration, discover our loyalty program and
                   get all D:CODE benefits</span
-                ><a
+                ><NuxtLink
                   id="bb_dcode_signup"
-                  href="/signup"
+                  to="/login"
                   class="complete-registration__cta social-header"
-                  >Become a D:CODE member</a
+                  >Become a D:CODE member</NuxtLink
                 >
               </div>
             </div>
@@ -77,17 +77,17 @@
               <div class="social-icons">
                 <a target="_blank" href="#" class="icon-instagram">Instagram</a>
               </div>
-              <div class=" social-icons">
+              <div class="social-icons">
                 <a target="_blank" href="#" class="icon-facebook-black"
                   >Facebook</a
                 >
               </div>
-              <div class=" social-icons">
+              <div class="social-icons">
                 <a target="_blank" href="#" class="icon-twitter-black-sm"
                   >Twitter</a
                 >
               </div>
-              <div class=" social-icons">
+              <div class="social-icons">
                 <a target="_blank" href="#" class="icon-youtube">Youtube</a>
               </div>
             </div>
@@ -330,8 +330,8 @@ export default {
       help: false,
       cooPolicyOpen: false,
       worldOpen: false,
-      langOpen: false
+      langOpen: false,
     };
-  }
+  },
 };
 </script>

@@ -219,7 +219,7 @@
                     v-for="(desc, descKey) in renderDescription"
                     :key="descKey"
                   >
-                    {{ descKey.toUpperCase() }} : {{ desc }}
+                    {{ descKey }} : {{ desc }}
                   </li>
                   <li
                     v-for="(details, i) in singleProductList.single_prod_data
