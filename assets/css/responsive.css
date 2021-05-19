@@ -307,6 +307,7 @@
     padding: 0;
     text-align: right;
     font-size: 12px;
+    font-family: Roboto, sans-serif;
   }
   .search-banner-title-mobile {
     -ms-flex: 2.4;
@@ -468,7 +469,7 @@
     margin: 0px;
     display: block;
     width: 100%;
-    background: gray;
+    /* background: gray; */
     position: static;
     max-width: 100%;
   }
