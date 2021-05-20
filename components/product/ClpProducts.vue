@@ -181,7 +181,7 @@
                     </div>
                   </div>
                 </div>
-                <div v-if="!!secondColumn" class="col-md-12 col-lg-6 col-12">
+                <div v-if="secondColumn" class="col-md-12 col-lg-6 col-12">
                   <ClpProductItem :singleProd="secondColumn" />
                 </div>
               </div>

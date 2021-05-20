@@ -25,7 +25,7 @@
             class="back-to-container"
             v-if="
               singleProductList.breadcrumb &&
-                singleProductList.breadcrumb.length > 0
+              singleProductList.breadcrumb.length > 0
             "
           >
             <span
@@ -35,7 +35,7 @@
               <Nuxt-link
                 v-if="
                   indexBrd != 0 &&
-                    indexBrd != singleProductList.breadcrumb.length - 1
+                  indexBrd != singleProductList.breadcrumb.length - 1
                 "
                 :to="`/collections/${itemBrd.url_key}`"
                 >{{ itemBrd.name }}
@@ -83,7 +83,7 @@
               <span
                 v-if="
                   singleProductList.single_prod_data.discount != '' &&
-                    singleProductList.single_prod_data.discount > 0
+                  singleProductList.single_prod_data.discount > 0
                 "
               >
                 ₹{{ singleProductList.single_prod_data.selling_price }}
@@ -118,7 +118,7 @@
                         :class="[
                           $route.params.productDetail == color.url_key
                             ? 'active'
-                            : ''
+                            : '',
                         ]"
                     /></NuxtLink>
                   </li>
@@ -176,10 +176,10 @@
                 role="presentation"
                 class="store-locator-pin icon-pin"
               ></span>
-              <p>In-store pickup</p>
+              <NuxtLink to="/storelocater">In-store pickup</NuxtLink>
             </div>
 
-            <div class="product_info">
+            <!-- <div class="product_info">
               <div class="content-asset">
                 <div
                   class="product-additional-promo-asset"
@@ -190,11 +190,6 @@
                     @click="toggleDropDown('pickup')"
                   >
                     <span class="promo-title">
-                      <!-- <img
-                        alt="curbside-pickup"
-                        height="26"
-                        src="~/assets/img/car.jpg"
-                      /> -->
                       <span>CURBSIDE PICKUP IS NOW AVAILABLE!</span>
                     </span>
                   </h3>
@@ -208,21 +203,24 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="product-collapsible-sections">
               <div
                 class="product-care-instructions care"
                 :class="[CareInstructions ? 'expand-open' : 'expand-close']"
               >
                 <h2 @click="toggleDropDown('CareInstructions')">
-                  Care instructions <span class="title"></span>
+                  Discription <span class="title"></span>
                 </h2>
                 <ul>
                   <li
                     v-for="(desc, descKey) in renderDescription"
                     :key="descKey"
                   >
-                    {{ descKey }} : {{ desc }}
+                    <span style="text-transform: capitalize">{{
+                      descKey
+                    }}</span>
+                    : {{ desc }}
                   </li>
                   <li
                     v-for="(details, i) in singleProductList.single_prod_data
@@ -308,8 +306,8 @@ export default {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 2000
-      }
+        autoplaySpeed: 2000,
+      },
     };
   },
 
@@ -320,34 +318,34 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.singleProductList.single_prod_data.meta_description
+          content: this.singleProductList.single_prod_data.meta_description,
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.singleProductList.single_prod_data.meta_keyword
+          content: this.singleProductList.single_prod_data.meta_keyword,
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title"
+          property: "og:title",
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description"
+          property: "og:description",
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url"
+          property: "og:url",
         },
         {
           hid: "og:image",
           content: this.image,
-          property: "og:image"
-        }
-      ]
+          property: "og:image",
+        },
+      ],
     };
   },
 
@@ -361,7 +359,7 @@ export default {
         occasion,
         // pattern,
         // sleeve,
-        warranty
+        warranty,
       } = this.singleProductList.single_prod_data;
 
       let obj = {
@@ -371,7 +369,7 @@ export default {
         occasion,
         // pattern,
         // sleeve,
-        warranty
+        warranty,
       };
 
       let finaObj = Object.entries(obj).reduce(
@@ -397,7 +395,7 @@ export default {
     },
     image() {
       return this.singleProductList.single_prod_data.image;
-    }
+    },
   },
 
   methods: {
@@ -424,7 +422,7 @@ export default {
     async getProductDetail() {
       try {
         await this.$store.commit("prepareStateForSingleProd", {
-          routeParam: this.$route.params.productDetail
+          routeParam: this.$route.params.productDetail,
         });
         let { service, store, url_key } = this.$store.state.singleProductList;
         var form = {};
@@ -438,13 +436,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
 
         if (response) {
           this.$store.commit("updateSingleProdState", {
             error: null,
-            data: response
+            data: response,
           });
         } else {
           throw "no response from api";
@@ -453,7 +451,8 @@ export default {
         this.$globalError(`error from getProductDetail >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateSingleProdState", {
-            error: "Oops there seems to be some Network issue, please try again"
+            error:
+              "Oops there seems to be some Network issue, please try again",
           });
         }
       }
@@ -472,7 +471,7 @@ export default {
           var tokenholder;
           var product_options_json = JSON.stringify({
             size: this.selectedSizeAttr.configrable_atribute_value,
-            color: this.singleProductList.single_prod_data.color
+            color: this.singleProductList.single_prod_data.color,
           });
           form.product_id = this.selectedSizeAttr.id_product;
           form.product_parent_id = this.singleProductList.single_prod_data.id_product;
@@ -517,13 +516,13 @@ export default {
             method: "post",
             url: urlHolder,
             params: form,
-            token: tokenholder
+            token: tokenholder,
           });
           if (response) {
             this.$store.commit("cartAjax/updateCartDetail", {
               error: null,
               vm: this,
-              data: response
+              data: response,
             });
 
             // google tag manager
@@ -562,7 +561,7 @@ export default {
           if (error.message === "Network Error") {
             this.$store.commit("updateSingleProdState", {
               error:
-                "Oops there seems to be some Network issue, please try again"
+                "Oops there seems to be some Network issue, please try again",
             });
           }
         }
@@ -577,10 +576,10 @@ export default {
       if (Object.keys(wishList).length != 0) {
         const groupResult = wishList.group
           .split(",")
-          .filter(word => word == groupId);
+          .filter((word) => word == groupId);
         const productResult = wishList.product
           .split(",")
-          .filter(word => word == ProductId);
+          .filter((word) => word == ProductId);
 
         if (groupResult.length > 0 && productResult.length > 0) {
           return "wishlist-active";
@@ -603,7 +602,7 @@ export default {
           product_id: this.singleProductList.single_prod_data.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: this.singleProductList.single_prod_data.group_id
+          group_id: this.singleProductList.single_prod_data.group_id,
         };
 
         if (data === "add") {
@@ -611,21 +610,21 @@ export default {
             method: "post",
             url: `/wishlist/add-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
         } else {
           var response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/wishlist/remove-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
         }
 
         if (response.success) {
           this.$toast.open(response.message);
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data
+            payload: response.data,
           });
           // this.$gtm.push({
           //   event: [data == "add" ? "addToWishlist" : "removeFromWishlist"],
@@ -653,7 +652,7 @@ export default {
       } catch (error) {
         this.$globalError(`error from add addRemoveWishList >>>> ${error}`);
       }
-    }
+    },
   },
 
   async fetch() {
@@ -670,28 +669,28 @@ export default {
   },
 
   watch: {
-    "$store.state.cartAjax.cart_page_message": function() {
+    "$store.state.cartAjax.cart_page_message": function () {
       if (
         this.$store.state.cartAjax.cart_page_message != "" &&
         this.$store.state.cartAjax.cart_page_message != null
       ) {
         this.$toast.open(this.$store.state.cartAjax.cart_page_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
     },
-    "$store.state.cartAjax.cart_page_erro_page": function() {
+    "$store.state.cartAjax.cart_page_erro_page": function () {
       if (
         this.$store.state.cartAjax.cart_page_error_message != "" &&
         this.$store.state.cartAjax.cart_page_error_message != null
       ) {
         this.$toast.error(this.$store.state.cartAjax.cart_page_error_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
