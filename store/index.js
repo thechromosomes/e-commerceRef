@@ -119,7 +119,10 @@ export const actions = {
 
       let bannerSliderData = await this.$axios(authOpt);
 
-      if (bannerSliderData.data.response.success == 1) {
+      if (
+        bannerSliderData.data.response &&
+        bannerSliderData.data.response.success == 1
+      ) {
         context.commit("updateBannerSlider", {
           bannerSlide: bannerSliderData.data.result.banner,
         });
@@ -127,7 +130,7 @@ export const actions = {
         throw "encountered error while fetching best seller data";
       }
     } catch (error) {
-      console.log("error from the get best seller Store action >>", error);
+      console.log("error from the get getBannerSlider Store action >>", error);
     }
   },
 };

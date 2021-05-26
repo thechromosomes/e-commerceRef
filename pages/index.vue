@@ -7,19 +7,25 @@
 
     <div class="collections_slide">
       <div class="slide_content" v-if="bannerSlide.length > 0">
-        <VueSlickCarousel ref="slick" v-bind="settings2">
-          <div class="item" v-for="(item, index) in bannerSlide" :key="index">
-            <img
-              :src="item.desktop_image"
-              alt="img"
-              class="desktop_only w-100"
-            />
-            <img :src="item.mobile_image" alt="img" class="mobile_only w-100" />
-            <div class="img_content">
-              <div class="" v-html="item.description"></div>
+        <client-only>
+          <VueSlickCarousel ref="slick" v-bind="settings2">
+            <div class="item" v-for="(item, index) in bannerSlide" :key="index">
+              <img
+                :src="item.desktop_image"
+                alt="img"
+                class="desktop_only w-100"
+              />
+              <img
+                :src="item.mobile_image"
+                alt="img"
+                class="mobile_only w-100"
+              />
+              <div class="img_content">
+                <div class="" v-html="item.description"></div>
+              </div>
             </div>
-          </div>
-        </VueSlickCarousel>
+          </VueSlickCarousel>
+        </client-only>
       </div>
     </div>
 
@@ -28,19 +34,21 @@
         <div class="content_new_in">
           <h2 class="swiper-header">NEW IN</h2>
           <div class="slide_new_in" v-if="is_new.length > 0">
-            <VueSlickCarousel ref="slick" v-bind="settings">
-              <div class="item" v-for="(item, index) in is_new" :key="index">
-                <NuxtLink :to="`product/${item.url_key}`"
-                  ><img :src="item.image" alt="img" class="w-100"
-                /></NuxtLink>
-                <div class="tile-body">
-                  <p>{{ item.color }}</p>
-                  <NuxtLink :to="`product/${item.url_key}`">
-                    {{ item.name }}
-                  </NuxtLink>
+            <client-only>
+              <VueSlickCarousel ref="slick" v-bind="settings">
+                <div class="item" v-for="(item, index) in is_new" :key="index">
+                  <NuxtLink :to="`product/${item.url_key}`"
+                    ><img :src="item.image" alt="img" class="w-100"
+                  /></NuxtLink>
+                  <div class="tile-body">
+                    <p>{{ item.color }}</p>
+                    <NuxtLink :to="`product/${item.url_key}`">
+                      {{ item.name }}
+                    </NuxtLink>
+                  </div>
                 </div>
-              </div>
-            </VueSlickCarousel>
+              </VueSlickCarousel>
+            </client-only>
           </div>
         </div>
       </div>
@@ -75,8 +83,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -84,8 +92,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -93,10 +101,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
+              slidesToShow: 1,
+            },
+          },
+        ],
       },
       settings2: {
         focusOnSelect: true,
@@ -114,29 +122,29 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1
-            }
+              slidesToScroll: 1,
+            },
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      }
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      },
     };
   },
   // head() {
   //   return {
-  //     title: this.homePageData.meta_title,
+  //     title: this.title,
   //     meta: [
   //       {
-  //         hid: this.homePageData.meta_description,
-  //         name: this.homePageData.meta_description,
-  //         content: this.homePageData.meta_description,
+  //         hid: this.description,
+  //         name: this.description,
+  //         content: this.description,
   //       },
   //       {
   //         hid: "og:title",
@@ -165,17 +173,17 @@ export default {
       if (this.homePageData.meta_title != "") {
         return this.homePageData.meta_title;
       }
-      return "STEVE MADDEN ALL PRODUCT";
+      return "DIESEL ALL PRODUCT";
     },
     description() {
       if (this.homePageData.meta_description !== "") {
         return this.homePageData.meta_description;
       }
-      return "STEVE MADDEN";
+      return "DIESEL";
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    }
+    },
   },
 };
 </script>

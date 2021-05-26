@@ -178,39 +178,13 @@
               ></span>
               <NuxtLink to="/storelocater">In-store pickup</NuxtLink>
             </div>
-
-            <!-- <div class="product_info">
-              <div class="content-asset">
-                <div
-                  class="product-additional-promo-asset"
-                  :class="[pickup ? 'expand-open' : 'expand-close']"
-                >
-                  <h3
-                    class="product-desc-title"
-                    @click="toggleDropDown('pickup')"
-                  >
-                    <span class="promo-title">
-                      <span>CURBSIDE PICKUP IS NOW AVAILABLE!</span>
-                    </span>
-                  </h3>
-                  <div class="product-expand-block promo-content">
-                    <span
-                      >Complete your pickup in store order. Wait for the
-                      confirmation email that your order is ready, drive up and
-                      once at your local store call to have someone from our
-                      staff bring your Diesel order straight to you.
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div> -->
             <div class="product-collapsible-sections">
               <div
                 class="product-care-instructions care"
                 :class="[CareInstructions ? 'expand-open' : 'expand-close']"
               >
                 <h2 @click="toggleDropDown('CareInstructions')">
-                  Discription <span class="title"></span>
+                  Description <span class="title"></span>
                 </h2>
                 <ul>
                   <li

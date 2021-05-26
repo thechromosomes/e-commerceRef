@@ -2,7 +2,6 @@
 
 export default {
   head: {
-    titleTemplate: "%s  Diesel",
     title: "Diesel Online Store: jeans, clothing, shoes, bags and watches.",
     meta: [
       { charset: "utf-8" },
@@ -14,9 +13,9 @@ export default {
           "Diesel Online Store: jeans, clothing, shoes, bags and watches",
       },
       {
-        hid: "og:Steve Madden",
-        property: "og:Steve Madden",
-        content: "Steve Madden",
+        hid: "og:Diesel",
+        property: "og:Diesel",
+        content: "Diesel",
       },
       {
         hid: "og:image",
