@@ -8,7 +8,7 @@ export default async (context) => {
 
     let cmsData = await context.store.dispatch("pimAjax", {
       method: "get",
-      url: `pimresponse.php`,
+      url: `/pimresponse.php`,
       params: form,
     });
     context.store.commit("setCmsData", cmsData);
@@ -19,7 +19,7 @@ export default async (context) => {
     header.store = 1;
     let headerData = await context.store.dispatch("pimAjax", {
       method: "get",
-      url: `pimresponse.php`,
+      url: `/pimresponse.php`,
       params: header,
     });
     if (headerData.result.length > 0 && headerData.response.success == 1) {
@@ -44,7 +44,7 @@ export default async (context) => {
     bestSellerForm.store = 1;
     context.store.dispatch("getBestSeller", {
       method: "get",
-      url: `pimresponse.php`,
+      url: `/pimresponse.php`,
       params: bestSellerForm,
     });
   } catch (error) {
