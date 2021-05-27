@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="footer-container" id="bb-footer-original">
+    <!-- <div class="footer-container" id="bb-footer-original">
       <div class="row newsletter-social">
         <div class="col-lg-8 newsletter bbMarginAuto">
           <div class="content-asset text-center">
@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="footer-container" id="bb-footer-clone">
       <div class="row newsletter-social">
@@ -330,8 +330,9 @@ export default {
       help: false,
       cooPolicyOpen: false,
       worldOpen: false,
-      langOpen: false,
+      langOpen: false
     };
   },
+  methods: {}
 };
 </script>

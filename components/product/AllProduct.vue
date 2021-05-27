@@ -28,8 +28,107 @@
             <h1 class="search-banner-title search-black">
               {{ list.pageHead.toUpperCase() }}
             </h1>
+
+            <span
+              class="hiden-arrow"
+              @click="titleContent = true"
+              :class="titleContent ? 'hide' : ''"
+            ></span>
+            <div class="hidden-text " v-if="titleContent">
+              <p>
+                Whether you want the vintage feel of well-worn indigo or sleek
+                black jeans that work from day to night, there's a style for
+                you. The range has been expertly designed and crafted for a full
+                range of fits from skin-tight skinnies to relaxed, boyfriend
+                cuts.
+              </p>
+            </div>
           </div>
         </div>
+        <!-- visual-filters -->
+        <div class="visual-filters">
+          <div class="visual-filter-texts ">
+            <h6>SHOP BY FIT</h6>
+          </div>
+          <div class="visual-filters-container">
+            <div class="category-filter">
+              <span class="active-arrow-colse"></span>
+              <div class="item">
+                <div class="filter-image">
+                  <img
+                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <div class="category-filter-title">
+                  <a href="#">SKINNY</a>
+                </div>
+              </div>
+            </div>
+            <div class="category-filter">
+              <span class="active-arrow-colse"></span>
+              <div class="item">
+                <div class="filter-image">
+                  <img
+                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <div class="category-filter-title">
+                  <a href="#">SKINNY</a>
+                </div>
+              </div>
+            </div>
+            <div class="category-filter">
+              <span class="active-arrow-colse"></span>
+              <div class="item">
+                <div class="filter-image">
+                  <img
+                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <div class="category-filter-title">
+                  <a href="#">SKINNY</a>
+                </div>
+              </div>
+            </div>
+            <div class="category-filter">
+              <span class="active-arrow-colse"></span>
+              <div class="item">
+                <div class="filter-image">
+                  <img
+                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <div class="category-filter-title">
+                  <a href="#">SKINNY</a>
+                </div>
+              </div>
+            </div>
+            <div class="category-filter">
+              <span class="active-arrow-colse"></span>
+              <div class="item">
+                <div class="filter-image">
+                  <img
+                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <div class="category-filter-title">
+                  <a href="#">SKINNY</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- visual-filters end -->
       </div>
     </div>
     <!-- desktop_only class add  -->
@@ -82,7 +181,7 @@
                         class="selection-box"
                         :class="
                           list.applied_filters.findIndex(
-                            (x) => x === `${item.code}~${item.value_key}`
+                            x => x === `${item.code}~${item.value_key}`
                           ) >= 0
                             ? 'selected-box'
                             : 'not-selected-box'
@@ -199,6 +298,9 @@
                         "
                       ></span>
                     </div>
+                    <div class="offers">
+                      <span>{{ singleProd.promotional_tags }}</span>
+                    </div>
                     <div
                       class="list_slide"
                       v-if="singleProd.gallery.length > 0"
@@ -242,7 +344,7 @@
               class="no_products text-center"
               v-if="
                 list.Product_list.length == 0 &&
-                $store.state.pageLoader == false
+                  $store.state.pageLoader == false
               "
             >
               <h1>Sorry !</h1>
@@ -270,7 +372,7 @@
                 class="button button-load-more js_button-load-more pointer"
                 v-show="
                   list.totalProduct > list.Product_list.length &&
-                  list.Product_list.length != 0
+                    list.Product_list.length != 0
                 "
                 @click="loadMore()"
               >
@@ -306,6 +408,13 @@
         </div>
       </div>
     </div>
+    <button
+      class="back-to-top-box enabled"
+      v-show="scrollPosition > 50"
+      @click="scrollToTop()"
+    >
+      <i class="icon-arrow-white-up back-to-top-arrow"></i>
+    </button>
   </div>
 </template>
 
@@ -317,6 +426,8 @@ export default {
   components: { VueSlickCarousel },
   data() {
     return {
+      titleContent: false,
+      scrollPosition: "",
       settings: {
         focusOnSelect: true,
         infinite: true,
@@ -333,8 +444,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -342,8 +453,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 480,
@@ -351,10 +462,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
+              slidesToShow: 1.5
+            }
+          }
+        ]
       },
 
       productSetting: {
@@ -363,13 +474,13 @@ export default {
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: false,
-        arrows: true,
+        arrows: true
       },
 
       sorting: "default",
       openFiltter: false,
       openSort: false,
-      likeData: [],
+      likeData: []
     };
   },
 
@@ -380,29 +491,29 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.list.meta_description,
+          content: this.list.meta_description
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.list.meta_keyword,
+          content: this.list.meta_keyword
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title",
+          property: "og:title"
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description",
+          property: "og:description"
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url",
-        },
-      ],
+          property: "og:url"
+        }
+      ]
     };
   },
 
@@ -413,14 +524,14 @@ export default {
       try {
         await this.$store.commit("prepareState", {
           routeParam: this.$route.params.productCategory,
-          pageNo: pageNumber,
+          pageNo: pageNumber
         });
         let {
           service,
           store,
           pass_url_key,
           page,
-          count,
+          count
         } = this.$store.state.list;
 
         let form = {};
@@ -451,13 +562,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
           await this.$store.commit("updateState", {
             error: null,
-            data: response,
+            data: response
           });
           // // google tag manager
           // this.gtm_product_impressions = [];
@@ -504,8 +615,7 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
@@ -526,15 +636,15 @@ export default {
         query: {
           ...this.$route.query,
           sort: event.code,
-          sort_dir: event.dir,
-        },
+          sort_dir: event.dir
+        }
       });
     },
 
     async loadMore() {
       await this.$store.commit("universalListMutate", {
         data: Number(this.list.page) + 1,
-        changeState: "page",
+        changeState: "page"
       });
       this.getProductList(this.list.page);
     },
@@ -547,10 +657,10 @@ export default {
       if (Object.keys(wishList).length != 0) {
         const groupResult = wishList.group
           .split(",")
-          .filter((word) => word == groupId);
+          .filter(word => word == groupId);
         const productResult = wishList.product
           .split(",")
-          .filter((word) => word == ProductId);
+          .filter(word => word == ProductId);
 
         if (groupResult.length > 0 && productResult.length > 0) {
           return "wishlist-active";
@@ -573,7 +683,7 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id,
+          group_id: item.group_id
         };
 
         if (data === "add") {
@@ -581,21 +691,21 @@ export default {
             method: "post",
             url: `/wishlist/add-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
         } else {
           var response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/wishlist/remove-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
         }
 
         if (response.success) {
           this.$toast.open(response.message);
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data,
+            payload: response.data
           });
 
           this.$gtm.push({
@@ -611,11 +721,11 @@ export default {
                     id: item.sku,
                     price: item.selling_price,
                     category: item.category,
-                    position: 1,
-                  },
-                ],
-              },
-            },
+                    position: 1
+                  }
+                ]
+              }
+            }
           });
         } else {
           throw "no response from api";
@@ -624,6 +734,29 @@ export default {
         this.$globalError(`error from add addRemoveWishList >>>> ${error}`);
       }
     },
+    async updatePage() {
+      // var loader_el = document.querySelector(".product_loader");
+      this.scrollPosition = window.scrollY;
+      // if (loader_el) {
+      //   var loader_position = loader_el.offsetTop;
+      // }
+      // if (window.scrollY >= loader_position - 1000) {
+      //   await this.$store.commit("universalListMutate", {
+      //     data: Number(this.list.page) + 1,
+      //     changeState: "page",
+      //   });
+      //   if (
+      //     this.list.page <= this.list.total_page &&
+      //     !this.list.product_loader
+      //   ) {
+      //     this.getProductList(this.list.page);
+      //   }
+      // }
+    },
+    // scroll to top
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   },
 
   computed: {
@@ -646,7 +779,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
+    }
   },
 
   async fetch() {
@@ -660,8 +793,8 @@ export default {
         token: this.$store.state.cartAjax.customer_token,
         params: {
           service: "like",
-          store: 1,
-        },
+          store: 1
+        }
       });
       if (like.response) {
         this.likeData = like.result.likes;
@@ -670,19 +803,25 @@ export default {
       this.$globalError(`error from the all product page ${error}`);
     }
   },
-
+  mounted() {
+    // add window event listner for lazy loading products
+    window.addEventListener("scroll", this.updatePage);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.updatePage);
+  },
   watch: {
-    "$route.query": function () {
+    "$route.query": function() {
       this.getProductList();
     },
 
     "$store.state.list.sortingData": {
       deep: true,
-      handler: function () {
+      handler: function() {
         // this.sorting.code = this.list.sortingData.code;
         // this.sorting.dir = this.list.sortingData.dir;
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>
