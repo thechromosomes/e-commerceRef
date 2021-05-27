@@ -662,6 +662,9 @@
     width: 35%;
     margin-right: 10px;
   }
+  .complete-registration .img-box img {
+    width: 100%;
+  }
 }
 @media (max-width: 1010px) {
   .header .navbar .search_box .searchbox input {
