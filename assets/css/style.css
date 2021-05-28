@@ -2574,4 +2574,5 @@ p.p-price span.line-throu {
 }
 .search_box .carts .cart-icon.cart-empty-icon {
   background-position: -736px -2px;
+  transform: scale(1.3);
 }

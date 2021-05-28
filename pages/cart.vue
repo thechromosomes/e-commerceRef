@@ -185,8 +185,8 @@
                       <h5>YOUR SHOPPING CART IS EMPTY</h5>
                     </div>
                     <div class="col-lg-5 col-md-12 col-12 right-box">
-                      <a href="#" class="cart-continue-shopping-link"
-                        >Back to shopping</a
+                      <NuxtLink to="/" class="cart-continue-shopping-link"
+                        >Back to shopping</NuxtLink
                       >
                     </div>
                   </div>
