@@ -66,30 +66,37 @@
                             >{{ childItem.name }}</Nuxt-link
                           > -->
                             <li class="nav-item">
-                              <a class="nav-link">{{ childItem.name }}</a>
+                              <span class="stripeImage"></span>
+                              <a href="#" class="nav-link">{{
+                                childItem.name
+                              }}</a>
                               <div class="dropdown_menu_level-3">
                                 <div class="level-3">
                                   <div class="row">
-                                    <div class="col-md-12 col-lg-3">
-                                      <ul>
-                                        <li
-                                          v-for="(
-                                            subChildItem, subCgildIndex
-                                          ) in childItem.childs"
-                                          :key="subCgildIndex"
-                                        >
-                                          <Nuxt-link
-                                            @click.native="
-                                              showMobileMenu = false
-                                            "
-                                            class="nav-link pl-0"
-                                            :to="`/collections/${subChildItem.menu_url_key}/`"
-                                            >{{ subChildItem.name }}</Nuxt-link
+                                    <div class="col-md-12 col-lg-9">
+                                      <div class="levelthreemenu">
+                                        <ul>
+                                          <li
+                                            v-for="(
+                                              subChildItem, subCgildIndex
+                                            ) in childItem.childs"
+                                            :key="subCgildIndex"
                                           >
-                                        </li>
-                                      </ul>
+                                            <Nuxt-link
+                                              @click.native="
+                                                showMobileMenu = false
+                                              "
+                                              class="nav-link pl-0"
+                                              :to="`/collections/${subChildItem.menu_url_key}/`"
+                                              >{{
+                                                subChildItem.name
+                                              }}</Nuxt-link
+                                            >
+                                          </li>
+                                        </ul>
+                                      </div>
                                     </div>
-                                    <div class="col-md-12 col-lg-4">
+                                    <div class="col-md-12 col-lg-3">
                                       <div class="menu_img-section">
                                         <img
                                           src="@/assets/img/new_arrivals-menu.jpg"
@@ -189,11 +196,13 @@
           </NuxtLink>
 
           <NuxtLink to="/cart">
-            <span class="carts"
-              ><img src="~/assets//img/cart.png" alt="cart" />
+            
+            <span class="carts">
+              <span class="cart-empty-icon cart-icon"></span>
+
               <span class="cart_val">
                 {{ $store.state.cartAjax.cart_product.length }}
-              </span>
+            </span>
             </span>
           </NuxtLink>
           <!-- <button class="btn">Search</button> -->
