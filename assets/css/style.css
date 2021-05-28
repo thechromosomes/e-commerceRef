@@ -1,8 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap"); */
+@import url("../fonts/stylesheet.css");
+
+:root {
+  --fontFamily: "Roboto";
+}
 
 * {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
   box-sizing: border-box;
   outline: none !important;
 }
@@ -23,11 +27,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
 }
 body {
   font-size: 14px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 button {
   border: none;
@@ -37,8 +41,6 @@ button {
 }
 button:hover {
   opacity: 0.7;
-}
-.slick-slide {
 }
 
 .mobile_only {
@@ -97,7 +99,7 @@ button:hover {
   padding: 17px 14px;
   text-transform: uppercase;
   font-weight: bold;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
   transition: all 0.5s;
   cursor: pointer;
 }
@@ -279,7 +281,7 @@ button:hover {
 .link:hover {
   margin-top: 10px;
   color: #000;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
   font-weight: bold;
   text-decoration: underline;
   font-size: 18px;
@@ -293,7 +295,7 @@ button:hover {
   text-transform: uppercase;
   font-size: 14px;
   color: #000;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
   box-shadow: none;
   letter-spacing: 0.5px;
 }
@@ -322,7 +324,7 @@ button:hover {
   color: #fff;
   line-height: 1.9;
   font-weight: 700;
-  font-family: roboto condensed, sans-serif;
+  font-family: var(--fontFamily);
   margin: 20px 0px;
 }
 .slide-img .content-text .button {
@@ -395,7 +397,7 @@ button:hover {
   font-family: Roboto, sans-serif;
 }
 .product-attributes {
-  font-family: roboto condensed, sans-serif;
+  font-family: var(--fontFamily);
   padding: 0;
   margin-bottom: 35px;
   letter-spacing: 0.5px;
@@ -492,7 +494,7 @@ button:hover {
 .product_details .print_btn button.full-with-btn {
   width: 90%;
   text-transform: uppercase;
-  font-family: roboto condensed, sans-serif;
+  font-family: var(--fontFamily);
   font-size: 0.875rem;
   cursor: pointer;
   font-weight: 700;
@@ -553,7 +555,7 @@ button:hover {
 .product-additional-promo-asset .promo-content {
   line-height: 26px;
   letter-spacing: 0.5px;
-  font-family: roboto condensed, sans-serif;
+  font-family: var(--fontFamily);
   transition: height 0.8s;
   color: #000;
 }
@@ -626,7 +628,7 @@ button:hover {
 }
 .product-collapsible-sections .product-tags .product-tag-title {
   text-transform: uppercase;
-  font-family: roboto condensed, sans-serif;
+  font-family: var(--fontFamily);
   font-size: 14px;
   padding-right: 18px;
   font-weight: 700;
@@ -807,7 +809,7 @@ button:hover {
   margin-bottom: 10px;
 }
 .fullbleed .text-content .fullbleed-center a {
-  font-family: roboto condensed, sans-serif;
+  font-family: var(--fontFamily);
   font-size: 14px;
   color: #000;
   margin: 0px 10px 10px 0px;
@@ -860,7 +862,7 @@ button:hover {
   padding: 20px 0;
   font-size: 15px;
   letter-spacing: 0.5px;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
 }
 .footer .footer-wrapper .flex-content .footer-items .footer-navigation {
   justify-content: flex-start;
@@ -1238,7 +1240,7 @@ button:hover {
   display: flex;
 }
 .filter-title {
-  font-family: roboto condensed, sans-serif;
+  font-family: var(--fontFamily);
   letter-spacing: 0.5px;
   font-size: 14px;
   color: #000;
@@ -1503,7 +1505,7 @@ p.p-price span.line-throu {
   border: 0;
   /* width: 100%; */
   font-weight: 700;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
 }
 
 .product-carousel-padding {
@@ -1519,7 +1521,7 @@ p.p-price span.line-throu {
 }
 
 .product-carousel-title {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
   font-size: 40px;
   font-weight: 700;
   text-transform: uppercase;
@@ -1543,7 +1545,7 @@ p.p-price span.line-throu {
   color: #000;
   font-size: 14px;
   letter-spacing: 0.5px;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
 }
 .you_like_slide .slick-arrow {
   position: absolute;
@@ -1746,7 +1748,7 @@ p.p-price span.line-throu {
   position: relative;
   margin: 15px 0px;
   font-size: 35px;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
   letter-spacing: 0.03125rem;
   font-weight: 700;
 }
@@ -2347,7 +2349,7 @@ p.p-price span.line-throu {
   left: 0;
   z-index: 1;
   color: #fff;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
   font-size: 10px;
   font-weight: 700;
   padding: 0 5px;
@@ -2377,7 +2379,7 @@ p.p-price span.line-throu {
   width: 18px;
   height: 18px;
   text-indent: -9999px;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
 }
 .store-locator-link a {
   font-size: 16px;
@@ -2512,7 +2514,7 @@ p.p-price span.line-throu {
 }
 .empty-cart-box .left-box h5 {
   text-transform: uppercase;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: var(--fontFamily);
   font-size: 28px;
   font-weight: 700;
   padding: 20px 0px;

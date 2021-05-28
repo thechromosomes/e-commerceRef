@@ -349,7 +349,7 @@
     margin: 0;
     padding: 0px 6px;
     font-size: 19px;
-    font-family: "Roboto Condensed", sans-serif;
+      font-family: var(--fontFamily);
     font-weight: bold;
   }
   .icon-arrow-black-left {
@@ -444,7 +444,7 @@
     color: #000;
     cursor: pointer;
     height: 100%;
-    font-family: "Roboto Condensed", sans-serif;
+      font-family: var(--fontFamily);
     font-size: 0.75rem;
     font-weight: 700;
     text-align: left;
@@ -523,7 +523,7 @@
   }
   .not_found_page .not_found_img .content .btn-block a.button {
     display: inline-block;
-    font-family: "Roboto Condensed", sans-serif;
+      font-family: var(--fontFamily);
     width: 100%;
     text-align: center;
     cursor: pointer;
