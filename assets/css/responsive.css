@@ -58,6 +58,16 @@
     height: 20px;
     cursor: pointer;
   }
+  .header
+    .navbar
+    .navbar-collapse
+    .navbar-nav
+    .nav-item
+    .dropdown_menu
+    .level-2
+    .navbar-nav {
+    max-width: 100%;
+  }
 
   .header .navbar .navbar-collapse .navbar-nav {
     padding: 15px;
@@ -130,7 +140,29 @@
     height: 20px;
     cursor: pointer;
   }
-
+  .header
+    .navbar
+    .navbar-collapse
+    .navbar-nav
+    .nav-item
+    .dropdown_menu
+    .level-2
+    .nav-item
+    .dropdown_menu_level-3,
+  .header
+    .navbar
+    .navbar-collapse
+    .navbar-nav
+    .nav-item
+    .dropdown_menu
+    .level-2
+    .nav-item
+    .dropdown_menu_level-3
+    .level-3
+    .levelthreemenu
+    ul {
+    max-height: unset;
+  }
   .search_box {
     display: none;
   }

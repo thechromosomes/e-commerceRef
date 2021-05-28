@@ -63,30 +63,36 @@
                             >{{ childItem.name }}</Nuxt-link
                           > -->
                           <li class="nav-item">
+                            <span class="stripeImage"></span>
                             <a href="#" class="nav-link">{{
                               childItem.name
                             }}</a>
                             <div class="dropdown_menu_level-3">
                               <div class="level-3">
                                 <div class="row">
-                                  <div class="col-md-12 col-lg-3">
-                                    <ul>
-                                      <li
-                                        v-for="(
-                                          subChildItem, subCgildIndex
-                                        ) in childItem.childs"
-                                        :key="subCgildIndex"
-                                      >
-                                        <Nuxt-link
-                                          @click.native="showMobileMenu = false"
-                                          class="nav-link pl-0"
-                                          :to="`/collections/${subChildItem.menu_url_key}/`"
-                                          >{{ subChildItem.name }}</Nuxt-link
+                                  <div class="col-md-12 col-lg-9">
+                                    <div class="levelthreemenu">
+                                      <ul>
+                                        <li
+                                          v-for="(subChildItem,
+                                          subCgildIndex) in childItem.childs"
+                                          :key="subCgildIndex"
                                         >
-                                      </li>
-                                    </ul>
+                                          <Nuxt-link
+                                            @click.native="
+                                              showMobileMenu = false
+                                            "
+                                            class="nav-link pl-0"
+                                            :to="
+                                              `/collections/${subChildItem.menu_url_key}/`
+                                            "
+                                            >{{ subChildItem.name }}</Nuxt-link
+                                          >
+                                        </li>
+                                      </ul>
+                                    </div>
                                   </div>
-                                  <div class="col-md-12 col-lg-4">
+                                  <div class="col-md-12 col-lg-3">
                                     <div class="menu_img-section">
                                       <img
                                         src="@/assets/img/new_arrivals-menu.jpg"
@@ -148,9 +154,9 @@
           <NuxtLink
             v-show="
               this.$store.state.cartAjax.customer_id != null &&
-              this.$store.state.cartAjax.customer_id != '' &&
-              this.$store.state.cartAjax.customer_session != '' &&
-              this.$store.state.cartAjax.customer_session != null
+                this.$store.state.cartAjax.customer_id != '' &&
+                this.$store.state.cartAjax.customer_session != '' &&
+                this.$store.state.cartAjax.customer_session != null
             "
             to="/Dashboard"
           >
@@ -161,9 +167,9 @@
           <NuxtLink
             v-show="
               this.$store.state.cartAjax.customer_id == null ||
-              this.$store.state.cartAjax.customer_id == '' ||
-              this.$store.state.cartAjax.customer_session == '' ||
-              this.$store.state.cartAjax.customer_session == null
+                this.$store.state.cartAjax.customer_id == '' ||
+                this.$store.state.cartAjax.customer_session == '' ||
+                this.$store.state.cartAjax.customer_session == null
             "
             to="/Dashboard"
           >
@@ -185,9 +191,15 @@
           </NuxtLink>
 
           <NuxtLink to="/cart">
-            <span class="carts"
-              ><img src="~/assets//img/cart.png" alt="cart" />
-              <span class="cart_val">
+            <span
+              class="carts"
+              v-if="$store.state.cartAjax.cart_product.length <= 0"
+            >
+              <span class="cart-empty-icon cart-icon "></span>
+            </span>
+            <span class="carts" v-else>
+              <span class="cart-file-icon cart-icon "></span>
+              <span class="minicart-quantity">
                 {{ $store.state.cartAjax.cart_product.length }}
               </span>
             </span>
@@ -230,7 +242,7 @@ export default {
     return {
       showMobileMenu: false,
       searchActive: false,
-      scrollPosition: null,
+      scrollPosition: null
     };
   },
   async mounted() {
@@ -239,17 +251,17 @@ export default {
   },
 
   computed: {
-    ...mapState(["header"]),
+    ...mapState(["header"])
   },
 
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
-    },
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  },
+  }
 };
 </script>
 <style scoped>

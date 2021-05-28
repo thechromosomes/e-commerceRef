@@ -177,8 +177,40 @@ button:hover {
   left: 0;
   padding: 20px 35px;
   display: none;
+
+  max-height: 400px;
   z-index: 9999;
 }
+
+.header
+  .navbar
+  .navbar-collapse
+  .navbar-nav
+  .nav-item
+  .dropdown_menu
+  .level-2
+  .nav-item
+  .dropdown_menu_level-3
+  .level-3
+  .levelthreemenu {
+}
+.header
+  .navbar
+  .navbar-collapse
+  .navbar-nav
+  .nav-item
+  .dropdown_menu
+  .level-2
+  .nav-item
+  .dropdown_menu_level-3
+  .level-3
+  .levelthreemenu
+  ul {
+  display: inline-flex;
+  flex-flow: column wrap;
+  max-height: 350px;
+}
+
 .header
   .navbar
   .navbar-collapse
@@ -208,7 +240,8 @@ button:hover {
   color: #000;
   word-wrap: break-word;
   font-size: 14px;
-  margin-bottom: 20px;
+  padding: 10px 30px;
+  margin: 0;
   display: block;
 }
 .header
@@ -1919,6 +1952,15 @@ p.p-price span.line-throu {
   top: -8px;
   font-size: 11px;
 }
+.search_box .carts .minicart-quantity {
+  position: absolute;
+  font-size: 11px;
+  top: 2px;
+  color: #ff1010;
+  right: -8px;
+  font-family: Roboto, sans-serif;
+  width: 10px;
+}
 .search_box .carts img {
   width: 25px;
   cursor: pointer;
@@ -2488,4 +2530,48 @@ p.p-price span.line-throu {
   font-size: 14px;
   letter-spacing: 1px;
   margin-left: 20px;
+}
+
+.clp_pages .content_new_in .slide_new_in .slick-arrow {
+  font-size: 0;
+  text-indent: -1px;
+  /* padding: 0; */
+  background: transparent;
+  transform: rotate(90deg);
+  content: "";
+  display: inline-block;
+  background-image: url(../img/sprite_icons.svg);
+  background-position: -586px 0;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.clp_pages .content_new_in .slide_new_in .slick-prev {
+  position: absolute;
+  left: -20px;
+  top: 50%;
+}
+.clp_pages .content_new_in .slide_new_in .slick-next {
+  position: absolute;
+  right: -11px;
+  top: 50%;
+  transform: rotate(270deg);
+}
+
+.search_box .carts .cart-icon {
+  content: "";
+  display: inline-block;
+  background-image: url(../img/sprite_icons.svg);
+  background-position: -736px -2px;
+  background-repeat: no-repeat;
+  width: 21px;
+  height: 21px;
+  text-indent: -9999px;
+}
+.search_box .carts .cart-icon.cart-file-icon {
+  background-position: -882px -2px;
+}
+.search_box .carts .cart-icon.cart-empty-icon {
+  background-position: -736px -2px;
 }
