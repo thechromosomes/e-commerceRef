@@ -53,12 +53,61 @@
                         v-for="(childItem, childIndex) in item.childs"
                         :key="childIndex"
                       >
-                        <Nuxt-link
-                          @click.native="showMobileMenu = false"
-                          class="nav-link pl-0"
-                          :to="`/collections/${childItem.menu_url_key}/`"
-                          >{{ childItem.name }}</Nuxt-link
+                        <template
+                          v-if="childItem.childs && childItem.childs.length > 0"
                         >
+                          <!-- <Nuxt-link
+                            @click.native="showMobileMenu = false"
+                            class="nav-link pl-0"
+                            :to="`/collections/${childItem.menu_url_key}/`"
+                            >{{ childItem.name }}</Nuxt-link
+                          > -->
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">{{
+                              childItem.name
+                            }}</a>
+                            <div class="dropdown_menu_level-3">
+                              <div class="level-3">
+                                <div class="row">
+                                  <div class="col-md-12 col-lg-3">
+                                    <ul>
+                                      <li
+                                        v-for="(
+                                          subChildItem, subCgildIndex
+                                        ) in childItem.childs"
+                                        :key="subCgildIndex"
+                                      >
+                                        <Nuxt-link
+                                          @click.native="showMobileMenu = false"
+                                          class="nav-link pl-0"
+                                          :to="`/collections/${subChildItem.menu_url_key}/`"
+                                          >{{ subChildItem.name }}</Nuxt-link
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-md-12 col-lg-4">
+                                    <div class="menu_img-section">
+                                      <img
+                                        src="@/assets/img/new_arrivals-menu.jpg"
+                                        alt="img"
+                                        class="w-100"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </template>
+                        <template v-else>
+                          <Nuxt-link
+                            @click.native="showMobileMenu = false"
+                            class="nav-link pl-0"
+                            :to="`/collections/${childItem.menu_url_key}/`"
+                            >{{ childItem.name }}</Nuxt-link
+                          >
+                        </template>
                       </li>
                     </ul>
                   </div>
@@ -99,9 +148,9 @@
           <NuxtLink
             v-show="
               this.$store.state.cartAjax.customer_id != null &&
-                this.$store.state.cartAjax.customer_id != '' &&
-                this.$store.state.cartAjax.customer_session != '' &&
-                this.$store.state.cartAjax.customer_session != null
+              this.$store.state.cartAjax.customer_id != '' &&
+              this.$store.state.cartAjax.customer_session != '' &&
+              this.$store.state.cartAjax.customer_session != null
             "
             to="/Dashboard"
           >
@@ -112,9 +161,9 @@
           <NuxtLink
             v-show="
               this.$store.state.cartAjax.customer_id == null ||
-                this.$store.state.cartAjax.customer_id == '' ||
-                this.$store.state.cartAjax.customer_session == '' ||
-                this.$store.state.cartAjax.customer_session == null
+              this.$store.state.cartAjax.customer_id == '' ||
+              this.$store.state.cartAjax.customer_session == '' ||
+              this.$store.state.cartAjax.customer_session == null
             "
             to="/Dashboard"
           >
@@ -181,7 +230,7 @@ export default {
     return {
       showMobileMenu: false,
       searchActive: false,
-      scrollPosition: null
+      scrollPosition: null,
     };
   },
   async mounted() {
@@ -190,17 +239,17 @@ export default {
   },
 
   computed: {
-    ...mapState(["header"])
+    ...mapState(["header"]),
   },
 
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
-    }
+    },
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  }
+  },
 };
 </script>
 <style scoped>

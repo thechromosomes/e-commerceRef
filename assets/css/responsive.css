@@ -608,9 +608,33 @@
   .social-media h4 {
     margin-top: 10px;
   }
+  .visual-filters .visual-filter-texts h6 {
+    margin-top: 10px;
+  }
+  .empty-cart-box .left-box h5 {
+    text-align: left;
+  }
+  .empty-cart-box {
+    background: #f6f6f6;
+    padding: 20px 20px;
+  }
+  .empty-cart-box .left-box {
+    background: transparent;
+  }
+
+  .empty-cart-box .right-box a {
+    display: inline-block;
+    width: 100%;
+    background: #fff;
+    padding-left: 0;
+    margin: 0;
+  }
 }
 
 @media (max-width: 767px) {
+  .empty-cart-box .left-box h5 {
+    font-size: 25px;
+  }
   .header
     .navbar
     .navbar-collapse
@@ -633,6 +657,13 @@
   }
   .newsletter-social {
     padding-top: 0;
+  }
+  .visual-filters .visual-filters-container .category-filter {
+    width: 35%;
+    margin-right: 10px;
+  }
+  .complete-registration .img-box img {
+    width: 100%;
   }
 }
 @media (max-width: 1010px) {

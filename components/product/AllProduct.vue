@@ -28,8 +28,103 @@
             <h1 class="search-banner-title search-black">
               {{ list.pageHead.toUpperCase() }}
             </h1>
+
+            <span
+              class="hiden-arrow"
+              @click="titleContent = true"
+              :class="titleContent ? 'hide' : ''"
+            ></span>
+            <div class="hidden-text" v-if="titleContent">
+              <p>
+                {{ list.description }}
+              </p>
+            </div>
           </div>
         </div>
+        <!-- visual-filters -->
+        <div class="visual-filters" v-if="list.Product_list.length > 0">
+          <div class="visual-filter-texts">
+            <h6>SHOP BY FIT</h6>
+          </div>
+          <div class="visual-filters-container">
+            <div class="category-filter">
+              <span class="active-arrow-colse"></span>
+              <div class="item">
+                <div class="filter-image">
+                  <img
+                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <div class="category-filter-title">
+                  <a href="#">SKINNY</a>
+                </div>
+              </div>
+            </div>
+            <div class="category-filter">
+              <span class="active-arrow-colse"></span>
+              <div class="item">
+                <div class="filter-image">
+                  <img
+                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <div class="category-filter-title">
+                  <a href="#">SKINNY</a>
+                </div>
+              </div>
+            </div>
+            <div class="category-filter">
+              <span class="active-arrow-colse"></span>
+              <div class="item">
+                <div class="filter-image">
+                  <img
+                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <div class="category-filter-title">
+                  <a href="#">SKINNY</a>
+                </div>
+              </div>
+            </div>
+            <div class="category-filter">
+              <span class="active-arrow-colse"></span>
+              <div class="item">
+                <div class="filter-image">
+                  <img
+                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <div class="category-filter-title">
+                  <a href="#">SKINNY</a>
+                </div>
+              </div>
+            </div>
+            <div class="category-filter">
+              <span class="active-arrow-colse"></span>
+              <div class="item">
+                <div class="filter-image">
+                  <img
+                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <div class="category-filter-title">
+                  <a href="#">SKINNY</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- visual-filters end -->
       </div>
     </div>
     <!-- desktop_only class add  -->
@@ -49,7 +144,7 @@
           </div>
           <div class="refinements">
             <div
-              class="card refinement refinement-category "
+              class="card refinement refinement-category"
               v-for="(filter, filterIndex) in list.filters"
               :key="filterIndex"
             >
@@ -199,22 +294,27 @@
                         "
                       ></span>
                     </div>
-                    <div
-                      class="list_slide"
-                      v-if="singleProd.gallery.length > 0"
-                    >
-                      <VueSlickCarousel v-bind="productSetting">
-                        <div
-                          class="item"
-                          v-for="(image, imgIndex) in singleProd.gallery"
-                          :key="imgIndex"
-                        >
-                          <Nuxt-link :to="`/product/${singleProd.url_key}`">
-                            <img :src="image.image" alt="img" class="w-100" />
-                          </Nuxt-link>
-                        </div>
-                      </VueSlickCarousel>
+                    <div class="offers">
+                      <span>{{ singleProd.promotional_tags }}</span>
                     </div>
+                    <client-only>
+                      <div
+                        class="list_slide"
+                        v-if="singleProd.gallery.length > 0"
+                      >
+                        <VueSlickCarousel v-bind="productSetting">
+                          <div
+                            class="item"
+                            v-for="(image, imgIndex) in singleProd.gallery"
+                            :key="imgIndex"
+                          >
+                            <Nuxt-link :to="`/product/${singleProd.url_key}`">
+                              <img :src="image.image" alt="img" class="w-100" />
+                            </Nuxt-link>
+                          </div>
+                        </VueSlickCarousel>
+                      </div>
+                    </client-only>
                     <div class="title-body">
                       <p class="p-price">
                         <span
@@ -283,29 +383,37 @@
             <div class="product-carousel-container">
               <h2 class="product-carousel-title">You may also like</h2>
             </div>
-
-            <div class="you_like_slide">
-              <VueSlickCarousel v-bind="settings">
-                <div
-                  class="item"
-                  v-for="(item, index) in likeData"
-                  :key="index"
-                >
-                  <NuxtLink :to="`/product/${item.url_key}`">
-                    <img :src="item.image" alt="img" class="w-100" />
-                    <div class="title-body">
-                      <NuxtLink :to="`/product/${item.url_key}`">{{
-                        item.name
-                      }}</NuxtLink>
-                    </div>
-                  </NuxtLink>
-                </div>
-              </VueSlickCarousel>
-            </div>
+            <client-only>
+              <div class="you_like_slide">
+                <VueSlickCarousel v-bind="settings">
+                  <div
+                    class="item"
+                    v-for="(item, index) in likeData"
+                    :key="index"
+                  >
+                    <NuxtLink :to="`/product/${item.url_key}`">
+                      <img :src="item.image" alt="img" class="w-100" />
+                      <div class="title-body">
+                        <NuxtLink :to="`/product/${item.url_key}`">{{
+                          item.name
+                        }}</NuxtLink>
+                      </div>
+                    </NuxtLink>
+                  </div>
+                </VueSlickCarousel>
+              </div>
+            </client-only>
           </div>
         </div>
       </div>
     </div>
+    <button
+      class="back-to-top-box enabled"
+      v-show="scrollPosition > 50"
+      @click="scrollToTop()"
+    >
+      <i class="icon-arrow-white-up back-to-top-arrow"></i>
+    </button>
   </div>
 </template>
 
@@ -317,6 +425,8 @@ export default {
   components: { VueSlickCarousel },
   data() {
     return {
+      titleContent: false,
+      scrollPosition: "",
       settings: {
         focusOnSelect: true,
         infinite: true,
@@ -624,6 +734,29 @@ export default {
         this.$globalError(`error from add addRemoveWishList >>>> ${error}`);
       }
     },
+    async updatePage() {
+      // var loader_el = document.querySelector(".product_loader");
+      this.scrollPosition = window.scrollY;
+      // if (loader_el) {
+      //   var loader_position = loader_el.offsetTop;
+      // }
+      // if (window.scrollY >= loader_position - 1000) {
+      //   await this.$store.commit("universalListMutate", {
+      //     data: Number(this.list.page) + 1,
+      //     changeState: "page",
+      //   });
+      //   if (
+      //     this.list.page <= this.list.total_page &&
+      //     !this.list.product_loader
+      //   ) {
+      //     this.getProductList(this.list.page);
+      //   }
+      // }
+    },
+    // scroll to top
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
   },
 
   computed: {
@@ -670,7 +803,13 @@ export default {
       this.$globalError(`error from the all product page ${error}`);
     }
   },
-
+  mounted() {
+    // add window event listner for lazy loading products
+    window.addEventListener("scroll", this.updatePage);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.updatePage);
+  },
   watch: {
     "$route.query": function () {
       this.getProductList();

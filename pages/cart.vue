@@ -6,17 +6,26 @@
           <div class="row">
             <div class="col-12">
               <h1 class="title text-center">Your cart</h1>
-              <div
-                v-if="$store.state.cartAjax.cart_product.length == 0"
-                class="cart-empty"
-              >
-                <p class="empty-head-title">phew! your cart is empty</p>
+              <div>
+                <!-- <p class="empty-head-title">phew! your cart is empty sanjay</p>
 
                 <img
                   src="@/assets/img/empty-cart.png"
                   alt="empty_cart"
                   width="200px"
-                />
+                /> -->
+                <div class="empty-cart-box">
+                  <div class="row">
+                    <div class="col-lg-7 col-md-12 col-12 left-box">
+                      <h5>YOUR SHOPPING CART IS EMPTY</h5>
+                    </div>
+                    <div class="col-lg-5 col-md-12 col-12 right-box">
+                      <a href="#" class="cart-continue-shopping-link"
+                        >Back to shopping</a
+                      >
+                    </div>
+                  </div>
+                </div>
               </div>
               <form v-if="$store.state.cartAjax.cart_product.length != 0">
                 <div class="row">

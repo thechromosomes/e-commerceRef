@@ -124,7 +124,14 @@
                   </li>
                 </ul>
               </li>
-              <li class="variation-attribute">
+              <li
+                class="variation-attribute"
+                v-if="
+                  singleProductList.single_prod_data.variation &&
+                  Object.keys(singleProductList.single_prod_data.variation)
+                    .length > 0
+                "
+              >
                 <span class="attribute-label color">
                   CHOOSE SIZE
                   <span v-if="selectedSizeAttr"
@@ -143,6 +150,40 @@
                     <span
                       :class="
                         selectedSizeAttr.configrable_atribute_value ===
+                        size.configrable_atribute_value
+                          ? 'selected-size'
+                          : ''
+                      "
+                      >{{ size.configrable_atribute_value }}</span
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="variation-attribute"
+                v-if="
+                  Object.keys(singleProductList.single_prod_data.item_lengths)
+                    .length > 0
+                "
+              >
+                <span class="attribute-label color">
+                  CHOOSE Lenght
+                  <span v-if="selectedLengthAttr"
+                    >: {{ selectedLengthAttr.configrable_atribute_value }}
+                  </span>
+                </span>
+                <ul class="swatch-attribute-values color">
+                  <li
+                    class="attribute-value js_attribute-value"
+                    v-for="(size, index) in singleProductList.single_prod_data
+                      .item_lengths"
+                    :key="index"
+                    :class="[size.quantity == 0 ? 'unavailable' : '']"
+                    @click="hanldeLengt(size)"
+                  >
+                    <span
+                      :class="
+                        selectedLengthAttr.configrable_atribute_value ===
                         size.configrable_atribute_value
                           ? 'selected-size'
                           : ''
@@ -271,6 +312,7 @@ export default {
       pickup: false,
       size: false,
       selectedSizeAttr: "",
+      selectedLengthAttr: "",
       sizeAlert: false,
       addToCartVal: 1,
       settings: {
@@ -392,6 +434,11 @@ export default {
       this.selectedSizeAttr = size;
     },
 
+    hanldeLengt(size) {
+        if (size.quantity == 0) return;
+      this.sizeAlert = false;
+      this.selectedLengthAttr = size;
+    },
     // get product detail
     async getProductDetail() {
       try {
@@ -447,6 +494,7 @@ export default {
             size: this.selectedSizeAttr.configrable_atribute_value,
             color: this.singleProductList.single_prod_data.color,
           });
+          form.length = this.selectedLengthAttr.configrable_atribute_value
           form.product_id = this.selectedSizeAttr.id_product;
           form.product_parent_id = this.singleProductList.single_prod_data.id_product;
           form.product_options = product_options_json;

@@ -6,8 +6,8 @@
     </div>
 
     <div class="collections_slide">
-      <div class="slide_content" v-if="bannerSlide.length > 0">
-        <client-only>
+      <client-only>
+        <div class="slide_content" v-if="bannerSlide.length > 0">
           <VueSlickCarousel ref="slick" v-bind="settings2">
             <div class="item" v-for="(item, index) in bannerSlide" :key="index">
               <img
@@ -25,8 +25,8 @@
               </div>
             </div>
           </VueSlickCarousel>
-        </client-only>
-      </div>
+        </div>
+      </client-only>
     </div>
 
     <section class="new_in">
