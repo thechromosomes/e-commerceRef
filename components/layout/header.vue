@@ -53,62 +53,64 @@
                         v-for="(childItem, childIndex) in item.childs"
                         :key="childIndex"
                       >
-                      <client-only>
-                        <template
-                          v-if="childItem.childs && childItem.childs.length > 0"
-                        >
-                          <!-- <Nuxt-link
+                        <client-only>
+                          <template
+                            v-if="
+                              childItem.childs && childItem.childs.length > 0
+                            "
+                          >
+                            <!-- <Nuxt-link
                             @click.native="showMobileMenu = false"
                             class="nav-link pl-0"
                             :to="`/collections/${childItem.menu_url_key}/`"
                             >{{ childItem.name }}</Nuxt-link
                           > -->
-                          <li class="nav-item">
-                            <a class="nav-link">{{
-                              childItem.name
-                            }}</a>
-                            <div class="dropdown_menu_level-3">
-                              <div class="level-3">
-                                <div class="row">
-                                  <div class="col-md-12 col-lg-3">
-                                    <ul>
-                                      <li
-                                        v-for="(
-                                          subChildItem, subCgildIndex
-                                        ) in childItem.childs"
-                                        :key="subCgildIndex"
-                                      >
-                                        <Nuxt-link
-                                          @click.native="showMobileMenu = false"
-                                          class="nav-link pl-0"
-                                          :to="`/collections/${subChildItem.menu_url_key}/`"
-                                          >{{ subChildItem.name }}</Nuxt-link
+                            <li class="nav-item">
+                              <a class="nav-link">{{ childItem.name }}</a>
+                              <div class="dropdown_menu_level-3">
+                                <div class="level-3">
+                                  <div class="row">
+                                    <div class="col-md-12 col-lg-3">
+                                      <ul>
+                                        <li
+                                          v-for="(
+                                            subChildItem, subCgildIndex
+                                          ) in childItem.childs"
+                                          :key="subCgildIndex"
                                         >
-                                      </li>
-                                    </ul>
-                                  </div>
-                                  <div class="col-md-12 col-lg-4">
-                                    <div class="menu_img-section">
-                                      <img
-                                        src="@/assets/img/new_arrivals-menu.jpg"
-                                        alt="img"
-                                        class="w-100"
-                                      />
+                                          <Nuxt-link
+                                            @click.native="
+                                              showMobileMenu = false
+                                            "
+                                            class="nav-link pl-0"
+                                            :to="`/collections/${subChildItem.menu_url_key}/`"
+                                            >{{ subChildItem.name }}</Nuxt-link
+                                          >
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div class="col-md-12 col-lg-4">
+                                      <div class="menu_img-section">
+                                        <img
+                                          src="@/assets/img/new_arrivals-menu.jpg"
+                                          alt="img"
+                                          class="w-100"
+                                        />
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </li>
-                        </template>
-                        <template v-else>
-                          <Nuxt-link
-                            @click.native="showMobileMenu = false"
-                            class="nav-link pl-0"
-                            :to="`/collections/${childItem.menu_url_key}/`"
-                            >{{ childItem.name }}</Nuxt-link
-                          >
-                        </template>
+                            </li>
+                          </template>
+                          <template v-else>
+                            <Nuxt-link
+                              @click.native="showMobileMenu = false"
+                              class="nav-link pl-0"
+                              :to="`/collections/${childItem.menu_url_key}/`"
+                              >{{ childItem.name }}</Nuxt-link
+                            >
+                          </template>
                         </client-only>
                       </li>
                     </ul>
