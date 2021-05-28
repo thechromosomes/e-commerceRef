@@ -162,12 +162,13 @@
               <li
                 class="variation-attribute"
                 v-if="
+                singleProductList.single_prod_data.item_lengths &&
                   Object.keys(singleProductList.single_prod_data.item_lengths)
                     .length > 0
                 "
               >
                 <span class="attribute-label color">
-                  CHOOSE Lenght
+                  CHOOSE Length
                   <span v-if="selectedLengthAttr"
                     >: {{ selectedLengthAttr.configrable_atribute_value }}
                   </span>
@@ -435,7 +436,7 @@ export default {
     },
 
     hanldeLengt(size) {
-        if (size.quantity == 0) return;
+      if (size.quantity == 0) return;
       this.sizeAlert = false;
       this.selectedLengthAttr = size;
     },
@@ -494,7 +495,7 @@ export default {
             size: this.selectedSizeAttr.configrable_atribute_value,
             color: this.singleProductList.single_prod_data.color,
           });
-          form.length = this.selectedLengthAttr.configrable_atribute_value
+          form.length = this.selectedLengthAttr.configrable_atribute_value;
           form.product_id = this.selectedSizeAttr.id_product;
           form.product_parent_id = this.singleProductList.single_prod_data.id_product;
           form.product_options = product_options_json;

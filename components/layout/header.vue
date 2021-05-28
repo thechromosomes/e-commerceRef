@@ -53,6 +53,7 @@
                         v-for="(childItem, childIndex) in item.childs"
                         :key="childIndex"
                       >
+                      <client-only>
                         <template
                           v-if="childItem.childs && childItem.childs.length > 0"
                         >
@@ -63,7 +64,7 @@
                             >{{ childItem.name }}</Nuxt-link
                           > -->
                           <li class="nav-item">
-                            <a href="#" class="nav-link">{{
+                            <a class="nav-link">{{
                               childItem.name
                             }}</a>
                             <div class="dropdown_menu_level-3">
@@ -108,6 +109,7 @@
                             >{{ childItem.name }}</Nuxt-link
                           >
                         </template>
+                        </client-only>
                       </li>
                     </ul>
                   </div>
