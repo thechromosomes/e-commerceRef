@@ -77,9 +77,8 @@
                                       <div class="levelthreemenu">
                                         <ul>
                                           <li
-                                            v-for="(
-                                              subChildItem, subCgildIndex
-                                            ) in childItem.childs"
+                                            v-for="(subChildItem,
+                                            subCgildIndex) in childItem.childs"
                                             :key="subCgildIndex"
                                           >
                                             <Nuxt-link
@@ -87,7 +86,9 @@
                                                 showMobileMenu = false
                                               "
                                               class="nav-link pl-0"
-                                              :to="`/collections/${subChildItem.menu_url_key}/`"
+                                              :to="
+                                                `/collections/${subChildItem.menu_url_key}/`
+                                              "
                                               >{{
                                                 subChildItem.name
                                               }}</Nuxt-link
@@ -132,7 +133,7 @@
             ><img src="~/assets//img/logo.svg" alt="logo"
           /></NuxtLink>
         </div>
-        <div class="search_box">
+        <!-- <div class="search_box">
           <div
             class="searchbox desktop_only"
             :class="[scrollPosition > 30 ? 'hidden' : '']"
@@ -196,7 +197,7 @@
           </NuxtLink>
 
           <NuxtLink to="/cart">
-            
+
             <span class="carts">
               <span class="cart-empty-icon cart-icon"></span>
 
@@ -205,7 +206,59 @@
             </span>
             </span>
           </NuxtLink>
-          <!-- <button class="btn">Search</button> -->
+          <button class="btn">Search</button>
+        </div> -->
+
+        <div class="search_box new_search_box">
+          <div class="search-text desktop_only">
+            <button class="btn " @click="searchActive = true">Search</button>
+          </div>
+          <div class="wishlist-text">
+            <NuxtLink to="/wishlist">
+              <button class="btn desktop_only">wishlist</button>
+              <span class="wishliat-icon mobile_only"></span>
+            </NuxtLink>
+          </div>
+          <div class="login-text">
+            <NuxtLink
+              v-show="
+                this.$store.state.cartAjax.customer_id != null &&
+                  this.$store.state.cartAjax.customer_id != '' &&
+                  this.$store.state.cartAjax.customer_session != '' &&
+                  this.$store.state.cartAjax.customer_session != null
+              "
+              to="/Dashboard"
+            >
+              <button class="btn desktop_only">Login</button>
+              <span class="user-icon mobile_only"></span>
+            </NuxtLink>
+            <NuxtLink
+              v-show="
+                this.$store.state.cartAjax.customer_id == null ||
+                  this.$store.state.cartAjax.customer_id == '' ||
+                  this.$store.state.cartAjax.customer_session == '' ||
+                  this.$store.state.cartAjax.customer_session == null
+              "
+              to="/Dashboard"
+            >
+              <button class="btn desktop_only">Login</button>
+              <span class="user-icon mobile_only"></span>
+            </NuxtLink>
+          </div>
+          <NuxtLink to="/cart" class="cart">
+            <span
+              class="carts"
+              v-if="$store.state.cartAjax.cart_product.length > 0"
+            >
+              <span class="cart-file-icon cart-icon"></span>
+              <span class="minicart-quantity">
+                {{ $store.state.cartAjax.cart_product.length }}
+              </span>
+            </span>
+            <span class="carts" v-else>
+              <span class="cart-empty-icon cart-icon"></span>
+            </span>
+          </NuxtLink>
         </div>
       </div>
     </nav>
@@ -243,7 +296,7 @@ export default {
     return {
       showMobileMenu: false,
       searchActive: false,
-      scrollPosition: null,
+      scrollPosition: null
     };
   },
   async mounted() {
@@ -252,17 +305,17 @@ export default {
   },
 
   computed: {
-    ...mapState(["header"]),
+    ...mapState(["header"])
   },
 
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
-    },
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  },
+  }
 };
 </script>
 <style scoped>
