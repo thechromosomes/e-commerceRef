@@ -25,7 +25,7 @@
             class="back-to-container"
             v-if="
               singleProductList.breadcrumb &&
-                singleProductList.breadcrumb.length > 0
+              singleProductList.breadcrumb.length > 0
             "
           >
             <span
@@ -35,7 +35,7 @@
               <Nuxt-link
                 v-if="
                   indexBrd != 0 &&
-                    indexBrd != singleProductList.breadcrumb.length - 1
+                  indexBrd != singleProductList.breadcrumb.length - 1
                 "
                 :to="`/collections/${itemBrd.url_key}`"
                 >{{ itemBrd.name }}
@@ -76,15 +76,12 @@
             <h1 class="product-title">
               {{ singleProductList.single_prod_data.name }}
             </h1>
-            <!-- <h2 class="product-short-description">
-              {{ singleProductList.single_prod_data.occasion }}
-            </h2> -->
             <p class="p-price">
               MRP
               <span
                 v-if="
                   singleProductList.single_prod_data.discount != '' &&
-                    singleProductList.single_prod_data.discount > 0
+                  singleProductList.single_prod_data.discount > 0
                 "
               >
                 ₹{{ singleProductList.single_prod_data.selling_price }}
@@ -119,7 +116,7 @@
                         :class="[
                           $route.params.productDetail == color.url_key
                             ? 'active'
-                            : ''
+                            : '',
                         ]"
                     /></NuxtLink>
                   </li>
@@ -129,8 +126,8 @@
                 class="variation-attribute"
                 v-if="
                   singleProductList.single_prod_data.variation &&
-                    Object.keys(singleProductList.single_prod_data.variation)
-                      .length > 0
+                  Object.keys(singleProductList.single_prod_data.variation)
+                    .length > 0
                 "
               >
                 <span class="attribute-label color">
@@ -164,8 +161,8 @@
                 class="variation-attribute"
                 v-if="
                   singleProductList.single_prod_data.item_lengths &&
-                    Object.keys(singleProductList.single_prod_data.item_lengths)
-                      .length > 0
+                  Object.keys(singleProductList.single_prod_data.item_lengths)
+                    .length > 0
                 "
               >
                 <span class="attribute-label color">
@@ -271,19 +268,34 @@
                   </ul>
                 </div>
               </div>
-
-              <!-- <div class="product-tags">
-                <h2 class="product-tag-title">
-                  <span class="title">Tags</span>
+              <div
+                class="product-care-instructions"
+                :class="[CareInt ? 'expand-open' : 'expand-close']"
+              >
+                <h2 @click="toggleDropDown('CareInt')">
+                  Care instructions <span class="title"></span>
                 </h2>
-                <div class="product-tags-wrapper">
-                  <a class="product-tag" href="#"> WOMAN </a>
-                  ,
-                  <a class="product-tag" href="#"> APPAREL </a>
-                  ,
-                  <a class="product-tag" href="#"> Loungewear </a>
+                <div class="care-instructions product-expand-block">
+                  <div
+                    class="care-instruction"
+                    v-for="(
+                      careItem, careIndex
+                    ) in singleProductList.single_prod_data.care_instructions.split(
+                      ','
+                    )"
+                    :key="careIndex"
+                  >
+                    <img
+                      class="care-instruction-image"
+                      :src="renderImage(careItem)"
+                      alt="Washing"
+                      aria-label="Washing"
+                      title="Washing"
+                    />
+                    <span class="care-instruction-text">{{ careItem }}</span>
+                  </div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
@@ -313,6 +325,7 @@ export default {
   data() {
     return {
       CareInstructions: false,
+      CareInt: false,
       selectedSizeError: "",
       showZoomedImage: false,
       pickup: false,
@@ -328,8 +341,8 @@ export default {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 2000
-      }
+        autoplaySpeed: 2000,
+      },
     };
   },
 
@@ -340,34 +353,34 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.singleProductList.single_prod_data.meta_description
+          content: this.singleProductList.single_prod_data.meta_description,
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.singleProductList.single_prod_data.meta_keyword
+          content: this.singleProductList.single_prod_data.meta_keyword,
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title"
+          property: "og:title",
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description"
+          property: "og:description",
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url"
+          property: "og:url",
         },
         {
           hid: "og:image",
           content: this.image,
-          property: "og:image"
-        }
-      ]
+          property: "og:image",
+        },
+      ],
     };
   },
 
@@ -381,7 +394,7 @@ export default {
         occasion,
         // pattern,
         // sleeve,
-        warranty
+        warranty,
       } = this.singleProductList.single_prod_data;
 
       let obj = {
@@ -391,7 +404,7 @@ export default {
         occasion,
         // pattern,
         // sleeve,
-        warranty
+        warranty,
       };
 
       let finaObj = Object.entries(obj).reduce(
@@ -417,7 +430,7 @@ export default {
     },
     image() {
       return this.singleProductList.single_prod_data.image;
-    }
+    },
   },
 
   methods: {
@@ -449,7 +462,7 @@ export default {
     async getProductDetail() {
       try {
         await this.$store.commit("prepareStateForSingleProd", {
-          routeParam: this.$route.params.productDetail
+          routeParam: this.$route.params.productDetail,
         });
         let { service, store, url_key } = this.$store.state.singleProductList;
         var form = {};
@@ -463,13 +476,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
 
         if (response) {
           this.$store.commit("updateSingleProdState", {
             error: null,
-            data: response
+            data: response,
           });
         } else {
           throw "no response from api";
@@ -478,7 +491,8 @@ export default {
         this.$globalError(`error from getProductDetail >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateSingleProdState", {
-            error: "Oops there seems to be some Network issue, please try again"
+            error:
+              "Oops there seems to be some Network issue, please try again",
           });
         }
       }
@@ -497,7 +511,7 @@ export default {
           var tokenholder;
           var product_options_json = JSON.stringify({
             size: this.selectedSizeAttr.configrable_atribute_value,
-            color: this.singleProductList.single_prod_data.color
+            color: this.singleProductList.single_prod_data.color,
           });
           form.length = this.selectedLengthAttr.configrable_atribute_value;
           form.product_id = this.selectedSizeAttr.id_product;
@@ -543,13 +557,13 @@ export default {
             method: "post",
             url: urlHolder,
             params: form,
-            token: tokenholder
+            token: tokenholder,
           });
           if (response) {
             this.$store.commit("cartAjax/updateCartDetail", {
               error: null,
               vm: this,
-              data: response
+              data: response,
             });
 
             // google tag manager
@@ -588,7 +602,7 @@ export default {
           if (error.message === "Network Error") {
             this.$store.commit("updateSingleProdState", {
               error:
-                "Oops there seems to be some Network issue, please try again"
+                "Oops there seems to be some Network issue, please try again",
             });
           }
         }
@@ -603,10 +617,10 @@ export default {
       if (Object.keys(wishList).length != 0) {
         const groupResult = wishList.group
           .split(",")
-          .filter(word => word == groupId);
+          .filter((word) => word == groupId);
         const productResult = wishList.product
           .split(",")
-          .filter(word => word == ProductId);
+          .filter((word) => word == ProductId);
 
         if (groupResult.length > 0 && productResult.length > 0) {
           return "wishlist-active";
@@ -629,7 +643,7 @@ export default {
           product_id: this.singleProductList.single_prod_data.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: this.singleProductList.single_prod_data.group_id
+          group_id: this.singleProductList.single_prod_data.group_id,
         };
 
         if (data === "add") {
@@ -637,21 +651,21 @@ export default {
             method: "post",
             url: `/wishlist/add-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
         } else {
           var response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/wishlist/remove-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
         }
 
         if (response.success) {
           this.$toast.open(response.message);
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data
+            payload: response.data,
           });
           // this.$gtm.push({
           //   event: [data == "add" ? "addToWishlist" : "removeFromWishlist"],
@@ -679,7 +693,25 @@ export default {
       } catch (error) {
         this.$globalError(`error from add addRemoveWishList >>>> ${error}`);
       }
-    }
+    },
+
+    // render iamge
+    renderImage(data) {
+      if (data.search("wash") >= 0) {
+        return require("@/assets/img/12.svg");
+      }
+      if (data.search("bleach") >= 0) {
+        return require("@/assets/img/17.svg");
+      }
+      if (data.search("tumble") >= 0) {
+        return require("@/assets/img/28.svg");
+      }
+      if (data.search("Iron") >= 0) {
+        return require("@/assets/img/31.svg");
+      }else{
+        return require("@/assets/img/instruction.svg");
+      }
+    },
   },
 
   async fetch() {
@@ -696,28 +728,28 @@ export default {
   },
 
   watch: {
-    "$store.state.cartAjax.cart_page_message": function() {
+    "$store.state.cartAjax.cart_page_message": function () {
       if (
         this.$store.state.cartAjax.cart_page_message != "" &&
         this.$store.state.cartAjax.cart_page_message != null
       ) {
         this.$toast.open(this.$store.state.cartAjax.cart_page_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
     },
-    "$store.state.cartAjax.cart_page_erro_page": function() {
+    "$store.state.cartAjax.cart_page_erro_page": function () {
       if (
         this.$store.state.cartAjax.cart_page_error_message != "" &&
         this.$store.state.cartAjax.cart_page_error_message != null
       ) {
         this.$toast.error(this.$store.state.cartAjax.cart_page_error_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
