@@ -219,7 +219,7 @@
                 role="presentation"
                 class="store-locator-pin icon-pin"
               ></span>
-              <NuxtLink to="/storelocater">In-store pickup</NuxtLink>
+              <NuxtLink to="/storelocator">In-store pickup</NuxtLink>
             </div>
             <div class="product-collapsible-sections">
               <div

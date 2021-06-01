@@ -6,8 +6,9 @@
           <div class="systemForm">
             <h1 class="title">Hi there!</h1>
             <div class="inputWrapper">
-              <label for="newnumber" class="label">Mobile Number*</label>
+              <label for="newnumber" class="label">SignIn or SignUp</label>
               <input
+              placeholder="Mobile Number*"
                 type="text"
                 v-model.number="mobileNumber"
                 ref="mobile_number"

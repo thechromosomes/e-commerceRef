@@ -289,7 +289,9 @@ button:hover {
 .search-icon-mobile {
   display: none;
 }
-
+.search_box .wishlist-text .btn {
+  display: flex;
+}
 .search_box .btn {
   font-weight: 700;
   text-transform: uppercase;
@@ -2583,8 +2585,8 @@ p.p-price span.line-throu {
   background-image: url(../img/sprite_icons.svg);
   background-position: -736px -2px;
   background-repeat: no-repeat;
-  width: 21px;
-  height: 21px;
+  width: 20px;
+  height: 20px;
   text-indent: -9999px;
 }
 .search_box .carts .cart-icon.cart-file-icon {
@@ -2599,8 +2601,8 @@ p.p-price span.line-throu {
   display: inline-block;
   background-image: url(../img/wishlist-icon.svg);
   background-repeat: no-repeat;
-  width: 21px;
-  height: 21px;
+  width: 20px;
+  height: 20px;
   text-indent: -9999px;
 }
 .new_search_box .login-text .user-icon {
@@ -2610,6 +2612,32 @@ p.p-price span.line-throu {
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
-  padding: 6px;
   text-indent: -9999px;
+}
+.accout-dropdown {
+  /* width: 100%; */
+  position: relative;
+}
+.accout-dropdown .dropdown-menu-account {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: #fff;
+  text-align: left;
+  width: 150px;
+  display: none;
+}
+.accout-dropdown .dropdown-menu-account ul li a {
+  padding: 7px 10px;
+  display: block;
+  border-bottom: 1px solid #efefef;
+  font-weight: 400;
+}
+.accout-dropdown:hover .dropdown-menu-account {
+  display: block;
+}
+.search_box .btn {
+  padding: 6px 6px;
 }

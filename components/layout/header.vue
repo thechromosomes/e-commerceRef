@@ -211,44 +211,84 @@
 
         <div class="search_box new_search_box">
           <div class="search-text desktop_only">
-            <button class="btn " @click="searchActive = true">Search</button>
+            <button class="btn" @click="searchActive = true">Search</button>
+          </div>
+          <div class="login-text accout-dropdown">
+            <client-only>
+              <NuxtLink
+                v-if="
+                  $store.state.cartAjax.customer_id != null &&
+                    $store.state.cartAjax.customer_id != '' &&
+                    $store.state.cartAjax.customer_session != '' &&
+                    $store.state.cartAjax.customer_session != null
+                "
+                to="/Dashboard"
+              >
+                <button class="btn desktop_only">Account</button>
+                <button class="btn mobile_only">
+                  <span class="user-icon "></span>
+                </button>
+                <div class="dropdown-menu-account">
+                  <ul>
+                    <ul>
+                      <li>
+                        <nuxt-link
+                          :class="[
+                            $route.path == '/Dashboard'
+                              ? 'active-account-sidebar'
+                              : ''
+                          ]"
+                          to="/Dashboard"
+                          >Account Dashboard</nuxt-link
+                        >
+                      </li>
+                      <li>
+                        <nuxt-link
+                          :class="[
+                            $route.path == '/addresses'
+                              ? 'active-account-sidebar'
+                              : ''
+                          ]"
+                          to="/addresses"
+                          >My Address Book</nuxt-link
+                        >
+                      </li>
+                      <li>
+                        <nuxt-link
+                          :class="[
+                            $route.path == '/myorder'
+                              ? 'active-account-sidebar'
+                              : ''
+                          ]"
+                          to="/myorder"
+                          >My Orders</nuxt-link
+                        >
+                      </li>
+                      <li>
+                        <a @click.prevent="logOut">Logout</a>
+                      </li>
+                    </ul>
+                  </ul>
+                </div>
+              </NuxtLink>
+              <NuxtLink v-else to="/login">
+                <button class="btn desktop_only">Login</button>
+                <button class="btn mobile_only">
+                  <span class="user-icon "></span>
+                </button>
+              </NuxtLink>
+            </client-only>
           </div>
           <div class="wishlist-text">
             <NuxtLink to="/wishlist">
-              <button class="btn desktop_only">wishlist</button>
-              <span class="wishliat-icon mobile_only"></span>
-            </NuxtLink>
-          </div>
-          <div class="login-text">
-            <NuxtLink
-              v-show="
-                this.$store.state.cartAjax.customer_id != null &&
-                  this.$store.state.cartAjax.customer_id != '' &&
-                  this.$store.state.cartAjax.customer_session != '' &&
-                  this.$store.state.cartAjax.customer_session != null
-              "
-              to="/Dashboard"
-            >
-              <button class="btn desktop_only">Account</button>
-              <span class="user-icon mobile_only"></span>
-            </NuxtLink>
-            <NuxtLink
-              v-show="
-                this.$store.state.cartAjax.customer_id == null ||
-                  this.$store.state.cartAjax.customer_id == '' ||
-                  this.$store.state.cartAjax.customer_session == '' ||
-                  this.$store.state.cartAjax.customer_session == null
-              "
-              to="/Dashboard"
-            >
-              <button class="btn desktop_only">Login</button>
-              <span class="user-icon mobile_only"></span>
+              <!-- <button class="btn desktop_only">wishlist</button> -->
+              <button class="btn "><span class="wishliat-icon"></span></button>
             </NuxtLink>
           </div>
           <div class="cart">
-            <NuxtLink to="/cart">
+            <NuxtLink to="/cart" class="btn">
               <span
-                class="carts"
+                class="carts carts-value "
                 v-if="$store.state.cartAjax.cart_product.length > 0"
               >
                 <span class="cart-file-icon cart-icon"></span>

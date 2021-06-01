@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <h1 class="text-center collection-title">STORE LOCATER</h1>
+            <h1 class="text-center collection-title">STORE LOCATOR</h1>
           </div>
           <div class="col-sm-12">
             <div class="find-store-nav">
@@ -199,7 +199,7 @@ export default {
           if (error.message === "Network Error") {
             this.$globalError(error.message);
           } else {
-            this.$globalError(`error form the store locater >> ${error}`);
+            this.$globalError(`error form the store locator >> ${error}`);
           }
         });
     },
