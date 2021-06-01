@@ -1,4 +1,7 @@
 @media (max-width: 991px) {
+  .product-carousel-padding {
+    padding: 0 15px;
+  }
   .slide-img .content.content-mobile {
     display: block;
   }
@@ -85,8 +88,15 @@
     justify-content: left;
     align-items: center;
   }
+  .wishlist-text,
+  .login-text,
+  .cart {
+    margin: 0 5px;
+  }
   .header .navbar .search_box {
     width: 25%;
+    line-height: 0;
+    align-items: center;
   }
   .search_box .carts img {
     width: 19px;
@@ -349,7 +359,7 @@
     margin: 0;
     padding: 0px 6px;
     font-size: 19px;
-      font-family: var(--fontFamily);
+    font-family: var(--fontFamily);
     font-weight: bold;
   }
   .icon-arrow-black-left {
@@ -444,7 +454,7 @@
     color: #000;
     cursor: pointer;
     height: 100%;
-      font-family: var(--fontFamily);
+    font-family: var(--fontFamily);
     font-size: 0.75rem;
     font-weight: 700;
     text-align: left;
@@ -523,7 +533,7 @@
   }
   .not_found_page .not_found_img .content .btn-block a.button {
     display: inline-block;
-      font-family: var(--fontFamily);
+    font-family: var(--fontFamily);
     width: 100%;
     text-align: center;
     cursor: pointer;
