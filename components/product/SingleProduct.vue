@@ -162,7 +162,7 @@
               <li
                 class="variation-attribute"
                 v-if="
-                singleProductList.single_prod_data.item_lengths &&
+                  singleProductList.single_prod_data.item_lengths &&
                   Object.keys(singleProductList.single_prod_data.item_lengths)
                     .length > 0
                 "
@@ -218,7 +218,7 @@
                 role="presentation"
                 class="store-locator-pin icon-pin"
               ></span>
-              <NuxtLink to="/storelocater">In-store pickup</NuxtLink>
+              <NuxtLink to="/storelocator">In-store pickup</NuxtLink>
             </div>
             <div class="product-collapsible-sections">
               <div

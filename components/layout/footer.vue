@@ -245,7 +245,7 @@
           <div class="footer-items">
             <div class="footer-navigation">
               <span class="footer-link-text"
-                ><NuxtLink to="/storelocater">STORE LOCATOR</NuxtLink></span
+                ><NuxtLink to="/storelocator">STORE LOCATOR</NuxtLink></span
               >
             </div>
           </div>
