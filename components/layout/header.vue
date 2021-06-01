@@ -229,7 +229,7 @@
               "
               to="/Dashboard"
             >
-              <button class="btn desktop_only">Login</button>
+              <button class="btn desktop_only">Account</button>
               <span class="user-icon mobile_only"></span>
             </NuxtLink>
             <NuxtLink
@@ -245,20 +245,22 @@
               <span class="user-icon mobile_only"></span>
             </NuxtLink>
           </div>
-          <NuxtLink to="/cart" class="cart">
-            <span
-              class="carts"
-              v-if="$store.state.cartAjax.cart_product.length > 0"
-            >
-              <span class="cart-file-icon cart-icon"></span>
-              <span class="minicart-quantity">
-                {{ $store.state.cartAjax.cart_product.length }}
+          <div class="cart">
+            <NuxtLink to="/cart">
+              <span
+                class="carts"
+                v-if="$store.state.cartAjax.cart_product.length > 0"
+              >
+                <span class="cart-file-icon cart-icon"></span>
+                <span class="minicart-quantity">
+                  {{ $store.state.cartAjax.cart_product.length }}
+                </span>
               </span>
-            </span>
-            <span class="carts" v-else>
-              <span class="cart-empty-icon cart-icon"></span>
-            </span>
-          </NuxtLink>
+              <span class="carts" v-else>
+                <span class="cart-empty-icon cart-icon"></span>
+              </span>
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </nav>
