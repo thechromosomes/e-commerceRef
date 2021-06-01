@@ -145,10 +145,15 @@
           <div class="refinements">
             <div
               class="card refinement refinement-category"
+              :class="filterIndex == activeDropdown ? 'open' : ''"
               v-for="(filter, filterIndex) in list.filters"
               :key="filterIndex"
             >
-              <h2 class="js_card-header card-header" tabindex="0">
+              <h2
+                class="js_card-header card-header"
+                tabindex="0"
+                @click="activeDropdownToggle(filterIndex)"
+              >
                 <span class="filter-title js_title">
                   {{ filter.filter_lable }}
                   <span
@@ -177,7 +182,7 @@
                         class="selection-box"
                         :class="
                           list.applied_filters.findIndex(
-                            x => x === `${item.code}~${item.value_key}`
+                            (x) => x === `${item.code}~${item.value_key}`
                           ) >= 0
                             ? 'selected-box'
                             : 'not-selected-box'
@@ -231,7 +236,7 @@
     </button>
     <button
       class="mobile-filter mobile_filtter mobile_only"
-      @click="openFiltter = true"
+      @click="toggleFilter()"
     >
       Filter
     </button>
@@ -251,13 +256,14 @@
                 Showing: {{ calculateResult }} Product(s)
               </div>
               <div class="sort-order" v-show="list.Product_list.length > 0">
-                <div class="sort-list">
-                  <div class="sort-label">
+                <div class="sort-list" :class="showSort ? 'open' : ''">
+                  <div class="sort-label" @click="() => (showSort = !showSort)">
                     <span class="sort-selected-option">
                       Sort By {{ sorting }}</span
                     >
                     <span class="select-arrow icon-arrow-mid-down-black"></span>
                   </div>
+
                   <ul class="sort-options" aria-hidden="true">
                     <li
                       class="sort-option best-matches"
@@ -342,7 +348,7 @@
               class="no_products text-center"
               v-if="
                 list.Product_list.length == 0 &&
-                  $store.state.pageLoader == false
+                $store.state.pageLoader == false
               "
             >
               <h1>Sorry !</h1>
@@ -370,7 +376,7 @@
                 class="button button-load-more js_button-load-more pointer"
                 v-show="
                   list.totalProduct > list.Product_list.length &&
-                    list.Product_list.length != 0
+                  list.Product_list.length != 0
                 "
                 @click="loadMore()"
               >
@@ -404,20 +410,21 @@ export default {
     return {
       titleContent: false,
       scrollPosition: "",
-
+      activeDropdown: null,
+      showSort: false,
       productSetting: {
         focusOnSelect: true,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: false,
-        arrows: true
+        arrows: true,
       },
 
       sorting: "default",
       openFiltter: false,
       openSort: false,
-      likeData: []
+      likeData: [],
     };
   },
 
@@ -428,29 +435,29 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.list.meta_description
+          content: this.list.meta_description,
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.list.meta_keyword
+          content: this.list.meta_keyword,
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title"
+          property: "og:title",
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description"
+          property: "og:description",
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url"
-        }
-      ]
+          property: "og:url",
+        },
+      ],
     };
   },
 
@@ -461,14 +468,14 @@ export default {
       try {
         await this.$store.commit("prepareState", {
           routeParam: this.$route.params.productCategory,
-          pageNo: pageNumber
+          pageNo: pageNumber,
         });
         let {
           service,
           store,
           pass_url_key,
           page,
-          count
+          count,
         } = this.$store.state.list;
 
         let form = {};
@@ -499,13 +506,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
 
         if (response) {
           await this.$store.commit("updateState", {
             error: null,
-            data: response
+            data: response,
           });
           // // google tag manager
           // this.gtm_product_impressions = [];
@@ -552,13 +559,19 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error: "Oops there seems to be some Network issue, please try again"
+            error:
+              "Oops there seems to be some Network issue, please try again",
           });
         }
       }
     },
     async removeAllFilters() {
       this.$router.push(this.$route.path);
+    },
+
+    toggleFilter() {
+      openFiltter = true;
+      openSort = false;
     },
 
     removeFilter(paramsData) {
@@ -573,15 +586,15 @@ export default {
         query: {
           ...this.$route.query,
           sort: event.code,
-          sort_dir: event.dir
-        }
+          sort_dir: event.dir,
+        },
       });
     },
 
     async loadMore() {
       await this.$store.commit("universalListMutate", {
         data: Number(this.list.page) + 1,
-        changeState: "page"
+        changeState: "page",
       });
       this.getProductList(this.list.page);
     },
@@ -594,10 +607,10 @@ export default {
       if (Object.keys(wishList).length != 0) {
         const groupResult = wishList.group
           .split(",")
-          .filter(word => word == groupId);
+          .filter((word) => word == groupId);
         const productResult = wishList.product
           .split(",")
-          .filter(word => word == ProductId);
+          .filter((word) => word == ProductId);
 
         if (groupResult.length > 0 && productResult.length > 0) {
           return "wishlist-active";
@@ -620,7 +633,7 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id
+          group_id: item.group_id,
         };
 
         if (data === "add") {
@@ -628,21 +641,21 @@ export default {
             method: "post",
             url: `/wishlist/add-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
         } else {
           var response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/wishlist/remove-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
         }
 
         if (response.success) {
           this.$toast.open(response.message);
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data
+            payload: response.data,
           });
 
           this.$gtm.push({
@@ -658,11 +671,11 @@ export default {
                     id: item.sku,
                     price: item.selling_price,
                     category: item.category,
-                    position: 1
-                  }
-                ]
-              }
-            }
+                    position: 1,
+                  },
+                ],
+              },
+            },
           });
         } else {
           throw "no response from api";
@@ -693,7 +706,16 @@ export default {
     // scroll to top
     scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    },
+
+    // toggle filter droopdown
+    activeDropdownToggle(index) {
+      if (this.activeDropdown != index) {
+        this.activeDropdown = index;
+      } else {
+        this.activeDropdown = null;
+      }
+    },
   },
 
   computed: {
@@ -716,7 +738,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    }
+    },
   },
 
   async fetch() {
@@ -730,8 +752,8 @@ export default {
         token: this.$store.state.cartAjax.customer_token,
         params: {
           service: "like",
-          store: 1
-        }
+          store: 1,
+        },
       });
       if (like.response) {
         this.likeData = like.result.likes;
@@ -748,17 +770,17 @@ export default {
     window.removeEventListener("scroll", this.updatePage);
   },
   watch: {
-    "$route.query": function() {
+    "$route.query": function () {
       this.getProductList();
     },
 
     "$store.state.list.sortingData": {
       deep: true,
-      handler: function() {
+      handler: function () {
         // this.sorting.code = this.list.sortingData.code;
         // this.sorting.dir = this.list.sortingData.dir;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
