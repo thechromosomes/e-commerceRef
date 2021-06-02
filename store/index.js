@@ -21,6 +21,7 @@ export const state = () => ({
     applied_filters: [],
     sortingData: { code: "", dir: "desc" },
     totalProduct: 0,
+    fit_filter: {},
   },
 
   singleProductList: {
@@ -195,7 +196,21 @@ export const mutations = {
         );
 
         state.list.pageHead = data.result.name;
-        state.list.filters = data.result.filters;
+        // state.list.filters = data.result.filters;
+        if (
+          data.result.filters &&
+          data.result.filters.length > 0 &&
+          state.list.filters.length == 0
+        ) {
+          state.list.filters = data.result.filters;
+        }
+        if (
+          data.result.fit_filter &&
+          Object.keys(data.result.fit_filter).length != 0 &&
+          Object.keys(state.list.fit_filter).length == 0
+        ) {
+          state.list.fit_filter = data.result.fit_filter.Fit;
+        }
         if (data.query.filter) {
           let array = data.query.filter.split(",");
           state.list.applied_filters = array;
@@ -250,6 +265,12 @@ export const mutations = {
     } else {
       state.list.page_error = error;
     }
+  },
+
+  // blank filter
+  blankfilter(state) {
+    state.list.filters = [];
+    state.list.fit_filter = {};
   },
 
   // update filter array

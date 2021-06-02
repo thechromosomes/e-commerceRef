@@ -42,83 +42,49 @@
           </div>
         </div>
         <!-- visual-filters -->
-        <div class="visual-filters" v-if="list.Product_list.length > 0">
+        <div
+          class="visual-filters"
+          v-if="
+            list.Product_list.length > 0 &&
+            list.fit_filter &&
+            Object.keys(list.fit_filter).length != 0
+          "
+        >
           <div class="visual-filter-texts">
             <h6>SHOP BY FIT</h6>
           </div>
           <div class="visual-filters-container">
-            <div class="category-filter">
-              <span class="active-arrow-colse"></span>
-              <div class="item">
+            <div
+              class="category-filter"
+              v-for="(fitFilterItem, FitFilterIndex) in list.fit_filter"
+              :key="FitFilterIndex"
+              :class="
+                list.applied_filters.findIndex(
+                  (x) =>
+                    x === `${fitFilterItem.code}~${fitFilterItem.value_key}`
+                ) >= 0
+                  ? 'active'
+                  : ''
+              "
+            >
+              <span
+                class="active-arrow-colse"
+                @click="
+                  removeFilter(
+                    `${fitFilterItem.code}~${fitFilterItem.value_key}`
+                  )
+                "
+              ></span>
+              <div class="item" @click="handleFitFilter(fitFilterItem)">
                 <div class="filter-image">
                   <img
-                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
+                    :src="fitFilterItem.image"
                     alt="img"
                     class="w-100"
                   />
                 </div>
                 <div class="category-filter-title">
-                  <a href="#">SKINNY</a>
-                </div>
-              </div>
-            </div>
-            <div class="category-filter">
-              <span class="active-arrow-colse"></span>
-              <div class="item">
-                <div class="filter-image">
-                  <img
-                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
-                    alt="img"
-                    class="w-100"
-                  />
-                </div>
-                <div class="category-filter-title">
-                  <a href="#">SKINNY</a>
-                </div>
-              </div>
-            </div>
-            <div class="category-filter">
-              <span class="active-arrow-colse"></span>
-              <div class="item">
-                <div class="filter-image">
-                  <img
-                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
-                    alt="img"
-                    class="w-100"
-                  />
-                </div>
-                <div class="category-filter-title">
-                  <a href="#">SKINNY</a>
-                </div>
-              </div>
-            </div>
-            <div class="category-filter">
-              <span class="active-arrow-colse"></span>
-              <div class="item">
-                <div class="filter-image">
-                  <img
-                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
-                    alt="img"
-                    class="w-100"
-                  />
-                </div>
-                <div class="category-filter-title">
-                  <a href="#">SKINNY</a>
-                </div>
-              </div>
-            </div>
-            <div class="category-filter">
-              <span class="active-arrow-colse"></span>
-              <div class="item">
-                <div class="filter-image">
-                  <img
-                    src="https://global.diesel.com/on/demandware.static/-/Sites-diesel-mf-navigation-catalog/default/dw0a445176/visual-filter/SKINNY_ML2.jpg"
-                    alt="img"
-                    class="w-100"
-                  />
-                </div>
-                <div class="category-filter-title">
-                  <a href="#">SKINNY</a>
+                  <a>{{ fitFilterItem.value }}</a>
                 </div>
               </div>
             </div>
@@ -566,6 +532,7 @@ export default {
       }
     },
     async removeAllFilters() {
+      await this.$store.commit("blankfilter");
       this.$router.push(this.$route.path);
     },
 
@@ -575,12 +542,12 @@ export default {
     },
 
     removeFilter(paramsData) {
+      console.log("paramsData", paramsData);
       this.$store.commit("updateFilterArray", { paramsData });
     },
 
     // sort Product list
     sortProduct(event) {
-      console.log("event", event);
       this.sorting = event.label;
       this.$router.push({
         query: {
@@ -716,6 +683,11 @@ export default {
         this.activeDropdown = null;
       }
     },
+
+    // fit filter handler
+    handleFitFilter(item) {
+      this.$store.commit("updateFilterArray", { item });
+    },
   },
 
   computed: {
@@ -744,6 +716,7 @@ export default {
   async fetch() {
     try {
       // fetching products from the backend
+      await this.$store.commit("blankfilter");
       await this.getProductList();
 
       let like = await this.$store.dispatch("pimAjax", {
