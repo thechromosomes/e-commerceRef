@@ -91,12 +91,18 @@
   .wishlist-text,
   .login-text,
   .cart {
-    margin: 0 5px;
+    /* margin: 0 5px; */
+  }
+  .search_box .btn {
+    padding: 0px 6px;
   }
   .header .navbar .search_box {
     width: 25%;
     line-height: 0;
-    align-items: center;
+    /* align-items: center; */
+  }
+  .new_search_box .login-text .user-icon {
+    width: 14px;
   }
   .search_box .carts img {
     width: 19px;
@@ -673,8 +679,6 @@
   }
   .accout-dropdown {
     position: static;
-    width: 20px;
-    height: 34px;
   }
   .accout-dropdown .dropdown-menu-account {
     left: unset;
@@ -733,10 +737,10 @@
   }
 }
 @media (max-width: 370px) {
-  .wishlist-text {
+  /* .wishlist-text {
     width: 14px;
   }
   .accout-dropdown {
     width: 10px;
-  }
+  } */
 }

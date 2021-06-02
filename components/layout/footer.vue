@@ -192,9 +192,9 @@
                   >For Responsible Living</a
                 >
               </div>
-              <div class="link-text">
+              <!-- <div class="link-text">
                 <a class="link-text" href="#" target="_blank">Work with us</a>
-              </div>
+              </div> -->
               <div class="link-text">
                 <a class="link-text" href="#" target="_blank"
                   >Only the Brave Foundation</a
@@ -230,16 +230,16 @@
                   >Other Corporate information
                 </a>
               </div>
-              <div class="link-text">
+              <!-- <div class="link-text">
                 <a class="link-text" href="#" target="_blank"
                   >UK Gender Pay Gap
                 </a>
-              </div>
-              <div class="link-text">
+              </div> -->
+              <!-- <div class="link-text">
                 <a class="link-text" href="#" target="_blank"
                   >Diesel is part of OTB
                 </a>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="footer-items">
@@ -249,12 +249,12 @@
               >
             </div>
           </div>
-          <div class="footer-items">
+          <!-- <div class="footer-items">
             <div class="footer-navigation">
               <span class="footer-link-text">SHIP TO</span>
             </div>
-          </div>
-          <div class="footer-items" :class="langOpen ? 'dropdown-open' : ''">
+          </div> -->
+          <!-- <div class="footer-items" :class="langOpen ? 'dropdown-open' : ''">
             <div
               class="footer-navigation"
               @click="() => (langOpen = !langOpen)"
@@ -267,7 +267,7 @@
                 <a class="link-text" href="#">English </a>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

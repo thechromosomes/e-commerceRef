@@ -76,7 +76,7 @@ button:hover {
   text-align: right;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  /* align-items: center; */
 }
 .header .navbar .search_box .searchbox input {
   border: 0;
@@ -1771,7 +1771,8 @@ p.p-price span.line-throu {
   border: 1px solid #fff;
   color: #fff;
   width: 265px;
-  padding: 12px 85px;
+  padding: 12px 5px;
+  text-align: center;
   display: block;
   transform: all 0.5s;
 }
@@ -1952,6 +1953,7 @@ p.p-price span.line-throu {
 .search_box .carts {
   position: relative;
   cursor: pointer;
+  display: block;
 }
 .search_box .carts .cart_val {
   position: absolute;
@@ -1965,12 +1967,15 @@ p.p-price span.line-throu {
   top: -8px;
   font-size: 11px;
 }
+.search_box .carts.wishlist .minicart-quantity {
+  color: #000;
+}
 .search_box .carts .minicart-quantity {
-  /* position: absolute; */
+  position: absolute;
   font-size: 11px;
-  /* top: 2px; */
+  bottom: 0px;
   color: #ff1010;
-  /* right: -8px; */
+  right: -9px;
   font-family: Roboto, sans-serif;
   width: 10px;
 }
@@ -2588,6 +2593,19 @@ p.p-price span.line-throu {
   width: 20px;
   height: 20px;
   text-indent: -9999px;
+}
+.search_box .carts .wislist-icon {
+  content: "";
+  display: inline-block;
+  background-image: url(../img/wishlist-icon.svg);
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
+}
+.search_box .carts .wislist-icon.wislist-file-icon {
+  background-image: url(../img/sprite_icons.svg);
+  background-position: -102px -227px;
 }
 .search_box .carts .cart-icon.cart-file-icon {
   background-position: -882px -2px;

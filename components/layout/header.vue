@@ -272,9 +272,21 @@
               </NuxtLink>
             </client-only>
           </div>
-          <div class="wishlist-text">
-            <NuxtLink to="/wishlist">
-              <button class="btn"><span class="wishliat-icon"></span></button>
+
+          <div class="cart">
+            <NuxtLink to="/wishlist" class="btn">
+              <span
+                class="carts carts-value wishlist "
+                v-if="Object.keys($store.state.cartAjax.wishlist).length != 0"
+              >
+                <span class="wislist-file-icon wislist-icon"></span>
+                <span class="minicart-quantity">
+                  {{ $store.state.cartAjax.wishlist.product.split(",").length }}
+                </span>
+              </span>
+              <span class="carts" v-else>
+                <span class="cart-empty-icon wislist-icon"></span>
+              </span>
             </NuxtLink>
           </div>
           <div class="cart">
