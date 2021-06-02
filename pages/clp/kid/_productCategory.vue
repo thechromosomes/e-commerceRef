@@ -14,10 +14,14 @@
         />
         <div class="content-text">
           <h4>
-            DIESEL X DIESEL
+            XMAS COLLECTION
           </h4>
-          <p>A LINE-UP OF LIMITED PIECES, SELECTED FROM THE ARCHIVES.</p>
-          <a class="button primary-btn" href="#" role="button">DISCOVER NOW</a>
+          <a class="button primary-btn" href="#" role="button"
+            >DISCOVER FOR BOYS</a
+          >
+          <a class="button primary-btn" href="#" role="button"
+            >DISCOVER FOR GIRLS</a
+          >
         </div>
       </div>
     </section>
@@ -59,6 +63,23 @@
     </div>
 
     <ProductSilder :slideImg="slideItem" />
+    <!-- new design -->
+    <div class="item-four-show">
+      <h4 class="title" style="background:#2c3e50;">JUNIOR BOYS</h4>
+      <div class="item-box">
+        <div class="item" v-for="(item, index) in Item" :key="index">
+          <img
+            src="https://global.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw42db9df6/SS21/KID/landing-kid-junior-boy-jacket.jpg"
+            alt=""
+            class="w-100"
+          />
+          <div class="content">
+            <h3 class="module-title"><a href="#">WORKWEAR ATTITUDE</a></h3>
+            <a class="module-link" href="#">SHOP NOW</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -70,6 +91,7 @@ export default {
   data() {
     return {
       slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
+      Item: [1, 2, 3, 4],
 
       settings2: {
         infinite: true,

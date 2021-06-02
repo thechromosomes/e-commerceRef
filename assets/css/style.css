@@ -106,7 +106,7 @@ button:hover {
 .header .navbar .navbar-collapse .navbar-nav:hover .nav-item .nav-link {
   opacity: 0.5;
 }
-.header .navbar .navbar-collapse .navbar-nav .nav-item .nav-link:hover,
+.header .navbar .navbar-collapse .navbar-nav .nav-item:hover .nav-link,
 .header
   .navbar
   .navbar-collapse
@@ -115,10 +115,10 @@ button:hover {
   .dropdown_menu
   .level-2
   .navbar-nav
-  .nav-item
-  .nav-link:hover {
+  .nav-item:hover
+  .nav-link {
   color: #000;
-  opacity: unset;
+  opacity: 1;
 }
 
 .header .navbar .navbar-collapse .navbar-nav .nav-item .nav-link.first {
@@ -243,6 +243,8 @@ button:hover {
   word-wrap: break-word;
   font-size: 14px;
   padding: 10px 30px;
+  text-transform: capitalize;
+  font-weight: 400;
   margin: 0;
   display: block;
 }

@@ -71,9 +71,8 @@
                                       <div class="levelthreemenu">
                                         <ul>
                                           <li
-                                            v-for="(
-                                              subChildItem, subCgildIndex
-                                            ) in childItem.childs"
+                                            v-for="(subChildItem,
+                                            subCgildIndex) in childItem.childs"
                                             :key="subCgildIndex"
                                           >
                                             <Nuxt-link
@@ -81,7 +80,9 @@
                                                 showMobileMenu = false
                                               "
                                               class="nav-link pl-0"
-                                              :to="`/collections/${subChildItem.menu_url_key}/`"
+                                              :to="
+                                                `/collections/${subChildItem.menu_url_key}/`
+                                              "
                                               >{{
                                                 subChildItem.name
                                               }}</Nuxt-link
@@ -211,9 +212,9 @@
               <NuxtLink
                 v-if="
                   $store.state.cartAjax.customer_id != null &&
-                  $store.state.cartAjax.customer_id != '' &&
-                  $store.state.cartAjax.customer_session != '' &&
-                  $store.state.cartAjax.customer_session != null
+                    $store.state.cartAjax.customer_id != '' &&
+                    $store.state.cartAjax.customer_session != '' &&
+                    $store.state.cartAjax.customer_session != null
                 "
                 to="/Dashboard"
               >
@@ -229,7 +230,7 @@
                           :class="[
                             $route.path == '/Dashboard'
                               ? 'active-account-sidebar'
-                              : '',
+                              : ''
                           ]"
                           to="/Dashboard"
                           >Account Dashboard</nuxt-link
@@ -240,7 +241,7 @@
                           :class="[
                             $route.path == '/addresses'
                               ? 'active-account-sidebar'
-                              : '',
+                              : ''
                           ]"
                           to="/addresses"
                           >My Address Book</nuxt-link
@@ -251,7 +252,7 @@
                           :class="[
                             $route.path == '/myorder'
                               ? 'active-account-sidebar'
-                              : '',
+                              : ''
                           ]"
                           to="/myorder"
                           >My Orders</nuxt-link
@@ -291,20 +292,20 @@
           </div>
           <div class="cart">
             <client-only>
-            <NuxtLink to="/cart" class="btn">
-              <span
-                class="carts carts-value"
-                v-if="$store.state.cartAjax.cart_product.length > 0"
-              >
-                <span class="cart-file-icon cart-icon"></span>
-                <span class="minicart-quantity">
-                  {{ $store.state.cartAjax.cart_product.length }}
+              <NuxtLink to="/cart" class="btn">
+                <span
+                  class="carts carts-value"
+                  v-if="$store.state.cartAjax.cart_product.length > 0"
+                >
+                  <span class="cart-file-icon cart-icon"></span>
+                  <span class="minicart-quantity">
+                    {{ $store.state.cartAjax.cart_product.length }}
+                  </span>
                 </span>
-              </span>
-              <span class="carts" v-else>
-                <span class="cart-empty-icon cart-icon"></span>
-              </span>
-            </NuxtLink>
+                <span class="carts" v-else>
+                  <span class="cart-empty-icon cart-icon"></span>
+                </span>
+              </NuxtLink>
             </client-only>
           </div>
         </div>
@@ -344,7 +345,7 @@ export default {
     return {
       showMobileMenu: false,
       searchActive: false,
-      scrollPosition: null,
+      scrollPosition: null
     };
   },
   async mounted() {
@@ -353,17 +354,17 @@ export default {
   },
 
   computed: {
-    ...mapState(["header"]),
+    ...mapState(["header"])
   },
 
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
-    },
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  },
+  }
 };
 </script>
 <style scoped>
