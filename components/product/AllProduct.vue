@@ -77,11 +77,7 @@
               ></span>
               <div class="item" @click="handleFitFilter(fitFilterItem)">
                 <div class="filter-image">
-                  <img
-                    :src="fitFilterItem.image"
-                    alt="img"
-                    class="w-100"
-                  />
+                  <img :src="fitFilterItem.image" alt="img" class="w-100" />
                 </div>
                 <div class="category-filter-title">
                   <a>{{ fitFilterItem.value }}</a>
@@ -726,6 +722,7 @@ export default {
         params: {
           service: "like",
           store: 1,
+          url_key: this.$route.params.productCategory,
         },
       });
       if (like.response) {
