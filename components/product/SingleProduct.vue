@@ -269,6 +269,10 @@
                 </div>
               </div>
               <div
+                v-if="
+                  singleProductList.single_prod_data.care_instructions &&
+                  singleProductList.single_prod_data.care_instructions != ''
+                "
                 class="product-care-instructions"
                 :class="[CareInt ? 'expand-open' : 'expand-close']"
               >
@@ -708,7 +712,7 @@ export default {
       }
       if (data.search("Iron") >= 0) {
         return require("@/assets/img/31.svg");
-      }else{
+      } else {
         return require("@/assets/img/instruction.svg");
       }
     },
