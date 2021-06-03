@@ -360,6 +360,50 @@ export default {
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
+    },
+    logOut: async function() {
+      var form = {};
+      form.customer_id = this.$store.state.cartAjax.customer_id;
+      form.customer_session = this.$store.state.cartAjax.customer_session;
+      this.$store
+        .dispatch("cartAjax/actCartAjax", {
+          method: "post",
+          url: `/customer/logout`,
+          token: this.$store.state.cartAjax.customer_token,
+          params: form
+        })
+        .then(async response => {
+          if (response.data.success === true) {
+            $cookies.remove(
+              window.location.hostname.substring(10, 4) + "_cart_token"
+            );
+            $cookies.remove(
+              window.location.hostname.substring(10, 4) + "_cart_session"
+            );
+            $cookies.remove(
+              window.location.hostname.substring(10, 4) + "_cart_id"
+            );
+            $cookies.remove(
+              window.location.hostname.substring(10, 4) + "_customer_session"
+            );
+            $cookies.remove(
+              window.location.hostname.substring(10, 4) + "_customer_id"
+            );
+
+            $cookies.remove(
+              window.location.hostname.substring(10, 4) + "_customer_token"
+            );
+            this.$toast.success(
+              "You have been successfully logout. See you soon!"
+            );
+            location.reload();
+          } else {
+            this.$router.push("/");
+          }
+        })
+        .catch(error => {
+          console.log("error from the log out page", error);
+        });
     }
   },
   beforeDestroy() {

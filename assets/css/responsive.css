@@ -99,10 +99,11 @@
   .header .navbar .search_box {
     width: 25%;
     line-height: 0;
-    /* align-items: center; */
+    align-items: center;
   }
   .new_search_box .login-text .user-icon {
     width: 14px;
+    background-position: 1px 6px;
   }
   .search_box .carts img {
     width: 19px;
