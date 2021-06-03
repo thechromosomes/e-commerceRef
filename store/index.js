@@ -184,6 +184,7 @@ export const mutations = {
 
     if (pageNo == 1) {
       state.list.Product_list = [];
+      state.list.applied_filters = [];
     }
     state.list.pass_url_key = routeParam;
   },

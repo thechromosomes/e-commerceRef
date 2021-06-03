@@ -99,7 +99,7 @@
   .header .navbar .search_box {
     width: 25%;
     line-height: 0;
-    align-items: center;
+    align-items: baseline;
   }
   .new_search_box .login-text .user-icon {
     width: 14px;
@@ -695,6 +695,13 @@
     justify-content: flex-start;
     align-items: baseline;
   }
+  .login-box .systemForm {
+    transform: unset;
+    position: static;
+  }
+  .login-box {
+    padding: 10px 0px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -730,6 +737,47 @@
   }
   .complete-registration .img-box img {
     width: 100%;
+  }
+  .store-model-overlay .store-model-body {
+    padding: 30px 15px;
+    position: static;
+    transform: unset;
+  }
+  .store-model-overlay .store-model-body .titel h2 {
+    text-align: left;
+  }
+  .store-model-overlay .store-model-body .model-content .srtor-search-box {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    position: relative;
+  }
+  .store-model-overlay
+    .store-model-body
+    .model-content
+    .srtor-search-box
+    input.form-control {
+    margin: 10px 0;
+    width: 100%;
+  }
+  .store-model-overlay .store-model-body .model-content {
+    padding: 0 15px;
+  }
+  .store-model-overlay
+    .store-model-body
+    .model-content
+    .srtor-search-box
+    span.location-icons {
+    position: absolute;
+    top: 60%;
+    left: 0;
+  }
+  .store-model-overlay
+    .store-model-body
+    .model-content
+    .srtor-search-box
+    .search-stores-btn {
+    width: 85%;
   }
 }
 @media (max-width: 1010px) {

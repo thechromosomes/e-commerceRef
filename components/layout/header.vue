@@ -61,9 +61,9 @@
                           >
                             <li class="nav-item">
                               <span class="stripeImage"></span>
-                              <a href="#" class="nav-link">{{
-                                childItem.name
-                              }}</a>
+                              <a href="#" class="nav-link"
+                                >{{ childItem.name }}
+                              </a>
                               <div class="dropdown_menu_level-3">
                                 <div class="level-3">
                                   <div class="row">
@@ -83,10 +83,8 @@
                                               :to="
                                                 `/collections/${subChildItem.menu_url_key}/`
                                               "
-                                              >{{
-                                                subChildItem.name
-                                              }}</Nuxt-link
-                                            >
+                                              >{{ subChildItem.name }}
+                                            </Nuxt-link>
                                           </li>
                                         </ul>
                                       </div>
@@ -94,7 +92,7 @@
                                     <div class="col-md-12 col-lg-3">
                                       <div class="menu_img-section">
                                         <img
-                                          src="@/assets/img/new_arrivals-menu.jpg"
+                                          :src="childItem.image"
                                           alt="img"
                                           class="w-100"
                                         />
@@ -127,81 +125,6 @@
             ><img src="~/assets//img/logo.svg" alt="logo"
           /></NuxtLink>
         </div>
-        <!-- <div class="search_box">
-          <div
-            class="searchbox desktop_only"
-            :class="[scrollPosition > 30 ? 'hidden' : '']"
-          >
-            <span class="carts"
-              ><img src="~/assets//img/search.png" alt="cart"
-            /></span>
-            <input
-              type="search"
-              placeholder="What are you looking for?"
-              autocomplete="off"
-            />
-          </div>
-
-          <span
-            @click="searchActive = true"
-            class="desktop_only"
-            :class="[scrollPosition > 30 ? '' : 'hidden']"
-          >
-            <span class="carts"
-              ><img src="~/assets//img/search.png" alt="cart" />
-            </span>
-          </span>
-          <NuxtLink
-            v-show="
-              this.$store.state.cartAjax.customer_id != null &&
-              this.$store.state.cartAjax.customer_id != '' &&
-              this.$store.state.cartAjax.customer_session != '' &&
-              this.$store.state.cartAjax.customer_session != null
-            "
-            to="/Dashboard"
-          >
-            <span class="carts"
-              ><img src="~/assets//img/user.png" alt="user" />
-            </span>
-          </NuxtLink>
-          <NuxtLink
-            v-show="
-              this.$store.state.cartAjax.customer_id == null ||
-              this.$store.state.cartAjax.customer_id == '' ||
-              this.$store.state.cartAjax.customer_session == '' ||
-              this.$store.state.cartAjax.customer_session == null
-            "
-            to="/Dashboard"
-          >
-            <span class="carts"
-              ><img src="~/assets//img/user.png" alt="user" />
-            </span>
-          </NuxtLink>
-          <NuxtLink to="/wishlist">
-            <span class="carts"
-              ><img src="~/assets//img/heart.png" alt="cart" />
-              <span
-                class="cart_val"
-                v-if="Object.keys($store.state.cartAjax.wishlist).length != 0"
-              >
-                {{ $store.state.cartAjax.wishlist.product.split(",").length }}  {{ $store.state.cartAjax.wishlist.product.split(",").length }}
-              </span>
-              <span class="cart_val" v-else> 0 </span>
-            </span>
-          </NuxtLink>
-
-          <NuxtLink to="/cart">
-
-            <span class="carts">
-              <span class="cart-empty-icon cart-icon"></span>
-
-              <span class="cart_val">
-                {{ $store.state.cartAjax.cart_product.length }}
-            </span>
-            </span>
-          </NuxtLink>
-          <button class="btn">Search</button>
-        </div> -->
 
         <div class="search_box new_search_box">
           <div class="search-text desktop_only">
@@ -276,25 +199,27 @@
 
           <div class="cart">
             <client-only>
-            <NuxtLink to="/wishlist" class="btn">
-              <span
-                class="carts carts-value wishlist "
-                v-if="Object.keys($store.state.cartAjax.wishlist).length != 0"
-              >
-                <span class="wislist-file-icon wislist-icon"></span>
-                <span class="minicart-quantity">
-                  {{ $store.state.cartAjax.wishlist.product.split(",").length }}
+              <NuxtLink to="/wishlist" class="btn">
+                <span
+                  class="carts carts-value wishlist "
+                  v-if="Object.keys($store.state.cartAjax.wishlist).length != 0"
+                >
+                  <span class="wislist-file-icon wislist-icon"></span>
+                  <span class="minicart-quantity">
+                    {{
+                      $store.state.cartAjax.wishlist.product.split(",").length
+                    }}
+                  </span>
                 </span>
-              </span>
-              <span class="carts" v-else>
-                <span class="cart-empty-icon wislist-icon"></span>
-              </span>
-            </NuxtLink>
+                <span class="carts" v-else>
+                  <span class="cart-empty-icon wislist-icon"></span>
+                </span>
+              </NuxtLink>
             </client-only>
           </div>
           <div class="cart">
             <client-only>
-              <NuxtLink to="/cart" class="btn">
+              <NuxtLink to="/cart" class="btn d-block">
                 <span
                   class="carts carts-value"
                   v-if="$store.state.cartAjax.cart_product.length > 0"
