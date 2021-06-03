@@ -29,12 +29,12 @@
       </client-only>
     </div>
 
-    <section class="new_in">
-      <div class="container-fluid">
-        <div class="content_new_in">
-          <h2 class="swiper-header">NEW IN</h2>
-          <div class="slide_new_in" v-if="is_new.length > 0">
-            <client-only>
+    <client-only>
+      <section class="new_in">
+        <div class="container-fluid">
+          <div class="content_new_in">
+            <h2 class="swiper-header">NEW IN</h2>
+            <div class="slide_new_in" v-if="is_new.length > 0">
               <VueSlickCarousel ref="slick" v-bind="settings">
                 <div class="item" v-for="(item, index) in is_new" :key="index">
                   <NuxtLink :to="`product/${item.url_key}`"
@@ -48,11 +48,11 @@
                   </div>
                 </div>
               </VueSlickCarousel>
-            </client-only>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </client-only>
 
     <!-- Start of bottom images Section -->
     <span v-html="homePageData.content_1"></span>
