@@ -274,6 +274,7 @@
           </div>
 
           <div class="cart">
+            <client-only>
             <NuxtLink to="/wishlist" class="btn">
               <span
                 class="carts carts-value wishlist "
@@ -288,6 +289,7 @@
                 <span class="cart-empty-icon wislist-icon"></span>
               </span>
             </NuxtLink>
+            </client-only>
           </div>
           <div class="cart">
             <client-only>

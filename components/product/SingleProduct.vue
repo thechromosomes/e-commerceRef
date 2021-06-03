@@ -157,6 +157,8 @@
                   </li>
                 </ul>
               </li>
+              <span class="error" v-if="sizeAlert">{{ selectedSizeError }}</span>
+
               <li
                 class="variation-attribute"
                 v-if="
@@ -192,8 +194,8 @@
                   </li>
                 </ul>
               </li>
+              <span class="error" v-if="lengthAlert">{{ lengthError }}</span>
             </ul>
-            <span class="error">{{ selectedSizeError }}</span>
             <div class="print_btn">
               <button
                 id="btn-print"
@@ -336,7 +338,10 @@ export default {
       size: false,
       selectedSizeAttr: "",
       selectedLengthAttr: "",
+      isLengthAvailable: false,
       sizeAlert: false,
+      lengthAlert: false,
+      lengthError: "",
       addToCartVal: 1,
       settings: {
         infinite: true,
@@ -459,7 +464,7 @@ export default {
 
     hanldeLengt(size) {
       if (size.quantity == 0) return;
-      this.sizeAlert = false;
+      this.lengthAlert = false;
       this.selectedLengthAttr = size;
     },
     // get product detail
@@ -506,6 +511,13 @@ export default {
       if (Object.keys(this.selectedSizeAttr).length === 0) {
         this.sizeAlert = true;
         this.selectedSizeError = "Please select size";
+      }
+      if (
+        this.isLengthAvailable &&
+        Object.keys(this.selectedLengthAttr).length === 0
+      ) {
+        this.lengthAlert = true;
+        this.lengthError = "please select length";
         return;
       } else {
         try {
@@ -728,6 +740,15 @@ export default {
     ) {
       var obj = this.singleProductList.single_prod_data.variation;
       this.selectedSizeAttr = obj[Object.keys(obj)[0]];
+    }
+
+    // length check
+    if (
+      this.singleProductList.single_prod_data &&
+      Object.keys(this.singleProductList.single_prod_data.item_lengths)
+        .length != 0
+    ) {
+      this.isLengthAvailable = true;
     }
   },
 
