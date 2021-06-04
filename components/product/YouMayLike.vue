@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="product-carousel-padding" v-if="likeData.length > 0">
+    <div class="product-carousel-padding" v-if="likeData && likeData.length > 0">
       <div class="product-carousel-container">
         <h2 class="product-carousel-title">You may also like</h2>
       </div>

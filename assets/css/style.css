@@ -1037,7 +1037,7 @@ button:hover {
   display: none;
 }
 .product-care-instructions.care {
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
 }
 .product-care-instructions.care ul {
   margin-left: 20px;
