@@ -126,115 +126,61 @@
           /></NuxtLink>
         </div>
 
-        <div class="search_box new_search_box">
-          <div class="search-text desktop_only">
-            <button class="btn" @click="searchActive = true">Search</button>
-          </div>
-          <div class="login-text accout-dropdown">
-            <client-only>
-              <NuxtLink
-                v-if="
-                  $store.state.cartAjax.customer_id != null &&
-                    $store.state.cartAjax.customer_id != '' &&
-                    $store.state.cartAjax.customer_session != '' &&
-                    $store.state.cartAjax.customer_session != null
-                "
-                to="/Dashboard"
-              >
-                <button class="btn desktop_only">Account</button>
-                <button class="btn mobile_only">
-                  <span class="user-icon"></span>
-                </button>
-                <div class="dropdown-menu-account">
-                  <ul>
-                    <ul>
-                      <li>
-                        <nuxt-link
-                          :class="[
-                            $route.path == '/Dashboard'
-                              ? 'active-account-sidebar'
-                              : ''
-                          ]"
-                          to="/Dashboard"
-                          >Account Dashboard</nuxt-link
-                        >
-                      </li>
-                      <li>
-                        <nuxt-link
-                          :class="[
-                            $route.path == '/addresses'
-                              ? 'active-account-sidebar'
-                              : ''
-                          ]"
-                          to="/addresses"
-                          >My Address Book</nuxt-link
-                        >
-                      </li>
-                      <li>
-                        <nuxt-link
-                          :class="[
-                            $route.path == '/myorder'
-                              ? 'active-account-sidebar'
-                              : ''
-                          ]"
-                          to="/myorder"
-                          >My Orders</nuxt-link
-                        >
-                      </li>
-                      <li>
-                        <a @click.prevent="logOut">Logout</a>
-                      </li>
-                    </ul>
-                  </ul>
+        <div class="search_box">
+          <ul>
+            <li class="desktop_only" @click="searchActive = true">
+              <nuxt-link to="#">Search</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="#">
+                <div class="without-login">
+                  <span class="desktop_only">Login</span>
+                  <span class="mobile_only user-icon"></span>
                 </div>
-              </NuxtLink>
-              <NuxtLink v-else to="/login">
-                <button class="btn desktop_only">Login</button>
-                <button class="btn mobile_only">
-                  <span class="user-icon"></span>
-                </button>
-              </NuxtLink>
-            </client-only>
-          </div>
-
-          <div class="cart">
-            <client-only>
-              <NuxtLink to="/wishlist" class="btn">
-                <span
-                  class="carts carts-value wishlist "
-                  v-if="Object.keys($store.state.cartAjax.wishlist).length != 0"
-                >
-                  <span class="wislist-file-icon wislist-icon"></span>
-                  <span class="minicart-quantity">
-                    {{
-                      $store.state.cartAjax.wishlist.product.split(",").length
-                    }}
-                  </span>
-                </span>
-                <span class="carts" v-else>
-                  <span class="cart-empty-icon wislist-icon"></span>
-                </span>
-              </NuxtLink>
-            </client-only>
-          </div>
-          <div class="cart">
-            <client-only>
-              <NuxtLink to="/cart" class="btn d-block">
-                <span
-                  class="carts carts-value"
-                  v-if="$store.state.cartAjax.cart_product.length > 0"
-                >
-                  <span class="cart-file-icon cart-icon"></span>
-                  <span class="minicart-quantity">
-                    {{ $store.state.cartAjax.cart_product.length }}
-                  </span>
-                </span>
-                <span class="carts" v-else>
-                  <span class="cart-empty-icon cart-icon"></span>
-                </span>
-              </NuxtLink>
-            </client-only>
-          </div>
+              </nuxt-link>
+            </li>
+            <li>
+              <client-only>
+                <nuxt-link to="/wishlist">
+                  <div class="wishlist">
+                    <span
+                      class="wishlist-full-count"
+                      v-if="
+                        Object.keys($store.state.cartAjax.wishlist).length != 0
+                      "
+                    >
+                      <span class="wishlist-icon wish-full"></span>
+                      <span class="wishlist-count">
+                        {{
+                          $store.state.cartAjax.wishlist.product.split(",")
+                            .length
+                        }}
+                      </span>
+                    </span>
+                    <span class="wishlist-icon wish-blank" v-else></span>
+                  </div>
+                </nuxt-link>
+              </client-only>
+            </li>
+            <li>
+              <div class="carts">
+                <client-only>
+                  <NuxtLink to="/cart">
+                    <span
+                      class="cart-full-count"
+                      v-if="$store.state.cartAjax.cart_product.length != 0"
+                    >
+                      <span class="cart-icon cart-full"></span>
+                      <span class="cart-count">
+                        {{ $store.state.cartAjax.cart_product.length }}
+                      </span>
+                    </span>
+                    <span class="cart-icon cart-blank" v-else></span>
+                  </NuxtLink>
+                </client-only>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

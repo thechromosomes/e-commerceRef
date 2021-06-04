@@ -163,17 +163,10 @@ export const mutations = {
     state.list.product_loader = true;
     state.list.page = pageNo;
     state.list.Product_count = "";
-    // state.list.sort = [
-    //   { code: "default", dir: "desc", label: "default" },
-    //   { code: "selling_price", dir: "asc", label: "Price (Low to High)" },
-    //   { code: "selling_price", dir: "desc", label: "Price (High to Low)" },
-    //   { code: "product_position", dir: "asc", label: "Oldest to newest" },
-    //   { code: "product_position", dir: "desc", label: "Newest to oldest" },
-    //   { code: "discount", dir: "asc", label: "Discount" },
-    // ];
+
 
     state.list.sort = [
-      { code: "default", dir: "desc", label: "default" },
+      // { code: "default", dir: "desc", label: "default" },
       { code: "best_matches", dir: "asc", label: "Best Matches" },
       { code: "Product_name", dir: "asc", label: "Product Name A-Z" },
       { code: "Product_name", dir: "desc", label: "Product Name Z-A" },

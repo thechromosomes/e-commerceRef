@@ -74,8 +74,8 @@ button:hover {
 .header .navbar .search_box {
   width: 35%;
   text-align: right;
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex;
+  justify-content: flex-end; */
   /* align-items: center; */
 }
 .header .navbar .search_box .searchbox input {
@@ -340,7 +340,7 @@ button:hover {
   font-weight: 700;
   transition: all 0.5s;
   text-decoration: none;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 
 .slide-img .content-text .button:hover {
@@ -366,7 +366,7 @@ button:hover {
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 700;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--fontFamily);
   /* letter-spacing: 1px; */
 }
 .product_details .back-to-container .back-to::before {
@@ -398,7 +398,7 @@ button:hover {
   line-height: 1.625rem;
   color: #000;
   font-weight: 400;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 .product-attributes {
   font-family: var(--fontFamily);
@@ -595,7 +595,7 @@ button:hover {
   font-size: 15px;
   color: #000;
   font-weight: 400;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--fontFamily);
 }
 
 .product-details {
@@ -612,7 +612,7 @@ button:hover {
 }
 .product-details .product_value .product-details-element span {
   font-size: 14px;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--fontFamily);
   color: #000;
 }
 .product-details .product_value .product-details-element span {
@@ -711,11 +711,11 @@ button:hover {
   font-size: 14px;
   line-height: 1.9;
   margin: 20px 0;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
   letter-spacing: 1px;
 }
 .collections_slide .slide_content .item .img_content a {
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
   font-size: 14px;
   color: #000;
   margin: 0px 10px 10px 0px;
@@ -924,7 +924,7 @@ button:hover {
   white-space: nowrap;
   list-style-type: none;
   padding: 15px 0;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 .footer
   .footer-wrapper
@@ -954,7 +954,7 @@ button:hover {
   margin: 0px;
   font-size: 12px;
   margin: 5px 0px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 
 .icon-close-black {
@@ -1137,7 +1137,7 @@ button:hover {
   text-transform: uppercase;
   margin: 9px 0 0;
   padding: 10px 30px 10px 0;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
   letter-spacing: 0.5px;
 }
 .refinements {
@@ -1172,7 +1172,7 @@ button:hover {
   border: none;
   font-weight: 400;
   margin: 0;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
   font-size: 14px;
   white-space: nowrap;
   animation-direction: normal;
@@ -1278,15 +1278,15 @@ button:hover {
 
 .search-results {
   margin: 10px 14px 0px 14px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 .product-results-container {
   padding: 14px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 
 .search-result-options .showing-results {
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 .search-result-options {
   display: -ms-flexbox;
@@ -1296,18 +1296,18 @@ button:hover {
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin-bottom: 10px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 .sort-order {
-  width: 150px;
-  font-size: 0.75rem;
+  width: 160px;
+  font-size: 12px;
   text-transform: uppercase;
   cursor: pointer;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 
 .sort-order .sort-label .sort-selected-option {
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 .sort-order .sort-label {
   display: -ms-flexbox;
@@ -1317,7 +1317,7 @@ button:hover {
   background-color: #fff;
   width: 100%;
   padding: 4px 8px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 .icon-arrow-mid-down-black {
   content: "";
@@ -1355,7 +1355,7 @@ button:hover {
 .sort-order .sort-option {
   list-style-type: none;
   padding: 10px 0px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 .sort-order .sort-list.open .icon-arrow-mid-down-black {
   transform: rotate(180deg);
@@ -1396,7 +1396,7 @@ p.p-price span.line-throu {
   width: 100%;
   color: #000;
   margin-top: -2px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 .product_list_item .slick-arrow {
   position: absolute;
@@ -1505,7 +1505,7 @@ p.p-price span.line-throu {
 .you-have-seen {
   text-align: center;
   max-width: 400px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 .button-load-more {
   text-transform: uppercase;
@@ -1620,7 +1620,7 @@ p.p-price span.line-throu {
   padding: 0 5px;
   font-size: 14px;
   color: #000;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--fontFamily);
 }
 .filter-bar .filter-clearall-container .reset {
   font-size: 0.75rem;
@@ -1688,7 +1688,7 @@ p.p-price span.line-throu {
 .search-box .site-search .search_form input::placeholder {
   font-size: 14px;
   letter-spacing: 0.8px;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--fontFamily);
 }
 .search-box .site-search .search_form {
   width: 90%;
@@ -1697,7 +1697,7 @@ p.p-price span.line-throu {
   width: 100%;
   padding: 5px 20px;
   border: none;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--fontFamily);
 }
 .search-box .site-search .search_icon {
   width: 5%;
@@ -1758,7 +1758,7 @@ p.p-price span.line-throu {
   transform: translateX(-50%);
   padding: 15px;
   letter-spacing: 0.03125rem;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 
 .not_found_page .not_found_img .content .main-404-title {
@@ -1982,7 +1982,7 @@ p.p-price span.line-throu {
   bottom: 0px;
   color: #ff1010;
   right: -9px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
   width: 10px;
 }
 .search_box .carts img {
@@ -2381,7 +2381,7 @@ p.p-price span.line-throu {
   cursor: pointer;
 }
 .hidden-text p {
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
   overflow: hidden;
   text-align: center;
   font-size: 14px;
@@ -2447,13 +2447,17 @@ p.p-price span.line-throu {
   max-width: 1300px;
   width: 100%;
 }
+.visual-filters .visual-filter-texts {
+  padding: 14px 0;
+}
 .visual-filters .visual-filter-texts h6 {
   padding-left: 14px;
   text-transform: uppercase;
+  margin: 0;
   font-size: 12px;
   font-weight: 400;
   text-align: left;
-  font-family: Roboto, sans-serif;
+  font-family: var(--fontFamily);
 }
 
 .visual-filters .visual-filters-container {
@@ -2499,8 +2503,8 @@ p.p-price span.line-throu {
   margin: 0;
 }
 .visual-filters .visual-filters-container .category-filter {
-  width: 17%;
-  margin-right: 27px;
+  width: 15%;
+  margin-right: 24px;
   position: relative;
   border-radius: 10px;
   transition: all 0.5s;
@@ -2919,4 +2923,62 @@ p.p-price span.line-throu {
   top: 30px;
   right: 30px;
   width: 285px;
+}
+
+/* header search icons */
+.search_box ul {
+  display: inline-flex;
+}
+.search_box ul li {
+  margin: 0 5px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: var(--fontFamily);
+}
+
+.search_box ul li .wishlist .wishlist-full-count,
+.search_box ul li .carts .cart-full-count {
+  display: inline-flex;
+  align-items: baseline;
+}
+.search_box ul li .wishlist-icon,
+.search_box ul li .cart-icon,
+.search_box ul li .without-login .user-icon {
+  content: "";
+  display: inline-block;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
+}
+.search_box ul li .wishlist-icon.wish-blank {
+  background-image: url(../img/wishlist-icon.svg);
+}
+.search_box ul li .wishlist-icon.wish-full {
+  background-image: url(../img/sprite_icons.svg);
+  background-position: -102px -227px;
+}
+.search_box ul li .cart-icon.cart-blank {
+  background-image: url(../img/sprite_icons.svg);
+  background-position: -736px -2px;
+}
+.search_box ul li .cart-icon.cart-full {
+  background-image: url(../img/sprite_icons.svg);
+  background-position: -882px -2px;
+}
+
+.search_box ul li .cart-count,
+.search_box ul li .wishlist-count {
+  font-size: 11px;
+  font-family: var(--fontFamily);
+}
+.search_box ul li .cart-count {
+  color: #ff1010;
+  margin-left: 2px;
+}
+.search_box ul li .without-login {
+}
+.search_box ul li .without-login .user-icon {
 }
