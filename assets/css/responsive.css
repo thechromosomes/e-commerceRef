@@ -702,6 +702,9 @@
   .login-box {
     padding: 10px 0px;
   }
+  .content-asset .need-help-customer-service {
+    padding: 40px 15px;
+  }
 }
 
 @media (max-width: 767px) {

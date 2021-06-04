@@ -2332,8 +2332,11 @@ p.p-price span.line-throu {
 .contact-page {
   width: 100%;
   margin-top: 50px;
+  color: #000;
 }
-
+.contact-page .content {
+  margin: 20px 0;
+}
 .contact-page .content h5 {
   font-weight: 700;
   margin: 10px 0px;
@@ -2346,6 +2349,22 @@ p.p-price span.line-throu {
   margin: 10px 0px;
 }
 
+.content-asset {
+  width: 100%;
+  margin: 20px 0;
+}
+.content-asset .need-help-customer-service {
+  padding: 80px 75px;
+  background-color: #f6f6f6;
+  text-align: center;
+}
+.content-asset .need-help-customer-service .heading-24 {
+  font-weight: 700;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  color: #000;
+}
 .hiden-arrow.hide {
   display: none;
 }

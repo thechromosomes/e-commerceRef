@@ -2,14 +2,21 @@
   <div>
     <div v-if="Object.keys(cmsData).length != 0">
       <span v-html="cmsData"></span>
+      <div class="container">
+        <Contentasset />
+      </div>
     </div>
   </div>
 </template>
 <script>
+import Contentasset from "./Contentasset";
 export default {
+  components: {
+    Contentasset
+  },
   data() {
     return {
-      cmsData: {},
+      cmsData: {}
     };
   },
 
@@ -20,6 +27,6 @@ export default {
     } else {
       this.$router.push("/404");
     }
-  },
+  }
 };
 </script>
