@@ -537,8 +537,8 @@ export default {
     },
 
     toggleFilter() {
-      openFiltter = true;
-      openSort = false;
+      this.openFiltter = true;
+      this.openSort = false;
     },
 
     removeFilter(paramsData) {

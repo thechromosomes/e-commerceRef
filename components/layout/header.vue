@@ -132,8 +132,71 @@
               <nuxt-link to="#">Search</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="#">
-                <div class="without-login">
+              <nuxt-link
+                v-if="
+                  $store.state.cartAjax.customer_id != null &&
+                    $store.state.cartAjax.customer_id != '' &&
+                    $store.state.cartAjax.customer_session != '' &&
+                    $store.state.cartAjax.customer_session != null
+                "
+                to="/Dashboard"
+              >
+                <div
+                  class="login login-user"
+                  v-if="
+                    $store.state.cartAjax.customer_id != null &&
+                      $store.state.cartAjax.customer_id != '' &&
+                      $store.state.cartAjax.customer_session != '' &&
+                      $store.state.cartAjax.customer_session != null
+                  "
+                  to="/Dashboard"
+                >
+                  <span class="desktop_only"> account </span>
+                  <span class="mobile_only user-icon"></span>
+                  <div class="dropdown-menu-account">
+                    <ul>
+                      <li>
+                        <nuxt-link
+                          :class="[
+                            $route.path == '/Dashboard'
+                              ? 'active-account-sidebar'
+                              : ''
+                          ]"
+                          to="/Dashboard"
+                          >Account Dashboard</nuxt-link
+                        >
+                      </li>
+                      <li>
+                        <nuxt-link
+                          :class="[
+                            $route.path == '/addresses'
+                              ? 'active-account-sidebar'
+                              : ''
+                          ]"
+                          to="/addresses"
+                          >My Address Book</nuxt-link
+                        >
+                      </li>
+                      <li>
+                        <nuxt-link
+                          :class="[
+                            $route.path == '/myorder'
+                              ? 'active-account-sidebar'
+                              : ''
+                          ]"
+                          to="/myorder"
+                          >My Orders</nuxt-link
+                        >
+                      </li>
+                      <li>
+                        <a @click.prevent="logOut">Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nuxt-link>
+              <nuxt-link v-else to="/login">
+                <div class="login">
                   <span class="desktop_only">Login</span>
                   <span class="mobile_only user-icon"></span>
                 </div>
@@ -162,7 +225,7 @@
                 </nuxt-link>
               </client-only>
             </li>
-            <li>
+            <li class="mini-cart">
               <div class="carts">
                 <client-only>
                   <NuxtLink to="/cart">
@@ -174,6 +237,10 @@
                       <span class="cart-count">
                         {{ $store.state.cartAjax.cart_product.length }}
                       </span>
+
+                      <div class="minicart-wrapper">
+                        <Hovercart />
+                      </div>
                     </span>
                     <span class="cart-icon cart-blank" v-else></span>
                   </NuxtLink>
@@ -212,8 +279,12 @@
 
 <script>
 import { mapState } from "vuex";
+import Hovercart from "./Hovercart";
 
 export default {
+  components: {
+    Hovercart
+  },
   data() {
     return {
       showMobileMenu: false,
