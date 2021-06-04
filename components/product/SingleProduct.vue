@@ -2,7 +2,10 @@
   <div class="product_details main_section">
     <div
       class="product-images product_images_slide mobile_only"
-      v-if="Object.keys(singleProductList.single_prod_data).length > 0"
+      v-if="
+        singleProductList.single_prod_data &&
+        Object.keys(singleProductList.single_prod_data).length > 0
+      "
     >
       <VueSlickCarousel ref="slick" v-bind="settings">
         <div
@@ -25,7 +28,7 @@
             class="back-to-container"
             v-if="
               singleProductList.breadcrumb &&
-                singleProductList.breadcrumb.length > 0
+              singleProductList.breadcrumb.length > 0
             "
           >
             <span
@@ -35,7 +38,7 @@
               <Nuxt-link
                 v-if="
                   indexBrd != 0 &&
-                    indexBrd != singleProductList.breadcrumb.length - 1
+                  indexBrd != singleProductList.breadcrumb.length - 1
                 "
                 :to="`/collections/${itemBrd.url_key}`"
                 >{{ itemBrd.name }}
@@ -81,7 +84,7 @@
               <span
                 v-if="
                   singleProductList.single_prod_data.discount != '' &&
-                    singleProductList.single_prod_data.discount > 0
+                  singleProductList.single_prod_data.discount > 0
                 "
               >
                 ₹{{ singleProductList.single_prod_data.selling_price }}
@@ -116,7 +119,7 @@
                         :class="[
                           $route.params.productDetail == color.url_key
                             ? 'active'
-                            : ''
+                            : '',
                         ]"
                     /></NuxtLink>
                   </li>
@@ -126,8 +129,8 @@
                 class="variation-attribute"
                 v-if="
                   singleProductList.single_prod_data.variation &&
-                    Object.keys(singleProductList.single_prod_data.variation)
-                      .length > 0
+                  Object.keys(singleProductList.single_prod_data.variation)
+                    .length > 0
                 "
               >
                 <span
@@ -161,13 +164,12 @@
                 </ul>
               </li>
 
-
               <li
                 class="variation-attribute"
                 v-if="
                   singleProductList.single_prod_data.item_lengths &&
-                    Object.keys(singleProductList.single_prod_data.item_lengths)
-                      .length > 0
+                  Object.keys(singleProductList.single_prod_data.item_lengths)
+                    .length > 0
                 "
               >
                 <span
@@ -200,7 +202,6 @@
                   </li>
                 </ul>
               </li>
-
             </ul>
             <div class="print_btn">
               <button
@@ -239,19 +240,37 @@
                     v-for="(desc, descKey) in renderDescription"
                     :key="descKey"
                   >
-                    <span style="text-transform: capitalize">{{
-                      descKey
-                    }}</span>
-                    : {{ desc }}
-                  </li>
-                  <li
-                    v-for="(details, i) in singleProductList.single_prod_data
-                      .visible_attributes"
-                    :key="i"
-                  >
-                    <span>{{ details.label }}: </span>{{ details.value }}
+                    <span style="text-transform: capitalize"></span>
+                    {{ desc }}
                   </li>
                 </ul>
+              </div>
+
+              <!-- other details -->
+              <div
+                class="product-care-instructions care"
+                :class="[otherDetails ? 'expand-open' : 'expand-close']"
+                @click="toggleDropDown('otherDetails')"
+              >
+                <h2>OTHER DETAILS <span class="title"></span></h2>
+                <div class="care-instructions product-expand-block">
+                  <ul class="product-information-list">
+                    <li
+                      v-for="(desc, descKey) in renderDescription2"
+                      :key="descKey"
+                    >
+                      <span style="text-transform: capitalize">{{descKey}}</span>
+                      : {{ desc }}
+                    </li>
+                    <li
+                      v-for="(details, i) in singleProductList.single_prod_data
+                        .visible_attributes"
+                      :key="i"
+                    >
+                      <span style="text-transform: capitalize">{{ details.label }}: </span>{{ details.value }}
+                    </li>
+                  </ul>
+                </div>
               </div>
               <!-- expand-open for open class -->
               <div
@@ -279,7 +298,7 @@
               <div
                 v-if="
                   singleProductList.single_prod_data.care_instructions &&
-                    singleProductList.single_prod_data.care_instructions != ''
+                  singleProductList.single_prod_data.care_instructions != ''
                 "
                 class="product-care-instructions"
                 :class="[CareInt ? 'expand-open' : 'expand-close']"
@@ -290,8 +309,9 @@
                 <div class="care-instructions product-expand-block">
                   <div
                     class="care-instruction"
-                    v-for="(careItem,
-                    careIndex) in singleProductList.single_prod_data.care_instructions.split(
+                    v-for="(
+                      careItem, careIndex
+                    ) in singleProductList.single_prod_data.care_instructions.split(
                       ','
                     )"
                     :key="careIndex"
@@ -342,9 +362,7 @@
               placeholder="Enter your city or postal code"
               autocomplete="off"
             />
-            <button class="search-stores-btn">
-              Filter
-            </button>
+            <button class="search-stores-btn">Filter</button>
           </div>
 
           <div class="store-search-result">
@@ -414,6 +432,7 @@ export default {
     return {
       storemodel: false,
       CareInstructions: false,
+      otherDetails: false,
       CareInt: false,
       selectedSizeError: "",
       showZoomedImage: false,
@@ -433,8 +452,8 @@ export default {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 2000
-      }
+        autoplaySpeed: 2000,
+      },
     };
   },
 
@@ -445,58 +464,44 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.singleProductList.single_prod_data.meta_description
+          content: this.singleProductList.single_prod_data.meta_description,
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.singleProductList.single_prod_data.meta_keyword
+          content: this.singleProductList.single_prod_data.meta_keyword,
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title"
+          property: "og:title",
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description"
+          property: "og:description",
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url"
+          property: "og:url",
         },
         {
           hid: "og:image",
           content: this.image,
-          property: "og:image"
-        }
-      ]
+          property: "og:image",
+        },
+      ],
     };
   },
 
   computed: {
     ...mapState(["singleProductList"]),
     renderDescription() {
-      let {
-        description,
-        material,
-        color,
-        occasion,
-        // pattern,
-        // sleeve,
-        warranty
-      } = this.singleProductList.single_prod_data;
+      let { description } = this.singleProductList.single_prod_data;
 
       let obj = {
         description,
-        material,
-        color,
-        occasion,
-        // pattern,
-        // sleeve,
-        warranty
       };
 
       let finaObj = Object.entries(obj).reduce(
@@ -506,6 +511,27 @@ export default {
       return finaObj;
     },
 
+    renderDescription2() {
+      let {
+        material,
+        color,
+        occasion,
+        warranty,
+      } = this.singleProductList.single_prod_data;
+
+      let obj = {
+        material,
+        color,
+        occasion,
+        warranty,
+      };
+
+      let finaObj = Object.entries(obj).reduce(
+        (a, [k, v]) => (v == null ? a : ((a[k] = v), a)),
+        {}
+      );
+      return finaObj;
+    },
     // render seo tags
     title() {
       if (this.singleProductList.single_prod_data.meta_title != "")
@@ -522,7 +548,7 @@ export default {
     },
     image() {
       return this.singleProductList.single_prod_data.image;
-    }
+    },
   },
 
   methods: {
@@ -554,7 +580,7 @@ export default {
     async getProductDetail() {
       try {
         await this.$store.commit("prepareStateForSingleProd", {
-          routeParam: this.$route.params.productDetail
+          routeParam: this.$route.params.productDetail,
         });
         let { service, store, url_key } = this.$store.state.singleProductList;
         var form = {};
@@ -568,13 +594,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
 
         if (response) {
           this.$store.commit("updateSingleProdState", {
             error: null,
-            data: response
+            data: response,
           });
         } else {
           throw "no response from api";
@@ -583,7 +609,8 @@ export default {
         this.$globalError(`error from getProductDetail >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateSingleProdState", {
-            error: "Oops there seems to be some Network issue, please try again"
+            error:
+              "Oops there seems to be some Network issue, please try again",
           });
         }
       }
@@ -609,7 +636,7 @@ export default {
           var tokenholder;
           var product_options_json = JSON.stringify({
             size: this.selectedSizeAttr.configrable_atribute_value,
-            color: this.singleProductList.single_prod_data.color
+            color: this.singleProductList.single_prod_data.color,
           });
           form.length = this.selectedLengthAttr.configrable_atribute_value;
           form.product_id = this.selectedSizeAttr.id_product;
@@ -655,13 +682,13 @@ export default {
             method: "post",
             url: urlHolder,
             params: form,
-            token: tokenholder
+            token: tokenholder,
           });
           if (response) {
             this.$store.commit("cartAjax/updateCartDetail", {
               error: null,
               vm: this,
-              data: response
+              data: response,
             });
 
             // google tag manager
@@ -700,7 +727,7 @@ export default {
           if (error.message === "Network Error") {
             this.$store.commit("updateSingleProdState", {
               error:
-                "Oops there seems to be some Network issue, please try again"
+                "Oops there seems to be some Network issue, please try again",
             });
           }
         }
@@ -712,15 +739,20 @@ export default {
       let groupId = this.singleProductList.single_prod_data.group_id;
       let wishList = this.$store.state.cartAjax.wishlist;
 
-      if (Object.keys(wishList).length != 0) {
+      if (wishList && Object.keys(wishList).length != 0) {
         const groupResult = wishList.group
           .split(",")
-          .filter(word => word == groupId);
+          .filter((word) => word == groupId);
         const productResult = wishList.product
           .split(",")
-          .filter(word => word == ProductId);
+          .filter((word) => word == ProductId);
 
-        if (groupResult.length > 0 && productResult.length > 0) {
+        if (
+          groupResult &&
+          groupResult.length > 0 &&
+          productResult &&
+          productResult.length > 0
+        ) {
           return "wishlist-active";
         } else {
           return "add";
@@ -741,7 +773,7 @@ export default {
           product_id: this.singleProductList.single_prod_data.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: this.singleProductList.single_prod_data.group_id
+          group_id: this.singleProductList.single_prod_data.group_id,
         };
 
         if (data === "add") {
@@ -749,21 +781,21 @@ export default {
             method: "post",
             url: `/wishlist/add-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
         } else {
           var response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/wishlist/remove-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
         }
 
         if (response.success) {
           this.$toast.open(response.message);
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data
+            payload: response.data,
           });
           // this.$gtm.push({
           //   event: [data == "add" ? "addToWishlist" : "removeFromWishlist"],
@@ -809,7 +841,7 @@ export default {
       } else {
         return require("@/assets/img/instruction.svg");
       }
-    }
+    },
   },
 
   async fetch() {
@@ -818,6 +850,7 @@ export default {
     // render from single variation
     if (
       this.singleProductList.single_prod_data &&
+      this.singleProductList.single_prod_data.variation &&
       Object.keys(this.singleProductList.single_prod_data.variation).length == 1
     ) {
       var obj = this.singleProductList.single_prod_data.variation;
@@ -827,6 +860,7 @@ export default {
     // length check
     if (
       this.singleProductList.single_prod_data &&
+      this.singleProductList.single_prod_data.item_lengths &&
       Object.keys(this.singleProductList.single_prod_data.item_lengths)
         .length != 0
     ) {
@@ -835,28 +869,28 @@ export default {
   },
 
   watch: {
-    "$store.state.cartAjax.cart_page_message": function() {
+    "$store.state.cartAjax.cart_page_message": function () {
       if (
         this.$store.state.cartAjax.cart_page_message != "" &&
         this.$store.state.cartAjax.cart_page_message != null
       ) {
         this.$toast.open(this.$store.state.cartAjax.cart_page_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
     },
-    "$store.state.cartAjax.cart_page_erro_page": function() {
+    "$store.state.cartAjax.cart_page_erro_page": function () {
       if (
         this.$store.state.cartAjax.cart_page_error_message != "" &&
         this.$store.state.cartAjax.cart_page_error_message != null
       ) {
         this.$toast.error(this.$store.state.cartAjax.cart_page_error_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
