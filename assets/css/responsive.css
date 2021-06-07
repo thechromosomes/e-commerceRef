@@ -669,7 +669,7 @@
     display: inline-block;
     width: 100%;
     background: #fff;
-    padding-left: 0;
+    padding: 10px 0;
     margin: 0;
   }
   .login {
@@ -798,6 +798,16 @@
     .search-stores-btn {
     width: 85%;
   }
+  .cartItemProducts .productItem .qty_info a {
+    padding: 6px 13px;
+  }
+
+  .cartItemProducts .productItem .remove a img {
+    width: 18px;
+  }
+  .wish-list-item .wish-list-wraper .wishlist-close img {
+    width: 10px;
+  }
 }
 @media (max-width: 1010px) {
   .header .navbar .search_box .searchbox input {
@@ -805,10 +815,7 @@
   }
 }
 @media (max-width: 370px) {
-  /* .wishlist-text {
-    width: 14px;
+  .search_box ul li {
+    margin: 0;
   }
-  .accout-dropdown {
-    width: 10px;
-  } */
 }

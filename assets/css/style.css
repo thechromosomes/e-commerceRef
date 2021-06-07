@@ -2840,6 +2840,7 @@ p.p-price span.line-throu {
 /* header search icons */
 .search_box ul {
   display: inline-flex;
+  align-items: center;
 }
 .search_box ul li {
   margin: 0 5px;

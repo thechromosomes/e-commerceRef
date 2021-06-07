@@ -65,6 +65,11 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      toggelCar: true
+    };
+  },
   methods: {
     async removeCartItem(item) {
       try {
