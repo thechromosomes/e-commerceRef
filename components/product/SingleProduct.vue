@@ -259,7 +259,9 @@
                       v-for="(desc, descKey) in renderDescription2"
                       :key="descKey"
                     >
-                      <span style="text-transform: capitalize">{{descKey}}</span>
+                      <span style="text-transform: capitalize">{{
+                        descKey
+                      }}</span>
                       : {{ desc }}
                     </li>
                     <li
@@ -267,7 +269,9 @@
                         .visible_attributes"
                       :key="i"
                     >
-                      <span style="text-transform: capitalize">{{ details.label }}: </span>{{ details.value }}
+                      <span style="text-transform: capitalize"
+                        >{{ details.label }}: </span
+                      >{{ details.value }}
                     </li>
                   </ul>
                 </div>
@@ -371,10 +375,6 @@
                 <h5>DIESEL STORE MANCHESTER</h5>
                 <div class="info-box">
                   <a href="#">More info</a>
-
-                  <!-- <div class="store-extended-info-section">
-
-                    </div> -->
                 </div>
               </div>
               <p>
@@ -394,10 +394,6 @@
                 <h5>DIESEL STORE MANCHESTER</h5>
                 <div class="info-box">
                   <a href="#">More info</a>
-
-                  <!-- <div class="store-extended-info-section">
-
-                    </div> -->
                 </div>
               </div>
               <p>
@@ -512,12 +508,8 @@ export default {
     },
 
     renderDescription2() {
-      let {
-        material,
-        color,
-        occasion,
-        warranty,
-      } = this.singleProductList.single_prod_data;
+      let { material, color, occasion, warranty } =
+        this.singleProductList.single_prod_data;
 
       let obj = {
         material,
@@ -640,7 +632,8 @@ export default {
           });
           form.length = this.selectedLengthAttr.configrable_atribute_value;
           form.product_id = this.selectedSizeAttr.id_product;
-          form.product_parent_id = this.singleProductList.single_prod_data.id_product;
+          form.product_parent_id =
+            this.singleProductList.single_prod_data.id_product;
           form.product_options = product_options_json;
           form.fynd_size = this.singleProductList.single_prod_data.fynd_size;
           form.fynd_uid = this.singleProductList.single_prod_data.fynd_uid;
@@ -649,7 +642,8 @@ export default {
           form.master_sku = this.singleProductList.single_prod_data.sku;
           form.price = this.singleProductList.single_prod_data.price;
           form.qty_ordered = this.addToCartVal;
-          form.final_price = this.singleProductList.single_prod_data.selling_price;
+          form.final_price =
+            this.singleProductList.single_prod_data.selling_price;
           form.store = this.$store.state.cartAjax.store;
           if (
             this.$store.state.cartAjax.cart_id != null &&

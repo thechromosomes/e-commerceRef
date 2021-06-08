@@ -49,6 +49,7 @@ export const state = () => ({
   instaPost: [],
   bannerSlide: [],
   is_new: [],
+  intialSearchPath:""
 });
 
 export const actions = {
@@ -368,5 +369,18 @@ export const mutations = {
   // update banner slider
   updateBannerSlider(state, { bannerSlide }) {
     state.bannerSlide = bannerSlide;
+  },
+
+  // initial search Path
+  intialSearchPath(state, payload) {
+    state.intialSearchPath = payload;
+  },
+
+    st_search(state, searchInput) {
+    if (searchInput == undefined) {
+      state.list.search_input = "";
+    } else {
+      state.list.search_input = searchInput;
+    }
   },
 };
