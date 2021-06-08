@@ -125,13 +125,13 @@
           /></NuxtLink>
         </div>
 
-        <div class="search_box new_search_box">
-          <div class="search-text desktop_only">
-            <button class="btn" @click="searchActive = true">Search</button>
-          </div>
-          <div class="login-text accout-dropdown">
-            <client-only>
-              <NuxtLink
+        <div class="search_box">
+          <ul>
+            <li class="desktop_only" @click="searchActive = true">
+              <nuxt-link to="#">Search</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
                 v-if="
                   $store.state.cartAjax.customer_id != null &&
                   $store.state.cartAjax.customer_id != '' &&
@@ -140,12 +140,19 @@
                 "
                 to="/Dashboard"
               >
-                <button class="btn desktop_only">Account</button>
-                <button class="btn mobile_only">
-                  <span class="user-icon"></span>
-                </button>
-                <div class="dropdown-menu-account">
-                  <ul>
+                <div
+                  class="login login-user"
+                  v-if="
+                    $store.state.cartAjax.customer_id != null &&
+                    $store.state.cartAjax.customer_id != '' &&
+                    $store.state.cartAjax.customer_session != '' &&
+                    $store.state.cartAjax.customer_session != null
+                  "
+                  to="/Dashboard"
+                >
+                  <span class="desktop_only"> account </span>
+                  <span class="mobile_only user-icon"></span>
+                  <div class="dropdown-menu-account">
                     <ul>
                       <li>
                         <nuxt-link
@@ -184,56 +191,62 @@
                         <a @click.prevent="logOut">Logout</a>
                       </li>
                     </ul>
-                  </ul>
+                  </div>
                 </div>
-              </NuxtLink>
-              <NuxtLink v-else to="/login">
-                <button class="btn desktop_only">Login</button>
-                <button class="btn mobile_only">
-                  <span class="user-icon"></span>
-                </button>
-              </NuxtLink>
-            </client-only>
-          </div>
+              </nuxt-link>
+              <nuxt-link v-else to="/login">
+                <div class="login">
+                  <span class="desktop_only">Login</span>
+                  <span class="mobile_only user-icon"></span>
+                </div>
+              </nuxt-link>
+            </li>
+            <li>
+              <client-only>
+                <nuxt-link to="/wishlist">
+                  <div class="wishlist">
+                    <span
+                      class="wishlist-full-count"
+                      v-if="
+                        Object.keys($store.state.cartAjax.wishlist).length != 0
+                      "
+                    >
+                      <span class="wishlist-icon wish-full"></span>
+                      <span class="wishlist-count">
+                        {{
+                          $store.state.cartAjax.wishlist.product.split(",")
+                            .length
+                        }}
+                      </span>
+                    </span>
+                    <span class="wishlist-icon wish-blank" v-else></span>
+                  </div>
+                </nuxt-link>
+              </client-only>
+            </li>
+            <li class="mini-cart">
+              <div class="carts">
+                <client-only>
+                  <a @click="ShowhoverCart == true">
+                    <span
+                      class="cart-full-count"
+                      v-if="$store.state.cartAjax.cart_product.length != 0"
+                    >
+                      <span class="cart-icon cart-full"></span>
+                      <span class="cart-count">
+                        {{ $store.state.cartAjax.cart_product.length }}
+                      </span>
 
-          <div class="cart">
-            <client-only>
-              <NuxtLink to="/wishlist" class="btn">
-                <span
-                  class="carts carts-value wishlist"
-                  v-if="Object.keys($store.state.cartAjax.wishlist).length != 0"
-                >
-                  <span class="wislist-file-icon wislist-icon"></span>
-                  <span class="minicart-quantity">
-                    {{
-                      $store.state.cartAjax.wishlist.product.split(",").length
-                    }}
-                  </span>
-                </span>
-                <span class="carts" v-else>
-                  <span class="cart-empty-icon wislist-icon"></span>
-                </span>
-              </NuxtLink>
-            </client-only>
-          </div>
-          <div class="cart">
-            <client-only>
-              <NuxtLink to="/cart" class="btn d-block">
-                <span
-                  class="carts carts-value"
-                  v-if="$store.state.cartAjax.cart_product.length > 0"
-                >
-                  <span class="cart-file-icon cart-icon"></span>
-                  <span class="minicart-quantity">
-                    {{ $store.state.cartAjax.cart_product.length }}
-                  </span>
-                </span>
-                <span class="carts" v-else>
-                  <span class="cart-empty-icon cart-icon"></span>
-                </span>
-              </NuxtLink>
-            </client-only>
-          </div>
+                      <div class="minicart-wrapper">
+                        <Hovercart v-if="true" :handleClick="showhoverCart"/>
+                      </div>
+                    </span>
+                    <span class="cart-icon cart-blank" v-else></span>
+                  </a>
+                </client-only>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -269,13 +282,18 @@
 
 <script>
 import { mapState } from "vuex";
+import Hovercart from "./Hovercart";
 
 export default {
+  components: {
+    Hovercart,
+  },
   data() {
     return {
       showMobileMenu: false,
       searchActive: false,
       scrollPosition: null,
+      ShowhoverCart: false,
     };
   },
   async mounted() {
@@ -308,6 +326,10 @@ export default {
       } else {
         this.$store.commit("st_search", "");
       }
+    },
+
+    showhoverCart() {
+      this.ShowhoverCart = false;
     },
     updateScroll() {
       this.scrollPosition = window.scrollY;
