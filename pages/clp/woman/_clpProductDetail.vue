@@ -1,21 +1,19 @@
 <template>
   <div class="clp_pages woman">
     <section class="slide-img">
-      <div class="content  ">
+      <div class="content">
         <img
           src="@/assets/img/2-DXD-full-bleed-desk.png"
           alt="img"
-          class="w-100 desktop_only "
+          class="w-100 desktop_only"
         />
         <img
           src="@/assets/img/2-DXD-full-bleed-mobile.jpg"
           alt="img"
-          class="w-100 mobile_only "
+          class="w-100 mobile_only"
         />
         <div class="content-text">
-          <h4>
-            DIESEL X DIESEL
-          </h4>
+          <h4>DIESEL X DIESEL</h4>
           <p>A LINE-UP OF LIMITED PIECES, SELECTED FROM THE ARCHIVES.</p>
           <a class="button primary-btn" href="#" role="button">DISCOVER NOW</a>
         </div>
@@ -82,10 +80,7 @@
     <CategorySlider :slideImg="slideItem" />
 
     <TowImages />
-    <CategorySlider :slideImg="slideItem" />
-    <TowImages />
-    <CategorySlider :slideImg="slideItem" />
-    <NewIn :slideImg="slideItem" />
+    <NewIn :slideImg="is_new" />
   </div>
 </template>
 
@@ -95,17 +90,20 @@ import NewIn from "../clpComponents/newIn";
 import ProductSilder from "../clpComponents/productSilder";
 import CategorySlider from "../clpComponents/categorySlider";
 import TowImages from "../clpComponents/towImages";
+import { mapState } from "vuex";
+
 export default {
   components: {
     VueSlickCarousel,
     NewIn,
     ProductSilder,
     CategorySlider,
-    TowImages
+    TowImages,
   },
   data() {
     return {
       slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
+
       settings: {
         infinite: true,
         slidesToShow: 1,
@@ -113,7 +111,7 @@ export default {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 2000
+        autoplaySpeed: 2000,
       },
       settings2: {
         infinite: true,
@@ -130,8 +128,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 3.5
-            }
+              slidesToShow: 3.5,
+            },
           },
           {
             breakpoint: 767,
@@ -139,8 +137,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 480,
@@ -148,10 +146,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5
-            }
-          }
-        ]
+              slidesToShow: 1.5,
+            },
+          },
+        ],
       },
       settings3: {
         infinite: true,
@@ -168,8 +166,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -177,8 +175,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -186,16 +184,16 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
-      }
+              slidesToShow: 1,
+            },
+          },
+        ],
+      },
     };
   },
-  created() {
-    // console.log(this.$route);
-  }
+  computed: {
+    ...mapState(["is_new"]),
+  },
 };
 </script>
 

@@ -64,10 +64,7 @@
 
     <CategorySlider :slideImg="slideItem" />
     <TowImages />
-    <CategorySlider :slideImg="slideItem" />
-    <TowImages />
-    <CategorySlider :slideImg="slideItem" />
-    <NewIn :slideImg="slideItem" />
+    <NewIn :slideImg="is_new" />
   </div>
 </template>
 
@@ -76,6 +73,7 @@ import VueSlickCarousel from "vue-slick-carousel";
 import NewIn from "../clpComponents/newIn";
 import CategorySlider from "../clpComponents/categorySlider";
 import TowImages from "../clpComponents/towImages";
+import { mapState } from "vuex";
 export default {
   components: { VueSlickCarousel, NewIn, CategorySlider, TowImages },
   data() {
@@ -88,7 +86,7 @@ export default {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 2000
+        autoplaySpeed: 2000,
       },
       settings2: {
         infinite: true,
@@ -105,8 +103,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 3.5
-            }
+              slidesToShow: 3.5,
+            },
           },
           {
             breakpoint: 767,
@@ -114,8 +112,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 480,
@@ -123,10 +121,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5
-            }
-          }
-        ]
+              slidesToShow: 1.5,
+            },
+          },
+        ],
       },
       settings3: {
         infinite: true,
@@ -143,8 +141,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -152,8 +150,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -161,16 +159,16 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
-      }
+              slidesToShow: 1,
+            },
+          },
+        ],
+      },
     };
   },
-  created() {
-    // console.log(this.$route);
-  }
+  computed: {
+    ...mapState(["is_new"]),
+  },
 };
 </script>
 
