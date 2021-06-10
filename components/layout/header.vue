@@ -39,25 +39,32 @@
               ></div>
             </div>
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item" v-for="(item, index) in header" :key="index">
+              <li
+                class="nav-item nav-block"
+                v-for="(item, index) in header"
+                :key="index"
+              >
                 <span class="stripeImage"></span>
                 <NuxtLink
                   :to="`/clp/${item.menu_url_key}`"
                   class="nav-link first"
+<<<<<<< HEAD
+=======
                   :class="{
                     'active-nav':
                       $store.state.activeUrlKey.split('-')[0].toUpperCase() == item.name.toUpperCase(),
                   }"
+>>>>>>> 8de1de66c86814b33ba0dbbcc62b8ed0181313f0
                   >{{ item.name }}</NuxtLink
                 >
                 <div
-                  class="dropdown_menu"
+                  class="dropdown_menu "
                   v-if="item.childs && item.childs.length > 0"
                 >
                   <div class="level-2">
                     <ul class="navbar-nav">
                       <li
-                        class="nav-item"
+                        class="nav-item "
                         v-for="(childItem, childIndex) in item.childs"
                         :key="childIndex"
                       >
@@ -85,9 +92,8 @@
                                       <div class="levelthreemenu">
                                         <ul>
                                           <li
-                                            v-for="(
-                                              subChildItem, subCgildIndex
-                                            ) in childItem.childs"
+                                            v-for="(subChildItem,
+                                            subCgildIndex) in childItem.childs"
                                             :key="subCgildIndex"
                                           >
                                             <Nuxt-link
@@ -95,7 +101,9 @@
                                                 showMobileMenu = false
                                               "
                                               class="nav-link pl-0"
-                                              :to="`/collections/${subChildItem.menu_url_key}/`"
+                                              :to="
+                                                `/collections/${subChildItem.menu_url_key}/`
+                                              "
                                               >{{ subChildItem.name }}
                                             </Nuxt-link>
                                           </li>
@@ -148,9 +156,9 @@
               <nuxt-link
                 v-if="
                   $store.state.cartAjax.customer_id != null &&
-                  $store.state.cartAjax.customer_id != '' &&
-                  $store.state.cartAjax.customer_session != '' &&
-                  $store.state.cartAjax.customer_session != null
+                    $store.state.cartAjax.customer_id != '' &&
+                    $store.state.cartAjax.customer_session != '' &&
+                    $store.state.cartAjax.customer_session != null
                 "
                 to="/Dashboard"
               >
@@ -158,9 +166,9 @@
                   class="login login-user"
                   v-if="
                     $store.state.cartAjax.customer_id != null &&
-                    $store.state.cartAjax.customer_id != '' &&
-                    $store.state.cartAjax.customer_session != '' &&
-                    $store.state.cartAjax.customer_session != null
+                      $store.state.cartAjax.customer_id != '' &&
+                      $store.state.cartAjax.customer_session != '' &&
+                      $store.state.cartAjax.customer_session != null
                   "
                   to="/Dashboard"
                 >
@@ -173,7 +181,7 @@
                           :class="[
                             $route.path == '/Dashboard'
                               ? 'active-account-sidebar'
-                              : '',
+                              : ''
                           ]"
                           to="/Dashboard"
                           >Account Dashboard</nuxt-link
@@ -184,7 +192,7 @@
                           :class="[
                             $route.path == '/addresses'
                               ? 'active-account-sidebar'
-                              : '',
+                              : ''
                           ]"
                           to="/addresses"
                           >My Address Book</nuxt-link
@@ -195,7 +203,7 @@
                           :class="[
                             $route.path == '/myorder'
                               ? 'active-account-sidebar'
-                              : '',
+                              : ''
                           ]"
                           to="/myorder"
                           >My Orders</nuxt-link
@@ -300,14 +308,14 @@ import Hovercart from "./Hovercart";
 
 export default {
   components: {
-    Hovercart,
+    Hovercart
   },
   data() {
     return {
       showMobileMenu: false,
       searchActive: false,
       scrollPosition: null,
-      ShowhoverCart: false,
+      ShowhoverCart: false
     };
   },
   async mounted() {
@@ -328,8 +336,8 @@ export default {
       },
       set(value) {
         return;
-      },
-    },
+      }
+    }
   },
 
   methods: {
@@ -348,7 +356,7 @@ export default {
     updateScroll() {
       this.scrollPosition = window.scrollY;
     },
-    logOut: async function () {
+    logOut: async function() {
       var form = {};
       form.customer_id = this.$store.state.cartAjax.customer_id;
       form.customer_session = this.$store.state.cartAjax.customer_session;
@@ -357,9 +365,9 @@ export default {
           method: "post",
           url: `/customer/logout`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         })
-        .then(async (response) => {
+        .then(async response => {
           if (response.data.success === true) {
             $cookies.remove(
               window.location.hostname.substring(10, 4) + "_cart_token"
@@ -388,14 +396,14 @@ export default {
             this.$router.push("/");
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.log("error from the log out page", error);
         });
-    },
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  },
+  }
 };
 </script>
 <style scoped>

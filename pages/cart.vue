@@ -19,9 +19,7 @@
                       >
                         <div class="image-info">
                           <div class="product_image display-inline">
-                            <NuxtLink
-                              :to="`/product/${product.url_key}`"
-                            >
+                            <NuxtLink :to="`/product/${product.url_key}`">
                               <img
                                 :src="product.image"
                                 alt="HOWLER SAND SUEDE"
@@ -31,7 +29,10 @@
                         </div>
 
                         <div class="item_name">
-                          <NuxtLink :to="`/product/${product.url_key}`" class="">
+                          <NuxtLink
+                            :to="`/product/${product.url_key}`"
+                            class=""
+                          >
                             <strong>{{ product.name }}</strong> <br />
                             <span
                               class="product_options-cart"

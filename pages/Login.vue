@@ -8,7 +8,7 @@
             <div class="inputWrapper">
               <label for="newnumber" class="label">SignIn or SignUp</label>
               <input
-              placeholder="Mobile Number*"
+                placeholder="Mobile Number*"
                 type="text"
                 v-model.number="mobileNumber"
                 ref="mobile_number"
