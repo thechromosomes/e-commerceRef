@@ -528,12 +528,12 @@ export default {
     title() {
       if (this.singleProductList.single_prod_data.meta_title != "")
         return this.singleProductList.single_prod_data.meta_title;
-      return "STEVE MADDEN SINGLE PRODUCT";
+      return "DIESEL SINGLE PRODUCT";
     },
     description() {
       if (this.singleProductList.single_prod_data.meta_description !== "")
         return this.singleProductList.single_prod_data.meta_description;
-      return "STEVE MADDEN";
+      return "DIESEL";
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
@@ -635,7 +635,7 @@ export default {
           form.product_parent_id =
             this.singleProductList.single_prod_data.id_product;
           form.product_options = product_options_json;
-          form.fynd_size = this.singleProductList.single_prod_data.fynd_size;
+          form.fynd_size = this.selectedSizeAttr.configrable_atribute_value;
           form.fynd_uid = this.singleProductList.single_prod_data.fynd_uid;
           form.name = this.singleProductList.single_prod_data.name;
           form.sku = this.selectedSizeAttr.sku;

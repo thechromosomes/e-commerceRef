@@ -41,11 +41,6 @@
                     <font-awesome-icon :icon="['fas', 'phone-alt']" />
                     {{ addressList.infoText.phone }}
                   </p>
-                  <!-- <div>
-                    <a href="http://www.stevemadden.in" target="_blank"
-                      >stevemadden.in</a
-                    >
-                  </div> -->
                 </li>
               </ul>
             </div>
@@ -164,31 +159,31 @@ export default {
             this.serviceCenters = response.result;
             this.serviceCenters.map((element) => {
               if (element.lat != "") {
-                // this.markers.push({
-                //   position: {
-                //     lat: Number(element.lat),
-                //     lng: Number(element.lng),
-                //   },
-                //   infoText: {
-                //     search:
-                //       element.name +
-                //       " " +
-                //       element.address +
-                //       " " +
-                //       element.city +
-                //       " " +
-                //       element.email +
-                //       " " +
-                //       element.phone,
-                //     name: element.name,
-                //     address: element.address,
-                //     city: element.city,
-                //     state: element.state,
-                //     zip: element.postcode,
-                //     phone: element.phone,
-                //     email: element.email,
-                //   },
-                // });
+                this.markers.push({
+                  position: {
+                    lat: Number(element.lat),
+                    lng: Number(element.lng),
+                  },
+                  infoText: {
+                    search:
+                      element.name +
+                      " " +
+                      element.address +
+                      " " +
+                      element.city +
+                      " " +
+                      element.email +
+                      " " +
+                      element.phone,
+                    name: element.name,
+                    address: element.address,
+                    city: element.city,
+                    state: element.state,
+                    zip: element.postcode,
+                    phone: element.phone,
+                    email: element.email,
+                  },
+                });
               }
             });
           } else {

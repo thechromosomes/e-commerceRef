@@ -41,7 +41,15 @@
             <ul class="navbar-nav mr-auto">
               <li class="nav-item" v-for="(item, index) in header" :key="index">
                 <span class="stripeImage"></span>
-                <NuxtLink :to="`/clp/${item.menu_url_key}`" class="nav-link first">{{ item.name }}</NuxtLink>
+                <NuxtLink
+                  :to="`/clp/${item.menu_url_key}`"
+                  class="nav-link first"
+                  :class="{
+                    'active-nav':
+                      $store.state.activeUrlKey.split('-')[0].toUpperCase() == item.name.toUpperCase(),
+                  }"
+                  >{{ item.name }}</NuxtLink
+                >
                 <div
                   class="dropdown_menu"
                   v-if="item.childs && item.childs.length > 0"
@@ -61,7 +69,13 @@
                           >
                             <li class="nav-item">
                               <span class="stripeImage"></span>
-                              <a href="#" class="nav-link"
+                              <a
+                                :class="{
+                                  'active-sub-nav':
+                                    $store.state.activeUrlKey.split('-')[1].toUpperCase() ==
+                                    childItem.name.toUpperCase(),
+                                }"
+                                class="nav-link"
                                 >{{ childItem.name }}
                               </a>
                               <div class="dropdown_menu_level-3">
@@ -238,7 +252,7 @@
                       </span>
 
                       <div class="minicart-wrapper">
-                        <Hovercart v-if="true" :handleClick="showhoverCart"/>
+                        <Hovercart v-if="true" :handleClick="showhoverCart" />
                       </div>
                     </span>
                     <span class="cart-icon cart-blank" v-else></span>
