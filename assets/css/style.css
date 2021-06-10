@@ -2907,7 +2907,7 @@ p.p-price span.line-throu {
   top: 100%;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 9999;
   background: #fafafa;
   text-align: left;
   width: 150px;
