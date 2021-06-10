@@ -38,37 +38,30 @@
                 @click="showMobileMenu = !showMobileMenu"
               ></div>
             </div>
-            <ul class="navbar-nav mr-auto">
-              <li
-                class="nav-item nav-block"
-                v-for="(item, index) in header"
-                :key="index"
-              >
-                <span class="stripeImage"></span>
-                <NuxtLink
-                  :to="`/clp/${item.menu_url_key}`"
-                  class="nav-link first"
-<<<<<<< HEAD
-=======
-                  :class="{
-                    'active-nav':
-                      $store.state.activeUrlKey.split('-')[0].toUpperCase() == item.name.toUpperCase(),
-                  }"
->>>>>>> 8de1de66c86814b33ba0dbbcc62b8ed0181313f0
-                  >{{ item.name }}</NuxtLink
+            <client-only>
+              <ul class="navbar-nav mr-auto">
+                <li
+                  class="nav-item nav-block"
+                  v-for="(item, index) in header"
+                  :key="index"
                 >
-                <div
-                  class="dropdown_menu "
-                  v-if="item.childs && item.childs.length > 0"
-                >
-                  <div class="level-2">
-                    <ul class="navbar-nav">
-                      <li
-                        class="nav-item "
-                        v-for="(childItem, childIndex) in item.childs"
-                        :key="childIndex"
-                      >
-                        <client-only>
+                  <span class="stripeImage"></span>
+                  <NuxtLink
+                    :to="`/clp/${item.menu_url_key}`"
+                    class="nav-link first"
+                    >{{ item.name }}</NuxtLink
+                  >
+                  <div
+                    class="dropdown_menu"
+                    v-if="item.childs && item.childs.length > 0"
+                  >
+                    <div class="level-2">
+                      <ul class="navbar-nav">
+                        <li
+                          class="nav-item"
+                          v-for="(childItem, childIndex) in item.childs"
+                          :key="childIndex"
+                        >
                           <template
                             v-if="
                               childItem.childs && childItem.childs.length > 0
@@ -79,7 +72,9 @@
                               <a
                                 :class="{
                                   'active-sub-nav':
-                                    $store.state.activeUrlKey.split('-')[1].toUpperCase() ==
+                                    $store.state.activeUrlKey
+                                      .split('-')[1]
+                                      .toUpperCase() ==
                                     childItem.name.toUpperCase(),
                                 }"
                                 class="nav-link"
@@ -92,8 +87,9 @@
                                       <div class="levelthreemenu">
                                         <ul>
                                           <li
-                                            v-for="(subChildItem,
-                                            subCgildIndex) in childItem.childs"
+                                            v-for="(
+                                              subChildItem, subCgildIndex
+                                            ) in childItem.childs"
                                             :key="subCgildIndex"
                                           >
                                             <Nuxt-link
@@ -101,9 +97,7 @@
                                                 showMobileMenu = false
                                               "
                                               class="nav-link pl-0"
-                                              :to="
-                                                `/collections/${subChildItem.menu_url_key}/`
-                                              "
+                                              :to="`/collections/${subChildItem.menu_url_key}/`"
                                               >{{ subChildItem.name }}
                                             </Nuxt-link>
                                           </li>
@@ -132,13 +126,13 @@
                               >{{ childItem.name }}</Nuxt-link
                             >
                           </template>
-                        </client-only>
-                      </li>
-                    </ul>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </client-only>
           </div>
         </div>
         <div class="site-logo">
@@ -148,83 +142,83 @@
         </div>
 
         <div class="search_box">
-          <ul>
-            <li class="desktop_only" @click="searchActive = true">
-              <nuxt-link to="#">Search</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link
-                v-if="
-                  $store.state.cartAjax.customer_id != null &&
+          <client-only>
+            <ul>
+              <li class="desktop_only" @click="searchActive = true">
+                <nuxt-link to="#">Search</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link
+                  v-if="
+                    $store.state.cartAjax.customer_id != null &&
                     $store.state.cartAjax.customer_id != '' &&
                     $store.state.cartAjax.customer_session != '' &&
                     $store.state.cartAjax.customer_session != null
-                "
-                to="/Dashboard"
-              >
-                <div
-                  class="login login-user"
-                  v-if="
-                    $store.state.cartAjax.customer_id != null &&
-                      $store.state.cartAjax.customer_id != '' &&
-                      $store.state.cartAjax.customer_session != '' &&
-                      $store.state.cartAjax.customer_session != null
                   "
                   to="/Dashboard"
                 >
-                  <span class="desktop_only"> account </span>
-                  <span class="mobile_only user-icon"></span>
-                  <div class="dropdown-menu-account">
-                    <ul>
-                      <li>
-                        <nuxt-link
-                          :class="[
-                            $route.path == '/Dashboard'
-                              ? 'active-account-sidebar'
-                              : ''
-                          ]"
-                          to="/Dashboard"
-                          >Account Dashboard</nuxt-link
-                        >
-                      </li>
-                      <li>
-                        <nuxt-link
-                          :class="[
-                            $route.path == '/addresses'
-                              ? 'active-account-sidebar'
-                              : ''
-                          ]"
-                          to="/addresses"
-                          >My Address Book</nuxt-link
-                        >
-                      </li>
-                      <li>
-                        <nuxt-link
-                          :class="[
-                            $route.path == '/myorder'
-                              ? 'active-account-sidebar'
-                              : ''
-                          ]"
-                          to="/myorder"
-                          >My Orders</nuxt-link
-                        >
-                      </li>
-                      <li>
-                        <a @click.prevent="logOut">Logout</a>
-                      </li>
-                    </ul>
+                  <div
+                    class="login login-user"
+                    v-if="
+                      $store.state.cartAjax.customer_id != null &&
+                      $store.state.cartAjax.customer_id != '' &&
+                      $store.state.cartAjax.customer_session != '' &&
+                      $store.state.cartAjax.customer_session != null
+                    "
+                    to="/Dashboard"
+                  >
+                    <span class="desktop_only"> account </span>
+                    <span class="mobile_only user-icon"></span>
+                    <div class="dropdown-menu-account">
+                      <ul>
+                        <li>
+                          <nuxt-link
+                            :class="[
+                              $route.path == '/Dashboard'
+                                ? 'active-account-sidebar'
+                                : '',
+                            ]"
+                            to="/Dashboard"
+                            >Account Dashboard</nuxt-link
+                          >
+                        </li>
+                        <li>
+                          <nuxt-link
+                            :class="[
+                              $route.path == '/addresses'
+                                ? 'active-account-sidebar'
+                                : '',
+                            ]"
+                            to="/addresses"
+                            >My Address Book</nuxt-link
+                          >
+                        </li>
+                        <li>
+                          <nuxt-link
+                            :class="[
+                              $route.path == '/myorder'
+                                ? 'active-account-sidebar'
+                                : '',
+                            ]"
+                            to="/myorder"
+                            >My Orders</nuxt-link
+                          >
+                        </li>
+                        <li>
+                          <a @click.prevent="logOut">Logout</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </nuxt-link>
-              <nuxt-link v-else to="/login">
-                <div class="login">
-                  <span class="desktop_only">Login</span>
-                  <span class="mobile_only user-icon"></span>
-                </div>
-              </nuxt-link>
-            </li>
-            <li>
-              <client-only>
+                </nuxt-link>
+                <nuxt-link v-else to="/login">
+                  <div class="login">
+                    <span class="desktop_only">Login</span>
+                    <span class="mobile_only user-icon"></span>
+                  </div>
+                </nuxt-link>
+              </li>
+              <li>
                 <nuxt-link to="/wishlist">
                   <div class="wishlist">
                     <span
@@ -244,11 +238,9 @@
                     <span class="wishlist-icon wish-blank" v-else></span>
                   </div>
                 </nuxt-link>
-              </client-only>
-            </li>
-            <li class="mini-cart">
-              <div class="carts">
-                <client-only>
+              </li>
+              <li class="mini-cart">
+                <div class="carts">
                   <a href="/cart">
                     <span
                       class="cart-full-count"
@@ -265,10 +257,10 @@
                     </span>
                     <span class="cart-icon cart-blank" v-else></span>
                   </a>
-                </client-only>
-              </div>
-            </li>
-          </ul>
+                </div>
+              </li>
+            </ul>
+          </client-only>
         </div>
       </div>
     </nav>
@@ -308,14 +300,14 @@ import Hovercart from "./Hovercart";
 
 export default {
   components: {
-    Hovercart
+    Hovercart,
   },
   data() {
     return {
       showMobileMenu: false,
       searchActive: false,
       scrollPosition: null,
-      ShowhoverCart: false
+      ShowhoverCart: false,
     };
   },
   async mounted() {
@@ -336,8 +328,8 @@ export default {
       },
       set(value) {
         return;
-      }
-    }
+      },
+    },
   },
 
   methods: {
@@ -356,7 +348,7 @@ export default {
     updateScroll() {
       this.scrollPosition = window.scrollY;
     },
-    logOut: async function() {
+    logOut: async function () {
       var form = {};
       form.customer_id = this.$store.state.cartAjax.customer_id;
       form.customer_session = this.$store.state.cartAjax.customer_session;
@@ -365,9 +357,9 @@ export default {
           method: "post",
           url: `/customer/logout`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form
+          params: form,
         })
-        .then(async response => {
+        .then(async (response) => {
           if (response.data.success === true) {
             $cookies.remove(
               window.location.hostname.substring(10, 4) + "_cart_token"
@@ -396,14 +388,14 @@ export default {
             this.$router.push("/");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("error from the log out page", error);
         });
-    }
+    },
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  }
+  },
 };
 </script>
 <style scoped>
