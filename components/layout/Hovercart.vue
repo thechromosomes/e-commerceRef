@@ -3,7 +3,7 @@
     <div class="cart">
       <div class="headding">
         <h4>Added to bag</h4>
-        <span class="remove-icontop"></span>
+        <span class="remove-icontop" @click="handleClick()"></span>
         <hr />
 
         <div
@@ -23,7 +23,7 @@
                 <span class="price">MRP ₹{{ product.price }}</span>
               </nuxt-link>
             </div>
-            <span class="p-remove  ">
+            <span class="p-remove">
               <span
                 class="remove-icon"
                 @click.prevent="removeCartItem(product)"
@@ -32,7 +32,7 @@
           </div>
         </div>
         <hr />
-        <div class="row estimated-total ">
+        <div class="row estimated-total">
           <div class="col-8">
             <span class="d-block tax-label">VAT</span>
             <span class="d-block sub-total-label">Order Total</span>
@@ -49,7 +49,7 @@
             <div>
               <a
                 href="#"
-                class="button primary-btn d-block checkout-btn "
+                class="button primary-btn d-block checkout-btn"
                 role="button"
                 aria-pressed="true"
                 @click.prevent="() => $router.push('/checkout')"
@@ -65,9 +65,10 @@
 </template>
 <script>
 export default {
+  props: [ 'handleClick' ],
   data() {
     return {
-      toggelCar: true
+      toggelCar: true,
     };
   },
   methods: {
@@ -84,13 +85,13 @@ export default {
           method: "post",
           url: `/product/remove-product`,
           token: this.$store.state.cartAjax.cart_token,
-          params: form
+          params: form,
         });
         if (response) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
             data: response,
-            vm: this
+            vm: this,
           });
           if (response.success) {
             this.$gtm.push({
@@ -104,11 +105,11 @@ export default {
                       id: item.master_sku,
                       price: item.selling_price,
                       variant: item.fynd_size,
-                      quantity: item.qty
-                    }
-                  ]
-                }
-              }
+                      quantity: item.qty,
+                    },
+                  ],
+                },
+              },
             });
           }
         } else {
@@ -118,31 +119,31 @@ export default {
         this.$globalError(`error from remove cart >>>> ${error}`);
         console.log("error from remove cart >>>", error);
       }
-    }
+    },
   },
   watch: {
-    "$store.state.cartAjax.cart_page_message": function() {
+    "$store.state.cartAjax.cart_page_message": function () {
       if (
         this.$store.state.cartAjax.cart_page_message != "" &&
         this.$store.state.cartAjax.cart_page_message != null
       ) {
         this.$toast.open(this.$store.state.cartAjax.cart_page_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
     },
-    "$store.state.cartAjax.cart_page_erro_page": function() {
+    "$store.state.cartAjax.cart_page_erro_page": function () {
       if (
         this.$store.state.cartAjax.cart_page_error_message != "" &&
         this.$store.state.cartAjax.cart_page_error_message != null
       ) {
         this.$toast.error(this.$store.state.cartAjax.cart_page_error_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
