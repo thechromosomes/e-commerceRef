@@ -758,13 +758,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-.header
-  .navbar
-  .navbar-collapse
-  .navbar-nav
-  .nav-item.nav-block
-  .dropdown_menu {
-  display: block !important;
-}
-</style>

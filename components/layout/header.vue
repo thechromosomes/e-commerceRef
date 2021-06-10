@@ -40,21 +40,24 @@
             </div>
             <ul class="navbar-nav mr-auto">
               <li
-                class="nav-item nav-block"
+                class="nav-item "
                 v-for="(item, index) in header"
                 :key="index"
+                :class="{
+                  'active-nav':
+                    $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
+                    item.name.toUpperCase()
+                }"
               >
                 <span class="stripeImage"></span>
                 <NuxtLink
                   :to="`/clp/${item.menu_url_key}`"
                   class="nav-link first"
-<<<<<<< HEAD
-=======
                   :class="{
-                    'active-nav':
-                      $store.state.activeUrlKey.split('-')[0].toUpperCase() == item.name.toUpperCase(),
+                    'active-nav-link':
+                      $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
+                      item.name.toUpperCase()
                   }"
->>>>>>> 8de1de66c86814b33ba0dbbcc62b8ed0181313f0
                   >{{ item.name }}</NuxtLink
                 >
                 <div
@@ -79,8 +82,10 @@
                               <a
                                 :class="{
                                   'active-sub-nav':
-                                    $store.state.activeUrlKey.split('-')[1].toUpperCase() ==
-                                    childItem.name.toUpperCase(),
+                                    $store.state.activeUrlKey
+                                      .split('-')[1]
+                                      .toUpperCase() ==
+                                    childItem.name.toUpperCase()
                                 }"
                                 class="nav-link"
                                 >{{ childItem.name }}

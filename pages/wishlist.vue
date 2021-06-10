@@ -3,7 +3,22 @@
     <client-only>
       <div id="cart" class="wishlist">
         <div class="containers">
-          <div class="account-top-section">
+          <div class="account-top-section" v-if="wislistProducts.length == 0">
+            <p class="">
+              You have not saved any items in your Wishlist
+            </p>
+            <div class="content-asset">
+              <p>
+                Create your wishlist: save up to 50 items to always be informed
+                on their availability and add them directly to your Shopping Bag
+                at any moment.
+              </p>
+            </div>
+            <a href="#">
+              Back to shopping
+            </a>
+          </div>
+          <div class="account-top-section" v-else>
             <h4 class="wishlist-title">
               Wishlist
             </h4>

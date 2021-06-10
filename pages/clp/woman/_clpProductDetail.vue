@@ -81,6 +81,43 @@
 
     <TowImages />
     <NewIn :slideImg="is_new" />
+
+    <div class="accessories">
+      <div class="accessories-content">
+        <div class="left-content">
+          <h4>
+            BAGS & <br />
+            ACCESSORIES
+          </h4>
+          <a href="# "> VIEW ALL BAGS</a>
+          <a href="# "> NEW ACCESSORIES</a>
+        </div>
+        <div class="right-content">
+          <div class="slide_new_in">
+            <client-only>
+              <VueSlickCarousel ref="slick" v-bind="settings4">
+                <div
+                  class="item"
+                  v-for="(item, index) in slideItem"
+                  :key="index"
+                >
+                  <a href="#"
+                    ><img
+                      src="@/assets/img/new_slide_1.jpg"
+                      alt="img"
+                      class="w-100"
+                  /></a>
+                  <div class="tile-body">
+                    <p>Light Blue</p>
+                    <a href="#"> Super skinny - Slandy</a>
+                  </div>
+                </div>
+              </VueSlickCarousel>
+            </client-only>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -98,7 +135,7 @@ export default {
     NewIn,
     ProductSilder,
     CategorySlider,
-    TowImages,
+    TowImages
   },
   data() {
     return {
@@ -111,7 +148,7 @@ export default {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 2000
       },
       settings2: {
         infinite: true,
@@ -128,8 +165,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 3.5,
-            },
+              slidesToShow: 3.5
+            }
           },
           {
             breakpoint: 767,
@@ -137,8 +174,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 480,
@@ -146,17 +183,17 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
+              slidesToShow: 1.5
+            }
+          }
+        ]
       },
       settings3: {
         infinite: true,
         slidesToShow: 4,
         slidesToScroll: 1,
         dots: false,
-        arrows: true,
+        arrows: false,
         autoplay: true,
         autoplaySpeed: 2000,
         responsive: [
@@ -166,8 +203,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -175,8 +212,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 480,
@@ -184,16 +221,54 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
+              slidesToShow: 1
+            }
+          }
+        ]
       },
+      settings4: {
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+          {
+            breakpoint: 991,
+            settings: {
+              arrows: false,
+              centerMode: false,
+              centerPadding: "40px",
+              slidesToShow: 2.5
+            }
+          },
+          {
+            breakpoint: 767,
+            settings: {
+              arrows: false,
+              centerMode: false,
+              centerPadding: "40px",
+              slidesToShow: 1.5
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              arrows: false,
+              centerMode: false,
+              centerPadding: "20px",
+              slidesToShow: 1
+            }
+          }
+        ]
+      }
     };
   },
   computed: {
-    ...mapState(["is_new"]),
-  },
+    ...mapState(["is_new"])
+  }
 };
 </script>
 

@@ -1,60 +1,77 @@
-.find-store-nav{
-    background: none repeat scroll 0 0 #F5F5F5;
-    border: 1px solid #EEEEEE;
-    padding: 10px 20px;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;text-align: center;
-  }
-  .find-store-nav .loctor-nav-div{ width: 34%; text-align: center;}
-   .find-store-nav .loctor-nav-div input{ width: 100%;}
-  .map-cont {
-    width: 32%;
-    float: left;
-    height: 400px;
-    overflow-y:scroll;
+.storelocater {
+  width: 100%;
+  margin-top: 50px;
 }
-  .store-loc-page h1.text-center{font-size: 35px;
-    text-transform: uppercase;
-    padding: 20px;}
-  .map-div{ width: 65%; float: right;}
-  .map-cont ul li p span{ display:block;}
-  .map-cont ul li .name{ font-weight: 600; font-size: 20px;}
-  .map-cont ul li p{line-height: 21px;
+
+.storelocater h4 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.storelocater .store-search_box {
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #efefef;
+  padding: 10px 10px;
+}
+.storelocater .store-search_box p {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #000;
+}
+.storelocater .store-search_box input {
+  padding: 12px 10px;
+  font-size: 14px;
+  outline: none !important;
+  -webkit-appearance: none;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  width: 400px;
+}
+.map-cont {
+  width: 100%;
+  height: 400px;
+  overflow-y: auto;
+}
+.map-cont ul {
+  min-height: 400px;
+  overflow: hidden;
+}
+.map-cont ul li {
+  padding: 15px 5px 15px 35px;
+  min-height: 30px;
+  list-style: none;
+  border-top: 1px dotted #ddd;
+  position: relative;
+}
+.map-cont ul li img {
+  position: absolute;
+  left: 0;
+}
+.map-cont ul li .name {
+  font-weight: 600;
+  font-size: 18px;
+}
+@media (max-width: 991px) {
+  .store-search_box {
+    flex-direction: column;
+  }
+  .storelocater .store-search_box p {
     font-size: 16px;
-    padding: 10px 0px;}
-    .map-cont ul li {
-      padding: 15px 5px 15px 35px;
-      min-height: 30px;
-      list-style: none;
-      border-top: 1px dotted #DDDDDD;
-      position: relative;
+    margin-bottom: 10px;
   }
-  .map-cont ul{ min-height: 400px; overflow: hidden;}
-  .map-cont ul li img{ position:absolute; left: 0;}
-
-
-  @media screen and (max-width: 1024px) {
-    .map-cont {
-       
-        height: 413px;
-        overflow: hidden;
-    }
+  .storelocater .store-search_box .input-box {
+    width: 100%;
   }
-
-    @media screen and (max-width: 767px) {
-        /* =============== store locater cs=============== */
-        .map-cont ,.map-div{
-          width: 100%; float: none;
-      }
-      .map-cont {
-        height: auto;
-        overflow: hidden;
-    }
-    .map-div{ margin-bottom: 30px;}
-    .find-store-nav{ flex-wrap: wrap;}
-    .find-store-nav p{padding: 5px 0px;}
-    .find-store-nav div{ padding: 5px 0px;}
-
+  .storelocater .store-search_box input {
+    width: 100%;
+  }
+  .map-cont {
+    margin-bottom: 20px;
+  }
 }
