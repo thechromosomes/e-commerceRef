@@ -3038,3 +3038,17 @@ p.p-price span.line-throu {
   content: "";
   position: absolute;
 } */
+/* =========================== cms page css============= start here=========== */
+.cms-list li {
+  list-style: disc;
+  padding-bottom: 14px;
+}
+.small-bold-text{ font-weight:700; font-size: 18px;}
+.icon-imges{width: 65px;
+  display: inline-block;
+  vertical-align: bottom;
+  padding-right: 10px;}
+  #contact-us-tform {
+    width: 550px;
+    margin: 0 auto;
+}
