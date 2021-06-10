@@ -128,7 +128,7 @@ export default {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 2000
       },
       settings2: {
         infinite: true,
@@ -145,8 +145,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 3.5,
-            },
+              slidesToShow: 3.5
+            }
           },
           {
             breakpoint: 767,
@@ -154,8 +154,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 480,
@@ -163,10 +163,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
+              slidesToShow: 1.5
+            }
+          }
+        ]
       },
       settings3: {
         infinite: true,
@@ -183,8 +183,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -192,8 +192,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 480,
@@ -201,10 +201,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
+              slidesToShow: 1
+            }
+          }
+        ]
       },
 
       settings4: {
@@ -222,8 +222,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -231,8 +231,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 480,
@@ -240,15 +240,15 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
-      },
+              slidesToShow: 1
+            }
+          }
+        ]
+      }
     };
   },
   computed: {
-    ...mapState(["is_new"]),
+    ...mapState(["is_new"])
   },
 
   methods: {
@@ -266,7 +266,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
@@ -278,18 +278,17 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
-    },
+    }
   },
   created() {
     this.getProductList("man-apparel-jackets", "jackets");
     this.getProductList("man-jeans", "trending");
     this.getProductList("man-accessories-other-accessories", "accessories");
-  },
+  }
 };
 </script>
 

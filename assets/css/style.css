@@ -1086,7 +1086,7 @@ button:hover {
 
 .product_list_page {
   width: 100%;
-  margin-top: 55px;
+  /* margin-top: 55px; */
 }
 .product_list_page .search-banner {
   display: flex;
@@ -3039,7 +3039,7 @@ p.p-price span.line-throu {
 /* .header .navbar .navbar-collapse .navbar-nav .nav-item .nav-link {
   opacity: 0.7;
 } */
-.header
+/* .header
   .navbar
   .navbar-collapse
   .navbar-nav
@@ -3060,3 +3060,11 @@ p.p-price span.line-throu {
   color: #000 !important;
   opacity: 1 !important;
 }
+.header
+  .navbar
+  .navbar-collapse
+  .navbar-nav
+  .nav-item.active-nav:hover
+  .dropdown_menu {
+  display: none;
+} */
