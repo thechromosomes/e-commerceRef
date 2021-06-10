@@ -2,79 +2,87 @@
   <div>
     <client-only>
       <div id="cart" class="wishlist">
-        <div class="container">
-          <section
-            class="wish-list-empty text-center"
-            v-if="wislistProducts.length == 0"
-          >
-            <div class="wish-list-page-container">
-              <h2>YOUR WISHLIST IS CURRENTLY EMPTY</h2>
+        <div class="containers">
+          <div class="account-top-section">
+            <h4 class="wishlist-title">
+              Wishlist
+            </h4>
+            <div class="content-asset">
               <p>
-                Want to keep track of all your favourite pieces?<br />
-                Simple select your size the product page and click on the Heart
-                icon
+                Create your wishlist: save up to 50 items to always be informed
+                on their availability and add them directly to your Shopping Bag
+                at any moment.
               </p>
             </div>
-          </section>
+            <div class="section-actions">
+              <button class="add-all-to-cart">
+                ADD ALL TO SHOPPING BAG
+              </button>
+              <button type="button" class="share-button d-flex">
+                <span class="icon-share"></span>Share
+              </button>
+              <div class="wl-social-sharing ">
+                <a href="#" class="icon  icon-mail"> </a>
+                <a href="#" class="icon  icon-facebook-black"> </a>
+                <a href="#" class="icon  icon-pintrest"> </a>
+                <a href="#" class="icon  icon-twitter-black"> </a>
+                <a href="#" class="icon  icon-close-black-md"> </a>
+              </div>
+            </div>
+          </div>
 
-          <section class="wish-list-item" v-else>
-            <h2 class="all-item-heading">ALL ITEMS</h2>
-
+          <div class="product-flext">
             <div
-              class="wish-list-wraper"
+              class="product"
               v-for="(item, mainIndex) in wislistProducts"
               :key="mainIndex"
             >
-              <div class="wishlist-close">
-                <img
-                  src="@/assets/img/close.png"
-                  alt="close button"
-                  @click="reomoveFromCart(item, mainIndex)"
-                />
+              <div class="image-container">
+                <img :src="item.image" alt="img" class="w-100" />
               </div>
-
-              <div class="wish-list-item-img">
-                <img :src="item.image" />
-              </div>
-              <div class="wish-list-info">
-                <h2>{{ item.name }}</h2>
-                <h3><strong>Item Code:</strong> {{ item.group_id }}</h3>
-                <h4><strong>Color:</strong> {{ item.color }}</h4>
+              <div class="tile-body">
+                <div class="product-color">{{ item.color }}</div>
+                <p class="name">{{ item.name }}</p>
                 <h4>
                   <strong>MRP:</strong>
                   <span class="price">₹{{ item.price }}</span>
                 </h4>
               </div>
-              <div class="wishlist-action">
-                <div class="">
-                  <select v-model="selectedSize[mainIndex]">
-                    <option value="" disabled>Select Size</option>
-                    <option
-                      v-for="(size, index) in item.variation"
-                      :key="index"
-                      :disabled="size.quantity == 0"
-                    >
-                      {{ size.configrable_atribute_value }}
-                    </option>
-                  </select>
-                  <div
-                    v-if="sizeAlert && sizeAlertIndes == mainIndex"
-                    style="clear: both"
+
+              <div class="select-box">
+                <select v-model="selectedSize[mainIndex]">
+                  <option value="" disabled>Select Size</option>
+                  <option
+                    v-for="(size, index) in item.variation"
+                    :key="index"
+                    :disabled="size.quantity == 0"
                   >
-                    <p class="promotion-text">please select the size</p>
-                  </div>
+                    {{ size.configrable_atribute_value }}
+                  </option>
+                </select>
+                <div
+                  v-if="sizeAlert && sizeAlertIndes == mainIndex"
+                  style="clear: both"
+                >
+                  <p class="promotion-text">please select the size</p>
                 </div>
-                <a @click.prevent="addToCart(item, mainIndex)" class="">
-                  Move to bag</a
-                >
               </div>
-              <!-- <div class="wishlist-price">
-                <a @click.prevent>
-                  <span class="price">₹{{ item.price }}</span></a
+              <button
+                class="add-to-cart--wishlist"
+                @click.prevent="addToCart(item, mainIndex)"
+              >
+                Add to bag
+              </button>
+              <div class="product-tile__wishlist-cta">
+                <button
+                  class=" remove-from-wishlist"
+                  @click="reomoveFromCart(item, mainIndex)"
                 >
-              </div> -->
+                  Remove
+                </button>
+              </div>
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </client-only>

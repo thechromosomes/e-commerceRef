@@ -16,10 +16,10 @@
                     placeholder="start searching here"
                     autocomplete="off"
                     v-model="search"
-                    />
+                  />
                 </form>
               </div>
-              </div>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -33,7 +33,9 @@
                   style="cursor: pointer"
                 >
                   <img src="@/assets/img/map-pin-black2.png" />
-                  <a click.prevent class="name"> {{ addressList.infoText.name }}</a>
+                  <a click.prevent class="name">
+                    {{ addressList.infoText.name }}</a
+                  >
                   <p>
                     {{ addressList.infoText.address }}
                   </p>
@@ -58,8 +60,7 @@
                 :zoom="zoom"
                 map-type-id="terrain"
                 ref="map"
-                  style="width: 100%; height: 400px"
-
+                style="width: 100%; height: 400px"
               >
                 <gmap-info-window
                   :options="infoOptions"
@@ -83,7 +84,9 @@
                       {{ infoContent.email }}
                     </p>
                     <a
-                      :href="`https://maps.google.com/maps?daddr=${infoContent.address}`"
+                      :href="
+                        `https://maps.google.com/maps?daddr=${infoContent.address}`
+                      "
                       target="blank"
                     >
                       Get Directions</a
@@ -122,12 +125,12 @@ export default {
       infoOptions: {
         pixelOffset: {
           width: 0,
-          height: -35,
-        },
+          height: -35
+        }
       },
       markers: [],
       place: null,
-      radius: 100,
+      radius: 100
     };
   },
 
@@ -157,67 +160,67 @@ export default {
         .dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         })
-        .then((response) => {
+        .then(response => {
           if (response.response.success) {
             this.serviceCenters = response.result;
-            this.serviceCenters.map((element) => {
+            this.serviceCenters.map(element => {
               if (element.lat != "") {
-                // this.markers.push({
-                //   position: {
-                //     lat: Number(element.lat),
-                //     lng: Number(element.lng),
-                //   },
-                //   infoText: {
-                //     search:
-                //       element.name +
-                //       " " +
-                //       element.address +
-                //       " " +
-                //       element.city +
-                //       " " +
-                //       element.email +
-                //       " " +
-                //       element.phone,
-                //     name: element.name,
-                //     address: element.address,
-                //     city: element.city,
-                //     state: element.state,
-                //     zip: element.postcode,
-                //     phone: element.phone,
-                //     email: element.email,
-                //   },
-                // });
+                this.markers.push({
+                  position: {
+                    lat: Number(element.lat),
+                    lng: Number(element.lng)
+                  },
+                  infoText: {
+                    search:
+                      element.name +
+                      " " +
+                      element.address +
+                      " " +
+                      element.city +
+                      " " +
+                      element.email +
+                      " " +
+                      element.phone,
+                    name: element.name,
+                    address: element.address,
+                    city: element.city,
+                    state: element.state,
+                    zip: element.postcode,
+                    phone: element.phone,
+                    email: element.email
+                  }
+                });
               }
             });
           } else {
             throw `No response from the API`;
           }
         })
-        .catch((error) => {
+        .catch(error => {
           if (error.message === "Network Error") {
             this.$globalError(error.message);
           } else {
             this.$globalError(`error form the store locator >> ${error}`);
           }
         });
-    },
+    }
   },
 
   computed: {
     filteredList() {
-      return this.markers.filter((post) => {
+      return this.markers.filter(post => {
         return post.infoText.search
           .toLowerCase()
           .includes(this.search.toLowerCase());
       });
-    },
-  },  
+    }
+  },
 
   mounted() {
     this.getStore();
-  },
+  }
 };
 </script>
 <style scoped>
