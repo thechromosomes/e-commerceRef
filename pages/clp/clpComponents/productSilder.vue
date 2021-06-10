@@ -3,7 +3,7 @@
     <section class="new_in">
       <div class="container-fluid">
         <div class="content_new_in">
-          <div class="slide_new_in">
+          <div class="slide_new_in" v-if="slideImg.length > 0">
             <client-only>
               <VueSlickCarousel ref="slick" v-bind="settings">
                 <div
@@ -11,15 +11,14 @@
                   v-for="(item, index) in slideImg"
                   :key="index"
                 >
-                  <a href="#"
-                    ><img
-                      src="@/assets/img/new_slide_1.jpg"
-                      alt="img"
-                      class="w-100"
-                  /></a>
+                  <Nuxt-link :to="`/product/${item.url_key}`"
+                    ><img :src="item.image" alt="img" class="w-100"
+                  /></Nuxt-link>
                   <div class="tile-body">
-                    <p>Light Blue</p>
-                    <a href="#"> Super skinny - Slandy</a>
+                    <p>{{ item.color }}</p>
+                    <Nuxt-link :to="`/product/${item.url_key}`"
+                      >{{ item.name }}
+                    </Nuxt-link>
                   </div>
                 </div>
               </VueSlickCarousel>
@@ -28,6 +27,7 @@
         </div>
       </div>
     </section>
+    u
   </div>
 </template>
 
@@ -54,8 +54,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -63,8 +63,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -72,16 +72,16 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
-      }
+              slidesToShow: 1,
+            },
+          },
+        ],
+      },
     };
   },
   created() {
     // console.log(this.$route);
-  }
+  },
 };
 </script>
 

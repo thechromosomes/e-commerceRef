@@ -85,14 +85,14 @@ body {
   padding: 0 10px;
 }
 .swiper-overflow-gift-swiper .item .swiper-overflow-gift-slide-title {
-  font-size: 24px;
+  font-size: 10px;
   text-transform: uppercase;
   position: absolute;
   bottom: 17px;
   left: 19px;
   width: 100%;
   font-weight: 700;
-  color: #fff;
+  color: black;
   line-height: 1.71;
   letter-spacing: 0.44px;
   display: block;
@@ -240,6 +240,43 @@ body {
 }
 .item-four-show .item-box .item .content a:hover {
   text-decoration: underline;
+}
+
+.accessories {
+  width: 100%;
+  padding: 47px 15px;
+  margin: 0 auto;
+  max-width: 1330px;
+  width: 100%;
+}
+.accessories .accessories-content {
+  width: 100%;
+  display: flex;
+}
+.accessories .accessories-content .left-content {
+  width: 30%;
+}
+.accessories .accessories-content .right-content {
+  width: 70%;
+}
+.accessories .accessories-content .left-content h4 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  line-height: 36px;
+}
+.accessories .accessories-content .left-content a {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px 40px;
+  color: #fff;
+  background: #000;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+.accessories .accessories-content .left-content a:last-child {
+  margin-top: 20px;
 }
 @media (max-width: 991px) {
   .tape-wrapper h1 {

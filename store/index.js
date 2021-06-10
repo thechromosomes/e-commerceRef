@@ -49,8 +49,8 @@ export const state = () => ({
   instaPost: [],
   bannerSlide: [],
   is_new: [],
-  intialSearchPath:"",
-  activeUrlKey: "dummy-placeholder"
+  intialSearchPath: "",
+  activeUrlKey: "dummy-placeholder",
 });
 
 export const actions = {
@@ -166,7 +166,6 @@ export const mutations = {
     state.list.page = pageNo;
     state.list.Product_count = "";
 
-
     state.list.sort = [
       // { code: "default", dir: "desc", label: "default" },
       { code: "best_matches", dir: "asc", label: "Best Matches" },
@@ -182,7 +181,7 @@ export const mutations = {
       state.list.applied_filters = [];
     }
     state.list.pass_url_key = routeParam;
-    state.activeUrlKey = routeParam
+    state.activeUrlKey = routeParam;
   },
 
   // to update state data for the product page
@@ -254,9 +253,13 @@ export const mutations = {
     state.singleProductList.product_loader = true;
     state.singleProductList.page = 1;
     state.singleProductList.url_key = routeParam;
-    state.activeUrlKey = routeParam
+    // state.activeUrlKey = routeParam
   },
 
+  // flush active link
+  flushActiveUrlKey(state) {
+    state.activeUrlKey = "dummy-placeholder";
+  },
   // update the single product state
   updateSingleProdState(state, { error, data }) {
     if (error == null) {
@@ -371,7 +374,7 @@ export const mutations = {
     state.intialSearchPath = payload;
   },
 
-    st_search(state, searchInput) {
+  st_search(state, searchInput) {
     if (searchInput == undefined) {
       state.list.search_input = "";
     } else {

@@ -1086,6 +1086,7 @@ button:hover {
 
 .product_list_page {
   width: 100%;
+  margin-top: 55px;
 }
 .product_list_page .search-banner {
   display: flex;
@@ -2906,7 +2907,7 @@ p.p-price span.line-throu {
   top: 100%;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 9999;
   background: #fafafa;
   text-align: left;
   width: 150px;
@@ -3034,7 +3035,28 @@ p.p-price span.line-throu {
 .minicart-wrapper .checkout-continue a:focus {
   color: #fff;
 }
-/* .cart-full-count .minicart-wrapper::before {
-  content: "";
-  position: absolute;
+
+/* .header .navbar .navbar-collapse .navbar-nav .nav-item .nav-link {
+  opacity: 0.7;
 } */
+.header
+  .navbar
+  .navbar-collapse
+  .navbar-nav
+  .nav-item.active-nav
+  .nav-link.active-nav-link {
+  color: #000 !important;
+  opacity: 1 !important;
+}
+.header
+  .navbar
+  .navbar-collapse
+  .navbar-nav
+  .nav-item.active-nav
+  .dropdown_menu {
+  display: block !important;
+}
+.nav-link.active-sub-nav {
+  color: #000 !important;
+  opacity: 1 !important;
+}

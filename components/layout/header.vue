@@ -41,14 +41,24 @@
             <client-only>
               <ul class="navbar-nav mr-auto">
                 <li
-                  class="nav-item nav-block"
+                  class="nav-item"
                   v-for="(item, index) in header"
                   :key="index"
+                  :class="{
+                    'active-nav':
+                      $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
+                      item.name.toUpperCase(),
+                  }"
                 >
                   <span class="stripeImage"></span>
                   <NuxtLink
                     :to="`/clp/${item.menu_url_key}`"
                     class="nav-link first"
+                    :class="{
+                      'active-nav-link':
+                        $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
+                        item.name.toUpperCase(),
+                    }"
                     >{{ item.name }}</NuxtLink
                   >
                   <div
@@ -122,6 +132,13 @@
                             <Nuxt-link
                               @click.native="showMobileMenu = false"
                               class="nav-link pl-0"
+                              :class="{
+                                'active-sub-nav':
+                                  $store.state.activeUrlKey
+                                    .split('-')[1]
+                                    .toUpperCase() ==
+                                  childItem.name.toUpperCase(),
+                              }"
                               :to="`/collections/${childItem.menu_url_key}/`"
                               >{{ childItem.name }}</Nuxt-link
                             >

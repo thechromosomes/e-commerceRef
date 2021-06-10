@@ -721,6 +721,9 @@
   .estimated-total .sub-total {
     margin-top: 20px;
   }
+  .product_list_page {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 767px) {
@@ -751,7 +754,7 @@
     padding-top: 0;
   }
   .visual-filters .visual-filters-container .category-filter {
-    width: 19%;
+    width: 22%;
     margin-right: 10px;
   }
   .complete-registration .img-box img {
@@ -807,6 +810,14 @@
   }
   .wish-list-item .wish-list-wraper .wishlist-close img {
     width: 10px;
+  }
+  .visual-filters
+    .visual-filters-container
+    .category-filter
+    .item
+    .category-filter-title
+    a {
+    font-size: 12px;
   }
 }
 @media (max-width: 1010px) {
