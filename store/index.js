@@ -50,7 +50,7 @@ export const state = () => ({
   bannerSlide: [],
   is_new: [],
   intialSearchPath:"",
-  activeUrlKey: ""
+  activeUrlKey: "dummy-placeholder"
 });
 
 export const actions = {
