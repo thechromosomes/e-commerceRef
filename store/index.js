@@ -49,7 +49,8 @@ export const state = () => ({
   instaPost: [],
   bannerSlide: [],
   is_new: [],
-  intialSearchPath:""
+  intialSearchPath:"",
+  activeUrlKey: "dummy-placeholder"
 });
 
 export const actions = {
@@ -181,6 +182,7 @@ export const mutations = {
       state.list.applied_filters = [];
     }
     state.list.pass_url_key = routeParam;
+    state.activeUrlKey = routeParam
   },
 
   // to update state data for the product page
@@ -252,6 +254,7 @@ export const mutations = {
     state.singleProductList.product_loader = true;
     state.singleProductList.page = 1;
     state.singleProductList.url_key = routeParam;
+    state.activeUrlKey = routeParam
   },
 
   // update the single product state
@@ -335,7 +338,6 @@ export const mutations = {
       tempPost.price = product.price;
       tempPost.url_key = product.url_key;
       tempPost.color = product.color;
-      console.log(tempPost);
 
       state.list.Product_list.splice(index, 1, tempPost);
     } catch (error) {

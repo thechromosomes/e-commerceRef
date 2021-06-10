@@ -48,6 +48,13 @@
                 <NuxtLink
                   :to="`/clp/${item.menu_url_key}`"
                   class="nav-link first"
+<<<<<<< HEAD
+=======
+                  :class="{
+                    'active-nav':
+                      $store.state.activeUrlKey.split('-')[0].toUpperCase() == item.name.toUpperCase(),
+                  }"
+>>>>>>> 8de1de66c86814b33ba0dbbcc62b8ed0181313f0
                   >{{ item.name }}</NuxtLink
                 >
                 <div
@@ -69,7 +76,13 @@
                           >
                             <li class="nav-item">
                               <span class="stripeImage"></span>
-                              <a href="#" class="nav-link"
+                              <a
+                                :class="{
+                                  'active-sub-nav':
+                                    $store.state.activeUrlKey.split('-')[1].toUpperCase() ==
+                                    childItem.name.toUpperCase(),
+                                }"
+                                class="nav-link"
                                 >{{ childItem.name }}
                               </a>
                               <div class="dropdown_menu_level-3">
