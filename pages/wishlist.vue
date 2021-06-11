@@ -4,9 +4,7 @@
       <div id="cart" class="wishlist">
         <div class="containers">
           <div class="account-top-section">
-            <h4 class="wishlist-title">
-              Wishlist
-            </h4>
+            <h4 class="wishlist-title">Wishlist</h4>
             <div class="content-asset">
               <p>
                 Create your wishlist: save up to 50 items to always be informed
@@ -15,19 +13,49 @@
               </p>
             </div>
             <div class="section-actions">
-              <button class="add-all-to-cart">
+              <button
+                class="add-all-to-cart"
+                v-if="wislistProducts.length > 0"
+                @click="addAllToShoppingBag()"
+              >
                 ADD ALL TO SHOPPING BAG
               </button>
-              <button type="button" class="share-button d-flex">
+
+              <button
+                v-else
+                class="add-all-to-cart"
+                @click="() => this.$router.push('/')"
+              >
+                BACK TO SHOPPING
+              </button>
+              <button
+                type="button"
+                @click="showSocialicons = true"
+                class="share-button d-flex"
+              >
                 <span class="icon-share"></span>Share
               </button>
-              <div class="wl-social-sharing ">
-                <a href="#" class="icon  icon-mail"> </a>
-                <a href="#" class="icon  icon-facebook-black"> </a>
-                <a href="#" class="icon  icon-pintrest"> </a>
-                <a href="#" class="icon  icon-twitter-black"> </a>
-                <a href="#" class="icon  icon-close-black-md"> </a>
+              <div class="wl-social-sharing" v-if="showSocialicons">
+                <ShareNetwork
+                  v-for="(item, index) in network"
+                  :key="index"
+                  :network="item.net"
+                  url="http://di.hostx1.de/"
+                  title="Say hi to diesel"
+                  description="Create your wishlist: save up to 50 items to always be informed on their availability and add them directly to your Shopping Bag at any moment."
+                  hashtags="Diesel"
+                >
+                  <a :class="item.icon"> </a>
+                </ShareNetwork>
+
+                <a
+                  class="icon icon-close-black-md"
+                  @click.prevent="showSocialicons = false"
+                ></a>
               </div>
+            </div>
+            <div v-if="mainsizeAlert" style="clear: both; margin-top: 10px;">
+              <p class="promotion-text">please select the size(s) first.</p>
             </div>
           </div>
 
@@ -75,7 +103,7 @@
               </button>
               <div class="product-tile__wishlist-cta">
                 <button
-                  class=" remove-from-wishlist"
+                  class="remove-from-wishlist"
                   @click="reomoveFromCart(item, mainIndex)"
                 >
                   Remove
@@ -96,7 +124,14 @@ export default {
       selectedSizeAttr: {},
       sizeAlert: false,
       selectedSize: [],
-      sizeAlertIndes: ""
+      sizeAlertIndes: "",
+      showSocialicons: false,
+      mainsizeAlert: false,
+      network: [
+        { icon: "icon  icon-facebook-black", net: "facebook" },
+        { icon: "icon  icon-pintrest", net: "Pinterest" },
+        { icon: "icon  icon-twitter-black", net: "twitter" },
+      ],
     };
   },
   async created() {
@@ -124,18 +159,18 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id
+          group_id: item.group_id,
         };
         var response = await this.$store.dispatch("cartAjax/actCartAjax", {
           method: "post",
           url: `/wishlist/remove-wishlist`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form
+          params: form,
         });
 
         if (response.success) {
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data
+            payload: response.data,
           });
           this.getProduct();
 
@@ -180,7 +215,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
         this.gtm_product_impressions = [];
         if (response.response.success) {
@@ -199,7 +234,7 @@ export default {
               price,
               category,
               list,
-              position
+              position,
             });
           }
 
@@ -222,6 +257,18 @@ export default {
       }
     },
 
+    // add all item to shopping bag
+    addAllToShoppingBag() {
+      for (let step = 0; step < this.wislistProducts.length; step++) {
+        if (this.selectedSize[step] == "") {
+          this.mainsizeAlert = true;
+        } else {
+          this.mainsizeAlert = false;
+          this.addToCart(this.wislistProducts[step], step);
+        }
+      }
+    },
+
     async addToCart(item, sizeIndex) {
       if (this.selectedSize[sizeIndex] == "") {
         this.sizeAlert = true;
@@ -234,7 +281,7 @@ export default {
           var form = {};
           var product_options_json = JSON.stringify({
             size: this.selectedSize[sizeIndex],
-            color: item.color
+            color: item.color,
           });
           form.product_id =
             item.variation[this.selectedSize[sizeIndex]].id_product;
@@ -275,12 +322,12 @@ export default {
             method: "post",
             url: `/product/add-product`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
           if (response) {
             await this.$store.commit("cartAjax/updateCartDetail", {
               error: null,
-              data: response
+              data: response,
             });
             if (response.success) this.reomoveFromCart(item, sizeIndex);
             // google tag manager
@@ -301,11 +348,11 @@ export default {
                         variant:
                           item.variation[this.selectedSize[sizeIndex]]
                             .configrable_atribute_value,
-                        quantity: "1"
-                      }
-                    ]
-                  }
-                }
+                        quantity: "1",
+                      },
+                    ],
+                  },
+                },
               });
             }
           } else {
@@ -319,13 +366,13 @@ export default {
           if (error.message === "Network Error") {
             this.$store.commit("updateSingleProdState", {
               error:
-                "Oops there seems to be some Network issue, please try again"
+                "Oops there seems to be some Network issue, please try again",
             });
           }
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

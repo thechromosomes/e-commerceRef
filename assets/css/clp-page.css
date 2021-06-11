@@ -85,14 +85,14 @@ body {
   padding: 0 10px;
 }
 .swiper-overflow-gift-swiper .item .swiper-overflow-gift-slide-title {
-  font-size: 24px;
+  font-size: 12px;
   text-transform: uppercase;
   position: absolute;
   bottom: 17px;
   left: 19px;
   width: 100%;
   font-weight: 700;
-  color: #fff;
+  color: black;
   line-height: 1.71;
   letter-spacing: 0.44px;
   display: block;
@@ -131,6 +131,9 @@ body {
   text-transform: uppercase;
   margin: 10px 0;
 }
+.two-banners-section .category-box .info .module-title a {
+  font-size: 18px !important;
+}
 .two-banners-section .category-box .info a.module-link {
   font-size: 11px;
 }
@@ -167,6 +170,7 @@ body {
 
 .two-banners-section .category-box .category-item {
   padding: 0 10px;
+  width: 50%;
 }
 
 .clp_pages.kid .slide-img .content-text {
@@ -219,16 +223,19 @@ body {
   display: flex;
   justify-content: flex-start;
   width: 100%;
+  flex-wrap: wrap;
 }
 .item-four-show .item-box .item {
   margin: 40px 10px;
+  width: 23%;
 }
 .item-four-show .item-box .item .content {
   text-align: left;
 }
 .item-four-show .item-box .item .content h3 a,
 .item-four-show .item-box .item .content a {
-  font-size: 18px;
+  /* font-size: 18px; */
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -240,6 +247,43 @@ body {
 }
 .item-four-show .item-box .item .content a:hover {
   text-decoration: underline;
+}
+
+.accessories {
+  width: 100%;
+  padding: 47px 15px;
+  margin: 0 auto;
+  max-width: 1330px;
+  width: 100%;
+}
+.accessories .accessories-content {
+  width: 100%;
+  display: flex;
+}
+.accessories .accessories-content .left-content {
+  width: 30%;
+}
+.accessories .accessories-content .right-content {
+  width: 70%;
+}
+.accessories .accessories-content .left-content h4 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  line-height: 36px;
+}
+.accessories .accessories-content .left-content a {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px 40px;
+  color: #fff;
+  background: #000;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+.accessories .accessories-content .left-content a:last-child {
+  margin-top: 20px;
 }
 @media (max-width: 991px) {
   .tape-wrapper h1 {
@@ -287,5 +331,23 @@ body {
   }
   .clp_pages.kid .slide-img .content-text .button:last-child {
     margin-left: 0;
+  }
+  .accessories .accessories-content {
+    flex-direction: column;
+  }
+  .accessories .accessories-content .left-content,
+  .accessories .accessories-content .right-content {
+    width: 100%;
+  }
+  .accessories .accessories-content .left-content {
+    text-align: center;
+    padding: 10px 0;
+  }
+  .accessories .accessories-content .left-content h4 br {
+    display: none;
+  }
+  .accessories .accessories-content .left-content h4 {
+    font-size: 30px;
+    margin-bottom: 10px;
   }
 }

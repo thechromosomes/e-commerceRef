@@ -20,7 +20,7 @@
   font-size: 70px;
   letter-spacing: 1.5px;
   color: #fff;
-    font-family: var(--fontFamily);
+  font-family: var(--fontFamily);
   font-weight: 700;
   text-transform: uppercase;
 }

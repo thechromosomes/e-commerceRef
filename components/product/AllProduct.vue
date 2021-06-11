@@ -742,6 +742,7 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updatePage);
+    this.$store.commit("flushActiveUrlKey")
   },
   watch: {
     "$route.query": function() {
@@ -758,13 +759,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-.header
-  .navbar
-  .navbar-collapse
-  .navbar-nav
-  .nav-item.nav-block
-  .dropdown_menu {
-  display: block !important;
-}
-</style>
