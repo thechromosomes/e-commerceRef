@@ -44,6 +44,16 @@
             @click.prevent="remove_w(item.id, item.group_id)"
             ><img src="~/assets/st_assets/st/wishlist_fill.svg"
           /></i> -->
+            <div class="wish-list-icon">
+              <span
+                class="wishlist_blank"
+                :id="$store.state.cartAjax.wishlist.group"
+                :class="renderWishList(item)"
+                @click.prevent="
+                  addRemoveWishList(item, renderWishList(item))
+                "
+              ></span>
+            </div>
           </div>
         </div>
         <p class="st-price">
@@ -287,6 +297,94 @@ export default {
     },
     stopPropagation(event) {
       event.stopPropagation();
+    },
+
+    // render wish list class icon
+    renderWishList(item) {
+      let ProductId = item.id;
+      let groupId = item.group_id;
+      let wishList = this.$store.state.cartAjax.wishlist;
+
+      if (Object.keys(wishList).length != 0) {
+        const groupResult = wishList.group
+          .split(",")
+          .filter((word) => word == groupId);
+        const productResult = wishList.product
+          .split(",")
+          .filter((word) => word == ProductId);
+
+        if (groupResult.length > 0 && productResult.length > 0) {
+          return "wishlist-active";
+        } else {
+          return "add";
+        }
+      } else {
+        return "add";
+      }
+    },
+
+    // add and remove to wish list
+    async addRemoveWishList(item, data, index) {
+      try {
+        if (
+          this.$store.state.cartAjax.customer_id == "" &&
+          this.$store.state.cartAjax.customer_session == ""
+        )
+          return this.$router.push("/login");
+        let form = {
+          product_id: item.id,
+          customer_id: this.$store.state.cartAjax.customer_id,
+          customer_session: this.$store.state.cartAjax.customer_session,
+          group_id: item.group_id,
+        };
+
+        if (data === "add") {
+          var response = await this.$store.dispatch("cartAjax/actCartAjax", {
+            method: "post",
+            url: `/wishlist/add-wishlist`,
+            token: this.$store.state.cartAjax.customer_token,
+            params: form,
+          });
+        } else {
+          var response = await this.$store.dispatch("cartAjax/actCartAjax", {
+            method: "post",
+            url: `/wishlist/remove-wishlist`,
+            token: this.$store.state.cartAjax.customer_token,
+            params: form,
+          });
+        }
+
+        if (response.success) {
+          this.$toast.open(response.message);
+          this.$store.commit("cartAjax/updateWishList", {
+            payload: response.data,
+          });
+
+          // this.$gtm.push({
+          //   event: [data == "add" ? "addToWishlist" : "removeFromWishlist"],
+          //   category: item.category,
+          //   action: "removeFromWishlist",
+          //   ecommerce: {
+          //     currencyCode: "INR",
+          //     remove: {
+          //       product: [
+          //         {
+          //           name: item.name,
+          //           id: item.sku,
+          //           price: item.selling_price,
+          //           category: item.category,
+          //           position: 1,
+          //         },
+          //       ],
+          //     },
+          //   },
+          // });
+        } else {
+          throw "no response from api";
+        }
+      } catch (error) {
+        this.$globalError(`error from add addRemoveWishList >>>> ${error}`);
+      }
     },
   },
   computed: {

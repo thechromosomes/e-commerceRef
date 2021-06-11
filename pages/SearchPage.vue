@@ -679,7 +679,7 @@ export default {
           this.scrollVal = 0;
           this.results = [];
           let list = document.getElementsByClassName("st-sub-dropdown");
-          let desktop_filter = document.querySelector(".sidebar__inner");
+          // let desktop_filter = document.querySelector(".sidebar__inner");
           let mobile_list = document.querySelectorAll("ul.filter-list-desktop");
           let mobile_filter = document.querySelector(".mobile-filter-popup");
           try {
@@ -692,12 +692,12 @@ export default {
                 });
               }
             }
-            if (desktop_filter)
-              desktop_filter.scroll({
-                top: 0,
-                left: 0,
-                behavior: "smooth",
-              });
+            // if (desktop_filter)
+            //   desktop_filter.scroll({
+            //     top: 0,
+            //     left: 0,
+            //     behavior: "smooth",
+            //   });
             if (mobile_list) {
               for (let i = 0; i < mobile_list.length; i++) {
                 mobile_list[i].scroll({
@@ -892,7 +892,7 @@ export default {
             "_size_search",
             "color_options",
             "group_id",
-            "id"
+            "id_product",
           )
           .skip(offset)
           .count(this.pageSize)
