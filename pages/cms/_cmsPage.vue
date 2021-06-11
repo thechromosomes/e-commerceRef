@@ -1,6 +1,6 @@
 <template>
   <div class="cms_page ">
-    <div class="cms_page_content">
+    <!-- <div class="cms_page_content">
       <vue-tabs
         active-tab-color="#e74c3c"
         active-text-color="white"
@@ -12,31 +12,40 @@
           <span v-html="item.content"></span>
         </v-tab>
       </vue-tabs>
-    </div>
+    </div> -->
 
-    <!-- <div class="containers">
+    <div class="containers">
       <div class="top-search">
         <h4 class="help_headline">Help</h4>
       </div>
       <div class="row">
         <div class="col-md-3 col-12">
-          <ul>
-            <li
-              v-for="(item, index) in cmsData"
-              :key="index"
-              :title="item.name"
-            >
-              <a href="">{{ item.name }}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-9 col-12">
-          <div v-for="(item, index) in cmsData" :key="index" :title="item.name">
-            <span v-html="item.content"></span>
+          <div class="content-asset">
+            <div class="headline-wrapper">
+              <h3 class="support_headline">
+                <b>SUPPORT TOPICS</b>
+              </h3>
+              <p class=" back_to_help"><b>BACK TO HELP</b></p>
+            </div>
+            <div class="help_menu_holder">
+              <ul class="submenu show_submenu">
+                <li
+                  v-for="(item, index) in cmsData"
+                  :key="index"
+                  :title="item.name"
+                  :class="active"
+                >
+                  <a href="#">{{ item.name }}</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+        <div class="col-md-9 col-12">
+          <span v-html="tapData"></span>
+        </div>
       </div>
-    </div> -->
+    </div>
 
     <div class="container">
       <Contentasset />
@@ -55,7 +64,8 @@ export default {
   },
   data() {
     return {
-      cmsData: {}
+      cmsData: {},
+      tapData: ""
     };
   },
 
@@ -76,6 +86,7 @@ export default {
       });
       if (cmsData.response.success) {
         this.cmsData = cmsData.result;
+        this.tapData = cmsData.result;
       }
     }
   }
