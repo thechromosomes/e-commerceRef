@@ -1,32 +1,53 @@
 <template>
   <div>
-    <div v-if="Object.keys(cmsData).length != 0">
-      <span v-html="cmsData"></span>
-      <div class="container">
-        <Contentasset />
-      </div>
-    </div>
+    <vue-tabs
+      active-tab-color="#e74c3c"
+      active-text-color="white"
+      type="pills"
+      :start-index="1"
+      direction="vertical"
+    >
+      <v-tab v-for="(item, index) in cmsData" :key="index" :title="item.name">
+        <span v-html="item.content"></span>
+      </v-tab>
+    </vue-tabs>
   </div>
 </template>
 <script>
 import Contentasset from "./Contentasset";
+import { VueTabs, VTab } from "vue-nav-tabs";
+import "vue-nav-tabs/themes/vue-tabs.css";
 export default {
   components: {
-    Contentasset
+    Contentasset,
+    VueTabs,
+    VTab,
   },
   data() {
     return {
-      cmsData: {}
+      cmsData: {},
     };
   },
 
   async fetch() {
-    let pageData = this.$store.state.cmsPagesData[this.$route.params.cmsPage];
-    if (pageData != undefined) {
-      this.cmsData = pageData.content;
-    } else {
+    let url = this.$route.params.cmsPage;
+    if (url == undefined) {
       this.$router.push("/404");
+    } else {
+      let form = {};
+      form.service = "cms_page";
+      form.store = 1;
+      form.parent_name = url;
+
+      let cmsData = await this.$store.dispatch("pimAjax", {
+        method: "get",
+        url: `/pimresponse.php`,
+        params: form,
+      });
+      if (cmsData.response.success) {
+        this.cmsData = cmsData.result;
+      }
     }
-  }
+  },
 };
 </script>
