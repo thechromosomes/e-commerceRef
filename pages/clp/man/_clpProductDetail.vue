@@ -1,13 +1,13 @@
 <template>
   <div class="clp_pages">
-    <div class="tape-wrapper">
+    <!-- <div class="tape-wrapper">
       <h1>DIESEL SALE PREVIEW. MEMBERS ONLY.</h1>
       <p class="tape-description">LOGIN OR REGISTER TO GET EXCLUSIVE ACCESS.</p>
       <a class="tape-button" href="#">LOG IN</a>
       <a class="tape-button" href="#">SUBSCRIBE NOW</a>
-    </div>
+    </div> -->
 
-    <div class="collections_slide">
+    <!-- <div class="collections_slide">
       <div class="slide_content">
         <VueSlickCarousel ref="slick" v-bind="settings">
           <div class="item">
@@ -60,12 +60,56 @@
           </div>
         </VueSlickCarousel>
       </div>
+    </div> -->
+
+    <div class="newclp">
+      <div class="clp_banner">
+        <div class="img-box">
+          <img
+            src="@/assets/img/clp-banner-man.jpg"
+            alt=" img "
+            class="desktop_only w-100"
+          />
+          <img
+            src="@/assets/img/clp-banner-man_mobile.jpg"
+            alt=" img "
+            class="mobile_only w-100"
+          />
+        </div>
+        <div class="content">
+          <div class="content-box">
+            <h3>THE NEW DENIM COLLECTION</h3>
+            <p>
+              CLEAN UP YOUR ACT WITH SOPHISTICATED NEW TAKES ON OUR SIGNATURE
+              DENIM.
+            </p>
+            <a href="#" class="secondary-white-btn">
+              VIEW ALL DENIM
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <Slideproduct :slideImg="is_new" />
 
     <CategorySlider :slideImg="jackets" />
     <TowImages :slideImg="trending" />
 
     <NewIn :slideImg="is_new" />
+
+    <!-- NEW SNEAKERS -->
+    <div class="new-sneakers">
+      <h4>NEW SNEAKERS</h4>
+      <div class="img-box w-100">
+        <img
+          src="@/assets/img/diesel-yukandnet-man.jpg"
+          alt="img"
+          class="w-100"
+        />
+      </div>
+      <p>TAKE A STEP BACK WITH COLOURFUL SNEAKERS INSPIRED BY 90S STYLE.</p>
+    </div>
 
     <div class="accessories">
       <div class="accessories-content">
@@ -110,11 +154,18 @@
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
 import NewIn from "../clpComponents/newIn";
+import Slideproduct from "../clpComponents/Slideproduct";
 import CategorySlider from "../clpComponents/categorySlider";
 import TowImages from "../clpComponents/towImages";
 import { mapState } from "vuex";
 export default {
-  components: { VueSlickCarousel, NewIn, CategorySlider, TowImages },
+  components: {
+    VueSlickCarousel,
+    NewIn,
+    CategorySlider,
+    TowImages,
+    Slideproduct
+  },
   data() {
     return {
       slideItem: [1, 2, 3, 4, 5, 6, 7, 8],

@@ -14,11 +14,16 @@
           </a>
           <div class="info">
             <h3 class="module-title">
-              <NuxtLink class="module-link" :to="`/product/${slideImg[3].url_key}`">
+              <NuxtLink
+                class="module-link"
+                :to="`/product/${slideImg[3].url_key}`"
+              >
                 {{ slideImg[3].name }}</NuxtLink
               >
             </h3>
-            <NuxtLink class="module-link" :to="`/product/${slideImg[3].url_key}`"
+            <NuxtLink
+              class="module-link"
+              :to="`/product/${slideImg[3].url_key}`"
               >SHOP NOW</NuxtLink
             >
           </div>
@@ -34,11 +39,16 @@
           </a>
           <div class="info">
             <h3 class="module-title">
-              <NuxtLink class="module-link" :to="`/product/${slideImg[4].url_key}`">
+              <NuxtLink
+                class="module-link"
+                :to="`/product/${slideImg[4].url_key}`"
+              >
                 {{ slideImg[4].name }}</NuxtLink
               >
             </h3>
-            <NuxtLink class="module-link" :to="`/product/${slideImg[4].url_key}`"
+            <NuxtLink
+              class="module-link"
+              :to="`/product/${slideImg[4].url_key}`"
               >SHOP NOW</NuxtLink
             >
           </div>
@@ -50,7 +60,7 @@
 
 <script>
 export default {
-  props: ["slideImg"],
+  props: ["slideImg"]
 };
 </script>
 

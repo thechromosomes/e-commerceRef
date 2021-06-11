@@ -3,7 +3,7 @@
     <section class="slide-img">
       <div class="content">
         <img
-          src="@/assets/img/2-DXD-full-bleed-desk.png"
+          src="@/assets/img/woman.jpg"
           alt="img"
           class="w-100 desktop_only"
         />

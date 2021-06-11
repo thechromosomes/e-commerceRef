@@ -3,7 +3,7 @@
     <section class="new_in">
       <div class="container-fluid">
         <div class="content_new_in">
-          <h2 class="swiper-header">NEW IN</h2>
+          <h2 class="swiper-header">DENIM MUST-HAVE</h2>
           <div class="slide_new_in" v-if="slideImg.length > 0">
             <client-only>
               <VueSlickCarousel ref="slick" v-bind="settings">
@@ -16,7 +16,7 @@
                     ><img :src="item.image" alt="img" class="w-100"
                   /></NuxtLink>
                   <div class="tile-body">
-                    <p>{{ item.color }}</p>
+                    <!-- <p>{{ item.color }}</p> -->
                     <NuxtLink :to="`/product/${item.url_key}`">
                       {{ item.name }}</NuxtLink
                     >
