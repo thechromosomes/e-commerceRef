@@ -165,11 +165,7 @@ export default {
                 this.markers.push({
                   position: {
                     lat: Number(element.lat),
-<<<<<<< HEAD
-                    lng: Number(element.lng)
-=======
                     lng: Number(element.lng),
->>>>>>> 8de1de66c86814b33ba0dbbcc62b8ed0181313f0
                   },
                   infoText: {
                     search:
@@ -188,13 +184,8 @@ export default {
                     state: element.state,
                     zip: element.postcode,
                     phone: element.phone,
-<<<<<<< HEAD
-                    email: element.email
-                  }
-=======
                     email: element.email,
                   },
->>>>>>> 8de1de66c86814b33ba0dbbcc62b8ed0181313f0
                 });
               }
             });

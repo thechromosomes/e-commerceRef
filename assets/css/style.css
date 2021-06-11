@@ -3052,3 +3052,9 @@ p.p-price span.line-throu {
     width: 550px;
     margin: 0 auto;
 }
+.check-order-static-form{ width: 50%;}
+.what-can-see-table td{ padding-left: 15px; padding-right: 15px;}
+.what-can-see-table td img{ width: 154px;}
+.what-can-see-table td p strong{ display: block; padding-top: 10px;}
+.shoping-cart-table td{ padding: 15px;}
+.how-plce-order-d{text-align: center;}

@@ -48,13 +48,10 @@
                 <NuxtLink
                   :to="`/clp/${item.menu_url_key}`"
                   class="nav-link first"
-<<<<<<< HEAD
-=======
                   :class="{
                     'active-nav':
                       $store.state.activeUrlKey.split('-')[0].toUpperCase() == item.name.toUpperCase(),
                   }"
->>>>>>> 8de1de66c86814b33ba0dbbcc62b8ed0181313f0
                   >{{ item.name }}</NuxtLink
                 >
                 <div
