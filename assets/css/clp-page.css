@@ -288,6 +288,74 @@ body {
 .accessories .accessories-content .left-content a:last-child {
   margin-top: 20px;
 }
+
+.newclp {
+  width: 100%;
+}
+.newclp .clp_banner {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.newclp .clp_banner .content {
+  max-width: 1330px;
+  margin: 0 auto;
+  padding: 0px 15px;
+  position: relative;
+}
+.newclp .clp_banner .content .content-box {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  padding: 15px 15px 45px;
+}
+.newclp .clp_banner .content .content-box h3 {
+  font-size: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+}
+.newclp .clp_banner .content .content-box p {
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 16px 0;
+  margin-bottom: 30px;
+}
+
+.newclp .clp_banner .content .content-box a {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #fff;
+  color: #000;
+  padding: 12px 40px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+.newclp .clp_banner .content .content-box a:hover {
+  background-color: transparent;
+  color: #fff;
+}
+
+.new-sneakers {
+  max-width: 1330px;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0 15px;
+}
+.new-sneakers h4,
+.new-sneakers p {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 40px;
+  margin: 20px 0;
+}
+.new-sneakers p {
+  font-size: 16px;
+}
 @media (max-width: 991px) {
   .tape-wrapper h1 {
     font-size: 24px;
@@ -352,5 +420,20 @@ body {
   .accessories .accessories-content .left-content h4 {
     font-size: 30px;
     margin-bottom: 10px;
+  }
+  .newclp .clp_banner .content .content-box p {
+    opacity: 0;
+    margin-bottom: 0;
+    font-size: 10px;
+  }
+  .new-sneakers h4,
+  .new-sneakers p {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 30px;
+    margin: 20px 0;
+  }
+  .new-sneakers p {
+    font-size: 16px;
   }
 }
