@@ -162,7 +162,7 @@
           <client-only>
             <ul>
               <li class="desktop_only" @click="searchActive = true">
-                <nuxt-link to="#">Search</nuxt-link>
+                <a style="cursor: pointer">Search</a>
               </li>
               <li>
                 <nuxt-link

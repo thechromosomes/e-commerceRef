@@ -3068,3 +3068,37 @@ p.p-price span.line-throu {
   .dropdown_menu {
   display: none;
 } */
+/* =========================== cms page css============= start here=========== */
+.cms-list li {
+  list-style: disc;
+  padding-bottom: 14px;
+}
+.small-bold-text{ font-weight:700; font-size: 18px;}
+.icon-imges{width: 65px;
+  display: inline-block;
+  vertical-align: bottom;
+  padding-right: 10px;}
+  #contact-us-tform {
+    width: 550px;
+    margin: 0 auto;
+}
+.check-order-static-form{ width: 50%;}
+.what-can-see-table td{ padding-left: 15px; padding-right: 15px;}
+.what-can-see-table td img{ width: 154px;}
+.what-can-see-table td p strong{ display: block; padding-top: 10px;}
+.shoping-cart-table td{ padding: 15px;}
+.how-plce-order-d{text-align: center;}
+.all-payment-met li{ list-style: disc;padding-bottom: 10px;}
+.all-payment-met{padding-left: 31px;
+  padding-bottom: 30px;}
+  .para-kara-list{ padding-left: 30px;}
+  .para-kara-list li{ list-style: disc; padding-bottom: 10px;}
+  .payment-karam{ padding-left: 30px;}
+  .payment-karam li{ list-style:auto; padding-bottom: 10px;}
+  .kalaran-img{ width: 75px; padding-right: 20px;}
+  .why-to-ragester td{ padding: 15px;}
+  .why-to-ragester td img{ width: 30px;}
+  .man-size-chart table{ width: 100%; text-align: center;}
+  .man-size-chart table tr{ height: 30px;}
+  .xl66{ height: 40px;}
+  .card table{ width: 100%;}
