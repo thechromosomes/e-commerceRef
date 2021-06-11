@@ -102,7 +102,7 @@ export default {
   },
 
   // a server middleware that runs only server site
-  serverMiddleware: ["~/server-middleware/globalErrorMiddleware"],
+  // serverMiddleware: ["~/server-middleware/globalErrorMiddleware"],
 
   // error handler hook
   hooks: {
