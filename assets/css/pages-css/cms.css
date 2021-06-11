@@ -131,3 +131,47 @@
   font-size: 16px;
   margin: 10px 0px;
 }
+
+.containers {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.help_headline {
+  text-align: center;
+  margin: 30px 0px;
+  width: 100%;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 30px;
+  letter-spacing: 1.5px;
+}
+
+.cms_page_content {
+  width: 100%;
+}
+.cms_page_content .vue-tabs.stacked {
+  width: 100%;
+  display: flex !important;
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.cms_page_content .vue-tabs.stacked .left-vertical-tabs {
+  width: 40% !important;
+}
+
+.tab-content.right-text-tabs {
+  width: 60%;
+}
+
+.cms_page_content
+  .vue-tabs.stacked
+  .left-vertical-tabs
+  .stacked
+  .nav-stacked
+  .tab
+  .tabs__link {
+  color: red !important;
+}
