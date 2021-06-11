@@ -107,29 +107,29 @@
             </div>
             <div class="footer-link-content">
               <div class="link-text">
-                <a class="link-text" href="#">Order Status</a>
+                <a class="link-text" href="/cms/Your Order Status">Order Status</a>
               </div>
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank">Delivery</a>
+                <a class="link-text" href="/cms/shipping" target="_blank">Delivery</a>
               </div>
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank">Returns</a>
+                <a class="link-text" href="/cms/RETURN YOUR ORDER" target="_blank">Returns</a>
               </div>
-              <div class="link-text">
+              <!-- <div class="link-text">
                 <a class="link-text" href="#" target="_blank"
                   >Size Conversion</a
-                >
-              </div>
+                > 
+              </div> -->
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank"
+                <a class="link-text" href="/cms/Contact us" target="_blank"
                   >Send us a message</a
                 >
               </div>
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank">Contact us</a>
+                <a class="link-text" href="/cms/Contact us" target="_blank"
               </div>
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank">View all</a>
+                <!-- <a class="link-text" href="#" target="_blank">View all</a> -->
               </div>
             </div>
           </div>
@@ -145,31 +145,31 @@
               <span class="dropdown-arrow_icon"></span>
             </div>
             <div class="footer-link-content">
-              <div class="link-text">
+              <!-- <div class="link-text">
                 <a class="link-text" href="#">Privacy Policy</a>
+              </div> -->
+              <div class="link-text">
+                <a class="link-text" href="/cms/Legal Area" target="_blank">Cookie Policy</a>
               </div>
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank">Cookie Policy</a>
-              </div>
-              <div class="link-text">
-                <a class="link-text" href="#" target="_blank"
+                <a class="link-text" href="/cms/Legal Area" target="_blank"
                   >Information on Personal data</a
                 >
               </div>
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank">Terms of sale</a>
+                <a class="link-text" href="/cms/Terms Of Conditions" target="_blank">Terms of sale</a>
               </div>
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank">Terms of Use</a>
+                <a class="link-text" href="/cms/Terms Of Conditions" target="_blank">Terms of Use</a>
               </div>
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank">Return policy</a>
+                <a class="link-text" href="/cms/Legal Area" target="_blank">Return policy</a>
               </div>
-              <div class="link-text">
-                <a class="link-text" href="#" target="_blank"
+               <div class="link-text">
+                <a class="link-text" href="https://uk.diesel.com/en/help-show?content=accessibility-statement" target="_blank"
                   >Accessibility Statement</a
                 >
-              </div>
+              </div> 
             </div>
           </div>
           <div class="footer-items" :class="worldOpen ? 'dropdown-open' : ''">
@@ -182,21 +182,21 @@
             </div>
             <div class="footer-link-content">
               <div class="link-text">
-                <a class="link-text" href="#">About Diesel</a>
+                <a class="link-text" href="/cms/our brands">About Diesel</a>
               </div>
-              <div class="link-text">
+              <!-- <div class="link-text">
                 <a class="link-text" href="#">D:Code Program</a>
-              </div>
-              <div class="link-text">
+              </div> -->
+              <!-- <div class="link-text">
                 <a class="link-text living" href="#" target="_blank"
                   >For Responsible Living</a
                 >
-              </div>
-              <!-- <div class="link-text">
-                <a class="link-text" href="#" target="_blank">Work with us</a>
               </div> -->
+               <div class="link-text">
+                <a class="link-text" href="https://www.otb.net/en/otb-career/" target="_blank">Work with us</a>
+              </div> 
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank"
+                <a class="link-text" href="https://www.otbfoundation.org/" target="_blank"
                   >Only the Brave Foundation</a
                 >
               </div>
@@ -214,19 +214,19 @@
               <span class="dropdown-arrow_icon"></span>
             </div>
             <div class="footer-link-content">
-              <div class="link-text">
+              <!-- <div class="link-text">
                 <a class="link-text living" href="#">For Responsible Living</a>
+              </div> -->
+              <div class="link-text">
+                <a class="link-text" href="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw4e137934/document/OTB_CodeOfEthics.pdf" target="_blank">Code of Ethics</a>
               </div>
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank">Code of Ethics</a>
-              </div>
-              <div class="link-text">
-                <a class="link-text" href="#" target="_blank"
+                <a class="link-text" href="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw70aed053/document/Diesel_Organisation-Management-Control_Model231.pdf" target="_blank"
                   >Organisation, Management, and Control Model</a
                 >
               </div>
               <div class="link-text">
-                <a class="link-text" href="#" target="_blank"
+                <a class="link-text" href="/cms/Legal Area" target="_blank"
                   >Other Corporate information
                 </a>
               </div>

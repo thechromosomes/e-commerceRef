@@ -76,22 +76,4 @@
   }
 }
 
-/* ========================== store locator page=========== */
-.store-loctor .container {
-  width: 1140px !important;
-}
-.store-loctor h1 {
-  padding: 23px 0px;
-  font-size: 30px;
-}
-.store-loctor .find-store-nav .loctor-nav-div input[data-v-3eb36e90] {
-  width: 100%;
-  height: 45px;
-  padding-left: 15px;
-}
-.store-loctor .map-cont {
-  width: 100% !important;
-}
-.store-loctor .map-div {
-  width: 100% !important;
-}
+

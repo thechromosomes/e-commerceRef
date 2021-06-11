@@ -237,8 +237,8 @@ export const mutations = {
         if (state.showLogIn) {
           state.showLogIn = false;
         } else {
-          vm.$router.push("/");
           vm.$router.back();
+          vm.$router.push("/");
         }
       } else {
         throw "the response status is false";

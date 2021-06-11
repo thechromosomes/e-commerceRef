@@ -1,31 +1,17 @@
 <template>
-  <div class="cms_page ">
-    <!-- <div class="cms_page_content">
-      <vue-tabs
-        active-tab-color="#e74c3c"
-        active-text-color="white"
-        type="pills"
-        :start-index="1"
-        direction="vertical"
-      >
-        <v-tab v-for="(item, index) in cmsData" :key="index" :title="item.name">
-          <span v-html="item.content"></span>
-        </v-tab>
-      </vue-tabs>
-    </div> -->
-
+  <div class="cms_page">
     <div class="containers">
       <div class="top-search">
-        <h4 class="help_headline">Help</h4>
+        <h4 class="help_headline">{{title}}</h4>
       </div>
       <div class="row">
         <div class="col-md-3 col-12">
           <div class="content-asset">
             <div class="headline-wrapper">
               <h3 class="support_headline">
-                <b>SUPPORT TOPICS</b>
+                <b>TOPICS</b>
               </h3>
-              <p class=" back_to_help"><b>BACK TO HELP</b></p>
+              <!-- <p class="back_to_help"><b>BACK TO HELP</b></p> -->
             </div>
             <div class="help_menu_holder">
               <ul class="submenu show_submenu">
@@ -33,9 +19,9 @@
                   v-for="(item, index) in cmsData"
                   :key="index"
                   :title="item.name"
-                  :class="active"
+                  :class="{active : item.content == tapData}"
                 >
-                  <a href="#">{{ item.name }}</a>
+                  <a @click.prevent="updateData(item)">{{ item.name }}</a>
                 </li>
               </ul>
             </div>
@@ -54,19 +40,22 @@
 </template>
 <script>
 import Contentasset from "./Contentasset";
-import { VueTabs, VTab } from "vue-nav-tabs";
-import "vue-nav-tabs/themes/vue-tabs.css";
 export default {
   components: {
     Contentasset,
-    VueTabs,
-    VTab
   },
   data() {
     return {
       cmsData: {},
-      tapData: ""
+      tapData: "",
+      title: ""
     };
+  },
+
+  methods: {
+    updateData(name) {
+      this.tapData = name.content;
+    },
   },
 
   async fetch() {
@@ -82,14 +71,18 @@ export default {
       let cmsData = await this.$store.dispatch("pimAjax", {
         method: "get",
         url: `/pimresponse.php`,
-        params: form
+        params: form,
       });
       if (cmsData.response.success) {
         this.cmsData = cmsData.result;
-        this.tapData = cmsData.result;
+        for (var a in cmsData.result) {
+          this.tapData = cmsData.result[a].content;
+          this.title = cmsData.result[a].parent_name;
+          return;
+        }
       }
     }
-  }
+  },
 };
 </script>
 <style scoped>
