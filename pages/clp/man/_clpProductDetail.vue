@@ -1,67 +1,5 @@
 <template>
   <div class="clp_pages">
-    <!-- <div class="tape-wrapper">
-      <h1>DIESEL SALE PREVIEW. MEMBERS ONLY.</h1>
-      <p class="tape-description">LOGIN OR REGISTER TO GET EXCLUSIVE ACCESS.</p>
-      <a class="tape-button" href="#">LOG IN</a>
-      <a class="tape-button" href="#">SUBSCRIBE NOW</a>
-    </div> -->
-
-    <!-- <div class="collections_slide">
-      <div class="slide_content">
-        <VueSlickCarousel ref="slick" v-bind="settings">
-          <div class="item">
-            <img
-              src="@/assets/img/collections_slide_HP1.jpg"
-              alt="img"
-              class="desktop_only w-100"
-            />
-            <img
-              src="@/assets/img/collections_slide_MP1.jpg"
-              alt="img"
-              class="mobile_only w-100"
-            />
-            <div class="img_content">
-              <h4>READY-TO-WEAR</h4>
-              <h5>SUMMER 2021</h5>
-              <p class="module-text">
-                Utility designs meet camo and cyber-punk prints.
-                <br />
-                The final touch: a twist of colour to welcome the new season.
-              </p>
-              <a class="button secondary-white-btn" href="#" role="button"
-                >SHOP NEW ARRIVALS</a
-              >
-            </div>
-          </div>
-          <div class="item">
-            <img
-              src="@/assets/img/collections_slide_HP2.jpg"
-              alt="img"
-              class="desktop_only w-100"
-            />
-            <img
-              src="@/assets/img/collections_slide_MP2.jpg"
-              alt="img"
-              class="mobile_only w-100"
-            />
-            <div class="img_content">
-              <h4>READY-TO-WEAR</h4>
-              <h5>SUMMER 2021</h5>
-              <p class="module-text">
-                Utility designs meet camo and cyber-punk prints.
-                <br />
-                The final touch: a twist of colour to welcome the new season.
-              </p>
-              <a class="button secondary-white-btn" href="#" role="button"
-                >SHOP NEW ARRIVALS</a
-              >
-            </div>
-          </div>
-        </VueSlickCarousel>
-      </div>
-    </div> -->
-
     <div class="newclp">
       <div class="clp_banner">
         <div class="img-box">
@@ -311,7 +249,7 @@ export default {
         form.service = service;
         form.store = store;
         form.url_key = url;
-        form.page = page;
+        form.page = 1;
         form.count = count;
 
         let response = await this.$store.dispatch("pimAjax", {

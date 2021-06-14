@@ -225,7 +225,7 @@
                 role="presentation"
                 class="store-locator-pin icon-pin"
               ></span>
-              <a href="#" @click="() => (storemodel = true)">In-store pickup</a>
+              <a href="#" @click="openInStorePickUp()">In-store pickup</a>
             </div>
             <div class="product-collapsible-sections">
               <div
@@ -365,47 +365,29 @@
               class="form-control"
               placeholder="Enter your city or postal code"
               autocomplete="off"
+              v-model="search"
             />
             <button class="search-stores-btn">Filter</button>
           </div>
 
-          <div class="store-search-result">
+          <div class="store-search-result" v-for="(addressList, index) in filteredList" :key="index">
             <div class="store-list">
               <div class="list">
-                <h5>DIESEL STORE MANCHESTER</h5>
-                <div class="info-box">
+                <h5>{{addressList.infoText.name}}</h5>
+                <!-- <div class="info-box">
                   <a href="#">More info</a>
-                </div>
+                </div> -->
               </div>
               <p>
-                74 King Street <br />
-                Manchester, M2 4NJ
+                {{ addressList.infoText.address }}<br>
+                 {{ addressList.infoText.phone }}
               </p>
               <div class="avilable-box">
-                <span> </span>
-                <p>AVAILABLE FOR PICKUP IN 3/4 DAYS</p>
+                <!-- <span> </span> -->
+                <!-- <p>AVAILABLE FOR PICKUP IN 3/4 DAYS</p> -->
               </div>
-              <button class="btn btn-primary add-bag">
-                Add to bag for pick up
-              </button>
-            </div>
-            <div class="store-list">
-              <div class="list">
-                <h5>DIESEL STORE MANCHESTER</h5>
-                <div class="info-box">
-                  <a href="#">More info</a>
-                </div>
-              </div>
-              <p>
-                74 King Street <br />
-                Manchester, M2 4NJ
-              </p>
-              <div class="avilable-box">
-                <span> </span>
-                <p>AVAILABLE FOR PICKUP IN 3/4 DAYS</p>
-              </div>
-              <button class="btn btn-primary add-bag">
-                Add to bag for pick up
+              <button   @click="addToCart()" class="btn btn-primary add-bag">
+                Add to bag
               </button>
             </div>
           </div>
@@ -427,6 +409,9 @@ export default {
   data() {
     return {
       storemodel: false,
+      search: "",
+      serviceCenters: [],
+      markers: [],
       CareInstructions: false,
       otherDetails: false,
       CareInt: false,
@@ -507,6 +492,14 @@ export default {
       return finaObj;
     },
 
+     filteredList() {
+      return this.markers.filter(post => {
+        return post.infoText.search
+          .toLowerCase()
+          .includes(this.search.toLowerCase());
+      });
+    },
+
     renderDescription2() {
       let { material, color, occasion, warranty } =
         this.singleProductList.single_prod_data;
@@ -544,6 +537,56 @@ export default {
   },
 
   methods: {
+    async openInStorePickUp() {
+      var response = await this.$store.dispatch("cartAjax/actCartAjax", {
+        method: "post",
+        url: `/cart/productstore`,
+        token: this.$store.state.cartAjax.customer_token,
+        params: {
+          fynd_uid: this.singleProductList.single_prod_data.fynd_uid,
+        },
+      });
+
+      if (response.success) {
+        if (response.data) {
+          this.serviceCenters = response.data;
+          this.serviceCenters.map((element) => {
+            if (element.lat != "") {
+              this.markers.push({
+                position: {
+                  lat: Number(element.lat),
+                  lng: Number(element.lng),
+                },
+                infoText: {
+                  search: 
+                    element.display_name +
+                    " " +
+                    element.address +
+                    " " +
+                    element.city +
+                    " " +
+                    element.email +
+                    " " +
+                    element.phone,
+                  name: element.display_name,
+                  address: element.address,
+                  city: element.city,
+                  state: element.state,
+                  zip: element.postcode,
+                  phone: element.phone,
+                  email: element.email,
+                  store_id: element.store_id,
+                  store_email: element.email,
+                },
+              });
+            }
+          });
+        }
+        this.storemodel = true;
+      } else {
+        this.$toast.error("No pick up store available");
+      }
+    },
     toggleDropDown(state) {
       this[state] = !this[state];
     },

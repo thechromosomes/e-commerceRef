@@ -32,34 +32,34 @@
       <div class="content-asset">
         <h2 class="shop-latest-header desktop_only">SHOP THE LATEST FOR</h2>
         <div class="shop-latest-container">
-          <a class="shop-latest-block" href="#">
+          <a class="shop-latest-block" href="/clp/man">
             <img
               class="shop-latest-img w-100"
               src="~/assets/img/404-categorybanner-MAN.jpg"
             />
             <h3 class="shop-latest-title">MAN</h3>
           </a>
-          <a class="shop-latest-block" href="#">
+          <NuxtLink class="shop-latest-block" to="/clp/woman">
             <img
               class="shop-latest-img w-100"
               src="~/assets/img/404-categorybanner-WOMAN.jpg"
             />
             <h3 class="shop-latest-title">WOMAN</h3>
-          </a>
-          <a class="shop-latest-block" href="#">
+          </NuxtLink>
+          <NuxtLink class="shop-latest-block" to="/clp/kid">
             <img
               class="shop-latest-img w-100"
               src="~/assets/img/404-categorybanner-KID.jpg"
             />
             <h3 class="shop-latest-title">KID</h3>
-          </a>
-          <a class="shop-latest-block" href="#">
+          </NuxtLink>
+          <NuxtLink class="shop-latest-block" to="/">
             <img
               class="shop-latest-img w-100"
               src="~/assets/img/404-categorybanner-LIVING.jpg"
             />
             <h3 class="shop-latest-title">LIVING</h3>
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </div>

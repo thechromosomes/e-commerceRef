@@ -8,7 +8,7 @@
           class="w-100 desktop_only "
         />
         <img
-          src="@/assets/img/2-DXD-full-bleed-mobile.jpg"
+          src="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dwdbc2c3df/SS21/KID/lk-ss21-launch-mobile.jpg"
           alt="img"
           class="w-100 mobile_only "
         />
@@ -183,7 +183,7 @@ export default {
         form.service = service;
         form.store = store;
         form.url_key = url;
-        form.page = page;
+        form.page = 1;
         form.count = count;
 
         let response = await this.$store.dispatch("pimAjax", {

@@ -2,7 +2,7 @@
   <div class="cms_page">
     <div class="containers">
       <div class="top-search">
-        <h4 class="help_headline">{{title}}</h4>
+        <h4 class="help_headline">{{ title }}</h4>
       </div>
       <div class="row">
         <div class="col-md-3 col-12">
@@ -19,7 +19,7 @@
                   v-for="(item, index) in cmsData"
                   :key="index"
                   :title="item.name"
-                  :class="{active : item.content == tapData}"
+                  :class="{ active: item.content == tapData }"
                 >
                   <a @click.prevent="updateData(item)">{{ item.name }}</a>
                 </li>
@@ -48,7 +48,7 @@ export default {
     return {
       cmsData: {},
       tapData: "",
-      title: ""
+      title: "",
     };
   },
 
@@ -73,13 +73,15 @@ export default {
         url: `/pimresponse.php`,
         params: form,
       });
-      if (cmsData.response.success) {
+      if (cmsData.response.success != 0) {
         this.cmsData = cmsData.result;
         for (var a in cmsData.result) {
           this.tapData = cmsData.result[a].content;
           this.title = cmsData.result[a].parent_name;
           return;
         }
+      } else {
+        this.$router.push("/404");
       }
     }
   },
