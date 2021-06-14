@@ -3102,3 +3102,119 @@ p.p-price span.line-throu {
   .man-size-chart table tr{ height: 30px;}
   .xl66{ height: 40px;}
   .card table{ width: 100%;}
+  /* ==================================== decode page css =========== */
+.decode-static-banner{ width: 100%; height: 500px;position: relative;}
+.decode-static-banner .show-0n-dekhtop { position: relative; }
+.decode-static-banner .show-0n-dekhtop img{ height: 500px;  width: 100%; object-fit:cover;}
+.show-0n-dekhtop .decode-contnt {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    text-align: center;
+    width: 100%;
+}
+.show-0n-dekhtop  .decode-contnt h2{ font-size: 50px!important; font-weight: 600; color: #fff; font-size: 18px; }
+.show-0n-dekhtop  .decode-contnt strong{ display: block; color: #fff; }
+.decode-static-banner .show-on-mibi{ display: none;}
+.d-benifits{ text-align: center;} 
+.d-benifits h3 {
+    font-size: 4.375rem;
+    letter-spacing: 1.5px;
+    letter-spacing: 0.09375rem;
+    text-align: center;
+    padding: 75px 0px; font-weight: 800;
+}
+.d-beni-boxx{ text-align: center; }
+.d-beni-boxx h2 {
+  font-size: 22px;
+  line-height: 40px;
+}
+.d-code-btn {
+    background: 0 0;
+    border: 1px solid #000;
+    color: #000;
+    padding: .75rem 2.5rem;
+    text-align: center;
+    display: inline-block;
+   
+    margin: 55px auto;
+}
+.decode-crousal{ white-space: nowrap; overflow: auto; }
+.decode-crousal .img-itm {
+    position: relative;
+    transition: all .5s;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    width: 48%;
+    text-align: center;
+}
+.decode-crousal .img-itm img{ width: 100%;  object-fit: cover; }
+.text-columns {
+    width: 25%;
+    margin: 0 auto;
+    padding: 100px 0px;
+    font-size: .875rem;
+    line-height: 1.9;
+}
+.footer-news-leter{ background-color: #000; text-align: center; color: #fff;padding: 40px; }
+.footer-news-leter input {
+    background-color: #f6f6f6;
+    width: 39%;
+    margin: 8px auto;
+    font-size: .75rem;
+    /* margin: 10px 0px; */
+}
+ .footer-news-leter small{display: block; }
+.footer-news-leter .sign-up-btn {
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 20px;
+    display: inline-block;
+    border: 2px solid #fff;
+    padding: 5px 22px;
+}
+ /* ==================================== decode page css =========== */
+ .responsible-page-wrapper .for-responsible-lyf .fullbleed-video.desktop{ width: 100%!important; height: auto; }
+ .responsible-page-wrapper .forresposible-two{text-align: center;
+     }
+     .responsible-page-wrapper .video-cont-1{ padding: 95px 0px; }
+     .responsible-page-wrapper .cont-width {
+     width: 62%;
+     margin: 0 auto;
+ }
+ .responsible-page-wrapper .cont-width p{ font-size: 15px;}
+ .responsible-page-wrapper .cont-width h3{ font-weight: 600;}
+ .responsible-page-wrapper .image-design-bg img{ width: 100%; object-fit: cover; }
+ .responsible-page-wrapper .image-design-bg{ position: relative; }
+ .responsible-page-wrapper .content-on-bg {
+     position: absolute;
+     width: 36%;
+     top: 44%;
+     left: 5%;
+ }
+ .responsible-page-wrapper .content-on-bg p{ line-height: 27px; }
+ .responsible-page-wrapper .view-more {
+     background: none repeat scroll 0 0 #000;
+     border: 1px solid #000;
+     color: #fff;
+     padding: .75rem 2.5rem;
+     margin-top: 10px;
+     display: inline-block;
+ }
+ .responsible-page-wrapper .view-more:hover{ color: #fff; opacity: .5; }
+ .responsible-page-wrapper .content-on-bg.right-cont-bg {
+     right: 4%!important;
+     left: auto;
+     text-align: right;
+ }
+ .responsible-page-wrapper .our-pillars h3 {
+     font-size: 35px;
+     font-weight: 700;
+     padding-bottom: 40px;
+ }
+ .responsible-page-wrapper .our-pillars{ padding-bottom: 50px; }
+ .responsible-page-wrapper .mobile-bg-design-showmob{ display: none; }
+ 
+ 
