@@ -1,5 +1,6 @@
-
+   import $ from "jquery";
     $(".set > a").on("click", function() {
+       alert("error")
       if ($(this).hasClass("active")) {
         $(this).removeClass("active");
         $(this)

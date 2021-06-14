@@ -115,7 +115,7 @@
                  <NuxtLink to="/cms/RETURN YOUR ORDER" >Returns</NuxtLink>
               </div>
                <div class="link-text">
-                 <NuxtLink class="link-text" to="cms/men" 
+                 <NuxtLink class="link-text" to="/cms/men" 
                   >Size Conversion</NuxtLink>
                 > 
               </div> 
@@ -182,10 +182,10 @@
                 <NuxtLink class="link-text" to="/cms/our brands">About Diesel</NuxtLink>
               </div>
               <div class="link-text">
-                <NuxtLink class="link-text" to="cmsLive/dcode-program">D:Code Program</NuxtLink>
+                <NuxtLink class="link-text" to="/cmsLive/dcode-program">D:Code Program</NuxtLink>
               </div> 
               <div class="link-text">
-                 <NuxtLink class="link-text living" to="cmsLive/for-responsible-living" 
+                 <NuxtLink class="link-text living" to="/cmsLive/for-responsible-living" 
                   >For Responsible Living</NuxtLink>
               </div> 
                <div class="link-text">
