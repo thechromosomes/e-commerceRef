@@ -37,6 +37,7 @@ export default {
 
   // Plugins to run before rendering page
   plugins: [
+    { src: "@/plugins/coustom.js", ssr: false },
     { src: "@/plugins/tokenAndCms.js", ssr: true },
     { src: "@/plugins/globalErrorHandler", ssr: true },
     { src: "@/plugins/axios", ssr: true },

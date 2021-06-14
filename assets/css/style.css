@@ -3214,7 +3214,74 @@ p.p-price span.line-throu {
      font-weight: 700;
      padding-bottom: 40px;
  }
+
  .responsible-page-wrapper .our-pillars{ padding-bottom: 50px; }
  .responsible-page-wrapper .mobile-bg-design-showmob{ display: none; }
+ /* ================== size converson css */
+    
+.size-page .accordion-container{
+  position: relative;
+ 
+  height: auto;
+  margin: 10px auto;
+}
+.size-page .accordion-container > h2{
+  text-align: center;
+  color: #fff;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+ 
+}
+.size-page .set{
+  position: relative;
+  width: 100%;
+  height: auto;
+ 
+}
+.size-page .set > a {
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  transition: all 0.2s linear;
+  font-size: 19px; position:relative
+}
+
+.size-page .set > a i{
+
+  margin-top: 2px; font-size: 20px; font-weight: 600;
+}
+.size-page .set > a.active{
+  background-color:#272727;
+  color: #fff;
+}
+.size-page .content{
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  display:none;
+}
+.size-page .content p{
+  padding: 10px 15px;
+  margin: 0;
+  color: #333;
+}
+.size-page .my-size-table{ width: 100%; }
+.size-page .my-size-table th{ height: 50px; }
+.size-page .tabletd-height tr td{ height: 25px; }
+.size-page .set > a:after {
+  content: '';
+  display: inline-block;
+  background-image: url(../img/sprite_icons.svg);
+  background-position: -586px -2px;
+  background-repeat: no-repeat;
+  width: 24px;
+  width: 1.5rem;
+  height: 24px;
+  height: 1.5rem;
+  text-indent: -9999px;
+  text-indent: -624.9375rem;position: absolute; right: -13%;
+}
  
  

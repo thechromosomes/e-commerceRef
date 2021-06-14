@@ -114,11 +114,11 @@
               <div class="link-text">
                  <NuxtLink to="/cms/RETURN YOUR ORDER" >Returns</NuxtLink>
               </div>
-              <!-- <div class="link-text">
-                 <NuxtLink class="link-text" to="#" 
+               <div class="link-text">
+                 <NuxtLink class="link-text" to="cms/men" 
                   >Size Conversion</NuxtLink>
                 > 
-              </div> -->
+              </div> 
               <div class="link-text">
                 <NuxtLink to="/cms/Contact us" 
                   >Send us a message</NuxtLink
@@ -155,7 +155,7 @@
                   >Information on Personal data</NuxtLink>
               </div>
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/Terms Of Conditions" Terms of sale</NuxtLink>
+                <NuxtLink class="link-text" to="/cms/Terms Of Conditions"> Terms of sale</NuxtLink>
               </div>
               <div class="link-text">
                <NuxtLink class="link-text" to="/cms/Terms Of Conditions" >Terms of Use</NuxtLink>
