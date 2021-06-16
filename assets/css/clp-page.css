@@ -87,18 +87,18 @@ body {
 .swiper-overflow-gift-swiper .item .swiper-overflow-gift-slide-title {
   font-size: 12px;
   text-transform: uppercase;
-  position: absolute;
+  position: static;
   bottom: 17px;
   left: 19px;
   width: 85%;
   font-weight: 700;
   color: black;
-  line-height: 1.71;
   letter-spacing: 0.44px;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-top: 5px;
 }
 .swiper-overflow-gift-slide-title span {
   font-size: 14px;

@@ -241,15 +241,17 @@
               <div class="link-text">
                 <a
                   class="link-text"
+                  target="_blank"
                   href="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw4e137934/document/OTB_CodeOfEthics.pdf"
                   >Code of Ethics</a
                 >
               </div>
               <div class="link-text">
-                <NuxtLink
+                <a
                   class="link-text"
-                  to="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw70aed053/document/Diesel_Organisation-Management-Control_Model231.pdf"
-                  >Organisation, Management, and Control Model</NuxtLink
+                  target="_blank"
+                  href="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw70aed053/document/Diesel_Organisation-Management-Control_Model231.pdf"
+                  >Organisation, Management, and Control Model</a
                 >
               </div>
               <div class="link-text">
