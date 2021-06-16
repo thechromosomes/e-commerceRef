@@ -78,7 +78,10 @@
               </div>
 
               <div class="select-box">
-                <select v-model="selectedSize[mainIndex]">
+                <select
+                  v-model="selectedSize[mainIndex]"
+                  :class="{ error: sizeAlert && sizeAlertIndes == mainIndex }"
+                >
                   <option value="" disabled>Select Size</option>
                   <option
                     v-for="(size, index) in item.variation"
@@ -88,12 +91,12 @@
                     {{ size.configrable_atribute_value }}
                   </option>
                 </select>
-                <div
+                <!-- <div
                   v-if="sizeAlert && sizeAlertIndes == mainIndex"
                   style="clear: both"
                 >
                   <p class="promotion-text">please select the size</p>
-                </div>
+                </div> -->
               </div>
               <button
                 class="add-to-cart--wishlist"
@@ -130,8 +133,8 @@ export default {
       network: [
         { icon: "icon  icon-facebook-black", net: "facebook" },
         { icon: "icon  icon-pintrest", net: "Pinterest" },
-        { icon: "icon  icon-twitter-black", net: "twitter" },
-      ],
+        { icon: "icon  icon-twitter-black", net: "twitter" }
+      ]
     };
   },
   async created() {
@@ -159,18 +162,18 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id,
+          group_id: item.group_id
         };
         var response = await this.$store.dispatch("cartAjax/actCartAjax", {
           method: "post",
           url: `/wishlist/remove-wishlist`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         });
 
         if (response.success) {
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data,
+            payload: response.data
           });
           this.getProduct();
 
@@ -215,7 +218,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
         this.gtm_product_impressions = [];
         if (response.response.success) {
@@ -234,7 +237,7 @@ export default {
               price,
               category,
               list,
-              position,
+              position
             });
           }
 
@@ -281,7 +284,7 @@ export default {
           var form = {};
           var product_options_json = JSON.stringify({
             size: this.selectedSize[sizeIndex],
-            color: item.color,
+            color: item.color
           });
           form.product_id =
             item.variation[this.selectedSize[sizeIndex]].id_product;
@@ -322,12 +325,12 @@ export default {
             method: "post",
             url: `/product/add-product`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
           if (response) {
             await this.$store.commit("cartAjax/updateCartDetail", {
               error: null,
-              data: response,
+              data: response
             });
             if (response.success) this.reomoveFromCart(item, sizeIndex);
             // google tag manager
@@ -348,11 +351,11 @@ export default {
                         variant:
                           item.variation[this.selectedSize[sizeIndex]]
                             .configrable_atribute_value,
-                        quantity: "1",
-                      },
-                    ],
-                  },
-                },
+                        quantity: "1"
+                      }
+                    ]
+                  }
+                }
               });
             }
           } else {
@@ -366,13 +369,13 @@ export default {
           if (error.message === "Network Error") {
             this.$store.commit("updateSingleProdState", {
               error:
-                "Oops there seems to be some Network issue, please try again",
+                "Oops there seems to be some Network issue, please try again"
             });
           }
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>

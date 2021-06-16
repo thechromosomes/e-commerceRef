@@ -75,19 +75,18 @@
             <h4 class="social-header">Connect with us on social media:</h4>
             <div class="social-icons-container">
               <div class="social-icons">
-              <NuxtLink to="#" class="icon-instagram">Instagram</NuxtLink>
+                <NuxtLink to="#" class="icon-instagram">Instagram</NuxtLink>
               </div>
               <div class="social-icons">
-                <NuxtLink to="#"  class="icon-facebook-black"
-                  >Facebook</NuxtLink
+                <NuxtLink to="#" class="icon-facebook-black">Facebook</NuxtLink>
+              </div>
+              <div class="social-icons">
+                <NuxtLink to="#" class="icon-twitter-black-sm"
+                  >Twitter</NuxtLink
                 >
               </div>
               <div class="social-icons">
-               <NuxtLink to="#" class="icon-twitter-black-sm"
-                  >Twitter</NuxtLink>
-              </div>
-              <div class="social-icons">
-               <NuxtLink to="#" class="icon-youtube">Youtube</NuxtLink>
+                <NuxtLink to="#" class="icon-youtube">Youtube</NuxtLink>
               </div>
             </div>
           </div>
@@ -106,26 +105,24 @@
             </div>
             <div class="footer-link-content">
               <div class="link-text">
-                 <NuxtLink to="/cms/Your Order Status">Order Status</NuxtLink>
+                <NuxtLink to="/cms/your-order-status">Order Status</NuxtLink>
               </div>
               <div class="link-text">
-                  <NuxtLink to="/cms/shipping">Delivery</NuxtLink>
+                <NuxtLink to="/cms/shipping">Delivery</NuxtLink>
               </div>
               <div class="link-text">
-                 <NuxtLink to="/cms/RETURN YOUR ORDER" >Returns</NuxtLink>
+                <NuxtLink to="/cms/return-your-order">Returns</NuxtLink>
               </div>
-               <div class="link-text">
-                 <NuxtLink class="link-text" to="/cms/men" 
-                  >Size Conversion</NuxtLink>
-                > 
-              </div> 
               <div class="link-text">
-                <NuxtLink to="/cms/Contact us" 
-                  >Send us a message</NuxtLink
+                <NuxtLink class="link-text" to="/cms/size-conversion"
+                  >Size Conversion</NuxtLink
                 >
               </div>
               <div class="link-text">
-                <NuxtLink to="/cms/Contact us">Contact Us</NuxtLink>
+                <NuxtLink to="/cms/contact-us">Send us a message</NuxtLink>
+              </div>
+              <div class="link-text">
+                <NuxtLink to="/cms/contact-us">Contact Us</NuxtLink>
               </div>
               <div class="link-text">
                 <!-- <NuxtLink to="/cms/Contact us">View All</NuxtLink> -->
@@ -148,25 +145,38 @@
                 <a class="link-text" href="#">Privacy Policy</a>
               </div> -->
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/Legal Area" >Cookie Policy</NuxtLink>
+                <NuxtLink class="link-text" to="/cms/legal-area"
+                  >Cookie Policy</NuxtLink
+                >
               </div>
               <div class="link-text">
-               <NuxtLink class="link-text" to="/cms/Legal Area" 
-                  >Information on Personal data</NuxtLink>
+                <NuxtLink class="link-text" to="/cms/legal-area"
+                  >Information on Personal data</NuxtLink
+                >
               </div>
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/Terms Of Conditions"> Terms of sale</NuxtLink>
+                <NuxtLink class="link-text" to="/cms/terms-of-conditions">
+                  Terms of sale</NuxtLink
+                >
               </div>
               <div class="link-text">
-               <NuxtLink class="link-text" to="/cms/Terms Of Conditions" >Terms of Use</NuxtLink>
+                <NuxtLink class="link-text" to="/cms/terms-of-conditions"
+                  >Terms of Use</NuxtLink
+                >
               </div>
               <div class="link-text">
-                 <NuxtLink class="link-text" to="/cms/Legal Area" >Return policy</NuxtLink>
+                <NuxtLink class="link-text" to="/cms/legal-area"
+                  >Return policy</NuxtLink
+                >
               </div>
-               <div class="link-text">
-               <NuxtLink class="link-text" to="https://uk.diesel.com/en/help-show?content=accessibility-statement" 
-                  >Accessibility Statement</NuxtLink>
-              </div> 
+              <div class="link-text">
+                <a
+                  class="link-text"
+                  target="_blank"
+                  href="https://uk.diesel.com/en/help-show?content=accessibility-statement"
+                  >Accessibility Statement</a
+                >
+              </div>
             </div>
           </div>
           <div class="footer-items" :class="worldOpen ? 'dropdown-open' : ''">
@@ -179,21 +189,37 @@
             </div>
             <div class="footer-link-content">
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/our brands">About Diesel</NuxtLink>
+                <NuxtLink class="link-text" to="/cms/our-brands"
+                  >About Diesel</NuxtLink
+                >
               </div>
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cmsLive/dcode-program">D:Code Program</NuxtLink>
-              </div> 
+                <NuxtLink class="link-text" to="/cmsLive/dcode-program"
+                  >D:Code Program</NuxtLink
+                >
+              </div>
               <div class="link-text">
-                 <NuxtLink class="link-text living" to="/cmsLive/for-responsible-living" 
-                  >For Responsible Living</NuxtLink>
-              </div> 
-               <div class="link-text">
-                <NuxtLink class="link-text" to="https://www.otb.net/en/otb-career/" >Work with us</NuxtLink>
-              </div> 
+                <NuxtLink
+                  class="link-text living"
+                  to="/cmsLive/for-responsible-living"
+                  >For Responsible Living</NuxtLink
+                >
+              </div>
               <div class="link-text">
-                <NuxtLink class="link-text" to="https://www.otbfoundation.org/" 
-                  >Only the Brave Foundation</NuxtLink>
+                <a
+                  class="link-text"
+                  target="_blank"
+                  href="https://www.otb.net/en/otb-career/"
+                  >Work with us</a
+                >
+              </div>
+              <div class="link-text">
+                <a
+                  class="link-text"
+                  target="_blank"
+                  href="https://www.otbfoundation.org/"
+                  >Only the Brave Foundation</a
+                >
               </div>
             </div>
           </div>
@@ -213,24 +239,31 @@
                 <a class="link-text living" href="#">For Responsible Living</a>
               </div> -->
               <div class="link-text">
-                <a class="link-text" href="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw4e137934/document/OTB_CodeOfEthics.pdf" >Code of Ethics</a>
+                <a
+                  class="link-text"
+                  href="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw4e137934/document/OTB_CodeOfEthics.pdf"
+                  >Code of Ethics</a
+                >
               </div>
               <div class="link-text">
-                <NuxtLink class="link-text" to="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw70aed053/document/Diesel_Organisation-Management-Control_Model231.pdf" 
-                  >Organisation, Management, and Control Model</NuxtLink>
+                <NuxtLink
+                  class="link-text"
+                  to="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw70aed053/document/Diesel_Organisation-Management-Control_Model231.pdf"
+                  >Organisation, Management, and Control Model</NuxtLink
+                >
               </div>
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/Legal Area" 
+                <NuxtLink class="link-text" to="/cms/legal-area"
                   >Other Corporate information
                 </NuxtLink>
               </div>
               <!-- <div class="link-text">
-                <a class="link-text" href="#" 
+                <a class="link-text" href="#"
                   >UK Gender Pay Gap
                 </a>
               </div> -->
               <!-- <div class="link-text">
-                <a class="link-text" href="#" 
+                <a class="link-text" href="#"
                   >Diesel is part of OTB
                 </a>
               </div> -->
@@ -271,7 +304,8 @@
         <p class="copyright">
           Copyright © 2021 Diesel SpA - All rights reserved - VAT 00642650246 -
           <NuxtLink to="#" class="postscript" @click.prevent="modelShow = true">
-            Vendor information.</NuxtLink>
+            Vendor information.</NuxtLink
+          >
           <small aria-hidden="true" class="version">v4.5.5</small>
         </p>
 

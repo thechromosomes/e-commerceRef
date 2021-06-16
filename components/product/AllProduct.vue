@@ -86,6 +86,136 @@
           </div>
         </div>
         <!-- visual-filters end -->
+        <div class="mobile_only">
+          <div class="mobile-refinement-bar sticky ">
+            <div
+              class="filter-sort-button-holder  "
+              @click="mobileFilter = true"
+            >
+              <div class="filter-results ">
+                <span class="filter-sort-button-name">Filter-Sort By</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mobile-filter-bg" v-if="mobileFilter">
+            <div class="mobile-filter-bg-white">
+              <!-- sort-bar -->
+              <div class="mobile-filter-sort-bar">
+                <div class="mobile-header-title">
+                  <h5>Sort By</h5>
+                  <button
+                    class="pull-right icon-close-black close"
+                    @click="mobileFilter = false"
+                  >
+                    <i class="fa fa-close"></i>
+                  </button>
+                </div>
+                <div
+                  class="sort-options-mobile"
+                  v-show="list.Product_list.length > 0"
+                >
+                  <div class="group">
+                    <div
+                      class="radio-button-sort"
+                      v-for="(sort, sortIndex) in list.sort"
+                      :key="sortIndex"
+                      @click="sortProduct(sort)"
+                    >
+                      <input
+                        type="radio"
+                        class="sort-radio sort-option "
+                        :id="sort.label"
+                        name="sort-by"
+                      />
+                      <label :for="sort.label" class="sort-radio-label">
+                        {{ sort.label }}</label
+                      >
+                    </div>
+
+                    <hr />
+                  </div>
+                </div>
+              </div>
+              <!-- sort-bar end -->
+              <div class="mobile-filter-box">
+                <div class="mobile-filter-header ">
+                  <h5>Filter By</h5>
+                </div>
+                <div class="mobile-filters">
+                  <div
+                    class="refinements-holder"
+                    v-if="
+                      list.filters.length > 0 && list.Product_list.length > 0
+                    "
+                  >
+                    <div class="container-fluids">
+                      <div class="filter_box">
+                        <div class="refinements">
+                          <div
+                            class="card refinement refinement-category"
+                            :class="filterIndex == activeDropdown ? 'open' : ''"
+                            v-for="(filter, filterIndex) in list.filters"
+                            :key="filterIndex"
+                          >
+                            <h2
+                              class="js_card-header card-header"
+                              tabindex="0"
+                              @click="activeDropdownToggle(filterIndex)"
+                            >
+                              <span class="filter-title js_title">
+                                {{ filter.filter_lable }}
+                                <span
+                                  class="js_total-selected total-selected d-lg-none"
+                                  data-selected="0"
+                                >
+                                </span>
+                              </span>
+                              <span
+                                class="select-arrow icon-arrow-mid-down-black js_select-arrow"
+                              ></span>
+                            </h2>
+                            <div class="hidden_filtter">
+                              <ul class="sort-options">
+                                <li
+                                  class="sort-option best-matches"
+                                  v-for="(item, index) in filter.options"
+                                  :key="index"
+                                >
+                                  <span
+                                    @click.prevent="
+                                      $store.commit('updateFilterArray', {
+                                        item
+                                      })
+                                    "
+                                  >
+                                    <a
+                                      class="selection-box"
+                                      :class="
+                                        list.applied_filters.findIndex(
+                                          x =>
+                                            x ===
+                                            `${item.code}~${item.value_key}`
+                                        ) >= 0
+                                          ? 'selected-box'
+                                          : 'not-selected-box'
+                                      "
+                                      >{{ item.value }}</a
+                                    >
+                                  </span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- desktop_only class add  -->
@@ -391,7 +521,8 @@ export default {
       sorting: "default",
       openFiltter: false,
       openSort: false,
-      likeData: []
+      likeData: [],
+      mobileFilter: false
     };
   },
 
@@ -742,7 +873,7 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updatePage);
-    this.$store.commit("flushActiveUrlKey")
+    this.$store.commit("flushActiveUrlKey");
   },
   watch: {
     "$route.query": function() {

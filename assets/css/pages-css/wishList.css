@@ -72,12 +72,13 @@
 .product-flext {
   display: flex;
   width: 100%;
+  row-gap: 0;
+  column-gap: 25px;
   flex-wrap: wrap;
 }
 .product-flext .product {
-  width: 24%;
-  margin-bottom: 28px;
-  margin-left: 14px;
+  flex: 0 0 200px;
+  margin-bottom: 20px;
 }
 .product-flext .product:first-child {
   margin-left: 0;
@@ -186,6 +187,7 @@
 .product-tile__wishlist-cta {
   display: flex;
   justify-content: flex-end;
+  width: 100%;
 }
 .remove-from-wishlist {
   text-transform: uppercase;
