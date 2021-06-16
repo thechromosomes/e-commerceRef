@@ -87,9 +87,14 @@
                   singleProductList.single_prod_data.discount > 0
                 "
               >
-                ₹{{ singleProductList.single_prod_data.selling_price }}
+                ₹{{
+                  singleProductList.single_prod_data.selling_price
+                    | numberWithCommas
+                }}
                 <span class="line-throu"
-                  >₹{{ singleProductList.single_prod_data.price }}</span
+                  >₹{{
+                    singleProductList.single_prod_data.price | numberWithCommas
+                  }}</span
                 >
               </span>
               <span v-else
@@ -370,23 +375,27 @@
             <button class="search-stores-btn">Filter</button>
           </div>
 
-          <div class="store-search-result" v-for="(addressList, index) in filteredList" :key="index">
+          <div
+            class="store-search-result"
+            v-for="(addressList, index) in filteredList"
+            :key="index"
+          >
             <div class="store-list">
               <div class="list">
-                <h5>{{addressList.infoText.name}}</h5>
+                <h5>{{ addressList.infoText.name }}</h5>
                 <!-- <div class="info-box">
                   <a href="#">More info</a>
                 </div> -->
               </div>
               <p>
-                {{ addressList.infoText.address }}<br>
-                 {{ addressList.infoText.phone }}
+                {{ addressList.infoText.address }}<br />
+                {{ addressList.infoText.phone }}
               </p>
               <div class="avilable-box">
                 <!-- <span> </span> -->
                 <!-- <p>AVAILABLE FOR PICKUP IN 3/4 DAYS</p> -->
               </div>
-              <button   @click="addToCart()" class="btn btn-primary add-bag">
+              <button @click="addToCart()" class="btn btn-primary add-bag">
                 Add to bag
               </button>
             </div>
@@ -492,8 +501,8 @@ export default {
       return finaObj;
     },
 
-     filteredList() {
-      return this.markers.filter(post => {
+    filteredList() {
+      return this.markers.filter((post) => {
         return post.infoText.search
           .toLowerCase()
           .includes(this.search.toLowerCase());
@@ -558,7 +567,7 @@ export default {
                   lng: Number(element.lng),
                 },
                 infoText: {
-                  search: 
+                  search:
                     element.display_name +
                     " " +
                     element.address +

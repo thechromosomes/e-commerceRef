@@ -48,7 +48,7 @@
                 <span class="total-recap__final-price">
                   <span class="price_icon">₹</span
                   ><span class="price">{{
-                    $store.state.cartAjax.cart_total
+                    $store.state.cartAjax.cart_total | numberWithCommas
                   }}</span>
                 </span>
               </span>
@@ -701,7 +701,7 @@
                                 <td class="product__price small_price">
                                   <span class="order-summary__emphasis"> </span>
                                   <span class="price price_icon">₹</span
-                                  ><span class="price">{{ item.price }}</span>
+                                  ><span class="price">{{ item.price | numberWithCommas}}</span>
                                 </td>
                               </tr>
                             </tbody>
@@ -797,7 +797,7 @@
                                 >
                                   <span class="price price_icon">₹</span
                                   ><span class="price">{{
-                                    $store.state.cartAjax.cart_total
+                                    $store.state.cartAjax.cart_total | numberWithCommas
                                   }}</span>
                                 </span>
                               </td>
@@ -816,7 +816,7 @@
                                 <span class="order-summary__small-text">
                                   <span class="price price_icon">₹</span
                                   ><span class="price">{{
-                                    $store.state.cartAjax.shipping_charge
+                                    $store.state.cartAjax.shipping_charge | numberWithCommas
                                   }}</span>
                                 </span>
                               </td>
@@ -835,7 +835,7 @@
                                 <span class="order-summary__small-text">
                                   <span class="price price_icon">₹</span
                                   ><span class="price">
-                                    {{ $store.state.cartAjax.cod_charge }}</span
+                                    {{ $store.state.cartAjax.cod_charge | numberWithCommas}}</span
                                   >
                                 </span>
                               </td>
@@ -854,7 +854,7 @@
                                 <span class="order-summary__small-text">
                                   <span class="price price_icon">₹</span
                                   ><span class="price">{{
-                                    $store.state.cartAjax.discount_amount
+                                    $store.state.cartAjax.discount_amount | numberWithCommas
                                   }}</span>
                                 </span>
                               </td>
@@ -877,7 +877,7 @@
                                 >
                                   <span class="price price_icon">₹</span
                                   ><span class="price">{{
-                                    $store.state.cartAjax.cart_total
+                                    $store.state.cartAjax.cart_total | numberWithCommas
                                   }}</span>
                                 </span>
                               </td>

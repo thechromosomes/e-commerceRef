@@ -5,7 +5,7 @@
         <h4 class="help_headline">{{ title }}</h4>
       </div>
       <div class="row">
-        <div class="col-md-3 col-12">
+        <div class="col-lg-3 col-12">
           <div class="content-asset">
             <div class="headline-wrapper">
               <h3 class="support_headline">
@@ -27,7 +27,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-9 col-12">
+        <div class="col-lg-9 col-12">
           <span v-html="tapData"></span>
         </div>
       </div>

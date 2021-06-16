@@ -99,7 +99,7 @@
                           /></a>
                         </div>
                         <div class="price_info">
-                          <span class="price">₹{{ product.price }}</span>
+                          <span class="price">₹{{ product.price | numberWithCommas}}</span>
                         </div>
                       </div>
                     </div>
@@ -110,7 +110,7 @@
                         Total:
                         <strong>
                           <span class="price"
-                            >₹{{ $store.state.cartAjax.cart_total }}</span
+                            >₹{{ $store.state.cartAjax.cart_total | numberWithCommas}}</span
                           >
                         </strong>
                       </h4>
@@ -124,7 +124,7 @@
                         Dsicount:
                         <strong>
                           <span class="price "
-                            >₹{{ $store.state.cartAjax.discount_amount }}</span
+                            >₹{{ $store.state.cartAjax.discount_amount | numberWithCommas}}</span
                           >
                         </strong>
                       </h4>
