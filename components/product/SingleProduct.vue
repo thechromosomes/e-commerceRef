@@ -391,13 +391,10 @@
                 {{ addressList.infoText.address }}<br />
                 {{ addressList.infoText.phone }}
               </p>
-              <div class="avilable-box">
-                <!-- <span> </span> -->
-                <!-- <p>AVAILABLE FOR PICKUP IN 3/4 DAYS</p> -->
-              </div>
-              <button @click="addToCart()" class="btn btn-primary add-bag">
+    
+              <!-- <button @click="addToCart()" class="btn btn-primary add-bag">
                 Add to bag
-              </button>
+              </button> -->
             </div>
           </div>
         </div>

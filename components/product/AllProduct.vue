@@ -140,8 +140,16 @@
               </div>
               <!-- sort-bar end -->
               <div class="mobile-filter-box">
-                <div class="mobile-filter-header">
-                  <h5>Filter By</h5>
+                <div class="mobile-filter-header ">
+                  <h5>
+                    Filter By
+                    <span
+                      class=" total-selected d-lg-none"
+                      v-show="list.applied_filters.length > 0"
+                    >
+                      {{ list.applied_filters.length }}
+                    </span>
+                  </h5>
                 </div>
                 <div class="mobile-filters">
                   <div
@@ -166,15 +174,12 @@
                             >
                               <span class="filter-title js_title">
                                 {{ filter.filter_lable }}
-                                <span
-                                  class="
-                                    js_total-selected
-                                    total-selected
-                                    d-lg-none
-                                  "
-                                  data-selected="0"
+                                <!-- <span
+                                  class=" total-selected d-lg-none"
+                                  v-show="list.applied_filters.length > 0"
                                 >
-                                </span>
+                                  {{ list.applied_filters.length }}
+                                </span> -->
                               </span>
                               <span
                                 class="
@@ -220,6 +225,27 @@
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <!-- filter end -->
+
+              <div class="clear-apply-wrapper ">
+                <div class="button-container">
+                  <button
+                    class="secondary-btn clear "
+                    @click="removeAllFilters()"
+                  >
+                    Clear
+                  </button>
+                </div>
+                <div class="button-container">
+                  <button
+                    class="primary-btn apply-filters "
+                    @click="mobileFilter = false"
+                  >
+                    Apply
+                  </button>
                 </div>
               </div>
             </div>
@@ -320,7 +346,7 @@
         </ul>
       </div>
     </div>
-    <button
+    <!-- <button
       class="product-sort mobile_sortby mobile_only"
       @click="openSort = false"
       v-if="openSort"
@@ -339,7 +365,7 @@
       @click="toggleFilter()"
     >
       Filter
-    </button>
+    </button> -->
 
     <div class="search-results">
       <div class="tab-content">

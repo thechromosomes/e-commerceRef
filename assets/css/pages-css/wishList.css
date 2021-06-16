@@ -200,6 +200,12 @@
   padding: 8px;
 }
 
+.icon-whatsapp {
+  background-image: url(../../img/whatsapp.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .remove-from-wishlist::before {
   position: relative;
   margin-right: 5px;

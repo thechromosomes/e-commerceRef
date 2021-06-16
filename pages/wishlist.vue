@@ -135,7 +135,7 @@ export default {
         { icon: "icon  icon-pintrest", net: "Pinterest" },
         { icon: "icon  icon-twitter-black", net: "twitter" },
         { icon: "icon  icon-mail", net: "Email" },
-        { icon: "icon  icon-twitter-black", net: "WhatsApp" }
+        { icon: "icon  icon-whatsapp", net: "WhatsApp" }
 
       ]
     };
