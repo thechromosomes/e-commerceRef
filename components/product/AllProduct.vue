@@ -140,11 +140,11 @@
               </div>
               <!-- sort-bar end -->
               <div class="mobile-filter-box">
-                <div class="mobile-filter-header ">
+                <div class="mobile-filter-header">
                   <h5>
                     Filter By
                     <span
-                      class=" total-selected d-lg-none"
+                      class="total-selected d-lg-none"
                       v-show="list.applied_filters.length > 0"
                     >
                       {{ list.applied_filters.length }}
@@ -230,10 +230,10 @@
 
               <!-- filter end -->
 
-              <div class="clear-apply-wrapper ">
+              <div class="clear-apply-wrapper">
                 <div class="button-container">
                   <button
-                    class="secondary-btn clear "
+                    class="secondary-btn clear"
                     @click="removeAllFilters()"
                   >
                     Clear
@@ -241,7 +241,7 @@
                 </div>
                 <div class="button-container">
                   <button
-                    class="primary-btn apply-filters "
+                    class="primary-btn apply-filters"
                     @click="mobileFilter = false"
                   >
                     Apply
@@ -481,7 +481,10 @@
             <!-- loader image -->
             <div class="align-center product_loader">
               <img
-                v-show="list.product_loader === true"
+                v-show="
+                  list.product_loader === true &&
+                  $store.state.pageLoader == false
+                "
                 src="~/assets/img/giphy.gif"
                 width="40px"
               />

@@ -98,7 +98,9 @@
                 >
               </span>
               <span v-else
-                >₹{{ singleProductList.single_prod_data.price }}</span
+                >₹{{
+                  singleProductList.single_prod_data.price | numberWithCommas
+                }}</span
               >
               <br />
               <span class="pricr-title">Price inclusive of all taxes</span>
@@ -391,7 +393,7 @@
                 {{ addressList.infoText.address }}<br />
                 {{ addressList.infoText.phone }}
               </p>
-    
+
               <!-- <button @click="addToCart()" class="btn btn-primary add-bag">
                 Add to bag
               </button> -->
@@ -544,53 +546,66 @@ export default {
 
   methods: {
     async openInStorePickUp() {
-      var response = await this.$store.dispatch("cartAjax/actCartAjax", {
-        method: "post",
-        url: `/cart/productstore`,
-        token: this.$store.state.cartAjax.customer_token,
-        params: {
-          fynd_uid: this.singleProductList.single_prod_data.fynd_uid,
-        },
-      });
-
-      if (response.success) {
-        if (response.data) {
-          this.serviceCenters = response.data;
-          this.serviceCenters.map((element) => {
-            if (element.lat != "") {
-              this.markers.push({
-                position: {
-                  lat: Number(element.lat),
-                  lng: Number(element.lng),
-                },
-                infoText: {
-                  search:
-                    element.display_name +
-                    " " +
-                    element.address +
-                    " " +
-                    element.city +
-                    " " +
-                    element.email +
-                    " " +
-                    element.phone,
-                  name: element.display_name,
-                  address: element.address,
-                  city: element.city,
-                  state: element.state,
-                  zip: element.postcode,
-                  phone: element.phone,
-                  email: element.email,
-                  store_id: element.store_id,
-                  store_email: element.email,
-                },
-              });
-            }
-          });
-        }
-        this.storemodel = true;
+      if (Object.keys(this.selectedSizeAttr).length === 0) {
+        this.sizeAlert = true;
+        this.selectedSizeError = "Please select size";
+      }
+      if (
+        this.isLengthAvailable &&
+        Object.keys(this.selectedLengthAttr).length === 0
+      ) {
+        this.lengthAlert = true;
+        this.lengthError = "please select length";
+        return;
       } else {
-        this.$toast.error("No pick up store available");
+        var response = await this.$store.dispatch("cartAjax/actCartAjax", {
+          method: "post",
+          url: `/cart/productstore`,
+          token: this.$store.state.cartAjax.customer_token,
+          params: {
+            fynd_uid: this.singleProductList.single_prod_data.fynd_uid,
+          },
+        });
+
+        if (response.success) {
+          if (response.data) {
+            this.serviceCenters = response.data;
+            this.serviceCenters.map((element) => {
+              if (element.lat != "") {
+                this.markers.push({
+                  position: {
+                    lat: Number(element.lat),
+                    lng: Number(element.lng),
+                  },
+                  infoText: {
+                    search:
+                      element.display_name +
+                      " " +
+                      element.address +
+                      " " +
+                      element.city +
+                      " " +
+                      element.email +
+                      " " +
+                      element.phone,
+                    name: element.display_name,
+                    address: element.address,
+                    city: element.city,
+                    state: element.state,
+                    zip: element.postcode,
+                    phone: element.phone,
+                    email: element.email,
+                    store_id: element.store_id,
+                    store_email: element.email,
+                  },
+                });
+              }
+            });
+          }
+          this.storemodel = true;
+        } else {
+          this.$toast.error("No pick up store available");
+        }
       }
     },
     toggleDropDown(state) {

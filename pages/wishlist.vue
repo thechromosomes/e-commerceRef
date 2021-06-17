@@ -54,8 +54,8 @@
                 ></a>
               </div>
             </div>
-            <div v-if="mainsizeAlert" style="clear: both; margin-top: 10px;">
-              <p class="promotion-text">please select the size(s) first.</p>
+            <div v-if="mainsizeAlert" style="clear: both; margin-top: 10px">
+              <p class="promotion-text">please select the variants first.</p>
             </div>
           </div>
 
@@ -73,7 +73,9 @@
                 <p class="name">{{ item.name }}</p>
                 <h4>
                   <strong>MRP:</strong>
-                  <span class="price">₹{{ item.price | numberWithCommas}}</span>
+                  <span class="price"
+                    >₹{{ item.price | numberWithCommas }}</span
+                  >
                 </h4>
               </div>
 
@@ -91,12 +93,40 @@
                     {{ size.configrable_atribute_value }}
                   </option>
                 </select>
-                <!-- <div
-                  v-if="sizeAlert && sizeAlertIndes == mainIndex"
-                  style="clear: both"
+              </div>
+              <div class="select-box">
+                <select
+                  @click="updateViaColor(mainIndex)"
+                  v-model="selectedColor[mainIndex]"
                 >
-                  <p class="promotion-text">please select the size</p>
-                </div> -->
+                  <option value="" disabled>Select Color</option>
+                  <option
+                    v-for="(size, index) in item.color_variation"
+                    :key="index"
+                    :value="size"
+                  >
+                    {{ size.color }}
+                  </option>
+                </select>
+              </div>
+              <div
+                class="select-box"
+                v-if="
+                  item.item_lengths && Object.keys(item.item_lengths).length > 0
+                "
+              >
+                <select :class="{
+                  error: lengthAlert && lengthAlertIndes == mainIndex,
+                }"v-model="selectedLength[mainIndex]">
+                  <option value="" disabled>Select Length</option>
+                  <option
+                    v-for="(size, index) in item.item_lengths"
+                    :key="index"
+                    :value="size"
+                  >
+                    {{ size.configrable_atribute_value }}
+                  </option>
+                </select>
               </div>
               <button
                 class="add-to-cart--wishlist"
@@ -127,17 +157,22 @@ export default {
       selectedSizeAttr: {},
       sizeAlert: false,
       selectedSize: [],
+      selectedColor: [],
+      selectedLength: [],
+      isLengthAvailable: [],
       sizeAlertIndes: "",
       showSocialicons: false,
       mainsizeAlert: false,
+      selectedLengthAttr: "",
+      lengthAlert: false,
+      lengthAlertIndes: "",
       network: [
         { icon: "icon  icon-facebook-black", net: "facebook" },
         { icon: "icon  icon-pintrest", net: "Pinterest" },
         { icon: "icon  icon-twitter-black", net: "twitter" },
         { icon: "icon  icon-mail", net: "Email" },
-        { icon: "icon  icon-whatsapp", net: "WhatsApp" }
-
-      ]
+        { icon: "icon  icon-whatsapp", net: "WhatsApp" },
+      ],
     };
   },
   async created() {
@@ -165,18 +200,18 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id
+          group_id: item.group_id,
         };
         var response = await this.$store.dispatch("cartAjax/actCartAjax", {
           method: "post",
           url: `/wishlist/remove-wishlist`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form
+          params: form,
         });
 
         if (response.success) {
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data
+            payload: response.data,
           });
           this.getProduct();
 
@@ -197,18 +232,35 @@ export default {
           //       ]
           //     }
           //   }
-          // });
+          // });wislistProducts
         } else {
           this.$toast.error(response.message);
           throw "no response from api";
         }
         this.wislistProducts.splice(index, 1);
+        this.selectedSize.splice(index, 1);
       } catch (error) {
         this.$globalError(
           `error from the wishlist page (reomoveFromCart) >>>> ${error}`
         );
 
         console.log("error from the wishlist page >>>", error);
+      }
+    },
+
+    // update product via color refrence
+    updateViaColor(index) {
+      try {
+        let tempPost = { ...this.wislistProducts[index] };
+        tempPost.image = this.selectedColor[index].image;
+        tempPost.price = this.selectedColor[index].price;
+        tempPost.url_key = this.selectedColor[index].url_key;
+        tempPost.color = this.selectedColor[index].color;
+
+        this.wislistProducts.splice(index, 1, tempPost);
+      } catch (error) {
+        console.log("error from update product color >>> ", error);
+        this.$globalError(`error from update product color >>> ${error}`);
       }
     },
 
@@ -221,13 +273,24 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
         this.gtm_product_impressions = [];
         if (response.response.success) {
           this.wislistProducts = response.result;
           for (let i = 0; i < response.result.length; i++) {
             this.selectedSize[i] = "";
+            this.selectedColor[i] = "";
+            this.selectedLength[i] = ""
+            if (
+              response.result[i] &&
+              response.result[i].item_lengths &&
+              Object.keys(response.result[i].item_lengths).length != 0
+            ) {
+              this.isLengthAvailable[i] = true;
+            } else {
+              this.isLengthAvailable[i] = false;
+            }
             let name = response.result[i].name;
             let id = response.result[i].sku;
             let price = response.result[i].selling_price;
@@ -240,7 +303,7 @@ export default {
               price,
               category,
               list,
-              position
+              position,
             });
           }
 
@@ -280,14 +343,24 @@ export default {
         this.sizeAlert = true;
         this.sizeAlertIndes = sizeIndex;
         return;
+      }
+      if (
+        this.isLengthAvailable[sizeIndex] == true &&
+        Object.keys(this.selectedLength[sizeIndex]).length === 0
+      ) {
+        this.lengthAlert = true;
+        this.lengthAlertIndes = sizeIndex;
+        return;
       } else {
         this.sizeAlert = false;
+        this.lengthAlert = false;
         this.sizeAlertIndes = "";
+        this.lengthAlertIndes = "";
         try {
           var form = {};
           var product_options_json = JSON.stringify({
             size: this.selectedSize[sizeIndex],
-            color: item.color
+            color: item.color,
           });
           form.product_id =
             item.variation[this.selectedSize[sizeIndex]].id_product;
@@ -302,6 +375,8 @@ export default {
           form.qty_ordered = 1;
           form.final_price = item.selling_price;
           form.store = this.$store.state.cartAjax.store;
+          form.length = this.selectedLength[sizeIndex].configrable_atribute_value;
+
           if (
             this.$store.state.cartAjax.cart_id != null &&
             this.$store.state.cartAjax.cart_id != ""
@@ -328,38 +403,38 @@ export default {
             method: "post",
             url: `/product/add-product`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
           if (response) {
             await this.$store.commit("cartAjax/updateCartDetail", {
               error: null,
-              data: response
+              data: response,
             });
             if (response.success) this.reomoveFromCart(item, sizeIndex);
             // google tag manager
             if (response.success) {
-              this.$gtm.push({
-                event: "addToCart",
-                category: item.sub_category,
-                action: "addToCart",
-                ecommerce: {
-                  currencyCode: "INR",
-                  add: {
-                    product: [
-                      {
-                        name: item.name,
-                        id: item.sku,
-                        price: item.selling_price,
-                        category: item.sub_category,
-                        variant:
-                          item.variation[this.selectedSize[sizeIndex]]
-                            .configrable_atribute_value,
-                        quantity: "1"
-                      }
-                    ]
-                  }
-                }
-              });
+              // this.$gtm.push({
+              //   event: "addToCart",
+              //   category: item.sub_category,
+              //   action: "addToCart",
+              //   ecommerce: {
+              //     currencyCode: "INR",
+              //     add: {
+              //       product: [
+              //         {
+              //           name: item.name,
+              //           id: item.sku,
+              //           price: item.selling_price,
+              //           category: item.sub_category,
+              //           variant:
+              //             item.variation[this.selectedSize[sizeIndex]]
+              //               .configrable_atribute_value,
+              //           quantity: "1",
+              //         },
+              //       ],
+              //     },
+              //   },
+              // });
             }
           } else {
             throw "no response from api";
@@ -372,13 +447,13 @@ export default {
           if (error.message === "Network Error") {
             this.$store.commit("updateSingleProdState", {
               error:
-                "Oops there seems to be some Network issue, please try again"
+                "Oops there seems to be some Network issue, please try again",
             });
           }
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
