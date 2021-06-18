@@ -72,13 +72,14 @@
 .product-flext {
   display: flex;
   width: 100%;
-  row-gap: 0;
-  column-gap: 25px;
+  /* row-gap: 0;
+  column-gap: 25px; */
   flex-wrap: wrap;
 }
 .product-flext .product {
-  flex: 0 0 200px;
+  width: 24%;
   margin-bottom: 20px;
+  margin-left: 17px;
 }
 .product-flext .product:first-child {
   margin-left: 0;
