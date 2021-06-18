@@ -210,7 +210,10 @@
                 </ul>
               </li>
             </ul>
-            <div class="print_btn ">
+            <div
+              class="print_btn "
+              :class="{ addtocartsticky: fixedMobileCart }"
+            >
               <button
                 id="btn-print"
                 class="primary-btn full-with-btn "
@@ -415,6 +418,7 @@ export default {
   components: { VueSlickCarousel, ImageZoom, YouMayLike },
   data() {
     return {
+      fixedMobileCart: false,
       storemodel: false,
       search: "",
       serviceCenters: [],
@@ -905,6 +909,8 @@ export default {
   async fetch() {
     // to fetch single product detail
     await this.getProductDetail();
+
+    this.fixedMobileCart = this.$device.isMobile;
     // render from single variation
     if (
       this.singleProductList.single_prod_data &&
