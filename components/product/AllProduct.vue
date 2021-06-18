@@ -34,6 +34,7 @@
 
             <span
               class="hiden-arrow"
+              v-if="list.description != null && list.description != ''"
               @click="titleContent = true"
               :class="titleContent ? 'hide' : ''"
             ></span>

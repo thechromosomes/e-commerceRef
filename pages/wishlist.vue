@@ -96,7 +96,7 @@
               </div>
               <div class="select-box">
                 <select
-                  @click="updateViaColor(mainIndex)"
+                  @change="updateViaColor(mainIndex)"
                   v-model="selectedColor[mainIndex]"
                 >
                   <option value="" disabled>Select Color</option>
@@ -104,8 +104,9 @@
                     v-for="(size, index) in item.color_variation"
                     :key="index"
                     :value="size"
+                    :disabled="size.color == item.color"
                   >
-                    {{ size.color }}
+                    {{ size.color}}
                   </option>
                 </select>
               </div>
@@ -115,9 +116,12 @@
                   item.item_lengths && Object.keys(item.item_lengths).length > 0
                 "
               >
-                <select :class="{
-                  error: lengthAlert && lengthAlertIndes == mainIndex,
-                }"v-model="selectedLength[mainIndex]">
+                <select
+                  :class="{
+                    error: lengthAlert && lengthAlertIndes == mainIndex,
+                  }"
+                  v-model="selectedLength[mainIndex]"
+                >
                   <option value="" disabled>Select Length</option>
                   <option
                     v-for="(size, index) in item.item_lengths"
@@ -250,6 +254,7 @@ export default {
 
     // update product via color refrence
     updateViaColor(index) {
+      alert(index)
       try {
         let tempPost = { ...this.wislistProducts[index] };
         tempPost.image = this.selectedColor[index].image;
@@ -281,7 +286,7 @@ export default {
           for (let i = 0; i < response.result.length; i++) {
             this.selectedSize[i] = "";
             this.selectedColor[i] = "";
-            this.selectedLength[i] = ""
+            this.selectedLength[i] = "";
             if (
               response.result[i] &&
               response.result[i].item_lengths &&
@@ -375,7 +380,8 @@ export default {
           form.qty_ordered = 1;
           form.final_price = item.selling_price;
           form.store = this.$store.state.cartAjax.store;
-          form.length = this.selectedLength[sizeIndex].configrable_atribute_value;
+          form.length =
+            this.selectedLength[sizeIndex].configrable_atribute_value;
 
           if (
             this.$store.state.cartAjax.cart_id != null &&
