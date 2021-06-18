@@ -31,14 +31,18 @@
                 <font-awesome-icon icon="shopping-cart" class="icon-svg" />
               </span>
               <span
-                class="order-summary-toggle__text order-summary-toggle__text--show"
+                class="
+                  order-summary-toggle__text order-summary-toggle__text--show
+                "
                 v-if="showSummary == false"
               >
                 <span>Show order summary</span>
                 <font-awesome-icon icon="angle-down" class="icon-svg" />
               </span>
               <span
-                class="order-summary-toggle__text order-summary-toggle__text--hide"
+                class="
+                  order-summary-toggle__text order-summary-toggle__text--hide
+                "
                 v-if="showSummary"
               >
                 <span>Hide order summary</span>
@@ -93,7 +97,7 @@
                           :class="[
                             $route.path == '/checkout' && !showPaymentMethods
                               ? 'active-stepper'
-                              : ''
+                              : '',
                           ]"
                         >
                           <NuxtLink to="/checkout" class="breadcrumb__link"
@@ -108,7 +112,7 @@
                         <li class="breadcrumb__item breadcrumb__item--blank">
                           <a
                             :class="[
-                              showPaymentMethods ? 'active-stepper' : ''
+                              showPaymentMethods ? 'active-stepper' : '',
                             ]"
                             class="breadcrumb__link"
                             >Payment</a
@@ -257,7 +261,10 @@
                                       placeholder=""
                                       autocomplete="off"
                                       v-model="user.pinCode"
-                                      class="field__input field__input--zip shipping-label-pb-input-st"
+                                      class="
+                                        field__input field__input--zip
+                                        shipping-label-pb-input-st
+                                      "
                                     />
                                   </label>
 
@@ -305,7 +312,12 @@
                               </div> -->
 
                               <div
-                                class="field field--required field--show-floating-label field--third"
+                                class="
+                                  field
+                                  field--required
+                                  field--show-floating-label
+                                  field--third
+                                "
                               >
                                 <label
                                   class="w-100"
@@ -316,7 +328,10 @@
                                     :value="user.state"
                                     autocomplete="off"
                                     disabled
-                                    class="field__input field__input--zip shipping-label-pb-input-st"
+                                    class="
+                                      field__input field__input--zip
+                                      shipping-label-pb-input-st
+                                    "
                                   />
                                 </label>
                                 <!-- an error display tags -->
@@ -327,7 +342,12 @@
                                 </span>
                               </div>
                               <div
-                                class="field field--required field--show-floating-label field--third"
+                                class="
+                                  field
+                                  field--required
+                                  field--show-floating-label
+                                  field--third
+                                "
                               >
                                 <label
                                   class="w-100"
@@ -338,7 +358,10 @@
                                     autocorrect="off"
                                     autocomplete="off"
                                     v-model="user.city"
-                                    class="field__input shipping-label-pb-input-st"
+                                    class="
+                                      field__input
+                                      shipping-label-pb-input-st
+                                    "
                                     type="text"
                                   />
                                 </label>
@@ -351,10 +374,17 @@
                               </div>
 
                               <div
-                                class="field field--required field--show-floating-label"
+                                class="
+                                  field
+                                  field--required
+                                  field--show-floating-label
+                                "
                               >
                                 <div
-                                  class="field__input-wrapper field__input-wrapper--icon-right"
+                                  class="
+                                    field__input-wrapper
+                                    field__input-wrapper--icon-right
+                                  "
                                 >
                                   <!-- <label
                                   class="field__label field__label--visible"
@@ -364,7 +394,10 @@
                                   <input
                                     placeholder="Phone"
                                     autocomplete="off"
-                                    class="field__input field__input--numeric shipping-label-pb-input-st"
+                                    class="
+                                      field__input field__input--numeric
+                                      shipping-label-pb-input-st
+                                    "
                                     type="tel"
                                     v-model="user.mobileNo"
                                   />
@@ -400,7 +433,11 @@
                               </div>
 
                               <div
-                                class="field field--required field--show-floating-label"
+                                class="
+                                  field
+                                  field--required
+                                  field--show-floating-label
+                                "
                               >
                                 <div
                                   class="field__input-wrapper shipping-user-pd"
@@ -425,13 +462,23 @@
                               </div>
 
                               <div
-                                class="field field--required field--show-floating-label"
+                                class="
+                                  field
+                                  field--required
+                                  field--show-floating-label
+                                "
                               >
                                 <div
-                                  class="field__input-wrapper field__input-wrapper--icon-right"
+                                  class="
+                                    field__input-wrapper
+                                    field__input-wrapper--icon-right
+                                  "
                                 >
                                   <label
-                                    class="field__label field__label--visible shipping-adress-label"
+                                    class="
+                                      field__label field__label--visible
+                                      shipping-adress-label
+                                    "
                                     for="checkout_shipping_address_phone"
                                     >Address type</label
                                   >
@@ -439,7 +486,10 @@
                                   <div class="adress-option-div">
                                     <div class="input-box-1">
                                       <input
-                                        class="field__input field__input--numeric input-both"
+                                        class="
+                                          field__input field__input--numeric
+                                          input-both
+                                        "
                                         type="radio"
                                         autocomplete="off"
                                         value="home"
@@ -451,7 +501,10 @@
 
                                     <div class="input-box-1">
                                       <input
-                                        class="field__input field__input--numeric input-both"
+                                        class="
+                                          field__input field__input--numeric
+                                          input-both
+                                        "
                                         type="radio"
                                         autocomplete="off"
                                         value="office"
@@ -510,8 +563,8 @@
                   class="ship-adress"
                   v-if="
                     !addNewAddress &&
-                      $store.state.cartAjax.address.length > 0 &&
-                      !showPaymentMethods
+                    $store.state.cartAjax.address.length > 0 &&
+                    !showPaymentMethods
                   "
                 >
                   <h2>Shipping Address</h2>
@@ -523,7 +576,7 @@
                     )"
                     :key="index"
                     :class="[
-                      selectedAddressiId == item.id ? '' : 'active-address'
+                      selectedAddressiId == item.id ? '' : 'active-address',
                     ]"
                   >
                     <div>
@@ -548,7 +601,7 @@
                     class="ship-add-new-add"
                     v-if="
                       $store.state.cartAjax.address.length > 3 &&
-                        showMoreAddress != $store.state.cartAjax.address.length
+                      showMoreAddress != $store.state.cartAjax.address.length
                     "
                   >
                     <a
@@ -565,7 +618,7 @@
                     class="ship-add-new-add"
                     v-if="
                       $store.state.cartAjax.address.length != 3 &&
-                        showMoreAddress == $store.state.cartAjax.address.length
+                      showMoreAddress == $store.state.cartAjax.address.length
                     "
                   >
                     <a @click.prevent="() => (showMoreAddress = 3)"> Hide </a>
@@ -592,7 +645,7 @@
                       :class="[
                         selectedPaymentMethods === 'razorpay'
                           ? ''
-                          : 'paying-div-disable'
+                          : 'paying-div-disable',
                       ]"
                     >
                       <img src="@/assets/img/prepaid.png" />
@@ -613,7 +666,7 @@
                       :class="[
                         selectedPaymentMethods === 'cod'
                           ? ''
-                          : 'paying-div-disable'
+                          : 'paying-div-disable',
                       ]"
                     >
                       <img src="@/assets/img/COD.png" />
@@ -644,7 +697,10 @@
                   <div class="order-summary">
                     <div class="order-summary__sections">
                       <div
-                        class="order-summary__section order-summary__section--product-list"
+                        class="
+                          order-summary__section
+                          order-summary__section--product-list
+                        "
                       >
                         <div
                           class="order-summary__section__content"
@@ -676,20 +732,29 @@
                                 </td>
                                 <th class="product__description" scope="row">
                                   <span
-                                    class="product__description__name order-summary__emphasis"
+                                    class="
+                                      product__description__name
+                                      order-summary__emphasis
+                                    "
                                     >{{ item.name }}
                                   </span>
                                   <span
-                                    class="product__description__variant order-summary__small-text"
+                                    class="
+                                      product__description__variant
+                                      order-summary__small-text
+                                    "
                                     v-if="
                                       JSON.parse(item.size).color &&
-                                        JSON.parse(item.size).size
+                                      JSON.parse(item.size).size
                                     "
                                     >{{ JSON.parse(item.size).color }} /
                                     {{ JSON.parse(item.size).size }}</span
                                   >
                                   <span
-                                    class="product__description__property order-summary__small-text"
+                                    class="
+                                      product__description__property
+                                      order-summary__small-text
+                                    "
                                     data-prop="UPC"
                                   >
                                     UPC: N.A
@@ -701,7 +766,9 @@
                                 <td class="product__price small_price">
                                   <span class="order-summary__emphasis"> </span>
                                   <span class="price price_icon">₹</span
-                                  ><span class="price">{{ item.price | numberWithCommas}}</span>
+                                  ><span class="price">{{
+                                    item.selling_price | numberWithCommas
+                                  }}</span>
                                 </td>
                               </tr>
                             </tbody>
@@ -720,7 +787,10 @@
                         </div>
                       </div>
                       <div
-                        class="order-summary__section order-summary__section--discount"
+                        class="
+                          order-summary__section
+                          order-summary__section--discount
+                        "
                       >
                         <div class="fieldset">
                           <div class="field">
@@ -728,7 +798,7 @@
                               class="field__input-btn-wrapper"
                               v-if="
                                 $store.state.cartAjax.discount_code == '' ||
-                                  $store.state.cartAjax.discount_code == null
+                                $store.state.cartAjax.discount_code == null
                               "
                             >
                               <div class="field__input-wrapper">
@@ -783,7 +853,10 @@
                       </div>
 
                       <div
-                        class="order-summary__section order-summary__section--total-lines"
+                        class="
+                          order-summary__section
+                          order-summary__section--total-lines
+                        "
                       >
                         <table class="total-line-table">
                           <tbody class="total-line-table__tbody">
@@ -797,7 +870,8 @@
                                 >
                                   <span class="price price_icon">₹</span
                                   ><span class="price">{{
-                                    $store.state.cartAjax.cart_total | numberWithCommas
+                                    $store.state.cartAjax.cart_total
+                                      | numberWithCommas
                                   }}</span>
                                 </span>
                               </td>
@@ -806,7 +880,7 @@
                               class="total-line total-line--shipping"
                               v-if="
                                 $store.state.cartAjax.shipping_charge != '' &&
-                                  $store.state.cartAjax.shipping_charge != null
+                                $store.state.cartAjax.shipping_charge != null
                               "
                             >
                               <th class="total-line__name" scope="row">
@@ -816,7 +890,8 @@
                                 <span class="order-summary__small-text">
                                   <span class="price price_icon">₹</span
                                   ><span class="price">{{
-                                    $store.state.cartAjax.shipping_charge | numberWithCommas
+                                    $store.state.cartAjax.shipping_charge
+                                      | numberWithCommas
                                   }}</span>
                                 </span>
                               </td>
@@ -825,7 +900,7 @@
                               class="total-line total-line--shipping"
                               v-if="
                                 $store.state.cartAjax.cod_charge != '' &&
-                                  $store.state.cartAjax.cod_charge != null
+                                $store.state.cartAjax.cod_charge != null
                               "
                             >
                               <th class="total-line__name" scope="row">
@@ -835,7 +910,10 @@
                                 <span class="order-summary__small-text">
                                   <span class="price price_icon">₹</span
                                   ><span class="price">
-                                    {{ $store.state.cartAjax.cod_charge | numberWithCommas}}</span
+                                    {{
+                                      $store.state.cartAjax.cod_charge
+                                        | numberWithCommas
+                                    }}</span
                                   >
                                 </span>
                               </td>
@@ -844,7 +922,7 @@
                               class="total-line total-line--shipping"
                               v-if="
                                 $store.state.cartAjax.discount_amount != '' &&
-                                  $store.state.cartAjax.discount_amount != null
+                                $store.state.cartAjax.discount_amount != null
                               "
                             >
                               <th class="total-line__name" scope="row">
@@ -854,7 +932,27 @@
                                 <span class="order-summary__small-text">
                                   <span class="price price_icon">₹</span
                                   ><span class="price">{{
-                                    $store.state.cartAjax.discount_amount | numberWithCommas
+                                    $store.state.cartAjax.discount_amount
+                                      | numberWithCommas
+                                  }}</span>
+                                </span>
+                              </td>
+                            </tr>
+                            <tr
+                              class="total-line total-line--shipping"
+                              v-if="
+                                $store.state.cartAjax.discount_amount != '' &&
+                                $store.state.cartAjax.discount_amount != null
+                              "
+                            >
+                              <th class="total-line__name" scope="row">
+                                <span> Discount </span>
+                              </th>
+                              <td class="total-line__price">
+                                <span class="order-summary__small-text">
+                                  <span class="price price_icon">₹</span
+                                  ><span class="price">{{
+                                    $store.state.cartAjax.discount_amount
                                   }}</span>
                                 </span>
                               </td>
@@ -877,7 +975,8 @@
                                 >
                                   <span class="price price_icon">₹</span
                                   ><span class="price">{{
-                                    $store.state.cartAjax.cart_total | numberWithCommas
+                                    $store.state.cartAjax.cart_total
+                                      | numberWithCommas
                                   }}</span>
                                 </span>
                               </td>
@@ -918,7 +1017,7 @@ export default {
         mobileNo: "",
         email: "",
         city: "",
-        address_type: "home"
+        address_type: "home",
       },
       pin_code_success: "",
       cod_msg: "",
@@ -938,52 +1037,50 @@ export default {
         prefill: {
           name: "",
           email: "",
-          contact: ""
+          contact: "",
         },
         notes: {
           address: "",
-          id: ""
+          id: "",
         },
         theme: {
-          color: ""
-        }
-      }
+          color: "",
+        },
+      },
     };
   },
 
   // form validatiors
   validators: {
-    "user.email": function(value) {
-      return Validator.value(value)
-        .required()
-        .email();
+    "user.email": function (value) {
+      return Validator.value(value).required().email();
     },
-    "user.firstName": function(value) {
+    "user.firstName": function (value) {
       return Validator.value(value).required();
     },
-    "user.lastName": function(value) {
+    "user.lastName": function (value) {
       return Validator.value(value).required();
     },
-    "user.address": function(value) {
+    "user.address": function (value) {
       return Validator.value(value).required();
     },
-    "user.pinCode": function(value) {
+    "user.pinCode": function (value) {
       return Validator.value(value)
         .required()
         .integer()
         .minLength(6)
         .maxLength(6);
     },
-    "user.mobileNo": function(value) {
+    "user.mobileNo": function (value) {
       return Validator.value(value)
         .required()
         .integer()
         .minLength(10)
         .maxLength(10);
     },
-    "user.city": function(value) {
+    "user.city": function (value) {
       return Validator.value(value).required();
-    }
+    },
   },
 
   methods: {
@@ -992,7 +1089,7 @@ export default {
     },
 
     // get detil via pin code
-    fetchUserDetail: function() {
+    fetchUserDetail: function () {
       var pin_code = /^([0-9]{6,})+$/;
       if (
         this.user.pinCode != null &&
@@ -1009,9 +1106,9 @@ export default {
           .dispatch("pimAjax", {
             method: "post",
             url: `/pimresponse.php`,
-            params: form
+            params: form,
           })
-          .then(response => {
+          .then((response) => {
             if (response.result == "") {
               this.pin_code_error = "Sorry this pincode is not serviceable.";
               this.pin_code_success = "";
@@ -1029,7 +1126,7 @@ export default {
               this.pin_code_error = "";
             }
           })
-          .catch(error => {
+          .catch((error) => {
             this.$globalError(
               `error from the shipping page (fetchUserDetail) >>>> ${error}`
             );
@@ -1061,7 +1158,7 @@ export default {
           city,
           email,
           address2,
-          address_type
+          address_type,
         } = this.user;
         if (
           state &&
@@ -1092,12 +1189,12 @@ export default {
             method: "post",
             url: `/customer/add-address`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
           if (response.success) {
             this.$store.commit("cartAjax/updateAddress", {
               payload: response,
-              vm: this
+              vm: this,
             });
             this.showPaymentMethods = true;
             // this.$gtm.push({
@@ -1106,7 +1203,7 @@ export default {
             //   ecommerce: {
             //     checkout: {
             //       actionField: { step: 4, option: "Address selected" },
-            //       product: this.$store.state.cartAjax.gtm_product,
+            //       products: this.$store.state.cartAjax.gtm_product,
             //     },
             //   },
             // });
@@ -1136,13 +1233,13 @@ export default {
           method: "post",
           url: `/customer/assign-address`,
           token: this.$store.state.cartAjax.cart_token,
-          params: form
+          params: form,
         });
 
         if (response.success === true) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
-            data: response
+            data: response,
           });
           this.showPaymentMethods = true;
           // this.$gtm.push({
@@ -1154,7 +1251,7 @@ export default {
           //         step: 4,
           //         option: "Address selected",
           //       },
-          //       product: this.$store.state.cartAjax.gtm_product,
+          //       products: this.$store.state.cartAjax.gtm_product,
           //     },
           //   },
           // });
@@ -1182,13 +1279,13 @@ export default {
             method: "post",
             url: `/cart/switch-payment-method`,
             token: this.$store.state.cartAjax.cart_token,
-            params: form
+            params: form,
           });
 
           if (response.success === true) {
             this.$store.commit("cartAjax/updatePaymentMethod", {
               payload: response,
-              vm: this
+              vm: this,
             });
             this.selectedPaymentMethods = value;
             // this.$gtm.push({
@@ -1197,7 +1294,7 @@ export default {
             //   ecommerce: {
             //     checkout: {
             //       actionField: { step: 5, option: value },
-            //       product: this.$store.state.cartAjax.gtm_product,
+            //       products: this.$store.state.cartAjax.gtm_product,
             //     },
             //   },
             // });
@@ -1231,7 +1328,7 @@ export default {
           method: "post",
           token: this.$store.state.cart_token,
           url: `/order/add-order`,
-          params: form
+          params: form,
         });
         if (response.success) {
           //  this.$gtm.push({
@@ -1242,7 +1339,7 @@ export default {
           //     ecommerce: {
           //       checkout: {
           //         actionField: { step: 5, option: value },
-          //         product: this.$store.state.cartAjax.gtm_product,
+          //         products: this.$store.state.cartAjax.gtm_product,
           //       },
           //     },
           //   });
@@ -1289,7 +1386,7 @@ export default {
         description: this.razorpay_form.description,
         image: this.razorpay_form.image,
         order_id: this.razorpay_form.id,
-        handler: response => {
+        handler: (response) => {
           var form = {};
           form.cart_id = this.$store.state.cartAjax.cart_id;
           form.cart_session = this.$store.state.cartAjax.cart_session;
@@ -1301,16 +1398,16 @@ export default {
               method: "post",
               url: `/order/razorpay-order`,
               token: this.$store.state.cartAjax.cart_token,
-              params: form
+              params: form,
             })
-            .then(response => {
+            .then((response) => {
               if (response.success === true) {
                 this.$router.push("thankyou");
               } else {
                 this.$toast.error(response.message);
               }
             })
-            .catch(error => {
+            .catch((error) => {
               this.$globalError(`this is from razorpayFunction >>>> ${error}`);
               if (error.message === "Network Error") {
                 this.$toast.error(
@@ -1322,14 +1419,14 @@ export default {
         prefill: {
           name: this.razorpay_form.prefill.name,
           email: this.razorpay_form.prefill.email,
-          contact: this.razorpay_form.prefill.contact
+          contact: this.razorpay_form.prefill.contact,
         },
         notes: {
-          order_id: this.razorpay_form.notes.id
+          order_id: this.razorpay_form.notes.id,
         },
         theme: {
-          color: this.razorpay_form.theme.color
-        }
+          color: this.razorpay_form.theme.color,
+        },
       };
       const rzp = new Razorpay(options);
       rzp.open();
@@ -1366,13 +1463,13 @@ export default {
           method: "post",
           url,
           token: this.$store.state.cartAjax.cart_token,
-          params: form
+          params: form,
         });
 
         if (response.success) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
-            data: response
+            data: response,
           });
           this.$toast.open(response.message);
         } else {
@@ -1381,7 +1478,7 @@ export default {
       } catch (error) {
         console.log("error form the add coupon foo >>", error);
       }
-    }
+    },
   },
   mounted() {
     if (!this.$device.isMobile) {
@@ -1416,19 +1513,19 @@ export default {
     //   ecommerce: {
     //     checkout: {
     //       actionField: { step: 3, option: "shipping address" },
-    //       product: this.$store.state.cartAjax.gtm_product,
+    //       products: this.$store.state.cartAjax.gtm_product,
     //     },
     //   },
     // });
   },
 
   watch: {
-    "user.pinCode": function() {
+    "user.pinCode": function () {
       if (this.user.pinCode >= 1000) {
         this.fetchUserDetail();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

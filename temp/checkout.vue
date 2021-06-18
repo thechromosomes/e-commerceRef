@@ -1100,7 +1100,7 @@ export default {
               ecommerce: {
                 checkout: {
                   actionField: { step: 4, option: "Address selected" },
-                  product: this.$store.state.cartAjax.gtm_product,
+                  products: this.$store.state.cartAjax.gtm_product,
                 },
               },
             });
@@ -1149,7 +1149,7 @@ export default {
                   step: 4,
                   option: "Address selected",
                 },
-                product: this.$store.state.cartAjax.gtm_product,
+                products: this.$store.state.cartAjax.gtm_product,
               },
             },
           });
@@ -1192,7 +1192,7 @@ export default {
               ecommerce: {
                 checkout: {
                   actionField: { step: 5, option: value },
-                  product: this.$store.state.cartAjax.gtm_product,
+                  products: this.$store.state.cartAjax.gtm_product,
                 },
               },
             });
@@ -1238,7 +1238,7 @@ export default {
               ecommerce: {
                 checkout: {
                   actionField: { step: 5, option: value },
-                  product: this.$store.state.cartAjax.gtm_product,
+                  products: this.$store.state.cartAjax.gtm_product,
                 },
               },
             });
@@ -1412,7 +1412,7 @@ export default {
       ecommerce: {
         checkout: {
           actionField: { step: 3, option: "shipping address" },
-          product: this.$store.state.cartAjax.gtm_product,
+          products: this.$store.state.cartAjax.gtm_product,
         },
       },
     });

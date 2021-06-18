@@ -99,7 +99,7 @@
                           /></a>
                         </div>
                         <div class="price_info">
-                          <span class="price">₹{{ product.price | numberWithCommas}}</span>
+                          <span class="price">₹{{ product.selling_price | numberWithCommas}}</span>
                         </div>
                       </div>
                     </div>
@@ -238,7 +238,7 @@ export default {
               action: "removeFromCart",
               ecommerce: {
                 remove: {
-                  product: [
+                  products: [
                     {
                       name: item.name,
                       id: item.master_sku,

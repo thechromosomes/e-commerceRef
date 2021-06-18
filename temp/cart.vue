@@ -250,7 +250,7 @@ export default {
               action: "removeFromCart",
               ecommerce: {
                 remove: {
-                  product: [
+                  products: [
                     {
                       name: item.name,
                       id: item.master_sku,

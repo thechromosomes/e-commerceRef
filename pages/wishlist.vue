@@ -65,19 +65,21 @@
               v-for="(item, mainIndex) in wislistProducts"
               :key="mainIndex"
             >
-              <div class="image-container">
-                <img :src="item.image" alt="img" class="w-100" />
-              </div>
-              <div class="tile-body">
-                <div class="product-color">{{ item.color }}</div>
-                <p class="name">{{ item.name }}</p>
-                <h4>
-                  <strong>MRP:</strong>
-                  <span class="price"
-                    >₹{{ item.price | numberWithCommas }}</span
-                  >
-                </h4>
-              </div>
+              <NuxtLink :to="`/product/${item.url_key}`">
+                <div class="image-container">
+                  <img :src="item.image" alt="img" class="w-100" />
+                </div>
+                <div class="tile-body">
+                  <div class="product-color">{{ item.color }}</div>
+                  <p class="name">{{ item.name }}</p>
+                  <h4>
+                    <strong>MRP:</strong>
+                    <span class="price"
+                      >₹{{ item.price | numberWithCommas }}</span
+                    >
+                  </h4>
+                </div>
+              </NuxtLink>
 
               <div class="select-box">
                 <select
@@ -106,7 +108,7 @@
                     :value="size"
                     :disabled="size.color == item.color"
                   >
-                    {{ size.color}}
+                    {{ size.color }}
                   </option>
                 </select>
               </div>
@@ -226,7 +228,7 @@ export default {
           //   ecommerce: {
           //     currencyCode: "INR",
           //     remove: {
-          //       product: [
+          //       products: [
           //         {
           //           name: item.name,
           //           id: item.sku,
@@ -254,7 +256,7 @@ export default {
 
     // update product via color refrence
     updateViaColor(index) {
-      alert(index)
+      alert(index);
       try {
         let tempPost = { ...this.wislistProducts[index] };
         tempPost.image = this.selectedColor[index].image;
@@ -426,7 +428,7 @@ export default {
               //   ecommerce: {
               //     currencyCode: "INR",
               //     add: {
-              //       product: [
+              //       products: [
               //         {
               //           name: item.name,
               //           id: item.sku,

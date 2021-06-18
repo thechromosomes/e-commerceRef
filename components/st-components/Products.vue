@@ -367,7 +367,7 @@ export default {
           //   ecommerce: {
           //     currencyCode: "INR",
           //     remove: {
-          //       product: [
+          //       products: [
           //         {
           //           name: item.name,
           //           id: item.sku,

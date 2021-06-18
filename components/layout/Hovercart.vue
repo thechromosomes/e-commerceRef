@@ -20,7 +20,7 @@
             <div class="p-name">
               <nuxt-link :to="`/product/${product.url_key}`">
                 <span class="name">{{ product.name }}</span>
-                <span class="price">MRP ₹{{ product.price }}</span>
+                <span class="price">MRP ₹{{ product.selling_price }}</span>
               </nuxt-link>
             </div>
             <span class="p-remove">
@@ -99,7 +99,7 @@ export default {
               action: "removeFromCart",
               ecommerce: {
                 remove: {
-                  product: [
+                  products: [
                     {
                       name: item.name,
                       id: item.master_sku,

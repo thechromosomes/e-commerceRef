@@ -165,7 +165,7 @@ export default {
             ecommerce: {
               currencyCode: "INR",
               remove: {
-                product: [
+                products: [
                   {
                     name: item.name,
                     id: item.sku,
@@ -260,7 +260,7 @@ export default {
                 ecommerce: {
                   currencyCode: "INR",
                   add: {
-                    product: [
+                    products: [
                       {
                         name: item.name,
                         id: item.sku,

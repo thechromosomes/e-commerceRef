@@ -563,7 +563,7 @@ export default {
           url: `/cart/productstore`,
           token: this.$store.state.cartAjax.customer_token,
           params: {
-            fynd_uid: this.singleProductList.single_prod_data.fynd_uid,
+            fynd_uid: this.selectedSizeAttr.fynd_uid,
           },
         });
 
@@ -597,7 +597,7 @@ export default {
                     email: element.email,
                     store_id: element.store_id,
                     store_email: element.email,
-                  },
+                  },  
                 });
               }
             });
@@ -759,7 +759,7 @@ export default {
             //     ecommerce: {
             //       currencyCode: "INR",
             //       add: {
-            //         product: [
+            //         products: [
             //           {
             //             name: this.singleProductList.single_prod_data.name,
             //             id: this.singleProductList.single_prod_data.sku,
@@ -862,7 +862,7 @@ export default {
           //   ecommerce: {
           //     currencyCode: "INR",
           //     remove: {
-          //       product: [
+          //       products: [
           //         {
           //           name: this.singleProductList.single_prod_data.name,
           //           id: this.singleProductList.single_prod_data.sku,

@@ -464,6 +464,8 @@
                           ₹{{ singleProd.selling_price | numberWithCommas }}
                           <span class="line-throu"
                             >₹{{ singleProd.price | numberWithCommas }}</span
+                          ><span style="opacity: 0.5; font-weight: 500"
+                            >({{ singleProd.discount }}% Off)</span
                           >
                         </span>
                         <span v-else
@@ -801,25 +803,25 @@ export default {
             payload: response.data,
           });
 
-          this.$gtm.push({
-            event: [data == "add" ? "addToWishlist" : "removeFromWishlist"],
-            category: item.category,
-            action: "removeFromWishlist",
-            ecommerce: {
-              currencyCode: "INR",
-              remove: {
-                product: [
-                  {
-                    name: item.name,
-                    id: item.sku,
-                    price: item.selling_price,
-                    category: item.category,
-                    position: 1,
-                  },
-                ],
-              },
-            },
-          });
+          // this.$gtm.push({
+          //   event: [data == "add" ? "addToWishlist" : "removeFromWishlist"],
+          //   category: item.category,
+          //   action: "removeFromWishlist",
+          //   ecommerce: {
+          //     currencyCode: "INR",
+          //     remove: {
+          //       products: [
+          //         {
+          //           name: item.name,
+          //           id: item.sku,
+          //           price: item.selling_price,
+          //           category: item.category,
+          //           position: 1,
+          //         },
+          //       ],
+          //     },
+          //   },
+          // });
         } else {
           throw "no response from api";
         }
