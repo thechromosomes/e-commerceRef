@@ -3717,8 +3717,8 @@ p.p-price span.line-throu {
   color: #fff;
 }
 .content {
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
+  /* background-color: #fff;
+  border-bottom: 1px solid #ddd; */
   /* display:none; */
 }
 .content p {

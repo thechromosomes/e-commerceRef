@@ -210,7 +210,11 @@
                 </ul>
               </li>
             </ul>
-            <div class="print_btn">
+            <span id="stick-cart-temp"></span>
+            <div
+              class="print_btn"
+              :class="{ addtocartsticky: fixedMobileCart && showStickycart }"
+            >
               <button
                 id="btn-print"
                 class="primary-btn full-with-btn"
@@ -416,6 +420,8 @@ export default {
   components: { VueSlickCarousel, ImageZoom, YouMayLike },
   data() {
     return {
+      fixedMobileCart: false,
+      showStickycart: false,
       storemodel: false,
       search: "",
       serviceCenters: [],
@@ -597,7 +603,7 @@ export default {
                     email: element.email,
                     store_id: element.store_id,
                     store_email: element.email,
-                  },  
+                  },
                 });
               }
             });
@@ -819,6 +825,27 @@ export default {
         return "add";
       }
     },
+
+    updateAddToCart() {
+      function isInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <=
+            (window.innerWidth || document.documentElement.clientWidth)
+        );
+      }
+      const box = document.querySelector('#stick-cart-temp');
+      if (isInViewport(box)) {
+        this.showStickycart = false;
+      } else {
+        this.showStickycart = true;
+      }
+    },
+
     // add and remove to wish list
     async addRemoveWishList(data, index) {
       try {
@@ -905,6 +932,8 @@ export default {
   async fetch() {
     // to fetch single product detail
     await this.getProductDetail();
+
+    this.fixedMobileCart = this.$device.isMobile;
     // render from single variation
     if (
       this.singleProductList.single_prod_data &&
@@ -949,6 +978,14 @@ export default {
         });
       }
     },
+  },
+
+  mounted() {
+    // add window event listner for lazy loading products
+    window.addEventListener("scroll", this.updateAddToCart);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.updateAddToCart);
   },
 };
 </script>

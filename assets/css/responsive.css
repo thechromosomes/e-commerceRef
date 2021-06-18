@@ -891,6 +891,20 @@
     border: none;
     opacity: 1;
   }
+
+  .addtocartsticky {
+    background-color: #fff;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 105;
+    opacity: 1;
+    transition: opacity 0.3s;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 10px;
+  }
 }
 
 @media (max-width: 767px) {

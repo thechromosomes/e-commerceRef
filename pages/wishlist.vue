@@ -112,13 +112,12 @@
                   </option>
                 </select>
               </div>
-              <div
-                class="select-box"
-                v-if="
-                  item.item_lengths && Object.keys(item.item_lengths).length > 0
-                "
-              >
+              <div class="select-box">
                 <select
+                  v-if="
+                    item.item_lengths &&
+                    Object.keys(item.item_lengths).length > 0
+                  "
                   :class="{
                     error: lengthAlert && lengthAlertIndes == mainIndex,
                   }"
