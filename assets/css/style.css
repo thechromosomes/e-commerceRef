@@ -1566,6 +1566,7 @@ p.p-price span.line-throu {
   letter-spacing: 0.5px;
   font-family: var(--fontFamily);
 }
+.visual-filters-container .slick-arrow,
 .you_like_slide .slick-arrow {
   position: absolute;
   top: 40%;
@@ -1575,10 +1576,12 @@ p.p-price span.line-throu {
   transform: translateY(-50%);
   cursor: pointer;
 }
+.visual-filters-container .slick-arrow.slick-prev,
 .you_like_slide .slick-arrow.slick-prev {
   z-index: 2;
   left: -15px;
 }
+.visual-filters-container .slick-arrow.slick-prev::before,
 .you_like_slide .slick-arrow.slick-prev::before {
   content: "";
   display: inline-block;
@@ -1590,6 +1593,7 @@ p.p-price span.line-throu {
   text-indent: -9999px;
   transform: rotate(90deg);
 }
+.visual-filters-container .slick-arrow.slick-next::before,
 .you_like_slide .slick-arrow.slick-next::before {
   content: "";
   display: inline-block;
@@ -1601,6 +1605,7 @@ p.p-price span.line-throu {
   text-indent: -9999px;
   transform: rotate(270deg);
 }
+.visual-filters-container .slick-arrow.slick-next,
 .you_like_slide .slick-arrow.slick-next {
   z-index: 2;
   right: -15px;
@@ -2432,7 +2437,7 @@ p.p-price span.line-throu {
 .visual-filters {
   background-color: #f9f9f9;
   padding: 0 14px 20px;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 0 auto;
   max-width: 1300px;
   width: 100%;
@@ -2452,14 +2457,15 @@ p.p-price span.line-throu {
 
 .visual-filters .visual-filters-container {
   width: 100%;
-  white-space: nowrap;
+  /* white-space: nowrap;
   overflow: auto;
   text-align: center;
   scrollbar-width: thin;
-  scrollbar-color: #e3e3e3 transparent;
+  scrollbar-color: #e3e3e3 transparent; */
+  margin: 0px -10px;
 }
 /* firefox */
-
+/*
 .visual-filters .visual-filters-container {
   scrollbar-width: thin;
   scrollbar-color: red transparent;
@@ -2474,10 +2480,10 @@ p.p-price span.line-throu {
   background-color: red;
   border-radius: 6px;
   border: 3px solid transparent;
-}
+} */
 
 /* webkit browsers */
-.visual-filters .visual-filters-container::-webkit-scrollbar,
+/* .visual-filters .visual-filters-container::-webkit-scrollbar,
 .visual-filters .visual-filters-container::-webkit-scrollbar-thumb {
   height: 26px;
   border-radius: 13px;
@@ -2491,16 +2497,17 @@ p.p-price span.line-throu {
 
 .visual-filters .visual-filters-container .category-filter:last-child {
   margin: 0;
-}
+} */
 .visual-filters .visual-filters-container .category-filter {
-  width: 15%;
-  margin-right: 24px;
+  /* width: 15%; */
+  /* margin-right: 24px; */
   position: relative;
   border-radius: 10px;
   transition: all 0.5s;
   margin-bottom: 10px;
   cursor: pointer;
-  display: inline-block;
+  padding: 0 10px;
+  /* display: inline-block; */
 }
 .visual-filters .visual-filters-container .category-filter .item {
   position: relative;
@@ -3778,4 +3785,9 @@ p.p-price span.line-throu {
 .align-center {
   align-items: center;
   text-align: center;
+}
+.store-search-items {
+  min-height: 0;
+  max-height: 395px;
+  overflow: auto;
 }
