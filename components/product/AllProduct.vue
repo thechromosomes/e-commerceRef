@@ -92,9 +92,12 @@
             </VueSlickCarousel>
           </div>
         </div>
-        <!-- visual-filters end -->
+        <!-- visual-filters end  sticky-->
         <div class="mobile_only">
-          <div class="mobile-refinement-bar sticky">
+          <div
+            class="mobile-refinement-bar "
+            :class="[scrollPosition > 400 ? 'sticky' : '']"
+          >
             <div class="filter-sort-button-holder" @click="mobileFilter = true">
               <div class="filter-results">
                 <span class="filter-sort-button-name">Filter-Sort By</span>
@@ -596,8 +599,7 @@ export default {
               centerPadding: "0px",
               slidesToShow: 3
             }
-          },
-
+          }
         ]
       },
       sorting: "default",

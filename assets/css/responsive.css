@@ -443,6 +443,11 @@
     padding: 14px;
     padding: 0.875rem;
   }
+  .mobile-refinement-bar.sticky {
+    position: fixed;
+    width: 100%;
+    top: 50px;
+  }
 
   .sticky {
     z-index: 1;
