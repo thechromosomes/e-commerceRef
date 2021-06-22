@@ -1,4 +1,7 @@
 @media (max-width: 991px) {
+  .visual-filters-container .slick-arrow.slick-prev{
+    left: 0px;
+  }
   .check-order-static-form {
     width: 100%;
   }

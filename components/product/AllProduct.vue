@@ -576,7 +576,7 @@ export default {
       settings: {
         infinite: true,
         slidesToShow: 6,
-        slidesToScroll: 1,
+        slidesToScroll: 3,
         dots: false,
         arrows: true,
         autoplay: false,
