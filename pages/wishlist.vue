@@ -220,24 +220,24 @@ export default {
           });
           this.getProduct();
 
-          // this.$gtm.push({
-          //   event: "removeFromWishlist",
-          //   action: "removeFromWishlist",
-          //   category: item.sub_category,
-          //   ecommerce: {
-          //     currencyCode: "INR",
-          //     remove: {
-          //       products: [
-          //         {
-          //           name: item.name,
-          //           id: item.sku,
-          //           price: item.selling_price,
-          //           category: item.sub_category
-          //         }
-          //       ]
-          //     }
-          //   }
-          // });wislistProducts
+          this.$gtm.push({
+            event: "removeFromWishlist",
+            action: "removeFromWishlist",
+            category: item.sub_category,
+            ecommerce: {
+              currencyCode: "INR",
+              remove: {
+                products: [
+                  {
+                    name: item.name,
+                    id: item.sku,
+                    price: item.selling_price,
+                    category: item.sub_category,
+                  },
+                ],
+              },
+            },
+          });
         } else {
           this.$toast.error(response.message);
           throw "no response from api";
@@ -313,15 +313,15 @@ export default {
             });
           }
 
-          // this.$gtm.push({
-          //   event: "impressionSent",
-          //   action: "Product Impression",
-          //   label: "Wishlist page",
-          //   ecommerce: {
-          //     currencyCode: "INR",
-          //     impressions: this.gtm_product_impressions,
-          //   },
-          // });
+          this.$gtm.push({
+            event: "impressionSent",
+            action: "Product Impression",
+            label: "Wishlist page",
+            ecommerce: {
+              currencyCode: "INR",
+              impressions: this.gtm_product_impressions,
+            },
+          });
         } else {
           throw "No data found";
         }
@@ -420,28 +420,28 @@ export default {
             if (response.success) this.reomoveFromCart(item, sizeIndex);
             // google tag manager
             if (response.success) {
-              // this.$gtm.push({
-              //   event: "addToCart",
-              //   category: item.sub_category,
-              //   action: "addToCart",
-              //   ecommerce: {
-              //     currencyCode: "INR",
-              //     add: {
-              //       products: [
-              //         {
-              //           name: item.name,
-              //           id: item.sku,
-              //           price: item.selling_price,
-              //           category: item.sub_category,
-              //           variant:
-              //             item.variation[this.selectedSize[sizeIndex]]
-              //               .configrable_atribute_value,
-              //           quantity: "1",
-              //         },
-              //       ],
-              //     },
-              //   },
-              // });
+              this.$gtm.push({
+                event: "addToCart",
+                category: item.sub_category,
+                action: "addToCart",
+                ecommerce: {
+                  currencyCode: "INR",
+                  add: {
+                    products: [
+                      {
+                        name: item.name,
+                        id: item.sku,
+                        price: item.selling_price,
+                        category: item.sub_category,
+                        variant:
+                          item.variation[this.selectedSize[sizeIndex]]
+                            .configrable_atribute_value,
+                        quantity: "1",
+                      },
+                    ],
+                  },
+                },
+              });
             }
           } else {
             throw "no response from api";

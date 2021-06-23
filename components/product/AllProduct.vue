@@ -58,6 +58,7 @@
             <h6>SHOP BY FIT</h6>
           </div>
           <div class="visual-filters-container">
+            <client-only>
             <VueSlickCarousel ref="slick" v-bind="settings">
               <div
                 class="category-filter"
@@ -90,6 +91,7 @@
                 </div>
               </div>
             </VueSlickCarousel>
+            </client-only>
           </div>
         </div>
         <!-- visual-filters end  sticky-->
@@ -697,40 +699,40 @@ export default {
             data: response
           });
           // // google tag manager
-          // this.gtm_product_impressions = [];
-          // var appliedFilter = "none";
-          // if (response.query.filter) {
-          //   appliedFilter = response.query.filter;
-          // }
-          // if (response.result.products.length > 0) {
-          //   for (let [index, i] of response.result.products.entries()) {
-          //     let name = i.name;
-          //     let id = i.sku;
-          //     let price = i.selling_price;
-          //     let category = i.category;
-          //     let list = "product List";
-          //     let position = index + 1;
-          //     this.gtm_product_impressions.push({
-          //       name,
-          //       id,
-          //       price,
-          //       category,
-          //       list,
-          //       position,
-          //       appliedFilter,
-          //     });
-          //   }
-          //   this.$gtm.push({
-          //     event: "impressionSent",
-          //     action: "Product Impression",
-          //     label: "Product List page",
-          //     category: response.result.products[0].category,
-          //     ecommerce: {
-          //       currencyCode: "INR",
-          //       impressions: this.gtm_product_impressions,
-          //     },
-          //   });
-          // }
+          this.gtm_product_impressions = [];
+          var appliedFilter = "none";
+          if (response.query.filter) {
+            appliedFilter = response.query.filter;
+          }
+          if (response.result.products.length > 0) {
+            for (let [index, i] of response.result.products.entries()) {
+              let name = i.name;
+              let id = i.sku;
+              let price = i.selling_price;
+              let category = i.category;
+              let list = "product List";
+              let position = index + 1;
+              this.gtm_product_impressions.push({
+                name,
+                id,
+                price,
+                category,
+                list,
+                position,
+                appliedFilter,
+              });
+            }
+            this.$gtm.push({
+              event: "impressionSent",
+              action: "Product Impression",
+              label: "Product List page",
+              category: response.result.products[0].category,
+              ecommerce: {
+                currencyCode: "INR",
+                impressions: this.gtm_product_impressions,
+              },
+            });
+          }
           if (process.browser && pageNumber == 1) {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }
@@ -840,25 +842,25 @@ export default {
             payload: response.data
           });
 
-          // this.$gtm.push({
-          //   event: [data == "add" ? "addToWishlist" : "removeFromWishlist"],
-          //   category: item.category,
-          //   action: "removeFromWishlist",
-          //   ecommerce: {
-          //     currencyCode: "INR",
-          //     remove: {
-          //       products: [
-          //         {
-          //           name: item.name,
-          //           id: item.sku,
-          //           price: item.selling_price,
-          //           category: item.category,
-          //           position: 1,
-          //         },
-          //       ],
-          //     },
-          //   },
-          // });
+          this.$gtm.push({
+            event: [data == "add" ? "addToWishlist" : "removeFromWishlist"],
+            category: item.category,
+            action: "removeFromWishlist",
+            ecommerce: {
+              currencyCode: "INR",
+              remove: {
+                products: [
+                  {
+                    name: item.name,
+                    id: item.sku,
+                    price: item.selling_price,
+                    category: item.category,
+                    position: 1,
+                  },
+                ],
+              },
+            },
+          });
         } else {
           throw "no response from api";
         }

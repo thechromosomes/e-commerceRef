@@ -49,9 +49,7 @@
                 class="wishlist_blank"
                 :id="$store.state.cartAjax.wishlist.group"
                 :class="renderWishList(item)"
-                @click.prevent="
-                  addRemoveWishList(item, renderWishList(item))
-                "
+                @click.prevent="addRemoveWishList(item, renderWishList(item))"
               ></span>
             </div>
           </div>
@@ -71,8 +69,8 @@
         <div class="st-bottom-card">
           <div class="st-title-box">
             <h3 class="st-product-title">
+              <span class="st-available-color">{{ item.colour }}</span>
               <NuxtLink :to="getUrl(item.url)">
-                <span class="st-available-color">{{ item.colour }}</span>
                 <p class="st-name">{{ item.name }}</p>
               </NuxtLink>
             </h3>
@@ -271,10 +269,10 @@ export default {
       }
     },
     imageModifier: function (img) {
-      if (img !== null && img !== undefined) {
+      if (img) {
         return img;
       } else {
-        return "https://www.themelocation.com/wp-content/uploads/2015/01/woocommerce113.jpg";
+        return "http://via.placeholder.com/400x530";
       }
     },
     getUrl: function (url) {
@@ -292,7 +290,11 @@ export default {
       window.location.href = item_url;
     },
     numberWithCommas: function (x) {
-      if (x) return x.toFixed(0);
+      if (x)
+        return x
+          .toFixed(0)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       else return 0;
     },
     stopPropagation(event) {

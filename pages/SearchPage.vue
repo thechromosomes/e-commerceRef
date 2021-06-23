@@ -3,7 +3,7 @@
     <div id="searchModalContainer" v-cloak>
       <div class="some-error" v-if="errorEncountered === true">
         <div class="container">
-          <div class="error-div">Oops!!! Something Went Wrong</div>
+          <div class="error-div"><h2>Oops!!! Something Went Wrong</h2></div>
           <p>
             Please, try
             <a href="" onclick="location.reload()" class="highlight-text"
@@ -22,6 +22,7 @@
                 <div
                   class="st-horizontal-filter hidden-mobile-only"
                   :class="{ 'st-filter-outer-open': isFilterOpen }"
+                  v-show="totalHits > 0"
                 >
                   <div class="filter-column st-pl-sm-0">
                     <div class="st-filter-header-title">
@@ -73,13 +74,11 @@
                           class="tag-item"
                           v-for="filter in allSelectedFilters"
                           :key="filter.field"
+                          @click="
+                            clearSingleFilter(filter.selected, filter.field)
+                          "
                         >
-                          <div
-                            class="tag-close"
-                            @click="
-                              clearSingleFilter(filter.selected, filter.field)
-                            "
-                          ></div>
+                          <div class="tag-close"></div>
                           <div
                             class="tag-content"
                             v-if="filter.type !== 'numericFacet'"
@@ -112,8 +111,8 @@
                           class="st-result-inner"
                           :class="{ 'st-filter-outer-open': showSort }"
                         >
-                          <div class="st-col-md-6 pl0">
-                            <div class="st-item-result">
+                          <div class="st-col-md-6 pl0 st-mt10">
+                            <span class="st-item-result">
                               <span class="st-pr2"
                                 >Showing: {{ totalHits }}</span
                               >
@@ -122,8 +121,8 @@
                                   >s</span
                                 ></span
                               >
-                            </div>
-                            <span class="st-brand-outer hidden-desktop-only">
+                            </span>
+                            <span class="st-brand-outer">
                               <a
                                 href="https://www.searchtap.io/?utm_source=diesel&amp;utm_medium=website"
                                 target="_blank"
@@ -147,8 +146,6 @@
                                     :class="{ 'st-sort-open': showSort }"
                                     @click="showSort = !showSort"
                                   >
-                                    <span class="st-sort-label">Sort By</span>
-
                                     <div class="st-filter-title">
                                       <span> {{ sortLabel }}</span>
                                     </div>
@@ -358,11 +355,14 @@
                         </div>
                       </div>
                     </div>
-                    <div
-                      class="apply-all"
-                      @click="jumpToTop(), (showMobileFilter = false)"
-                    >
-                      <a class="apply-btn">Apply Filter</a>
+                    <div class="apply-all">
+                      <div class="st-clear-all st-disabled-button">Clear</div>
+                      <div
+                        class="st-close-filter"
+                        @click="jumpToTop(), (showMobileFilter = false)"
+                      >
+                        Apply
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -750,11 +750,57 @@ export default {
                     count: v.value,
                   });
                 });
-                f.values.sort(function (a, b) {
-                  if (a.name < b.name) return -1;
-                  else if (a.name > b.name) return 1;
-                  else return 0;
-                });
+                if (f.title === "Size") {
+                  f.values.sort(function (a, b) {
+                    var sortingArr = [
+                      "XXS",
+                      "XS",
+                      "S",
+                      "M",
+                      "L",
+                      "XL",
+                      "XXL",
+                      "XXXL",
+                      "25",
+                      "26",
+                      "27",
+                      "28",
+                      "29",
+                      "30",
+                      "31",
+                      "32",
+                      "33",
+                      "34",
+                      "35",
+                      "36",
+                      "37",
+                      "38",
+                      "39",
+                      "40",
+                      "41",
+                      "42",
+                      "43",
+                      "44",
+                      "45",
+                      "46",
+                      "1",
+                      "2",
+                      "4Y",
+                      "8Y",
+                      "10Y",
+                      "UNI",
+                      "75",
+                      "80",
+                      "85",
+                      "90",
+                      "95",
+                      "I",
+                    ];
+                    return (
+                      sortingArr.indexOf(a.name) - sortingArr.indexOf(b.name)
+                    );
+                  });
+                }
               }
 
               let numericFacetValues = response.numericFacets[f.field];
@@ -892,7 +938,7 @@ export default {
             "_size_search",
             "color_options",
             "group_id",
-            "id_product",
+            "id_product"
           )
           .skip(offset)
           .count(this.pageSize)
@@ -1100,12 +1146,12 @@ export default {
   data() {
     return {
       baseUrl: "/",
-      path:"",
+      path: "",
       allSelectedFilters: [],
       showSort: false,
       showFilter: false,
       selectedField: "_size_search",
-      currSymbol: "Rs.",
+      currSymbol: "₹ ",
       sortMobileDisplay: false,
       htmlContent: "",
       onFocusScroll: 0,
@@ -1149,6 +1195,16 @@ export default {
         {
           label: "Price (High to Low)",
           field: "-discounted_price",
+          active: false,
+        },
+        {
+          label: "Product Name A-Z",
+          field: "name",
+          active: false,
+        },
+        {
+          label: "Product Name Z-A",
+          field: "-name",
           active: false,
         },
         {

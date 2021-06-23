@@ -282,16 +282,14 @@
       </div>
     </nav>
     <!-- search box -->
-    <div class="search-box" v-if="searchActive">
+    <div class="search-box" v-if="searchActive" >
       <div class="site-search">
         <div class="search_icon">
           <span class=""></span>
         </div>
         <div class="search_form">
-          <form>
             <input
               type="text"
-              value=""
               class="search_input"
               autocomplete="off"
               placeholder="What are you looking for?"
@@ -300,7 +298,6 @@
               @keyup="stSearch"
               name="st"
             />
-          </form>
         </div>
         <div class="close_icon" @click="searchActive = false">
           <span class=""></span>

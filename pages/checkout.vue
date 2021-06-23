@@ -1331,18 +1331,18 @@ export default {
           params: form,
         });
         if (response.success) {
-          //  this.$gtm.push({
-          //     event: "checkout",
-          //     category: "Ecommerce",
-          //     action: "Checkout",
-          //     label: "5",
-          //     ecommerce: {
-          //       checkout: {
-          //         actionField: { step: 5, option: value },
-          //         products: this.$store.state.cartAjax.gtm_product,
-          //       },
+          // this.$gtm.push({
+          //   event: "checkout",
+          //   category: "Ecommerce",
+          //   action: "Checkout",
+          //   label: "5",
+          //   ecommerce: {
+          //     checkout: {
+          //       actionField: { step: 5, option: value },
+          //       products: this.$store.state.cartAjax.gtm_product,
           //     },
-          //   });
+          //   },
+          // });
 
           if (value == "cod") {
             this.$router.push("thankyou");
@@ -1495,6 +1495,16 @@ export default {
       this.$store.state.cartAjax.customer_id == ""
     ) {
       this.$router.push("/login");
+      // this.$gtm.push({
+      //   event: "checkout",
+      //   action: "Checkout",
+      //   ecommerce: {
+      //     checkout: {
+      //       actionField: { step: 1, option: "Login" },
+      //       products: this.$store.state.cartAjax.gtm_product,
+      //     },
+      //   },
+      // });
       return;
     }
 
