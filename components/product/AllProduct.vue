@@ -48,56 +48,52 @@
         <!-- visual-filters -->
         <div
           class="visual-filters"
-          v-if="
-            list.Product_list.length > 0 &&
-              list.fit_filter &&
-              Object.keys(list.fit_filter).length != 0
-          "
+          v-if="list.fit_filter && Object.keys(list.fit_filter).length != 0"
         >
           <div class="visual-filter-texts">
             <h6>SHOP BY FIT</h6>
           </div>
           <div class="visual-filters-container">
             <client-only>
-            <VueSlickCarousel ref="slick" v-bind="settings">
-              <div
-                class="category-filter"
-                v-for="(fitFilterItem, FitFilterIndex) in list.fit_filter"
-                :key="FitFilterIndex"
-                :class="
-                  list.applied_filters.findIndex(
-                    x =>
-                      x === `${fitFilterItem.code}~${fitFilterItem.value_key}`
-                  ) >= 0
-                    ? 'active'
-                    : ''
-                "
-              >
-                <span
-                  class="active-arrow-colse"
-                  @click="
-                    removeFilter(
-                      `${fitFilterItem.code}~${fitFilterItem.value_key}`
-                    )
+              <VueSlickCarousel ref="slick" v-bind="settings">
+                <div
+                  class="category-filter"
+                  v-for="(fitFilterItem, FitFilterIndex) in list.fit_filter"
+                  :key="FitFilterIndex"
+                  :class="
+                    list.applied_filters.findIndex(
+                      (x) =>
+                        x === `${fitFilterItem.code}~${fitFilterItem.value_key}`
+                    ) >= 0
+                      ? 'active'
+                      : ''
                   "
-                ></span>
-                <div class="item" @click="handleFitFilter(fitFilterItem)">
-                  <div class="filter-image">
-                    <img :src="fitFilterItem.image" alt="img" class="w-100" />
-                  </div>
-                  <div class="category-filter-title">
-                    <a>{{ fitFilterItem.value }}</a>
+                >
+                  <span
+                    class="active-arrow-colse"
+                    @click="
+                      removeFilter(
+                        `${fitFilterItem.code}~${fitFilterItem.value_key}`
+                      )
+                    "
+                  ></span>
+                  <div class="item" @click="handleFitFilter(fitFilterItem)">
+                    <div class="filter-image">
+                      <img :src="fitFilterItem.image" alt="img" class="w-100" />
+                    </div>
+                    <div class="category-filter-title">
+                      <a>{{ fitFilterItem.value }}</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </VueSlickCarousel>
+              </VueSlickCarousel>
             </client-only>
           </div>
         </div>
         <!-- visual-filters end  sticky-->
         <div class="mobile_only">
           <div
-            class="mobile-refinement-bar "
+            class="mobile-refinement-bar"
             :class="[scrollPosition > 400 ? 'sticky' : '']"
           >
             <div class="filter-sort-button-holder" @click="mobileFilter = true">
@@ -120,10 +116,7 @@
                     <i class="fa fa-close"></i>
                   </button>
                 </div>
-                <div
-                  class="sort-options-mobile"
-                  v-show="list.Product_list.length > 0"
-                >
+                <div class="sort-options-mobile">
                   <div class="group">
                     <div
                       class="radio-button-sort"
@@ -162,9 +155,7 @@
                 <div class="mobile-filters">
                   <div
                     class="refinements-holder"
-                    v-if="
-                      list.filters.length > 0 && list.Product_list.length > 0
-                    "
+                    v-if="list.filters.length > 0"
                   >
                     <div class="container-fluids">
                       <div class="filter_box">
@@ -207,7 +198,7 @@
                                   <span
                                     @click.prevent="
                                       $store.commit('updateFilterArray', {
-                                        item
+                                        item,
                                       })
                                     "
                                   >
@@ -215,7 +206,7 @@
                                       class="selection-box"
                                       :class="
                                         list.applied_filters.findIndex(
-                                          x =>
+                                          (x) =>
                                             x ===
                                             `${item.code}~${item.value_key}`
                                         ) >= 0
@@ -265,7 +256,7 @@
     <div
       class="refinements-holder"
       :class="openFiltter == true ? '' : 'desktop_only'"
-      v-if="list.filters.length > 0 && list.Product_list.length > 0"
+      v-if="list.filters.length > 0"
     >
       <div class="container-fluid">
         <div class="filter_box">
@@ -316,7 +307,7 @@
                         class="selection-box"
                         :class="
                           list.applied_filters.findIndex(
-                            x => x === `${item.code}~${item.value_key}`
+                            (x) => x === `${item.code}~${item.value_key}`
                           ) >= 0
                             ? 'selected-box'
                             : 'not-selected-box'
@@ -337,16 +328,23 @@
     <div class="desktop_only" v-if="list.applied_filters.length > 0">
       <div class="filter-bar">
         <div class="filter-clearall-container">
-          <a class="reset" @click.prevent="removeAllFilters()"> Clear all </a>
+          <a
+            class="reset"
+            style="cursor: pointer"
+            @click.prevent="removeAllFilters()"
+          >
+            Clear all
+          </a>
         </div>
         <ul class="filters-close-main-container">
           <li
             class="filter-value"
+            style="cursor: pointer"
             v-for="(appliedFilter, filterIndex) in list.applied_filters"
             :key="filterIndex"
             @click="removeFilter(appliedFilter)"
           >
-            <a class="filter-close-container">
+            <a class="filter-close-container" style="cursor: pointer">
               {{ appliedFilter }}
               <div class="icon-close-black icon-close-black-filter"></div>
             </a>
@@ -493,7 +491,7 @@
               <img
                 v-show="
                   list.product_loader === true &&
-                    $store.state.pageLoader == false
+                  $store.state.pageLoader == false
                 "
                 src="~/assets/img/giphy.gif"
                 width="40px"
@@ -503,7 +501,7 @@
               class="no_products text-center"
               v-if="
                 list.Product_list.length == 0 &&
-                  $store.state.pageLoader == false
+                $store.state.pageLoader == false
               "
             >
               <h1>Sorry !</h1>
@@ -575,7 +573,7 @@ export default {
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: false,
-        arrows: true
+        arrows: true,
       },
       settings: {
         infinite: true,
@@ -592,8 +590,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 3.5
-            }
+              slidesToShow: 3.5,
+            },
           },
           {
             breakpoint: 767,
@@ -601,16 +599,16 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 3
-            }
-          }
-        ]
+              slidesToShow: 3,
+            },
+          },
+        ],
       },
       sorting: "default",
       openFiltter: false,
       openSort: false,
       likeData: [],
-      mobileFilter: false
+      mobileFilter: false,
     };
   },
 
@@ -621,29 +619,29 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.list.meta_description
+          content: this.list.meta_description,
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.list.meta_keyword
+          content: this.list.meta_keyword,
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title"
+          property: "og:title",
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description"
+          property: "og:description",
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url"
-        }
-      ]
+          property: "og:url",
+        },
+      ],
     };
   },
 
@@ -654,15 +652,10 @@ export default {
       try {
         await this.$store.commit("prepareState", {
           routeParam: this.$route.params.productCategory,
-          pageNo: pageNumber
+          pageNo: pageNumber,
         });
-        let {
-          service,
-          store,
-          pass_url_key,
-          page,
-          count
-        } = this.$store.state.list;
+        let { service, store, pass_url_key, page, count } =
+          this.$store.state.list;
 
         let form = {};
         form.service = service;
@@ -692,13 +685,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
 
         if (response) {
           await this.$store.commit("updateState", {
             error: null,
-            data: response
+            data: response,
           });
           // // google tag manager
           this.gtm_product_impressions = [];
@@ -706,7 +699,7 @@ export default {
           if (response.query.filter) {
             appliedFilter = response.query.filter;
           }
-          if (response.result.products.length > 0) {
+          if (response.success && response.result.products.length > 0) {
             for (let [index, i] of response.result.products.entries()) {
               let name = i.name;
               let id = i.sku;
@@ -738,6 +731,15 @@ export default {
           if (process.browser && pageNumber == 1) {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }
+
+          // hide mobile filter when no product
+          if (
+            response.response.success == 0 &&
+            response.response.error_message == "no product found" &&
+            this.mobileFilter == true
+          ) {
+            this.mobileFilter = false;
+          }
         } else {
           throw "there is error from all product page >> no response";
         }
@@ -745,7 +747,8 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error: "Oops there seems to be some Network issue, please try again"
+            error:
+              "Oops there seems to be some Network issue, please try again",
           });
         }
       }
@@ -753,6 +756,7 @@ export default {
     async removeAllFilters() {
       await this.$store.commit("blankfilter");
       this.$router.push(this.$route.path);
+      this.mobileFilter = false;
     },
 
     toggleFilter() {
@@ -772,15 +776,15 @@ export default {
         query: {
           ...this.$route.query,
           sort: event.code,
-          sort_dir: event.dir
-        }
+          sort_dir: event.dir,
+        },
       });
     },
 
     async loadMore() {
       await this.$store.commit("universalListMutate", {
         data: Number(this.list.page) + 1,
-        changeState: "page"
+        changeState: "page",
       });
       this.getProductList(this.list.page);
     },
@@ -793,10 +797,10 @@ export default {
       if (Object.keys(wishList).length != 0) {
         const groupResult = wishList.group
           .split(",")
-          .filter(word => word == groupId);
+          .filter((word) => word == groupId);
         const productResult = wishList.product
           .split(",")
-          .filter(word => word == ProductId);
+          .filter((word) => word == ProductId);
 
         if (groupResult.length > 0 && productResult.length > 0) {
           return "wishlist-active";
@@ -819,7 +823,7 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id
+          group_id: item.group_id,
         };
 
         if (data === "add") {
@@ -827,21 +831,21 @@ export default {
             method: "post",
             url: `/wishlist/add-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
         } else {
           var response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/wishlist/remove-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form
+            params: form,
           });
         }
 
         if (response.success) {
           this.$toast.open(response.message);
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data
+            payload: response.data,
           });
 
           this.$gtm.push({
@@ -879,7 +883,7 @@ export default {
       if (window.scrollY >= loader_position - 2000) {
         await this.$store.commit("universalListMutate", {
           data: Number(this.list.page) + 1,
-          changeState: "page"
+          changeState: "page",
         });
         if (
           this.list.page <= this.list.total_page &&
@@ -906,7 +910,7 @@ export default {
     // fit filter handler
     handleFitFilter(item) {
       this.$store.commit("updateFilterArray", { item });
-    }
+    },
   },
 
   computed: {
@@ -929,7 +933,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    }
+    },
   },
 
   async fetch() {
@@ -945,8 +949,8 @@ export default {
         params: {
           service: "like",
           store: 1,
-          url_key: this.$route.params.productCategory
-        }
+          url_key: this.$route.params.productCategory,
+        },
       });
       if (like.response) {
         this.likeData = like.result.likes;
@@ -964,17 +968,17 @@ export default {
     this.$store.commit("flushActiveUrlKey");
   },
   watch: {
-    "$route.query": function() {
+    "$route.query": function () {
       this.getProductList();
     },
 
     "$store.state.list.sortingData": {
       deep: true,
-      handler: function() {
+      handler: function () {
         // this.sorting.code = this.list.sortingData.code;
         // this.sorting.dir = this.list.sortingData.dir;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>

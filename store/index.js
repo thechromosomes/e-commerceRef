@@ -241,6 +241,13 @@ export const mutations = {
         state.list.product_loader = false;
       } else {
         state.list.page_error = data.response.error_message;
+        if (data.query.filter) {
+          let array = data.query.filter.split(",");
+          state.list.applied_filters = array;
+        }
+        if (!data.query.filter) {
+          state.list.applied_filters = [];
+        }
         state.list.product_loader = false;
       }
     } else {
@@ -297,6 +304,7 @@ removeSingleProdState(state) {
     if (paramsData) {
       filterParam = paramsData;
     }
+
     if (state.list.applied_filters.length == 0) {
       state.list.applied_filters.push(filterParam);
       this.$router.push({
