@@ -30,7 +30,7 @@
     </div>
 
     <client-only>
-      <section class="new_in">
+      <section class="new_in" style="min-height:250px;">
         <div class="container-fluid">
           <div class="content_new_in">
             <h2 class="swiper-header">NEW IN</h2>
@@ -107,6 +107,7 @@ export default {
         ],
       },
       settings2: {
+        lazyLoad:"ondemand",
         focusOnSelect: true,
         dots: true,
         infinite: true,
@@ -137,33 +138,33 @@ export default {
       },
     };
   },
-  // head() {
-  //   return {
-  //     title: this.title,
-  //     meta: [
-  //       {
-  //         hid: this.description,
-  //         name: this.description,
-  //         content: this.description,
-  //       },
-  //       {
-  //         hid: "og:title",
-  //         content: this.title,
-  //         property: "og:title",
-  //       },
-  //       {
-  //         hid: "og:description",
-  //         content: this.description,
-  //         property: "og:description",
-  //       },
-  //       {
-  //         hid: "og:url",
-  //         content: this.url,
-  //         property: "og:url",
-  //       },
-  //     ],
-  //   };
-  // },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: this.description,
+          name: this.description,
+          content: this.description,
+        },
+        {
+          hid: "og:title",
+          content: this.title,
+          property: "og:title",
+        },
+        {
+          hid: "og:description",
+          content: this.description,
+          property: "og:description",
+        },
+        {
+          hid: "og:url",
+          content: this.url,
+          property: "og:url",
+        },
+      ],
+    };
+  },
 
   computed: {
     ...mapState(["homePageData", "bannerSlide", "is_new"]),

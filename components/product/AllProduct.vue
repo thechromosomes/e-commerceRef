@@ -567,7 +567,9 @@ export default {
       scrollPosition: "",
       activeDropdown: null,
       showSort: false,
+      gtm_product_impressions:[],
       productSetting: {
+        lazyLoad:"ondemand",
         focusOnSelect: true,
         infinite: true,
         slidesToShow: 1,

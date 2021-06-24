@@ -41,6 +41,7 @@ export default async (context) => {
     // is new api call
     let bestSellerForm = {};
     bestSellerForm.service = "is_new";
+    bestSellerForm.count =6;
     bestSellerForm.store = 1;
     context.store.dispatch("getBestSeller", {
       method: "get",
