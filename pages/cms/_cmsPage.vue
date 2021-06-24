@@ -20,6 +20,14 @@
                   :key="index"
                   :title="item.name"
                   :class="{ active: item.content == tapData }"
+                  v-bind="
+                    rendeSeo(
+                      item.meta_title,
+                      item.meta_description,
+                      item.meta_keyword,
+                      item.parent_name
+                    )
+                  "
                 >
                   <a @click.prevent="updateData(item)">{{ item.name }}</a>
                 </li>
@@ -49,12 +57,38 @@ export default {
       cmsData: {},
       tapData: "",
       title: "",
+      meta_description: "",
+      meta_title: "",
+      meta_keyword: "diesel",
+    };
+  },
+
+  head() {
+    return {
+      title: this.meta_title,
+      meta: [
+        {
+          name: "description",
+          content: this.meta_description,
+        },
+        {
+          property: "keywords",
+          content: this.meta_keyword,
+        },
+      ],
     };
   },
 
   methods: {
     updateData(name) {
       this.tapData = name.content;
+    },
+    rendeSeo(title, description, meta_keyword, url_key) {
+      if (url_key == this.$route.params.cmsPage) {
+        this.meta_description = description;
+        this.meta_keyword = meta_keyword;
+        this.meta_title = title;
+      }
     },
   },
 

@@ -106,27 +106,27 @@ export default {
   // serverMiddleware: ["~/server-middleware/globalErrorMiddleware"],
 
   // error handler hook
-  hooks: {
-    render: {
-      errorMiddleware(app) {
-        app.use(async (error, req, res, next) => {
-          if (error) {
-            let finalError = await error;
-            console.log("finalError", finalError);
-            // CreateLog.error({
-            //   error: `>>> ${finalError}`,
-            //   metaInformation: req.rawHeaders,
-            //   type: "error middleware",
-            //   from: req.url,
-            // });
-            res.redirect("/404");
-          } else {
-            res.redirect("/404");
-          }
-        });
-      },
-    },
-  },
+  // hooks: {
+  //   render: {
+  //     errorMiddleware(app) {
+  //       app.use(async (error, req, res, next) => {
+  //         if (error) {
+  //           let finalError = await error;
+  //           console.log("finalError", finalError);
+  //           // CreateLog.error({
+  //           //   error: `>>> ${finalError}`,
+  //           //   metaInformation: req.rawHeaders,
+  //           //   type: "error middleware",
+  //           //   from: req.url,
+  //           // });
+  //           res.redirect("/404");
+  //         } else {
+  //           res.redirect("/404");
+  //         }
+  //       });
+  //     },
+  //   },
+  // },
 
   server: {
     port: 9000,
