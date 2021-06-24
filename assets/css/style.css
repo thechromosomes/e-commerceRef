@@ -1468,7 +1468,7 @@ p.p-price span.line-throu {
   cursor: pointer;
 }
 .wish-list-icon .wishlist_blank.add:hover {
-  background-position: -90px -210px;
+  background-position: -88px -210px;
 }
 
 .wish-list-icon.single .wishlist_blank.add,
@@ -1481,7 +1481,7 @@ p.p-price span.line-throu {
   content: "";
   display: inline-block;
   background-image: url(../img/sprite_icons.svg);
-  background-position: -90px -210px;
+  background-position: -88px -210px;
   background-repeat: no-repeat;
   width: 34px;
   height: 38px;
