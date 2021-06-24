@@ -955,6 +955,7 @@ export default {
 
   async fetch() {
     // to fetch single product detail
+    this.$store.commit("removeSingleProdState");
     await this.getProductDetail();
 
     this.fixedMobileCart = this.$device.isMobile;

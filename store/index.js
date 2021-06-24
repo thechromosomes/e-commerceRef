@@ -278,7 +278,10 @@ export const mutations = {
       state.list.page_error = error;
     }
   },
-
+// remove the single product state
+removeSingleProdState(state) {
+  state.singleProductList.single_prod_data={};
+},
   // blank filter
   blankfilter(state) {
     state.list.filters = [];

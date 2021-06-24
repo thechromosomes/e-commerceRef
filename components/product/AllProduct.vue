@@ -876,7 +876,7 @@ export default {
       if (loader_el) {
         var loader_position = loader_el.offsetTop;
       }
-      if (window.scrollY >= loader_position - 1000) {
+      if (window.scrollY >= loader_position - 2000) {
         await this.$store.commit("universalListMutate", {
           data: Number(this.list.page) + 1,
           changeState: "page"
