@@ -65,31 +65,31 @@ export default {
 
   modules: [
     "@nuxtjs/axios",
-    "@nuxtjs/pwa",
+    // "@nuxtjs/pwa",
     "@nuxtjs/device",
-    [
-      "nuxt-fontawesome",
-      {
-        imports: [
-          {
-            set: "@fortawesome/free-solid-svg-icons",
-            icons: ["fas"],
-          },
-          {
-            set: "@fortawesome/free-brands-svg-icons",
-            icons: ["fab"],
-          },
-        ],
-      },
-    ],
+    // [
+    //   "nuxt-fontawesome",
+    //   {
+    //     imports: [
+    //       {
+    //         set: "@fortawesome/free-solid-svg-icons",
+    //         icons: ["fas"],
+    //       },
+    //       {
+    //         set: "@fortawesome/free-brands-svg-icons",
+    //         icons: ["fab"],
+    //       },
+    //     ],
+    //   },
+    // ],
   ],
 
   // PWA module configuration
-  pwa: {
-    manifest: {
-      lang: "en",
-    },
-  },
+  // pwa: {
+  //   manifest: {
+  //     lang: "en",
+  //   },
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
