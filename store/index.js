@@ -168,12 +168,15 @@ export const mutations = {
 
     state.list.sort = [
       // { code: "default", dir: "desc", label: "default" },
-      { code: "best_matches", dir: "asc", label: "Best Matches" },
-      { code: "Product_name", dir: "asc", label: "Product Name A-Z" },
-      { code: "Product_name", dir: "desc", label: "Product Name Z-A" },
-      { code: "brand", dir: "asc", label: "Brand" },
+      // { code: "best_matches", dir: "asc", label: "Best Matches" },
+      // { code: "Product_name", dir: "asc", label: "Product Name A-Z" },
+      // { code: "Product_name", dir: "desc", label: "Product Name Z-A" },
       { code: "most_popular", dir: "asc", label: "Most popular" },
-      { code: "top_sellers", dir: "asc", label: "Top Sellers" },
+      { code: "new_arrival", dir: "asc", label: "New Arrival" },
+      { code: "selling_price", dir: "asc", label: "Price Low to High" },
+      { code: "selling_price", dir: "desc", label: "Price High to Low" },
+      // { code: "brand", dir: "asc", label: "Brand" },
+      // { code: "top_sellers", dir: "asc", label: "Top Sellers" },
     ];
 
     if (pageNo == 1) {
@@ -285,10 +288,10 @@ export const mutations = {
       state.list.page_error = error;
     }
   },
-// remove the single product state
-removeSingleProdState(state) {
-  state.singleProductList.single_prod_data={};
-},
+  // remove the single product state
+  removeSingleProdState(state) {
+    state.singleProductList.single_prod_data = {};
+  },
   // blank filter
   blankfilter(state) {
     state.list.filters = [];

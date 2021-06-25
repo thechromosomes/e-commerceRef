@@ -5,19 +5,22 @@
         <div class="st-product-element-top">
           <div
             class="product-imageSlider"
-            @click="reDirectToProductPage(item.url)"
-            v-if="getSlideShow && item.gallery && !isDeviceMobile"
+            v-if="item.gallery && item.gallery.length > 0 && !isDeviceMobile"
           >
-            <slick
-              ref="slick"
-              :options="slickOptions"
-              class="product_image_slide"
-            >
-              <img v-for="i in item.gallery" :src="i.image" :key="i.image" />
-            </slick>
+            <VueSlickCarousel v-bind="slickOptions">
+              <div
+                class="item"
+                v-for="(image, imgIndex) in item.gallery"
+                :key="imgIndex"
+              >
+                <Nuxt-link :to="getUrl(item.url)">
+                  <img :src="image.image" alt="img" class="w-100" />
+                </Nuxt-link>
+              </div>
+            </VueSlickCarousel>
           </div>
           <div class="st-img-container">
-            <NuxtLink :to="getUrl(item.url)" class="st-loop-product">
+            <!-- <NuxtLink :to="getUrl(item.url)" class="st-loop-product">
               <img
                 :src="imageModifier(item.image)"
                 v-if="item.gallery === undefined || item.gallery === null"
@@ -28,22 +31,8 @@
                 v-else
                 class="img_thumbnail"
               />
-            </NuxtLink>
+            </NuxtLink> -->
 
-            <!-- <i
-            aria-hidden="true"
-            class="fa st-wishlist"
-            v-if="!wishActive(item.group_id)"
-            @click.prevent="add_w(item.id, item.group_id)"
-            ><img src="~/assets/st_assets/st/wishlist.svg"
-          /></i>
-          <i
-            aria-hidden="true"
-            class="fa st-wishlist"
-            v-else
-            @click.prevent="remove_w(item.id, item.group_id)"
-            ><img src="~/assets/st_assets/st/wishlist_fill.svg"
-          /></i> -->
             <div class="wish-list-icon">
               <span
                 class="wishlist_blank"
@@ -55,16 +44,18 @@
           </div>
         </div>
         <p class="st-price">
+          <span class="st-main-price"
+            >{{ currSymbol }}
+            {{ numberWithCommas(item.discounted_price) }}</span
+          >
           <span class="st-old-price" v-show="item.discount_percentage > 0"
             >{{ currSymbol }} {{ numberWithCommas(item.price) }}</span
           >
           <span
-            class="st-main-price"
-            v-show="item.discounted_price > 0"
-            :class="{ 'price-red': item.discount_percentage > 0 }"
-            >{{ currSymbol }}
-            {{ numberWithCommas(item.discounted_price) }}</span
-          >
+            class="st-discount_percent"
+            v-show="item.discount_percentage > 0"
+            >({{ item.discount_percentage }}% OFF)
+          </span>
         </p>
         <div class="st-bottom-card">
           <div class="st-title-box">
@@ -83,13 +74,13 @@
 
 <script>
 import axios from "axios";
-import Slick from "vue-slick";
+import VueSlickCarousel from "vue-slick-carousel";
 global.jQuery = require("jquery");
 let $ = global.jQuery;
 export default {
   name: "Products",
   props: ["item"],
-  components: { Slick },
+  components: { VueSlickCarousel },
   mounted() {
     if (this.$root.customer_id != "" && this.$root.customer_id != null) {
       this.get_wish();
@@ -109,18 +100,12 @@ export default {
       similarPopup: false,
       similar_Product: [],
       slickOptions: {
-        lazyLoad: "ondemand",
-        slidesToScroll: 1,
-        slidesToShow: 1,
-        arrows: false,
+        focusOnSelect: true,
         infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         dots: false,
-        autoplay: true,
-        fade: true,
-        autoplaySpeed: 1000,
-        pauseOnFocus: false,
-        pauseOnHover: false,
-        pauseOnDotsHover: false,
+        arrows: true,
       },
     };
   },

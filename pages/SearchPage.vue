@@ -20,7 +20,7 @@
             <div id="search-content">
               <div class="st-col-md-12 st-pl-sm-0">
                 <div
-                  class="st-horizontal-filter hidden-mobile-only"
+                  class="st-horizontal-filter hidden-mobile"
                   :class="{ 'st-filter-outer-open': isFilterOpen }"
                   v-show="totalHits > 0"
                 >
@@ -137,14 +137,14 @@
                             </span>
                           </div>
 
-                          <div class="st-col-md-6 hidden-mobile-only">
+                          <div class="st-col-md-6 hidden-mobile">
                             <div class="st-fil-sorting">
                               <div class="filter-col st-flex-right">
                                 <div class="st-filter-menu">
                                   <div
                                     class="st-filter-button"
                                     :class="{ 'st-sort-open': showSort }"
-                                    @click="showSort = !showSort"
+                                    @click="openSort"
                                   >
                                     <div class="st-filter-title">
                                       <span> {{ sortLabel }}</span>
@@ -210,71 +210,19 @@
                 No more results
               </div>
 
-              <div class="filter-bar hidden-desktop-only">
-                <div class="st-overlay-active" v-show="showMobileSort === true">
-                  <div class="st-sorting-wrapper">
-                    <div class="st-sorting-inner">
-                      <ul class="list">
-                        <li class="sortby">
-                          <div
-                            class="st-sort-cross"
-                            @click="showMobileSort = false"
-                          >
-                            <svg
-                              role="presentation"
-                              viewBox="0 0 16 14"
-                              class="Icon Icon--close"
-                            >
-                              <path
-                                d="M15 0L1 14m14 0L1 0"
-                                stroke="currentColor"
-                                fill="none"
-                                fill-rule="evenodd"
-                              ></path>
-                            </svg>
-                          </div>
-                          Sort by
-                        </li>
-                        <li>
-                          <div
-                            class="ripple-container"
-                            v-for="s in sorts"
-                            v-bind:key="s.field"
-                          >
-                            <button
-                              :value="s.label"
-                              @click="sorting(s.label)"
-                              :class="{ activeColor: s.active === true }"
-                            >
-                              <span class="sortByValues"> {{ s.label }}</span>
-                            </button>
-                          </div>
-                        </li>
-                      </ul>
-                      <div class="apply-all" @click="showMobileSort = false">
-                        <div class="st-close">Close</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div class="filter-bar hidden-desktop">
                 <div
                   id="sortFilter"
                   class="sortFilterCon"
+                  :class="{ 'st-sticky': backToTop }"
                   v-show="filterCount > 0 || totalHits > 0"
                 >
-                  <div class="sort_h" @click="showMobileSort = !showMobileSort">
-                    <span
-                      class="filter-applied-ellip"
-                      v-show="sortLabel !== 'Relevance'"
-                    ></span>
-                    <span class="disInBlock">Sort by</span>
-                  </div>
                   <div class="filter_h" @click="showMobileFilter = true">
                     <span
                       class="filter-applied-ellip"
                       v-show="filterCount > 0"
                     ></span>
-                    <span class="disInBlock">Filter</span>
+                    <span class="disInBlock">Filter-Sort By</span>
                   </div>
                 </div>
               </div>
@@ -292,17 +240,11 @@
                   <div :class="{ 'mobile-filter-popup': showMobileFilter }">
                     <div class="filter-list">
                       <div class="filterHeader">
-                        <span class="st-filter-title">Filter By </span>
+                        <span class="st-filter-title">Sort By </span>
                         <span class="pull-right">
-                          <span
-                            class="st-reset-all-mobile"
-                            v-show="filterCount > 0"
-                            @click="clearFilters()"
-                            >Reset all</span
-                          >
                           <div
                             class="st-close-div"
-                            @click="(showMobileFilter = false), jumpToTop()"
+                            @click="showMobileFilter = false"
                           >
                             <div class="st-mobile-cross"></div>
                           </div>
@@ -310,59 +252,107 @@
                       </div>
                       <div class="row">
                         <div class="filter-body">
-                          <div
-                            class="mobileFilters"
-                            v-for="f in filters"
-                            :key="f.title"
-                            v-show="
-                              f.values.length > 0 ||
-                              f.selected.length > 0 ||
-                              f.type === 'singleStatic'
-                            "
-                          >
-                            <a>
-                              <div class="panel-heading">
-                                <h4
-                                  class="panel-title"
-                                  @click="f.isOpen = !f.isOpen"
+                          <div class="mobileFilters st-sort-div">
+                            <div>
+                              <ul
+                                class="filter-list-desktop"
+                                style="margin-top: 10px"
+                                v-show="showMobileSort"
+                              >
+                                <li
+                                  v-for="s in sorts"
+                                  :key="s.field"
+                                  class="st-sort-list"
                                 >
-                                  <span
-                                    class="st-mobile-filter-clear"
-                                    style="text-align: right"
-                                    v-show="f.selected.length > 0"
-                                    @click.stop="clearFilters(f.field)"
-                                    >Clear</span
+                                  <div class="radio">
+                                    <label>
+                                      <input
+                                        type="radio"
+                                        :value="s.label"
+                                        v-model="sortLabel"
+                                        @change="sorting(s.label)"
+                                      />
+                                      <span class="cr">
+                                        <i
+                                          aria-hidden="true"
+                                          class="cr-icon fa fa-circle"
+                                        ></i>
+                                      </span>
+                                      <span class="filter-name"
+                                        >{{ s.label }}
+                                      </span>
+                                    </label>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="st-mobile-filter-wrapper">
+                            <div class="st-mobile-filter-heading">
+                              <span class="st-mobile-filter-heading-text"
+                                >Filter by</span
+                              >
+                            </div>
+                            <div
+                              class="mobileFilters st-filter-div"
+                              v-for="f in filters"
+                              :key="f.title"
+                              v-show="
+                                f.values.length > 0 ||
+                                f.selected.length > 0 ||
+                                f.type === 'singleStatic'
+                              "
+                            >
+                              <a>
+                                <div class="panel-heading">
+                                  <h4
+                                    class="panel-title"
+                                    @click="toggleCurrentFilter(f.title)"
                                   >
-                                  <i
-                                    :class="[
-                                      f.isOpen
-                                        ? 'fa-angle-up'
-                                        : 'fa-angle-down',
-                                      'fa',
-                                      'indicator',
-                                    ]"
-                                  ></i>
-                                  {{ f.title }}
-                                </h4>
-                              </div>
-                            </a>
-                            <DesktopFilter
-                              v-bind:filter="f"
-                              v-on:applyFilter="applyFilter"
-                              v-on:clear-filter="clearFilters"
-                            ></DesktopFilter>
+                                    <span
+                                      class="st-mobile-filter-clear"
+                                      style="text-align: right"
+                                      v-show="f.selected.length > 0"
+                                      @click.stop="clearFilters(f.field)"
+                                      >Clear</span
+                                    >
+                                    <i
+                                      :class="[
+                                        f.isOpen
+                                          ? 'fa-angle-up'
+                                          : 'fa-angle-down',
+                                        'fa',
+                                        'indicator',
+                                      ]"
+                                    ></i>
+                                    {{ f.title }}
+                                  </h4>
+                                </div>
+                              </a>
+                              <DesktopFilter
+                                v-bind:filter="f"
+                                v-on:applyFilter="applyFilter"
+                                v-on:clear-filter="clearFilters"
+                              ></DesktopFilter>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="apply-all">
-                      <div class="st-clear-all st-disabled-button">Clear</div>
-                      <div
-                        class="st-close-filter"
-                        @click="jumpToTop(), (showMobileFilter = false)"
-                      >
-                        Apply
-                      </div>
+                  </div>
+                  <div class="mobileFilters st-clear-all-fixed">
+                    <div
+                      class="st-clear-all"
+                      :class="{ 'st-disabled-button': filterCount === 0 }"
+                      @click="clearFilters()"
+                    >
+                      Clear
+                    </div>
+                    <div
+                      class="st-close-filter"
+                      @click="showMobileFilter = false"
+                    >
+                      Apply
                     </div>
                   </div>
                 </div>
@@ -458,7 +448,8 @@ export default {
 
     /*eslint-disable */
     try {
-      // if(document.querySelector('#reset'))document.querySelector('#reset').style.display = 'none';
+      if (document.querySelector("#reset"))
+        document.querySelector("#reset").style.display = "none";
       // document.querySelector("input[name='q']").addEventListener('keyup', this.updateQuery);
       window.addEventListener("scroll", this.handleScroll);
       window.onpopstate = async (e) => {
@@ -577,29 +568,58 @@ export default {
     }
   },
   methods: {
-    toggleCurrentFilter: function (filter_title) {
-      this.filters.forEach((f) => {
-        if (filter_title === f.title) f.isOpen = !f.isOpen;
-        else f.isOpen = false;
+    openSort: function () {
+      this.showSort = !this.showSort;
+      setTimeout(() => {
+        if (!this.isDeviceMobile) {
+          if (this.showSort)
+            document.querySelector(".st-filter-outer-open").style.minHeight =
+              "290px";
+          else
+            document.querySelector(".st-result-inner").style.minHeight = "0px";
+        }
       });
+    },
+    toggleCurrentFilter: function (filter_title) {
+      try {
+        this.filters.forEach((f) => {
+          if (filter_title === f.title) f.isOpen = !f.isOpen;
+          else f.isOpen = false;
+        });
+        setTimeout(() => {
+          if (!this.isDeviceMobile) {
+            let el = document.querySelector(`#desktop_filter${filter_title}`);
+            let temp_height = el.offsetHeight;
+            if (document.querySelector(".st-filter-outer-open"))
+              document.querySelector(
+                ".st-filter-outer-open"
+              ).style.minHeight = `${temp_height + 80}px`;
+            else
+              document.querySelector(".st-horizontal-filter").style.minHeight =
+                "0px";
+          }
+        });
+      } catch (e) {
+        console.error(e);
+      }
     },
 
     getEachFilterCount: function (filter) {
       if (filter.selected.length > 0) return filter.selected.length;
     },
     clickHandler: function (e) {
-      if (this.showMobileSort) {
-        if (
-          document.querySelector(".st-sorting-wrapper").contains(e.target) ||
-          document.querySelector(".sort_h").contains(e.target)
-        ) {
-          // Clicked in box
-          return;
-        } else {
-          this.showMobileSort = false;
-          // Clicked outside the box
-        }
-      }
+      // if (this.showMobileSort) {
+      //   if (
+      //     document.querySelector(".st-sorting-wrapper").contains(e.target) ||
+      //     document.querySelector(".sort_h").contains(e.target)
+      //   ) {
+      //     // Clicked in box
+      //     return;
+      //   } else {
+      //     this.showMobileSort = false;
+      //     // Clicked outside the box
+      //   }
+      // }
     },
     pushQuery: function () {
       let res = this.um.withQuery(this.searchQuery);
@@ -1032,7 +1052,10 @@ export default {
         this.scrollVal = window.scrollY;
       }
       if (window.scrollY > this.onFocusScroll + 100 && this.isDeviceMobile) {
+        if(   document.querySelector("input[name='st']")){
+
         document.querySelector("input[name='st']").blur();
+        }
         this.onFocusScroll = window.scrollY;
       }
     },
@@ -1092,7 +1115,7 @@ export default {
       }
       this.searchProducts(0);
       if (flag) this.pushSort();
-      this.showMobileSort = false;
+      // this.showMobileSort = false;
     },
     async applyFilter() {
       this.jumpToTop();
@@ -1176,7 +1199,7 @@ export default {
       scrollVal: 0,
       totalHits: -1,
       filterCount: 0,
-      showMobileSort: false,
+      showMobileSort: true,
       showMobileFilter: false,
       backToTop: false,
       resultsEnd: false,

@@ -3,6 +3,7 @@
     <div
       class="st-dropdown-wrapper st-transition"
       v-if="!isDeviceMobile"
+      :id="'desktop_filter' + filter.title"
       :class="{ 'st-filter-open': filter.isOpen }"
     >
       <div class="st-dropdown-area">
@@ -543,7 +544,7 @@ export default {
   },
   computed: {
     isDeviceMobile: function () {
-      return window.matchMedia("only screen and (max-width: 767px)").matches;
+      return window.matchMedia("only screen and (max-width: 834px)").matches;
     },
   },
 };

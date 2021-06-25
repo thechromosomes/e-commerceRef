@@ -1,0 +1,247 @@
+<template>
+  <div class="st-col-md-3 st-products">
+  <div class="st-card">
+    <div class="st-product-element-top">
+      <div class="product-imageSlider" v-if="item.gallery && !isDeviceMobile">
+        <VueSlickCarousel ref="slick" :options="slickOptions" class="product_image_slide">
+          <img v-for="i in item.gallery" :src="i.image" :key="i.position">
+        </VueSlickCarousel>
+      </div>
+      <div class="st-img-container">
+        <a :href="getUrl(item.url)" class="st-loop-product">
+
+          <img :src="imageModifier(item.image)" v-if="item.gallery === undefined || item.gallery === null" class="img_thumbnail">
+          <img :src="imageModifier(item.image)" v-else class="img_thumbnail">
+        </a>
+
+
+        <i aria-hidden="true" class="fa st-wishlist" v-if="!wishActive(item.group_id)" @click.prevent="add_w(item.id,item.group_id)"><img src="../assets/st/wishlist.svg"></i>
+        <i aria-hidden="true" class="fa st-wishlist" v-else @click.prevent="remove_w(item.id,item.group_id)"><img src="../assets/st/wishlist_fill.svg"></i>
+
+      </div>
+    </div>
+    <p class="st-price">
+      <span class="st-main-price">{{currSymbol}} {{numberWithCommas(item.discounted_price)}}</span>
+      <span class="st-old-price" v-show="item.discount_percentage > 0">{{currSymbol}} {{numberWithCommas(item.price)}}</span>
+      <span class="st-discount_percent" v-show="item.discount_percentage > 0">({{item.discount_percentage}}% OFF) </span>
+    </p>
+    <div class="st-bottom-card">
+      <div class="st-title-box">
+        <h3 class="st-product-title">
+          <span class="st-available-color">{{item.colour}}</span>
+          <a :href="getUrl(item.url)">
+            <p class="st-name">{{ item.name }}</p>
+          </a>
+        </h3>
+      </div>
+    </div>
+  </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+import VueSlickCarousel from 'vue-slick-carousel';
+global.jQuery = require('jquery');
+let $ = global.jQuery;
+window.$ = $;
+let baseUrl = `${window.location.protocol}//${window.location.host}`;
+export default {
+  name: "Products",
+  props: ['item'],
+  components: { VueSlickCarousel },
+  mounted() {
+    if (this.$root.customer_id != '' && this.$root.customer_id != null) {
+      this.get_wish();
+    }
+    try {
+      // $(".product-imageSlider").slick(this.slickOptions);
+    }catch (e) {
+      console.log(e);
+    }
+  },
+  data() {
+    return{
+      baseUrl: `${window.location.protocol}//${window.location.host}`,
+      moreColors: {},
+      showMoreColorsMobile: false,
+      slideShow: false,
+      currSymbol: '₹',
+      wishlist: [],
+      similarPopup:false,
+      similar_Product:[],
+      slickOptions: {
+        focusOnSelect: true,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: true
+      }
+    }
+  },
+  filters: {
+
+    truncate: function (text, length) {
+      const clamp = '...';
+      length = length || 30;
+      if (text.length <= length) return text;
+      let tcText = text.slice(0, length - clamp.length);
+      return tcText + clamp;
+    }
+  },
+  methods: {
+    add_w(id,gp) {
+      if (this.$root.customer_id != '' && this.$root.customer_id != null) {
+        this.$root.page_loader = true;
+        var form = new FormData();
+        form.append("product_id", id);
+        form.append("group_id", gp);
+        form.append("customer_id", this.$root.customer_id);
+        form.append("customer_session",this.$root.customer_session);
+        axios.post(this.$root.cart_api_url + `/wishlist/add-wishlist`, form).then(response => {
+          this.$root.page_loader = false;
+          if(response.data.success==true){
+            //this.$root.wishlist = response.data.data.product;
+            this.$store.state.wishlist = response.data.data.group.split(',');
+            this.$store.state.wishlist_count = response.data.data.total_row;
+            //this.wishlist = true;
+            this.$toast.success(response.data.message, {
+              position: 'top-right',
+              duration: 4000,
+            });
+
+          }
+          else
+          {
+            this.$root.page_loader = false;
+            if(response.data.data.customer_session_status==false){
+              $cookies.set(window.location.hostname.substring(10, 4) + '_customer', '', "1y");
+              $cookies.set(window.location.hostname.substring(10, 4) + '_cus_sess', '', "1y");
+              this.$root.customer_id = '';
+              this.$root.customer_session = '';
+              $cookies.set(window.location.hostname.substring(10, 4) + '_cart', '', "1y");
+              $cookies.set(window.location.hostname.substring(10, 4) + '_ct_sess', '', "1y");
+              this.$root.cart_id = '';
+              this.$root.cart_session = '';
+              this.$root.cart_product = [];
+            }
+          }
+        })
+      }
+      else {
+        this.$root.login_popup = true;
+      }
+    },
+    remove_w(id, gp) {
+      this.$root.page_loader = true;
+      var form = new FormData();
+      form.append("product_id", id);
+      form.append("group_id", gp);
+      form.append("customer_id", this.$root.customer_id);
+      form.append("customer_session",this.$root.customer_session);
+      axios.post(this.$root.cart_api_url + `/wishlist/remove-wishlist`, form).then(response => {
+        if(response.data.success==true){
+          this.$root.page_loader = false;
+          if (response.data.data.group) {
+            this.$store.state.wishlist = response.data.data.group.split(',');
+            this.$store.state.wishlist_count = response.data.data.total_row;
+          }
+          else {
+            this.$store.state.wishlist_count = '0';
+            this.$store.state.wishlist=[];
+          }
+          this.$toast.success(response.data.message, {
+            position: 'top-right',
+            duration: 4000,
+          });
+        }
+        else
+        {
+          this.$root.page_loader = false;
+          if(response.data.data.customer_session_status==false){
+            $cookies.set(window.location.hostname.substring(10, 4) + '_customer', '', "1y");
+            $cookies.set(window.location.hostname.substring(10, 4) + '_cus_sess', '', "1y");
+            this.$root.customer_id = '';
+            this.$root.customer_session = '';
+            $cookies.set(window.location.hostname.substring(10, 4) + '_cart', '', "1y");
+            $cookies.set(window.location.hostname.substring(10, 4) + '_ct_sess', '', "1y");
+            this.$root.cart_id = '';
+            this.$root.cart_session = '';
+            this.$root.cart_product = [];
+          }
+        }
+      })
+    },
+    wishActive: function (wish) {
+      try{
+        return this.$store.state.wishlist.indexOf(wish) > -1
+      }
+      catch (e) {
+        console.error(e);
+      }
+    },
+    setTrue: function (item){
+      if(item.gallery !== null || item.gallery !== undefined) {
+        this.slideShow = true && !this.isDeviceMobile;
+
+        try {
+          $(".product_image_slide").slick(this.slickOptions);
+          // eslint-disable-next-line no-empty
+        } catch (e) {
+        }
+      }
+    },
+    setFalse: function (item){
+      if(item.gallery !== null || item.gallery !== undefined) {
+        this.slideShow = false && !this.isDeviceMobile;
+        $(".product_image_slide").slick('unslick');
+      }
+    },
+    imageModifier: function (img) {
+      if(img)
+      {
+        return img;
+      }
+      else{
+        return "http://via.placeholder.com/400x530";
+      }
+    },
+    getUrl: function(url){
+      if(url === null || url === undefined)
+        return '';
+      else
+        return url;
+    },
+    getColorName: function (color){
+      if(color) return color.substr(0,1).toLocaleLowerCase()+color.substr(1,color.length);
+      else return "white";
+    },
+    reDirectToProductPage: function (item_url){
+      window.location.href = item_url;
+    },
+    numberWithCommas: function (x) {
+      if(x)return x.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      else return 0;
+    },
+    stopPropagation(event){
+      event.stopPropagation();
+    }
+  },
+  computed:{
+
+    isDeviceMobile: function () {
+      return window.matchMedia("only screen and (max-width: 1024px)").matches;
+    },
+    getSlideShow: function (){
+      return this.slideShow;
+    }
+  }
+}
+
+
+</script>
+
+<style scoped>
+
+</style>
