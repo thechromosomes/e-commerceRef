@@ -47,7 +47,7 @@
                   :class="{
                     'active-nav':
                       $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
-                      item.name.toUpperCase(),
+                      item.name.toUpperCase()
                   }"
                 >
                   <span class="stripeImage"></span>
@@ -57,7 +57,7 @@
                     :class="{
                       'active-nav-link':
                         $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
-                        item.name.toUpperCase(),
+                        item.name.toUpperCase()
                     }"
                     >{{ item.name }}</NuxtLink
                   >
@@ -85,7 +85,7 @@
                                     $store.state.activeUrlKey
                                       .split('-')[1]
                                       .toUpperCase() ==
-                                    childItem.name.toUpperCase(),
+                                    childItem.name.toUpperCase()
                                 }"
                                 class="nav-link"
                                 >{{ childItem.name }}
@@ -97,9 +97,8 @@
                                       <div class="levelthreemenu">
                                         <ul>
                                           <li
-                                            v-for="(
-                                              subChildItem, subCgildIndex
-                                            ) in childItem.childs"
+                                            v-for="(subChildItem,
+                                            subCgildIndex) in childItem.childs"
                                             :key="subCgildIndex"
                                           >
                                             <Nuxt-link
@@ -107,9 +106,37 @@
                                                 showMobileMenu = false
                                               "
                                               class="nav-link pl-0"
-                                              :to="`/collections/${subChildItem.menu_url_key}/`"
+                                              :class="{
+                                                haslevel4: subChildItem.childs
+                                              }"
+                                              :to="
+                                                `/collections/${subChildItem.menu_url_key}/`
+                                              "
                                               >{{ subChildItem.name }}
                                             </Nuxt-link>
+                                            <div
+                                              class="level-4"
+                                              v-show="subChildItem.childs"
+                                            >
+                                              <ul>
+                                                <li
+                                                  v-for="(subChildItemfor,
+                                                  subCgildIndexfor) in subChildItem.childs"
+                                                  :key="subCgildIndexfor"
+                                                >
+                                                  <Nuxt-link
+                                                    @click.native="
+                                                      showMobileMenu = false
+                                                    "
+                                                    class="nav-link pl-0"
+                                                    :to="
+                                                      `/collections/${subChildItemfor.menu_url_key}/`
+                                                    "
+                                                    >{{ subChildItemfor.name }}
+                                                  </Nuxt-link>
+                                                </li>
+                                              </ul>
+                                            </div>
                                           </li>
                                         </ul>
                                       </div>
@@ -137,7 +164,7 @@
                                   $store.state.activeUrlKey
                                     .split('-')[1]
                                     .toUpperCase() ==
-                                  childItem.name.toUpperCase(),
+                                  childItem.name.toUpperCase()
                               }"
                               :to="`/collections/${childItem.menu_url_key}/`"
                               >{{ childItem.name }}</Nuxt-link
@@ -168,9 +195,9 @@
                 <nuxt-link
                   v-if="
                     $store.state.cartAjax.customer_id != null &&
-                    $store.state.cartAjax.customer_id != '' &&
-                    $store.state.cartAjax.customer_session != '' &&
-                    $store.state.cartAjax.customer_session != null
+                      $store.state.cartAjax.customer_id != '' &&
+                      $store.state.cartAjax.customer_session != '' &&
+                      $store.state.cartAjax.customer_session != null
                   "
                   to="/Dashboard"
                 >
@@ -178,9 +205,9 @@
                     class="login login-user"
                     v-if="
                       $store.state.cartAjax.customer_id != null &&
-                      $store.state.cartAjax.customer_id != '' &&
-                      $store.state.cartAjax.customer_session != '' &&
-                      $store.state.cartAjax.customer_session != null
+                        $store.state.cartAjax.customer_id != '' &&
+                        $store.state.cartAjax.customer_session != '' &&
+                        $store.state.cartAjax.customer_session != null
                     "
                     to="/Dashboard"
                   >
@@ -193,7 +220,7 @@
                             :class="[
                               $route.path == '/Dashboard'
                                 ? 'active-account-sidebar'
-                                : '',
+                                : ''
                             ]"
                             to="/Dashboard"
                             >Account Dashboard</nuxt-link
@@ -204,7 +231,7 @@
                             :class="[
                               $route.path == '/addresses'
                                 ? 'active-account-sidebar'
-                                : '',
+                                : ''
                             ]"
                             to="/addresses"
                             >My Address Book</nuxt-link
@@ -215,7 +242,7 @@
                             :class="[
                               $route.path == '/myorder'
                                 ? 'active-account-sidebar'
-                                : '',
+                                : ''
                             ]"
                             to="/myorder"
                             >My Orders</nuxt-link
@@ -282,22 +309,22 @@
       </div>
     </nav>
     <!-- search box -->
-    <div class="search-box" v-if="searchActive" >
+    <div class="search-box" v-if="searchActive">
       <div class="site-search">
         <div class="search_icon">
           <span class=""></span>
         </div>
         <div class="search_form">
-            <input
-              type="text"
-              class="search_input"
-              autocomplete="off"
-              placeholder="What are you looking for?"
-              autofocus="autofocus"
-              v-model="searchInput"
-              @keyup="stSearch"
-              name="st"
-            />
+          <input
+            type="text"
+            class="search_input"
+            autocomplete="off"
+            placeholder="What are you looking for?"
+            autofocus="autofocus"
+            v-model="searchInput"
+            @keyup="stSearch"
+            name="st"
+          />
         </div>
         <div class="close_icon" @click="searchActive = false">
           <span class=""></span>
@@ -314,14 +341,14 @@ import Hovercart from "./Hovercart";
 
 export default {
   components: {
-    Hovercart,
+    Hovercart
   },
   data() {
     return {
       showMobileMenu: false,
       searchActive: false,
       scrollPosition: null,
-      ShowhoverCart: false,
+      ShowhoverCart: false
     };
   },
   async mounted() {
@@ -342,8 +369,8 @@ export default {
       },
       set(value) {
         return;
-      },
-    },
+      }
+    }
   },
 
   methods: {
@@ -362,7 +389,7 @@ export default {
     updateScroll() {
       this.scrollPosition = window.scrollY;
     },
-    logOut: async function () {
+    logOut: async function() {
       var form = {};
       form.customer_id = this.$store.state.cartAjax.customer_id;
       form.customer_session = this.$store.state.cartAjax.customer_session;
@@ -371,9 +398,9 @@ export default {
           method: "post",
           url: `/customer/logout`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         })
-        .then(async (response) => {
+        .then(async response => {
           if (response.data.success === true) {
             $cookies.remove(
               window.location.hostname.substring(10, 4) + "_cart_token"
@@ -402,14 +429,14 @@ export default {
             this.$router.push("/");
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.log("error from the log out page", error);
         });
-    },
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  },
+  }
 };
 </script>
 <style scoped>

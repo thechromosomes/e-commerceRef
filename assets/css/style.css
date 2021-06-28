@@ -212,6 +212,9 @@ button:hover {
   display: inline-flex;
   flex-flow: column wrap;
   max-height: 350px;
+  flex-basis: 25%;
+  height: 30vw;
+  width: 100%;
 }
 
 .header
@@ -3790,4 +3793,10 @@ p.p-price span.line-throu {
   min-height: 0;
   max-height: 395px;
   overflow: auto;
+}
+
+.haslevel4 {
+  font-weight: 700 !important;
+  color: #000 !important ;
+  text-transform: uppercase !important;
 }
