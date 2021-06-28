@@ -779,6 +779,7 @@ export default {
           sort_dir: event.dir,
         },
       });
+      this.showSort = false
     },
 
     async loadMore() {

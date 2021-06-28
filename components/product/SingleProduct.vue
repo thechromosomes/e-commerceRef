@@ -102,9 +102,13 @@
                   singleProductList.single_prod_data.price | numberWithCommas
                 }}</span
               >
+              <span style="opacity: 0.5; font-weight: 500"
+                  >({{ singleProductList.single_prod_data.discount }}% Off)</span
+                >
               <br />
               <span class="pricr-title">Price inclusive of all taxes</span>
             </p>
+            
             <ul class="product-attributes">
               <li class="variation-attribute">
                 <span class="attribute-label color"> COLOR: </span>
