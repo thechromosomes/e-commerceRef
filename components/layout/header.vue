@@ -118,7 +118,7 @@
                                               class="level-4"
                                               v-show="subChildItem.childs"
                                             >
-                                              <ul>
+                                              <ul class="ul-level-4">
                                                 <li
                                                   v-for="(subChildItemfor,
                                                   subCgildIndexfor) in subChildItem.childs"
