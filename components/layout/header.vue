@@ -93,7 +93,10 @@
                               <div class="dropdown_menu_level-3">
                                 <div class="level-3">
                                   <div class="row">
-                                    <div class="col-md-12 col-lg-9">
+                                    <div
+                                      class="col-md-12 "
+                                      :class="childItem.image ? 'col-lg-9' : ''"
+                                    >
                                       <div class="levelthreemenu">
                                         <ul>
                                           <li
@@ -141,7 +144,10 @@
                                         </ul>
                                       </div>
                                     </div>
-                                    <div class="col-md-12 col-lg-3">
+                                    <div
+                                      class="col-md-12 col-lg-3"
+                                      v-show="childItem.image"
+                                    >
                                       <div class="menu_img-section">
                                         <img
                                           :src="childItem.image"
