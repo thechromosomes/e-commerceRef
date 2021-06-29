@@ -102,7 +102,10 @@
                   singleProductList.single_prod_data.price | numberWithCommas
                 }}</span
               >
-              <span style="opacity: 0.5; font-weight: 500"
+              <span style="opacity: 0.5; font-weight: 500" v-if="
+                  singleProductList.single_prod_data.discount != '' &&
+                  singleProductList.single_prod_data.discount > 0
+                "
                   >({{ singleProductList.single_prod_data.discount }}% Off)</span
                 >
               <br />
