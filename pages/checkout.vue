@@ -1197,16 +1197,16 @@ export default {
               vm: this,
             });
             this.showPaymentMethods = true;
-            // this.$gtm.push({
-            //   event: "checkout",
-            //   action: "Checkout",
-            //   ecommerce: {
-            //     checkout: {
-            //       actionField: { step: 4, option: "Address selected" },
-            //       products: this.$store.state.cartAjax.gtm_product,
-            //     },
-            //   },
-            // });
+            this.$gtm.push({
+              event: "checkout",
+              action: "Checkout",
+              ecommerce: {
+                checkout: {
+                  actionField: { step: 4, option: "Address selected" },
+                  products: this.$store.state.cartAjax.gtm_product,
+                },
+              },
+            });
           } else {
             throw response.message;
           }
@@ -1242,19 +1242,19 @@ export default {
             data: response,
           });
           this.showPaymentMethods = true;
-          // this.$gtm.push({
-          //   event: "checkout",
-          //   action: "Checkout",
-          //   ecommerce: {
-          //     checkout: {
-          //       actionField: {
-          //         step: 4,
-          //         option: "Address selected",
-          //       },
-          //       products: this.$store.state.cartAjax.gtm_product,
-          //     },
-          //   },
-          // });
+          this.$gtm.push({
+            event: "checkout",
+            action: "Checkout",
+            ecommerce: {
+              checkout: {
+                actionField: {
+                  step: 4,
+                  option: "Address selected",
+                },
+                products: this.$store.state.cartAjax.gtm_product,
+              },
+            },
+          });
         } else {
           this.$toast.error(response.message);
           throw response.message;
@@ -1288,16 +1288,16 @@ export default {
               vm: this,
             });
             this.selectedPaymentMethods = value;
-            // this.$gtm.push({
-            //   event: "checkout",
-            //   action: "Checkout",
-            //   ecommerce: {
-            //     checkout: {
-            //       actionField: { step: 5, option: value },
-            //       products: this.$store.state.cartAjax.gtm_product,
-            //     },
-            //   },
-            // });
+            this.$gtm.push({
+              event: "checkout",
+              action: "Checkout",
+              ecommerce: {
+                checkout: {
+                  actionField: { step: 5, option: value },
+                  products: this.$store.state.cartAjax.gtm_product,
+                },
+              },
+            });
           }
         } else {
           this.$toast.error("please select the payment method");
@@ -1331,18 +1331,18 @@ export default {
           params: form,
         });
         if (response.success) {
-          // this.$gtm.push({
-          //   event: "checkout",
-          //   category: "Ecommerce",
-          //   action: "Checkout",
-          //   label: "5",
-          //   ecommerce: {
-          //     checkout: {
-          //       actionField: { step: 5, option: value },
-          //       products: this.$store.state.cartAjax.gtm_product,
-          //     },
-          //   },
-          // });
+          this.$gtm.push({
+            event: "checkout",
+            category: "Ecommerce",
+            action: "Checkout",
+            label: "5",
+            ecommerce: {
+              checkout: {
+                actionField: { step: 5, option: value },
+                products: this.$store.state.cartAjax.gtm_product,
+              },
+            },
+          });
 
           if (value == "cod") {
             this.$router.push("thankyou");
@@ -1495,16 +1495,16 @@ export default {
       this.$store.state.cartAjax.customer_id == ""
     ) {
       this.$router.push("/login");
-      // this.$gtm.push({
-      //   event: "checkout",
-      //   action: "Checkout",
-      //   ecommerce: {
-      //     checkout: {
-      //       actionField: { step: 1, option: "Login" },
-      //       products: this.$store.state.cartAjax.gtm_product,
-      //     },
-      //   },
-      // });
+      this.$gtm.push({
+        event: "checkout",
+        action: "Checkout",
+        ecommerce: {
+          checkout: {
+            actionField: { step: 1, option: "Login" },
+            products: this.$store.state.cartAjax.gtm_product,
+          },
+        },
+      });
       return;
     }
 
@@ -1517,16 +1517,16 @@ export default {
       this.$store.commit("cartAjax/toggleLogin", { display: false });
     }
 
-    // this.$gtm.push({
-    //   event: "checkout",
-    //   action: "Checkout",
-    //   ecommerce: {
-    //     checkout: {
-    //       actionField: { step: 3, option: "shipping address" },
-    //       products: this.$store.state.cartAjax.gtm_product,
-    //     },
-    //   },
-    // });
+    this.$gtm.push({
+      event: "checkout",
+      action: "Checkout",
+      ecommerce: {
+        checkout: {
+          actionField: { step: 3, option: "shipping address" },
+          products: this.$store.state.cartAjax.gtm_product,
+        },
+      },
+    });
   },
 
   watch: {

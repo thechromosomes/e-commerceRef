@@ -67,21 +67,23 @@ export default {
     "@nuxtjs/axios",
     // "@nuxtjs/pwa",
     "@nuxtjs/device",
-    // [
-    //   "nuxt-fontawesome",
-    //   {
-    //     imports: [
-    //       {
-    //         set: "@fortawesome/free-solid-svg-icons",
-    //         icons: ["fas"],
-    //       },
-    //       {
-    //         set: "@fortawesome/free-brands-svg-icons",
-    //         icons: ["fab"],
-    //       },
-    //     ],
-    //   },
-    // ],
+    "@nuxtjs/gtm",
+
+    [
+      "nuxt-fontawesome",
+      {
+        imports: [
+          {
+            set: "@fortawesome/free-solid-svg-icons",
+            icons: ["fas"],
+          },
+          {
+            set: "@fortawesome/free-brands-svg-icons",
+            icons: ["fab"],
+          },
+        ],
+      },
+    ],
   ],
 
   // PWA module configuration

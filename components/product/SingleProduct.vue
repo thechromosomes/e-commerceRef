@@ -102,16 +102,18 @@
                   singleProductList.single_prod_data.price | numberWithCommas
                 }}</span
               >
-              <span style="opacity: 0.5; font-weight: 500" v-if="
+              <span
+                style="opacity: 0.5; font-weight: 500"
+                v-if="
                   singleProductList.single_prod_data.discount != '' &&
                   singleProductList.single_prod_data.discount > 0
                 "
-                  >({{ singleProductList.single_prod_data.discount }}% Off)</span
-                >
+                >({{ singleProductList.single_prod_data.discount }}% Off)</span
+              >
               <br />
               <span class="pricr-title">Price inclusive of all taxes</span>
             </p>
-            
+
             <ul class="product-attributes">
               <li class="variation-attribute">
                 <span class="attribute-label color"> COLOR: </span>
@@ -1015,6 +1017,25 @@ export default {
   mounted() {
     // add window event listner for lazy loading products
     window.addEventListener("scroll", this.updateAddToCart);
+    if (this.singleProductList.single_prod_data.name) {
+      this.$gtm.push({
+        event: "ProductDetail",
+        action: "Product Detail",
+        category: this.singleProductList.single_prod_data.category,
+        ecommerce: {
+          detail: {
+            products: [
+              {
+                name: this.singleProductList.single_prod_data.name,
+                id: this.singleProductList.single_prod_data.sku,
+                price: this.singleProductList.single_prod_data.selling_price,
+                category: this.singleProductList.single_prod_data.category,
+              },
+            ],
+          },
+        },
+      });
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateAddToCart);

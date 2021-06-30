@@ -1,3 +1,7 @@
+.accordion-section.active .accordion-section-content {
+  display: block;
+}
+
 .cms-pages {
   width: 100%;
   padding: 0px 0px;
