@@ -2022,14 +2022,11 @@ p.p-price span.line-throu {
 }
 .login-box .systemForm {
   max-width: 100%;
-  margin: 0 auto;
-  background-color: #eeeeee;
-  padding: 20px 15px;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -30%);
-  width: 600px;
+    margin: 0 auto;
+    background-color: #f7f7f7;
+    padding: 20px 15px;
+    width: 500px;
+    border: 1px solid #f1f1f1;
 }
 .login-box .systemForm .title {
   text-align: center;
@@ -2049,7 +2046,7 @@ p.p-price span.line-throu {
 .login-box .systemForm input.input-box {
   width: 100%;
   padding: 10px;
-  border: 1px solid #000;
+  border: 1px solid #e0e0e0;
 }
 .login-box .action_bottom {
   width: 100%;
@@ -2060,6 +2057,7 @@ p.p-price span.line-throu {
   width: 100%;
   border-radius: 0;
   letter-spacing: 0.5px;
+  padding: 10px 10px;
   cursor: pointer;
 }
 .error {

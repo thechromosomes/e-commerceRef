@@ -75,18 +75,18 @@
             <h4 class="social-header">Connect with us on social media:</h4>
             <div class="social-icons-container">
               <div class="social-icons">
-                <NuxtLink to="#" class="icon-instagram">Instagram</NuxtLink>
+                <NuxtLink to="https://www.instagram.com/diesel/" target="blank" class="icon-instagram">Instagram</NuxtLink>
               </div>
               <div class="social-icons">
-                <NuxtLink to="#" class="icon-facebook-black">Facebook</NuxtLink>
+                <NuxtLink to="https://www.facebook.com/Diesel" target="blank" class="icon-facebook-black">Facebook</NuxtLink>
               </div>
               <div class="social-icons">
-                <NuxtLink to="#" class="icon-twitter-black-sm"
+                <NuxtLink to="https://twitter.com/diesel" target="blank" class="icon-twitter-black-sm"
                   >Twitter</NuxtLink
                 >
               </div>
               <div class="social-icons">
-                <NuxtLink to="#" class="icon-youtube">Youtube</NuxtLink>
+                <NuxtLink to="https://www.youtube.com/user/DieselPlanet" target="blank" class="icon-youtube">Youtube</NuxtLink>
               </div>
             </div>
           </div>

@@ -152,12 +152,11 @@
   }
   .stripeImage {
     position: absolute;
-    top: 15px;
     right: 0px;
-    background-image: url(../img/sprite_icons.svg);
-    background-position: -425px 0px;
+    background-image: url(/_nuxt/assets/img/sprite_icons.svg);
+    background-position: -425px 13px;
     width: 35px;
-    height: 20px;
+    height: 55px;
     cursor: pointer;
   }
   .header
