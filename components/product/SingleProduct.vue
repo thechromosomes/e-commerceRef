@@ -103,17 +103,10 @@
                 }}</span
               >
               <span
-<<<<<<< HEAD
-                style="opacity: 0.5; font-weight: 500; font-size:14px;"
-                v-if="
-                  singleProductList.single_prod_data.discount != '' &&
-                    singleProductList.single_prod_data.discount > 0
-=======
                 style="opacity: 0.5; font-weight: 500"
                 v-if="
                   singleProductList.single_prod_data.discount != '' &&
                   singleProductList.single_prod_data.discount > 0
->>>>>>> 7359063b312edc8a6a3a9e360e85d076b689c918
                 "
                 >({{ singleProductList.single_prod_data.discount }}% Off)</span
               >

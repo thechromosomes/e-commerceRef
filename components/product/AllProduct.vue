@@ -954,8 +954,12 @@ export default {
       // fetching products from the backend
       await this.$store.commit("blankfilter");
       await this.getProductList();
-
-      let like = await this.$store.dispatch("pimAjax", {
+    } catch (error) {
+      this.$globalError(`error from the all product page ${error}`);
+    }
+  },
+  mounted() {
+    this.$store.dispatch("pimAjax", {
         method: "get",
         url: `/pimresponse.php`,
         token: this.$store.state.cartAjax.customer_token,
@@ -964,15 +968,13 @@ export default {
           store: 1,
           url_key: this.$route.params.productCategory,
         },
-      });
+      }).then((like) => {
       if (like.response) {
-        this.likeData = like.result.likes;
-      }
-    } catch (error) {
-      this.$globalError(`error from the all product page ${error}`);
-    }
-  },
-  mounted() {
+          this.likeData = like.result.likes;
+        }
+      }).catch((error)=>{
+        this.$globalError(`error from the all product page ${error}`);
+      });
     // add window event listner for lazy loading products
     window.addEventListener("scroll", this.updatePage);
 

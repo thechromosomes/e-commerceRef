@@ -26,7 +26,7 @@ export default async (context) => {
         customerSession,
         customerToken,
       };
-      let userInfo = await context.store.dispatch("cartAjax/actCartAjax", {
+      context.store.dispatch("cartAjax/actCartAjax", {
         method: "post",
         url: `/customer/account-details`,
         token: context.store.state.cartAjax.customer_token,
@@ -35,15 +35,14 @@ export default async (context) => {
           store: 1,
           customer_session: customerSession,
         },
-      });
-
+      }).then((userInfo) => {
       if (userInfo.success) {
         userData.address = userInfo.data.address;
         userData.maddress = userInfo.data.maddress;
         userData.customerDetail = userInfo.data;
-
-        await context.store.commit("cartAjax/updateUserInfo", { userData });
+        context.store.commit("cartAjax/updateUserInfo", { userData });
       }
+    })
     }
 
     // fetch cart detail via cookies
@@ -69,14 +68,13 @@ export default async (context) => {
         customer_id: customerId,
       };
 
-      await context.store.commit("cartAjax/updateCartCookieData", { form });
-      let response = await context.store.dispatch("cartAjax/actCartAjax", {
+      context.store.commit("cartAjax/updateCartCookieData", { form });
+      context.store.dispatch("cartAjax/actCartAjax", {
         method: "post",
         url: `/cart/get-cart`,
         token: context.store.state.cartAjax.cart_token,
         params: form,
-      });
-
+      }).then((response) => {
       if (response) {
         context.store.commit("cartAjax/updateCartDetail", {
           error: null,
@@ -85,16 +83,17 @@ export default async (context) => {
       } else {
         throw "no response from api " + response.message;
       }
+    })
     }
 
     // fetch wish list
     if ((customerSession && customerId && customerToken)) {
-      let response = await context.store.dispatch("cartAjax/actCartAjax", {
+      context.store.dispatch("cartAjax/actCartAjax", {
         method: "post",
         url: `/wishlist/customer-wishlist`,
         token: context.store.state.cartAjax.customer_token,
         params: { customer_id: customerId, customer_session: customerSession },
-      });
+      }).then((response) => {
       if (response.success) {
         context.store.commit("cartAjax/updateWishList", {
           payload: response.data,
@@ -102,6 +101,7 @@ export default async (context) => {
       } else {
         throw "no response from api " + response.message;
       }
+    })
     }
   } catch (error) {
     console.log("there is an error from fetchCookies plugin >>> ", error);
