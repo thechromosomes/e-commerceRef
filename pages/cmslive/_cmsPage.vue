@@ -9,7 +9,7 @@
 export default {
   data() {
     return {
-      cmsData: {},
+      cmsData: {}
     };
   },
 
@@ -20,6 +20,6 @@ export default {
     } else {
       this.$router.push("/404");
     }
-  },
+  }
 };
 </script>

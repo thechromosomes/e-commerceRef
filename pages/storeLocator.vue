@@ -111,6 +111,9 @@
 
 <script>
 export default {
+  head: {
+    title: "Sites-DieselGB-Site"
+  },
   data() {
     return {
       search: "",

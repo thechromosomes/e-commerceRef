@@ -1064,9 +1064,10 @@ table {
   padding-left: 5px;
 }
 .ship-adress-area p {
-  margin: 5px 0px;
-  font-size: 16px;
+  margin: 1px 0px;
+  font-size: 14px;
   font-weight: 500;
+  padding: 0;
 }
 
 .shipping-label-pb-input-st {

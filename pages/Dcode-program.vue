@@ -135,6 +135,9 @@
 import VueSlickCarousel from "vue-slick-carousel";
 
 export default {
+  head: {
+    title: "D:Code Program | Diesel Online Store"
+  },
   components: { VueSlickCarousel },
   data() {
     return {

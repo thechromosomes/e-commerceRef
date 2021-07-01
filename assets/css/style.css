@@ -1865,8 +1865,13 @@ p.p-price span.line-throu {
   width: 100%;
 }
 .input-error {
-  color: red;
+  color: red !important;
   margin-bottom: 5px;
+}
+p.input-error {
+  color: red !important;
+  padding: 0 !important;
+  font-size: 12px;
 }
 .cartItemProducts .productItem .item_name {
   width: 40%;
@@ -1910,8 +1915,9 @@ p.p-price span.line-throu {
   text-align: center;
 }
 .input-success {
-  color: green;
-  margin: 0;
+  color: green !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .cartItemProducts .productItem .price_info span {
   font-size: 20px;
@@ -1920,13 +1926,25 @@ p.p-price span.line-throu {
 .cartItemSidebar {
   width: 100%;
   background: #fafafa;
-  text-align: center;
+  text-align: left;
   padding: 20px;
   margin-top: 20px;
   position: sticky;
   top: 20px;
 }
 
+.cartItemSidebar .tooltiptext {
+  position: relative;
+}
+.cartItemSidebar .tooltiptext input {
+  width: 100%;
+  margin: 0;
+}
+.cartItemSidebar .tooltiptext button {
+  position: absolute;
+  right: 0px;
+  top: 0;
+}
 .cartItemSidebar .total {
   font-size: 20px;
   font-weight: 700;
@@ -2023,13 +2041,9 @@ p.p-price span.line-throu {
 .login-box .systemForm {
   max-width: 100%;
   margin: 0 auto;
-  background-color: #eeeeee;
+  background-color: #efefef;
   padding: 20px 15px;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -30%);
-  width: 600px;
+  width: 500px;
 }
 .login-box .systemForm .title {
   text-align: center;
@@ -2983,6 +2997,8 @@ p.p-price span.line-throu {
 }
 .product-summary {
   width: 100%;
+  max-height: 300px;
+  overflow: auto;
 }
 .product-summary .product-cart {
   display: flex;

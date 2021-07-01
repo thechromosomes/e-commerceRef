@@ -229,17 +229,17 @@
     width: 90%;
   }
   .product-flext {
-    flex-direction: column;
+    justify-content: space-between;
   }
   .product-flext .product {
     display: flex;
-    width: 100%;
+    width: 49%;
     flex-wrap: wrap;
     margin-left: 0;
   }
   .product-flext .product .image-container,
   .product-flext .product .tile-body {
-    width: 50%;
+    width: 100%;
   }
   .product-flext .product .tile-body {
     padding-left: 10px;
@@ -250,6 +250,12 @@
   }
   .select-box {
     height: auto;
+  }
+  .wishlist {
+    padding: 10px 15px;
+  }
+  .wishlist .containers {
+    padding: 0;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -263,5 +269,38 @@
   }
   .section-actions .share-button {
     margin-top: 32px;
+  }
+}
+
+@media only screen and (max-width: 412px) {
+  .account-top-section .wishlist-title {
+    font-size: 16px;
+  }
+  .account-top-section .content-asset p {
+    font-size: 14px;
+  }
+  .account-top-section {
+    padding: 15px 20px;
+  }
+  .product-flext .product .tile-body .name {
+    text-overflow: unset;
+    white-space: unset;
+    font-size: 12px;
+  }
+  .select-box select {
+    margin: 5px 0;
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  .add-to-cart--wishlist {
+    margin-top: 0;
+    padding: 5px 0;
+    font-size: 12px;
+  }
+  .remove-from-wishlist {
+    font-size: 10px;
+  }
+  .select-box select > option {
+    font-size: 11px;
   }
 }

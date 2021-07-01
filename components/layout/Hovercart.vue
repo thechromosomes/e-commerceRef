@@ -6,12 +6,12 @@
         <span class="remove-icontop" @click="handleClick()"></span>
         <hr />
 
-        <div
-          class="product-summary"
-          v-for="(product, index) in $store.state.cartAjax.cart_product"
-          :key="index"
-        >
-          <div class="product-cart">
+        <div class="product-summary">
+          <div
+            class="product-cart"
+            v-for="(product, index) in $store.state.cartAjax.cart_product"
+            :key="index"
+          >
             <div class="p-img">
               <nuxt-link :to="`/product/${product.url_key}`">
                 <img :src="product.image" alt="img" class="w-100" />
@@ -65,10 +65,10 @@
 </template>
 <script>
 export default {
-  props: [ 'handleClick' ],
+  props: ["handleClick"],
   data() {
     return {
-      toggelCar: true,
+      toggelCar: true
     };
   },
   methods: {
@@ -85,13 +85,13 @@ export default {
           method: "post",
           url: `/product/remove-product`,
           token: this.$store.state.cartAjax.cart_token,
-          params: form,
+          params: form
         });
         if (response) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
             data: response,
-            vm: this,
+            vm: this
           });
           if (response.success) {
             this.$gtm.push({
@@ -105,11 +105,11 @@ export default {
                       id: item.master_sku,
                       price: item.selling_price,
                       variant: item.fynd_size,
-                      quantity: item.qty,
-                    },
-                  ],
-                },
-              },
+                      quantity: item.qty
+                    }
+                  ]
+                }
+              }
             });
           }
         } else {
@@ -119,31 +119,31 @@ export default {
         this.$globalError(`error from remove cart >>>> ${error}`);
         console.log("error from remove cart >>>", error);
       }
-    },
+    }
   },
   watch: {
-    "$store.state.cartAjax.cart_page_message": function () {
+    "$store.state.cartAjax.cart_page_message": function() {
       if (
         this.$store.state.cartAjax.cart_page_message != "" &&
         this.$store.state.cartAjax.cart_page_message != null
       ) {
         this.$toast.open(this.$store.state.cartAjax.cart_page_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: "",
+          data: ""
         });
       }
     },
-    "$store.state.cartAjax.cart_page_erro_page": function () {
+    "$store.state.cartAjax.cart_page_erro_page": function() {
       if (
         this.$store.state.cartAjax.cart_page_error_message != "" &&
         this.$store.state.cartAjax.cart_page_error_message != null
       ) {
         this.$toast.error(this.$store.state.cartAjax.cart_page_error_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: "",
+          data: ""
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>

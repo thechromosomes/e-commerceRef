@@ -99,36 +99,17 @@
                           /></a>
                         </div>
                         <div class="price_info">
-                          <span class="price">₹{{ product.selling_price | numberWithCommas}}</span>
+                          <span class="price"
+                            >₹{{
+                              product.selling_price | numberWithCommas
+                            }}</span
+                          >
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-12 col-lg-4 col-12">
                     <div class="cartItemSidebar">
-                      <h4 class="total">
-                        Total:
-                        <strong>
-                          <span class="price"
-                            >₹{{ $store.state.cartAjax.cart_total | numberWithCommas}}</span
-                          >
-                        </strong>
-                      </h4>
-                      <h4
-                        class="total"
-                        v-if="
-                          $store.state.cartAjax.discount_amount != '' &&
-                            $store.state.cartAjax.discount_amount != null
-                        "
-                      >
-                        Dsicount:
-                        <strong>
-                          <span class="price "
-                            >₹{{ $store.state.cartAjax.discount_amount | numberWithCommas}}</span
-                          >
-                        </strong>
-                      </h4>
-
                       <div
                         class="tooltiptext"
                         id="preOrderDate"
@@ -150,6 +131,7 @@
                           Apply
                         </button>
                       </div>
+
                       <div class="tooltiptext red" id="preOrderDate" v-else>
                         <input
                           type="text"
@@ -165,7 +147,34 @@
                           Remove
                         </button>
                       </div>
-
+                      <h4 class="total">
+                        Total:
+                        <strong>
+                          <span class="price"
+                            >₹{{
+                              $store.state.cartAjax.cart_total
+                                | numberWithCommas
+                            }}</span
+                          >
+                        </strong>
+                      </h4>
+                      <h4
+                        class="total"
+                        v-if="
+                          $store.state.cartAjax.discount_amount != '' &&
+                            $store.state.cartAjax.discount_amount != null
+                        "
+                      >
+                        Dsicount:
+                        <strong>
+                          <span class="price "
+                            >₹{{
+                              $store.state.cartAjax.discount_amount
+                                | numberWithCommas
+                            }}</span
+                          >
+                        </strong>
+                      </h4>
                       <div class="buttons-checkout">
                         <input
                           type="submit"
