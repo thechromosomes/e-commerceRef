@@ -50,9 +50,10 @@
                       item.name.toUpperCase()
                   }"
                 >
-                  <span class="stripeImage"></span>
+                  <span class="stripeImage" @click="onmenuhover(item.name)"></span>
                   <NuxtLink
                     :to="`/clp/${item.menu_url_key}`"
+                    @mouseover.native="onmenuhover(item.name)"
                     class="nav-link first"
                     :class="{
                       'active-nav-link':
@@ -63,7 +64,7 @@
                   >
                   <div
                     class="dropdown_menu"
-                    v-if="item.childs && item.childs.length > 0"
+                    v-if="item.childs && item.childs.length > 0 && menuhover==item.name"
                   >
                     <div class="level-2">
                       <ul class="navbar-nav">
@@ -351,6 +352,7 @@ export default {
   },
   data() {
     return {
+      menuhover:'',
       showMobileMenu: false,
       searchActive: false,
       scrollPosition: null,
@@ -380,6 +382,9 @@ export default {
   },
 
   methods: {
+    onmenuhover(menu){
+      this.menuhover=menu;
+    },
     stSearch(e) {
       var name = /^(?!\s*$).+/;
       if (e.target.value.match(name)) {

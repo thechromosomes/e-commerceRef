@@ -103,10 +103,17 @@
                 }}</span
               >
               <span
+<<<<<<< HEAD
                 style="opacity: 0.5; font-weight: 500; font-size:14px;"
                 v-if="
                   singleProductList.single_prod_data.discount != '' &&
                     singleProductList.single_prod_data.discount > 0
+=======
+                style="opacity: 0.5; font-weight: 500"
+                v-if="
+                  singleProductList.single_prod_data.discount != '' &&
+                  singleProductList.single_prod_data.discount > 0
+>>>>>>> 7359063b312edc8a6a3a9e360e85d076b689c918
                 "
                 >({{ singleProductList.single_prod_data.discount }}% Off)</span
               >
@@ -1016,6 +1023,25 @@ export default {
   mounted() {
     // add window event listner for lazy loading products
     window.addEventListener("scroll", this.updateAddToCart);
+    if (this.singleProductList.single_prod_data.name) {
+      this.$gtm.push({
+        event: "ProductDetail",
+        action: "Product Detail",
+        category: this.singleProductList.single_prod_data.category,
+        ecommerce: {
+          detail: {
+            products: [
+              {
+                name: this.singleProductList.single_prod_data.name,
+                id: this.singleProductList.single_prod_data.sku,
+                price: this.singleProductList.single_prod_data.selling_price,
+                category: this.singleProductList.single_prod_data.category,
+              },
+            ],
+          },
+        },
+      });
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateAddToCart);

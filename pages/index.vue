@@ -30,11 +30,11 @@
     </div>
 
     <client-only>
-      <section class="new_in" style="min-height:250px;">
+      <section class="new_in" style="min-height:250px;" v-if="is_new.length > 0">
         <div class="container-fluid">
           <div class="content_new_in">
             <h2 class="swiper-header">NEW IN</h2>
-            <div class="slide_new_in" v-if="is_new.length > 0">
+            <div class="slide_new_in">
               <VueSlickCarousel ref="slick" v-bind="settings">
                 <div class="item" v-for="(item, index) in is_new" :key="index">
                   <NuxtLink :to="`product/${item.url_key}`"

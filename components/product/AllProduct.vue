@@ -565,9 +565,9 @@ export default {
       scrollPosition: "",
       activeDropdown: null,
       showSort: false,
-      gtm_product_impressions:[],
+      gtm_product_impressions: [],
       productSetting: {
-        lazyLoad:"ondemand",
+        lazyLoad: "ondemand",
         focusOnSelect: true,
         infinite: true,
         slidesToShow: 1,
@@ -646,6 +646,18 @@ export default {
   },
 
   methods: {
+    servergtm() {
+      this.$gtm.push({
+        event: "impressionSent",
+        action: "Product Impression",
+        label: "Product List page",
+        category: this.list.pageHead,
+        ecommerce: {
+          currencyCode: "INR",
+          impressions: this.gtm_product_impressions,
+        },
+      });
+    },
     async getProductList(page) {
       let pageNumber;
       page != undefined ? (pageNumber = page) : (pageNumber = 1);
@@ -779,7 +791,7 @@ export default {
           sort_dir: event.dir,
         },
       });
-      this.showSort = false
+      this.showSort = false;
     },
 
     async loadMore() {
@@ -963,6 +975,11 @@ export default {
   mounted() {
     // add window event listner for lazy loading products
     window.addEventListener("scroll", this.updatePage);
+
+    if (this.$store.state.list.firstgtm == true) {
+      this.servergtm();
+    }
+    this.$store.commit("firstgtmState");
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updatePage);

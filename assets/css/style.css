@@ -2040,10 +2040,18 @@ p.input-error {
 }
 .login-box .systemForm {
   max-width: 100%;
+<<<<<<< HEAD
   margin: 0 auto;
   background-color: #efefef;
   padding: 20px 15px;
   width: 500px;
+=======
+    margin: 0 auto;
+    background-color: #f7f7f7;
+    padding: 20px 15px;
+    width: 500px;
+    border: 1px solid #f1f1f1;
+>>>>>>> 7359063b312edc8a6a3a9e360e85d076b689c918
 }
 .login-box .systemForm .title {
   text-align: center;
@@ -2063,7 +2071,7 @@ p.input-error {
 .login-box .systemForm input.input-box {
   width: 100%;
   padding: 10px;
-  border: 1px solid #000;
+  border: 1px solid #e0e0e0;
 }
 .login-box .action_bottom {
   width: 100%;
@@ -2074,6 +2082,7 @@ p.input-error {
   width: 100%;
   border-radius: 0;
   letter-spacing: 0.5px;
+  padding: 10px 10px;
   cursor: pointer;
 }
 .error {

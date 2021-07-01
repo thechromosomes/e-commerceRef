@@ -1,5 +1,6 @@
 export const state = () => ({
   list: {
+    firstgtm: true,
     search_input: "",
     page_error: "",
     service: "category",
@@ -297,7 +298,10 @@ export const mutations = {
     state.list.filters = [];
     state.list.fit_filter = {};
   },
-
+  // first GTM state
+  firstgtmState(state) {
+    state.list.firstgtm = false;
+  },
   // update filter array
   updateFilterArray(state, { item, paramsData }) {
     let filterParam;
