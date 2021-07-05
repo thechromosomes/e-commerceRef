@@ -1,4 +1,8 @@
 export const state = () => ({
+   // base URL is using in og tags and log generator API >>> all product
+  // BASE_URL: "https://di.hostx1.de",
+  BASE_URL: "http://localhost:9000",
+  pimApi: "https://dipim.dieselindia.com//pim",
   list: {
     firstgtm: true,
     search_input: "",
@@ -41,11 +45,7 @@ export const state = () => ({
   homePageData: {},
   cmsPagesData: {},
   header: [],
-  pageLoader: true,
-  // base URL is using in og tags and log generator API >>> all product
-  // BASE_URL: "https://di.hostx1.de",
-  BASE_URL: "http://localhost:9000",
-  pimApi: "https://dipim.hostx1.de/pim",
+  pageLoader: false,
   isMobile: false,
   instaPost: [],
   bannerSlide: [],

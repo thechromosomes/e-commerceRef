@@ -352,26 +352,6 @@
         </ul>
       </div>
     </div>
-    <!-- <button
-      class="product-sort mobile_sortby mobile_only"
-      @click="openSort = false"
-      v-if="openSort"
-    >
-      Close
-    </button>
-    <button
-      v-else
-      class="product-sort mobile_sortby mobile_only dd"
-      @click="openSort = true"
-    >
-      Sort by
-    </button>
-    <button
-      class="mobile-filter mobile_filtter mobile_only"
-      @click="toggleFilter()"
-    >
-      Filter
-    </button> -->
 
     <div class="search-results">
       <div class="tab-content">
@@ -486,21 +466,11 @@
                 </div>
               </div>
             </div>
-            <!-- loader image -->
-            <div class="align-center product_loader">
-              <img
-                v-show="
-                  list.product_loader === true &&
-                  $store.state.pageLoader == false
-                "
-                src="~/assets/img/giphy.gif"
-                width="40px"
-              />
-            </div>
-            <div
+              <div
               class="no_products text-center"
-              v-if="
-                list.Product_list.length == 0 &&
+              v-else-if="
+                list.Product_list.length == 0 && 
+                list.product_loader == false && 
                 $store.state.pageLoader == false
               "
             >
@@ -510,6 +480,16 @@
                 src="@/assets/img/no_product.png"
                 alt="no-product"
                 class="no-product_img"
+              />
+            </div>
+            <!-- loader image -->
+            <div class="align-center product_loader">
+              <img
+                v-show="
+                  list.product_loader === true && list.Product_list.length > 0
+                "
+                src="~/assets/img/giphy.gif"
+                width="40px"
               />
             </div>
 
@@ -525,16 +505,6 @@
                 You've seen {{ list.Product_list.length }} of
                 {{ list.totalProduct }} product(s)
               </div>
-              <!-- <button
-                class="button button-load-more js_button-load-more pointer"
-                v-show="
-                  list.totalProduct > list.Product_list.length &&
-                  list.Product_list.length != 0
-                "
-                @click="loadMore()"
-              >
-                Load more
-              </button> -->
             </div>
           </div>
 
@@ -959,7 +929,8 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("pimAjax", {
+    this.$store
+      .dispatch("pimAjax", {
         method: "get",
         url: `/pimresponse.php`,
         token: this.$store.state.cartAjax.customer_token,
@@ -968,11 +939,13 @@ export default {
           store: 1,
           url_key: this.$route.params.productCategory,
         },
-      }).then((like) => {
-      if (like.response) {
+      })
+      .then((like) => {
+        if (like.response) {
           this.likeData = like.result.likes;
         }
-      }).catch((error)=>{
+      })
+      .catch((error) => {
         this.$globalError(`error from the all product page ${error}`);
       });
     // add window event listner for lazy loading products

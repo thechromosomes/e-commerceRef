@@ -1,5 +1,5 @@
 <template>
-  <div v-if="slideImg.length >= 5">
+  <div v-if="slideImg && slideImg.length >= 5">
     <div class="two-banners-section slot-margin">
       <h2 class="category-heading text-center">TRENDING NOW</h2>
       <div class="category-box">

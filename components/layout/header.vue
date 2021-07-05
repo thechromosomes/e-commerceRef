@@ -1,7 +1,7 @@
 <template>
   <header class="header" :class="[scrollPosition > 30 ? 'header-fixed' : '']">
     <!-- vue loader -->
-    <div class="page-loader" v-if="$store.state.pageLoader">
+    <div class="page-loader" v-show="$store.state.pageLoader">
       <div class="lds-ripple">
         <div></div>
         <div></div>

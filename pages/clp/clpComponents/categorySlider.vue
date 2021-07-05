@@ -6,7 +6,7 @@
           <h2 class="swiper-header">SUMMER MUST-HAVE</h2>
         </div>
         <div class="swiper-overflow-gift-swiper">
-          <div class="slide-item" v-if="slideImg.length > 0">
+          <div class="slide-item" v-if="slideImg && slideImg.length > 0">
             <VueSlickCarousel ref="slick" v-bind="settings">
               <div class="item" v-for="(item, index) in slideImg" :key="index">
                 <div class="img-box">

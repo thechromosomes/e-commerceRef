@@ -3,7 +3,7 @@
     <section class="new_in">
       <div class="container-fluid">
         <div class="content_new_in">
-          <div class="slide_new_in" v-if="slideImg.length > 0">
+          <div class="slide_new_in" v-if="slideImg && slideImg.length > 0">
             <client-only>
               <VueSlickCarousel ref="slick" v-bind="settings">
                 <div
