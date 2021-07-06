@@ -153,7 +153,7 @@
   .stripeImage {
     position: absolute;
     right: 0px;
-    background-image: url(/_nuxt/assets/img/sprite_icons.svg);
+    background-image: url(../img/sprite_icons.svg);
     background-position: -425px 13px;
     width: 35px;
     height: 55px;
