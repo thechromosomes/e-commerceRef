@@ -92,6 +92,10 @@ export default {
         this.meta_title = title;
       }
     },
+
+    dodajAktywne() {
+      alert("hidsfsdf");
+    },
   },
 
   async fetch() {
@@ -123,29 +127,27 @@ export default {
   },
 
   mounted() {
-    // // Get the .click-me element
-    // var clickMe = document.querySelector(".set");
-    // // This will run when the .click-me element is clicked
-    // if (clickMe) {
-    //   clickMe.addEventListener("click", function (event) {
-    //     alert("hi");
-    //   });
-    // }
+    var clickMe = document.querySelectorAll(".set");
+    console.log("clickMe", clickMe);
+    if (clickMe) {
+      clickMe.forEach((event) => {
+        event.addEventListener("click", () => {
+          event.classList.toggle("active");
+        });
+      });
+    }
+  },
 
-    // $(".set > a").on("click", function () {
-    //   if ($(this).hasClass("active")) {
-    //     $(this).removeClass("active");
-    //     $(this).siblings(".content").slideUp(200);
-    //     $(".set > a i").removeClass("fa-minus").addClass("fa-plus");
-    //   } else {
-    //     $(".set > a i").removeClass("fa-minus").addClass("fa-plus");
-    //     $(this).find("i").removeClass("fa-plus").addClass("fa-minus");
-    //     $(".set > a").removeClass("active");
-    //     $(this).addClass("active");
-    //     $(".content").slideUp(200);
-    //     $(this).siblings(".content").slideDown(200);
-    //   }
-    // });
+  updated() {
+    var clickMe = document.querySelectorAll(".set");
+    console.log("clickMe", clickMe);
+    if (clickMe) {
+      clickMe.forEach((event) => {
+        event.addEventListener("click", () => {
+          event.classList.toggle("active");
+        });
+      });
+    }
   },
 };
 </script>

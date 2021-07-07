@@ -3818,3 +3818,11 @@ p.input-error {
   color: #000 !important ;
   text-transform: uppercase !important;
 }
+/* cms toggle class */
+.accordion-container .set .content {
+  display: none !important;
+}
+.accordion-container .set.active .content {
+  display: block !important;
+}
+/* end css toggle class */
