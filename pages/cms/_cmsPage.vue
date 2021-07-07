@@ -48,7 +48,6 @@
 </template>
 <script>
 import Contentasset from "./Contentasset";
-import $ from "jquery";
 
 export default {
   components: {
@@ -58,6 +57,7 @@ export default {
     return {
       cmsData: {},
       tapData: "",
+      tapDiff: "",
       title: "",
       meta_description: "",
       meta_title: "",
@@ -84,9 +84,10 @@ export default {
   methods: {
     updateData(name) {
       this.tapData = name.content;
+      this.tapDiff = name.meta_title
     },
     rendeSeo(title, description, meta_keyword, url_key) {
-      if (url_key == this.$route.params.cmsPage) {
+      if (url_key == this.$route.params.cmsPage && title === this.tapDiff) {
         this.meta_description = description;
         this.meta_keyword = meta_keyword;
         this.meta_title = title;
@@ -124,6 +125,8 @@ export default {
         this.cmsData = cmsData.result;
         for (var a in cmsData.result) {
           this.tapData = cmsData.result[a].content;
+          this.tapDiff = cmsData.result[a].meta_title;
+
           this.title = cmsData.result[a].parent_name;
           return;
         }
