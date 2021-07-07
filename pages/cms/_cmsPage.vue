@@ -93,8 +93,15 @@ export default {
       }
     },
 
-    dodajAktywne() {
-      alert("hidsfsdf");
+    vanillaJs() {
+      var clickMe = document.querySelectorAll(".set");
+      if (clickMe) {
+        clickMe.forEach((event) => {
+          event.addEventListener("click", () => {
+            event.classList.toggle("active");
+          });
+        });
+      }
     },
   },
 
@@ -127,26 +134,14 @@ export default {
   },
 
   mounted() {
-    var clickMe = document.querySelectorAll(".set");
-    console.log("clickMe", clickMe);
-    if (clickMe) {
-      clickMe.forEach((event) => {
-        event.addEventListener("click", () => {
-          event.classList.toggle("active");
-        });
-      });
+    if (this.$route.params.cmsPage === "size-conversion") {
+      this.vanillaJs();
     }
   },
 
   updated() {
-    var clickMe = document.querySelectorAll(".set");
-    console.log("clickMe", clickMe);
-    if (clickMe) {
-      clickMe.forEach((event) => {
-        event.addEventListener("click", () => {
-          event.classList.toggle("active");
-        });
-      });
+    if (this.$route.params.cmsPage === "size-conversion") {
+      this.vanillaJs();
     }
   },
 };
