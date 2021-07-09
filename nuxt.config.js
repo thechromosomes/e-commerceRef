@@ -1,4 +1,3 @@
-// import CreateLog from "./server-middleware/globalErrorMiddleware";
 
 export default {
   head: {
@@ -39,7 +38,6 @@ export default {
   plugins: [
     { src: "@/plugins/globalErrorHandler", ssr: true },
     { src: "@/plugins/tokenAndCms.js", ssr: true },
-    { src: "@/plugins/coustom.js", ssr: false },
     { src: "@/plugins/axios", ssr: true },
     { src: "@/plugins/vue-cookies", ssr: true },
     { src: "@plugins/thirdPartyModulesSsr", ssr: true },
@@ -57,11 +55,6 @@ export default {
   // Auto import components
   components: true,
 
-  // Modules for dev and build
-  buildModules: [
-    // https://go.nuxtjs.dev/vuetify
-    // "@nuxtjs/vuetify",
-  ],
 
   modules: [
     "@nuxtjs/axios",
@@ -87,48 +80,75 @@ export default {
   ],
 
   // PWA module configuration
-  // pwa: {
-  //   manifest: {
-  //     lang: "en",
-  //   },
-  // },
+    manifest: {
+    name: "Diesel",
+    lang: "en",
+    title: "Diesel",
+    description: "Diesel",
+    theme_color: "#FFFFFF",
+    background_color: "#FFFFFF",
+    short_name: "Diesel",
+    ogImage: `icon.png`,
+    icons: [
+      {
+        src: `/icon.svg`,
+        size: "144x144",
+        type: "image/svg",
+      },
+      {
+        src: `/icon.svg`,
+        size: "128x128",
+        type: "image/svg",
+      },
+      {
+        src: `/icon.svg`,
+        size: "152x152",
+        type: "image/svg",
+      },
+      {
+        src: `/icon.svg`,
+        size: "180x180",
+        type: "image/svg",
+      },
+      {
+        src: `/icon.svg`,
+        size: "192x192",
+        type: "image/svg",
+      },
+      {
+        src: `/icon.svg`,
+        size: "256x256",
+        type: "image/svg",
+      },
+    ],
+  },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
 
   // google tag manger
   gtm: {
-    id: "GTM-MTLQ39Z",
-    enabled: false,
-    debug: false,
-    loadScript: false,
+    id: "GTM-NLQNS6G",
+    enabled: true,
+    debug: true,
+    loadScript: true,
   },
 
-  // a server middleware that runs only server site
-  // serverMiddleware: ["~/server-middleware/globalErrorMiddleware"],
 
   // error handler hook
-  // hooks: {
-  //   render: {
-  //     errorMiddleware(app) {
-  //       app.use(async (error, req, res, next) => {
-  //         if (error) {
-  //           let finalError = await error;
-  //           console.log("finalError", finalError);
-  //           // CreateLog.error({
-  //           //   error: `>>> ${finalError}`,
-  //           //   metaInformation: req.rawHeaders,
-  //           //   type: "error middleware",
-  //           //   from: req.url,
-  //           // });
-  //           res.redirect("/404");
-  //         } else {
-  //           res.redirect("/404");
-  //         }
-  //       });
-  //     },
-  //   },
-  // },
+  hooks: {
+    render: {
+      errorMiddleware(app) {
+        app.use(async (error, req, res, next) => {
+          if (error) {
+            let finalError = await error;
+            console.log("finalError", finalError);
+            res.redirect("/404");
+          } else {
+            res.redirect("/404");
+          }
+        });
+      },
+    },
+  },
 
   server: {
     port: 9000,
