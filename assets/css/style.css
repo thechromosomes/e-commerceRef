@@ -1677,17 +1677,24 @@ p.p-price span.line-throu {
 }
 
 .search-box {
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99999;
   position: fixed;
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
-  /* opacity: .5; */
   width: 100%;
   top: 55px;
   left: 0;
-  z-index: 99999;
+  background-color: rgba(0, 0, 0, 0.5);
 }
+
+.search-box-overlay {
+  z-index: 99999;
+  height: 8% !important;
+  box-shadow: 0 0px 0px 0 rgb(255 255 255 / 2%),
+    0 0px 0px 0px rgb(255 255 255 / 12%), 0 5px 5px 0 rgb(115 115 115 / 20%); overflow: hidden; background-color: transparent; 
+}
+.search-box.search-box-overlay{z-index: 999999;}
 
 .search-box .site-search {
   width: 100%;

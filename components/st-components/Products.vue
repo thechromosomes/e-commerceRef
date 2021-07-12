@@ -13,26 +13,21 @@
                 v-for="(image, imgIndex) in item.gallery"
                 :key="imgIndex"
               >
-                <Nuxt-link :to="getUrl(item.url)">
+                <Nuxt-link
+                  :to="getUrl(item.url)"
+                  @click.native="
+                    () =>
+                      $store.commit('activeSearchToggle', {
+                        payload: false,
+                      })
+                  "
+                >
                   <img :src="image.image" alt="img" class="w-100" />
                 </Nuxt-link>
               </div>
             </VueSlickCarousel>
           </div>
           <div class="st-img-container">
-            <!-- <NuxtLink :to="getUrl(item.url)" class="st-loop-product">
-              <img
-                :src="imageModifier(item.image)"
-                v-if="item.gallery === undefined || item.gallery === null"
-                class="img_thumbnail"
-              />
-              <img
-                :src="imageModifier(item.image)"
-                v-else
-                class="img_thumbnail"
-              />
-            </NuxtLink> -->
-
             <div class="wish-list-icon">
               <span
                 class="wishlist_blank"
@@ -61,7 +56,12 @@
           <div class="st-title-box">
             <h3 class="st-product-title">
               <span class="st-available-color">{{ item.colour }}</span>
-              <NuxtLink :to="getUrl(item.url)">
+              <NuxtLink :to="getUrl(item.url)" @click.native="
+                    () =>
+                      $store.commit('activeSearchToggle', {
+                        payload: false,
+                      })
+                  ">
                 <p class="st-name">{{ item.name }}</p>
               </NuxtLink>
             </h3>

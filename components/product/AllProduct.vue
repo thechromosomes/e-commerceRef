@@ -79,7 +79,7 @@
                   ></span>
                   <div class="item" @click="handleFitFilter(fitFilterItem)">
                     <div class="filter-image">
-                      <img :src="fitFilterItem.image" alt="img" class="w-100" />
+                      <img  :src="fitFilterItem.image" alt="img" class="w-100" />
                     </div>
                     <div class="category-filter-title">
                       <a>{{ fitFilterItem.value }}</a>

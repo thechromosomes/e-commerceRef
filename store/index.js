@@ -52,6 +52,7 @@ export const state = () => ({
   is_new: [],
   intialSearchPath: "",
   activeUrlKey: "dummy-placeholder",
+  searchActive: false
 });
 
 export const actions = {
@@ -159,6 +160,10 @@ export const mutations = {
       this.$globalError(`error from setCmsData mutation >>> ${error}`);
       state.cmsError = error;
     }
+  },
+
+  activeSearchToggle(state, {payload}){
+    state.searchActive = payload
   },
 
   // prepare state for product parameters before call
