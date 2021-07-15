@@ -750,15 +750,7 @@
                                     >{{ JSON.parse(item.size).color }} /
                                     {{ JSON.parse(item.size).size }}</span
                                   >
-                                  <span
-                                    class="
-                                      product__description__property
-                                      order-summary__small-text
-                                    "
-                                    data-prop="UPC"
-                                  >
-                                    UPC: N.A
-                                  </span>
+                                  
                                 </th>
                                 <td class="product__quantity visually-hidden">
                                   2
@@ -1208,6 +1200,9 @@ export default {
               },
             });
           } else {
+             this.$toast.error(
+               response.message
+              );
             throw response.message;
           }
         } else {

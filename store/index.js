@@ -163,7 +163,7 @@ export const mutations = {
   },
 
   activeSearchToggle(state, {payload}){
-    state.searchActive = payload
+    state.searchActive = payload;
   },
 
   // prepare state for product parameters before call

@@ -95,7 +95,7 @@
           >
         </div>
         <div class="right-content">
-          <div class="slide_new_in" v-if="accessories.length > 0">
+          <div class="slide_new_in" v-if="accessories && accessories.length > 0">
             <client-only>
               <VueSlickCarousel ref="slick" v-bind="settings4">
                 <div
