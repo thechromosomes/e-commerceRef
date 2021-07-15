@@ -95,15 +95,6 @@
             </div>
           </div>
         </div>
-        <div class="row mt-5 mb-5">
-          <div class="col-12">
-            <img
-              src="~/assets//img/storelocater-img.jpg"
-              alt="img "
-              class="w-100"
-            />
-          </div>
-        </div>
       </div>
     </client-only>
   </div>

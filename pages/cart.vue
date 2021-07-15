@@ -46,20 +46,16 @@
                               v-if="JSON.parse(product.size).size"
                               >Size : {{ JSON.parse(product.size).size }}</span
                             >
-
+                            <br />
                             <span
-                              class="product_options-cart Loyalty_LineItem hide_permanent"
+                              class="
+                                product_options-cart
+                                Loyalty_LineItem
+                                hide_permanent
+                              "
                             ></span>
 
-                            <span
-                              class="product_options-cart Loyalty_LineItem hide_permanent"
-                            ></span>
-
-                            <span
-                              class="product_options-cart Loyalty_LineItem hide_permanent"
-                            ></span>
-
-                            Pre-ordered items: {{ product.qty }}
+                            Item(s): {{ product.qty }}
                             <br />
                             <span
                               ><div
@@ -73,7 +69,14 @@
                           <div class="">
                             <a
                               class="minus-symbol"
-                              @click.prevent="addCartVal('minus', product)"
+                              :class="{
+                                disable:
+                                  addToCartValClassRender[index] == 1 ||
+                                  $store.state.cartAjax.cart_product[
+                                    index
+                                  ].qty == 1,
+                              }"
+                              @click.prevent="addCartVal('minus', product, index)"
                               >-</a
                             >
                             <input
@@ -84,14 +87,28 @@
                               disabled
                             />
                             <a
+                              :class="{
+                                disable:
+                                  addToCartValClassRender[index] ==
+                                    $store.state.cartAjax.cart_product[
+                                      index
+                                    ].max_qty ||
+                                  addToCartValClassRender[index] == 5 ||
+                                  $store.state.cartAjax.cart_product[
+                                    index
+                                  ].qty ==
+                                    $store.state.cartAjax.cart_product[
+                                      index
+                                    ].max_qty,
+                              }"
                               class="plus-symbol"
-                              @click.prevent="addCartVal('add', product)"
+                              @click.prevent="addCartVal('add', product, index)"
                               >+</a
                             >
                           </div>
                         </div>
 
-                        <div class="remove  desktopOnly">
+                        <div class="remove desktopOnly">
                           <a
                             @click.prevent="removeCartItem(product)"
                             class="cart"
@@ -115,7 +132,7 @@
                         id="preOrderDate"
                         v-if="
                           $store.state.cartAjax.discount_code == '' ||
-                            $store.state.cartAjax.discount_code == null
+                          $store.state.cartAjax.discount_code == null
                         "
                       >
                         <input
@@ -162,12 +179,12 @@
                         class="total"
                         v-if="
                           $store.state.cartAjax.discount_amount != '' &&
-                            $store.state.cartAjax.discount_amount != null
+                          $store.state.cartAjax.discount_amount != null
                         "
                       >
                         Dsicount:
                         <strong>
-                          <span class="price "
+                          <span class="price"
                             >₹{{
                               $store.state.cartAjax.discount_amount
                                 | numberWithCommas
@@ -215,7 +232,8 @@ export default {
   data() {
     return {
       addToCartVal: 0,
-      applied_coupon: ""
+      applied_coupon: "",
+      addToCartValClassRender: [],
     };
   },
 
@@ -233,13 +251,13 @@ export default {
           method: "post",
           url: `/product/remove-product`,
           token: this.$store.state.cartAjax.cart_token,
-          params: form
+          params: form,
         });
         if (response) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
             data: response,
-            vm: this
+            vm: this,
           });
           if (response.success) {
             this.$gtm.push({
@@ -253,11 +271,11 @@ export default {
                       id: item.master_sku,
                       price: item.selling_price,
                       variant: item.fynd_size,
-                      quantity: item.qty
-                    }
-                  ]
-                }
-              }
+                      quantity: item.qty,
+                    },
+                  ],
+                },
+              },
             });
           }
         } else {
@@ -283,13 +301,13 @@ export default {
           method: "post",
           url: `/product/update-product`,
           token: this.$store.state.cartAjax.cart_token,
-          params: form
+          params: form,
         });
         if (response) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
             data: response,
-            vm: this
+            vm: this,
           });
         } else {
           throw "no response from api";
@@ -302,10 +320,10 @@ export default {
       }
     },
 
-    addCartVal(cartval, product) {
+    addCartVal(cartval, product, index) {
       this.addToCartVal = product.qty;
+      this.addToCartValClassRender[index] = product.qty;
       if (Object.keys(product).length === 0) {
-        alert("no product available");
         return;
       }
       if (this.addToCartVal >= 5 && cartval == "add") {
@@ -317,9 +335,14 @@ export default {
           this.addToCartVal < 5
         ) {
           this.addToCartVal += 1;
+          this.addToCartValClassRender[index] += 1;
         } else if (cartval === "minus") {
           this.addToCartVal -= 1;
           this.addToCartVal === 0 ? (this.addToCartVal = 1) : this.addToCartVal;
+          this.addToCartValClassRender[index] -= 1;
+          this.addToCartValClassRender[index] === 0
+            ? (this.addToCartValClassRender[index] = 1)
+            : this.addToCartValClassRender[index];
         }
       }
       this.updateCart(product);
@@ -359,13 +382,13 @@ export default {
           method: "post",
           url,
           token,
-          params: form
+          params: form,
         });
 
         if (response.success) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
-            data: response
+            data: response,
           });
           this.$toast.open(response.message);
         } else {
@@ -374,32 +397,32 @@ export default {
       } catch (error) {
         console.log("error form the add coupon foo >>", error);
       }
-    }
+    },
   },
   watch: {
-    "$store.state.cartAjax.cart_page_message": function() {
+    "$store.state.cartAjax.cart_page_message": function () {
       if (
         this.$store.state.cartAjax.cart_page_message != "" &&
         this.$store.state.cartAjax.cart_page_message != null
       ) {
         this.$toast.open(this.$store.state.cartAjax.cart_page_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
     },
-    "$store.state.cartAjax.cart_page_erro_page": function() {
+    "$store.state.cartAjax.cart_page_erro_page": function () {
       if (
         this.$store.state.cartAjax.cart_page_error_message != "" &&
         this.$store.state.cartAjax.cart_page_error_message != null
       ) {
         this.$toast.error(this.$store.state.cartAjax.cart_page_error_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -408,4 +431,15 @@ export default {
   margin-top: -46px;
   margin-bottom: 40px;
 }
+
+/* disabel button */
+.minus-symbol.disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.plus-symbol.disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 </style>

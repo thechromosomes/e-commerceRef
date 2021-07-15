@@ -398,18 +398,11 @@
               <div class="store-list">
                 <div class="list">
                   <h5>{{ addressList.infoText.name }}</h5>
-                  <!-- <div class="info-box">
-                  <a href="#">More info</a>
-                </div> -->
                 </div>
                 <p>
                   {{ addressList.infoText.address }}<br />
                   {{ addressList.infoText.phone }}
                 </p>
-
-                <!-- <button @click="addToCart()" class="btn btn-primary add-bag">
-                Add to bag
-              </button> -->
               </div>
             </div>
           </div>
