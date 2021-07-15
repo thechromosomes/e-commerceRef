@@ -1690,9 +1690,11 @@ p.p-price span.line-throu {
 
 .search-box-overlay {
   z-index: 99999;
-  height: 8% !important;
+  /* height: 8% !important; */
+  height: 71px;
   box-shadow: 0 0px 0px 0 rgb(255 255 255 / 2%),
-    0 0px 0px 0px rgb(255 255 255 / 12%), 0 5px 5px 0 rgb(115 115 115 / 20%); overflow: hidden; background-color: transparent; 
+    0 0px 0px 0px rgb(255 255 255 / 12%), 0 5px 5px 0 rgb(115 115 115 / 20%); overflow: hidden; 
+    /* background-color: transparent;  */
 }
 .search-box.search-box-overlay{z-index: 999999;}
 
@@ -3875,3 +3877,17 @@ p.input-error {
   max-height: 100vh;
 }
 /* end help dropdown css */
+
+/* login button mobile css */
+@media(max-width:991px){
+  .login:hover .dropdown-menu-account {
+    display: none;
+  }
+  .search_box ul li.mini-cart:hover .cart-full-count .minicart-wrapper{
+    max-height: 0;
+  }
+}
+/* hide account nav for desktop */
+.menu-mobile-sidebar .account-nav{
+  display: none;
+}

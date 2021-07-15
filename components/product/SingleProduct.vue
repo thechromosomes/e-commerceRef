@@ -114,6 +114,8 @@
               <span class="pricr-title">Price inclusive of all taxes</span>
             </p>
 
+            <span id="stick-cart-temp"></span>
+
             <ul class="product-attributes">
               <li class="variation-attribute">
                 <span class="attribute-label color"> COLOR: </span>
@@ -219,7 +221,7 @@
                 </ul>
               </li>
             </ul>
-            <span id="stick-cart-temp"></span>
+            
             <div
               class="print_btn"
               :class="{ addtocartsticky: fixedMobileCart && showStickycart }"
@@ -229,7 +231,9 @@
                 class="primary-btn full-with-btn"
                 @click="addToCart()"
               >
-                Add to cart
+                <a href="#stick-cart-temp" class="text-white">
+                  Add to cart
+                </a>
               </button>
               <div class="wish-list-icon single">
                 <span

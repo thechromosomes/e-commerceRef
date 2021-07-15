@@ -22,12 +22,12 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <span class="search-icon-mobile" @click="toogleSearch(false)"></span>
+          <span class="search-icon-mobile" @click="toogleSearch(true)"></span>
         </div>
         <div
           class="collapse navbar-collapse"
           id="navbarSupportedContent"
-          :class="{ active: showMobileMenu }"
+          :class="{ active: showMobileMenu || showHelpSidebar }"
         >
           <div class="menu-mobile" @click="showMobileMenu = false">
             <div class="menu-mobile-sidebar" @click="$event.stopPropagation()">
@@ -190,10 +190,68 @@
                     </div>
                   </li>
                 </ul>
+                <ul class="account-nav">
+                  <li class="nav-item help-link" 
+                  v-if="
+                    $store.state.cartAjax.customer_id != null &&
+                    $store.state.cartAjax.customer_id != '' &&
+                    $store.state.cartAjax.customer_session != '' &&
+                    $store.state.cartAjax.customer_session != null
+                  "
+                  @click="showMobileMenu = false"
+                  >
+                    <Nuxt-link to="/Dashboard" >Account</Nuxt-link>                    
+                  </li>
+                  <li class="nav-item help-link" v-else @click="showMobileMenu = false">
+                      <Nuxt-link to="/login"  >Login</Nuxt-link>                    
+                  </li>
+                  <li class="nav-item help-link">
+                      <span @click="toggleHelpPopup()">Help</span>                    
+                  </li>
+                </ul>
               </client-only>
-            </div>
+            </div>           
           </div>
+          <div class="menu-mobile help-mobile-sidebar" v-if="showHelpSidebar" @click="showHelpSidebar = false">
+             <div class="menu-mobile-sidebar" @click="$event.stopPropagation()">
+              <div class="mobile-heading">
+                <h2>Help</h2>
+                <div
+                  class="close"
+                  id="close-btn"
+                  @click="showHelpSidebar = !showHelpSidebar"
+                ></div>
+              </div>
+              <client-only>
+              <ul class="hover-menu navbar-nav mr-auto">
+                  <li class="hover-item"  @click="showHelpSidebar = false">
+                    <Nuxt-link class="hover-link" to="/cms/your-order-status" title="Order Status">Check your order </Nuxt-link>
+                  </li>
+                  <li class="hover-item"  @click="showHelpSidebar = false">
+                    <Nuxt-link class="hover-link" to="/cms/return-your-order" title="Returns">Return your order</Nuxt-link>
+                  </li>
+                  <li class="hover-item"  @click="showHelpSidebar = false">
+                    <Nuxt-link class="hover-link" to="/cms/shipping">Delivery </Nuxt-link>
+                  </li>
+                  <li class="hover-item"  @click="showHelpSidebar = false">
+                    <Nuxt-link class="hover-link" to="/cms/size-conversion">Size Conversion </Nuxt-link>
+                  </li>
+                  <li class="hover-item"  @click="showHelpSidebar = false">
+                    <Nuxt-link class="hover-link" to="/cms/contact-us">Send us a Message </Nuxt-link>
+                  </li>
+                  <li class="hover-item"  @click="showHelpSidebar = false">
+                    <Nuxt-link class="hover-link" to="/cms/contact-us">Contact us </Nuxt-link>
+                  </li>
+                  <!-- <li class="hover-item">
+                    <Nuxt-link class="hover-link" to="https://uk.diesel.com/en/help-show?content=covid-19" title="Contact us">Our Covid-19 Statement </Nuxt-link>
+                  </li> -->
+                </ul>
+              </client-only>
+             </div>
+           </div>
+          
         </div>
+         
         <div class="site-logo">
           <NuxtLink class="navbar-brand" to="/"
             ><img src="~/assets//img/logo.svg" alt="logo"
@@ -397,6 +455,7 @@ export default {
       showMobileMenu: false,
       scrollPosition: null,
       ShowhoverCart: false,
+      showHelpSidebar:false
     };
   },
   async mounted() {
@@ -435,15 +494,16 @@ export default {
     },
 
     toogleSearch(event) {
+      console.log("working");
       this.$store.commit("activeSearchToggle", {
         payload: event,
       });
 
-       if (this.$store.state.searchActive) {
-        setTimeout(() => {
-          this.$refs.headerSearchBar.focus();
-        }, 0);
-      }
+      //  if (this.$store.state.searchActive) {
+      //   setTimeout(() => {
+      //     this.$refs.headerSearchBar.focus();
+      //   }, 0);
+      // }
     },
     showhoverCart() {
       this.ShowhoverCart = false;
@@ -495,6 +555,12 @@ export default {
           console.log("error from the log out page", error);
         });
     },
+    toggleHelpPopup(){
+      console.log(this.showHelpSidebar);
+      this.showMobileMenu = false;
+      this.showHelpSidebar = !this.showHelpSidebar;
+       console.log(this.showHelpSidebar);
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
