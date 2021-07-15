@@ -360,13 +360,69 @@
             </div>
             <div id="overlay">
               <div class="container" v-show="totalHits === 0 && !loader">
-                <h2 class="page-heading">
-                  No Results found
-                  <span v-show="searchQuery.trim().length > 0"
-                    >for '{{ searchQuery | truncate(20) }}'</span
-                  >
-                </h2>
-                <div class="search-pform">
+                <div class="search-banner content-slot slot-grid-header">
+                  <div class="search-banner-desktop">
+                    <div class="search-banner-content">
+                      <h1 class="search-banner-title search-black">
+                        Results <span v-show="searchQuery.trim().length > 0"
+                    >for : {{ searchQuery | truncate(20) }}</span>
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+                <div class="noresults-wrapper">
+                  <h1 class="noresults-header">0 Results</h1>
+                  <div class="noresults-text">
+                    <p>Sorry, we could not find any products or categories for "{{ searchQuery | truncate(20) }}". Please try searching for a different keyword or choose something from our suggestions below:</p>
+                  </div>
+                </div>
+                <div class="noresults-suggestions d-flex">
+                  <ul class="noresults-link-wrapper">
+                    <li class="noresults-link noresults-link-title">
+                      <Nuxt-link to="/clp/man">
+                        MAN
+                      </Nuxt-link>
+                    </li>
+                    <li class="noresults-link">
+                    <Nuxt-link to="/collections/man-jeans-jeans/">
+                      Jeans Man
+                    </Nuxt-link>
+                    </li>
+                    <li class="noresults-link">
+                    <Nuxt-link to="/collections/man-shoes-sneakers/">
+                      Sneakers Man
+                    </Nuxt-link>
+                    </li>
+                    <li class="noresults-link">
+                    <Nuxt-link to="/collections/man-accessories-belts/">
+                      Belts Man
+                    </Nuxt-link>
+                    </li>
+                  </ul>
+                  <ul class="noresults-link-wrapper">
+                    <li class="noresults-link noresults-link-title">
+                    <Nuxt-link to="/clp/woman">
+                      WOMAN
+                    </Nuxt-link>
+                    </li>
+                    <li class="noresults-link">
+                    <Nuxt-link to="/collections/woman-jeans-jeans/">
+                      Jeans Woman
+                    </Nuxt-link>
+                    </li>
+                    <li class="noresults-link">
+                    <Nuxt-link to="/collections/woman-apparel-jackets/">
+                      Jackets Woman
+                    </Nuxt-link>
+                    </li>
+                    <li class="noresults-link">
+                    <Nuxt-link to="/collections/woman-apparel-tshirts---tops/">
+                      Tshirt & Tops 
+                    </Nuxt-link>
+                    </li>
+                  </ul>
+                </div>
+                <!-- <div class="search-pform">
                   <p>
                     Try searching some other keywords
                     <span v-show="filterCount > 0"
@@ -374,7 +430,7 @@
                     >
                   </p>
                   <p>Look for other items at our store</p>
-                </div>
+                </div> -->
                 <div class="p-0">
                   <div class="row"></div>
                 </div>
@@ -1337,3 +1393,58 @@ export default {
   },
 };
 </script>
+<style scoped>
+.search-banner-desktop{
+    min-height: 60px;
+}
+.search-banner-title {
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 1.75rem;
+}
+.noresults-wrapper{
+  padding: 40px 15px 0;
+}
+.noresults-header{
+  text-transform: uppercase;
+  font-size: 40px;
+  padding-top: 40px;
+  margin-bottom: 26px;
+}
+.noresults-text {
+    font-size: 14px;
+    line-height: 26px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.noresults-text p {
+    margin: 14px auto;
+    max-width:600px
+}
+.noresults-suggestions {
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  padding-bottom: 100px;
+}
+.noresults-link {
+    list-style-type: none;
+    text-transform: capitalize;
+    font-size: 13px;
+    padding: 10px;
+}
+.noresults-link-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 10px;
+}
+.noresults-link-wrapper{
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    max-width: 600px;
+}
+
+</style>

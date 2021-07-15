@@ -42,10 +42,15 @@
     z-index: 99;
     transition: all 0.5s;
   }
+  .header .navbar .navbar-collapse .menu-mobile .menu-mobile-sidebar{
+    max-width: 80%;
+    height: 100%;
+    width: 100%;
+  }
   .header .navbar .navbar-collapse .mobile-heading {
     display: block;
     padding: 15px;
-    max-width: 80%;
+    /* max-width: 80%; */
     width: 100%;
     position: relative;
     background-color: #000;
@@ -87,7 +92,7 @@
     max-height: calc(100% - 54px);
     min-height: calc(100% - 54px);
     overflow: auto;
-    max-width: 80%;
+    /* max-width: 80%; */
     width: 100%;
     flex-direction: column;
   }
