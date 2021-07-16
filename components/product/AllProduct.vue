@@ -19,7 +19,7 @@
               {{ list.pageHead.toUpperCase() }}
             </div>
             <div class="search-banner-result-count-mobile">
-              <span> {{ calculateResult }} Results </span>
+              <span> {{ list.totalProduct }} Results </span>
             </div>
           </div>
         </div>

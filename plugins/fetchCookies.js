@@ -26,7 +26,7 @@ export default async (context) => {
         customerSession,
         customerToken,
       };
-      context.store.dispatch("cartAjax/actCartAjax", {
+      let userInfo = await context.store.dispatch("cartAjax/actCartAjax", {
         method: "post",
         url: `/customer/account-details`,
         token: context.store.state.cartAjax.customer_token,
@@ -35,14 +35,13 @@ export default async (context) => {
           store: 1,
           customer_session: customerSession,
         },
-      }).then((userInfo) => {
+      });
       if (userInfo.success) {
         userData.address = userInfo.data.address;
         userData.maddress = userInfo.data.maddress;
         userData.customerDetail = userInfo.data;
         context.store.commit("cartAjax/updateUserInfo", { userData });
       }
-    })
     }
 
     // fetch cart detail via cookies
@@ -69,39 +68,44 @@ export default async (context) => {
       };
 
       context.store.commit("cartAjax/updateCartCookieData", { form });
-      context.store.dispatch("cartAjax/actCartAjax", {
-        method: "post",
-        url: `/cart/get-cart`,
-        token: context.store.state.cartAjax.cart_token,
-        params: form,
-      }).then((response) => {
-      if (response) {
-        context.store.commit("cartAjax/updateCartDetail", {
-          error: null,
-          data: response,
+      context.store
+        .dispatch("cartAjax/actCartAjax", {
+          method: "post",
+          url: `/cart/get-cart`,
+          token: context.store.state.cartAjax.cart_token,
+          params: form,
+        })
+        .then((response) => {
+          if (response) {
+            context.store.commit("cartAjax/updateCartDetail", {
+              error: null,
+              data: response,
+            });
+          } else {
+            throw "no response from api " + response.message;
+          }
         });
-      } else {
-        throw "no response from api " + response.message;
-      }
-    })
     }
 
     // fetch wish list
-    if ((customerSession && customerId && customerToken)) {
-      context.store.dispatch("cartAjax/actCartAjax", {
-        method: "post",
-        url: `/wishlist/customer-wishlist`,
-        token: context.store.state.cartAjax.customer_token,
-        params: { customer_id: customerId, customer_session: customerSession },
-      }).then((response) => {
-      if (response.success) {
-        context.store.commit("cartAjax/updateWishList", {
-          payload: response.data,
-        });
-      } else {
-        throw "no response from api " + response.message;
-      }
-    })
+    if (customerSession && customerId && customerToken) {
+      let response = await context.store
+        .dispatch("cartAjax/actCartAjax", {
+          method: "post",
+          url: `/wishlist/customer-wishlist`,
+          token: context.store.state.cartAjax.customer_token,
+          params: {
+            customer_id: customerId,
+            customer_session: customerSession,
+          },
+        })
+          if (response.success) {
+            context.store.commit("cartAjax/updateWishList", {
+              payload: response.data,
+            });
+          } else {
+            throw "no response from api " + response.message;
+          }
     }
   } catch (error) {
     console.log("there is an error from fetchCookies plugin >>> ", error);

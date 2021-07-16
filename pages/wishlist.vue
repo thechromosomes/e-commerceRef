@@ -106,7 +106,6 @@
                     v-for="(size, index) in item.color_variation"
                     :key="index"
                     :value="size"
-                    :disabled="size.color == item.color"
                   >
                     {{ size.color }}
                   </option>
@@ -255,7 +254,6 @@ export default {
 
     // update product via color refrence
     updateViaColor(index) {
-      alert(index);
       try {
         let tempPost = { ...this.wislistProducts[index] };
         tempPost.image = this.selectedColor[index].image;
