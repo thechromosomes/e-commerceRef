@@ -34,11 +34,9 @@
         <hr />
         <div class="row estimated-total">
           <div class="col-8">
-            <span class="d-block tax-label">VAT</span>
             <span class="d-block sub-total-label">Order Total</span>
           </div>
           <div class="col-4">
-            <span class="d-block tax-total">Included</span>
             <span class="d-block sub-total"
               >₹{{ $store.state.cartAjax.cart_total }}</span
             >

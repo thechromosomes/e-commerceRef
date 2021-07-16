@@ -123,7 +123,7 @@
                                                   haslevel4: subChildItem.childs,
                                                 }"
                                                 :to="`/collections/${subChildItem.menu_url_key}/`"
-                                                >{{ subChildItem.name }}
+                                                >{{ subChildItem.name}}
                                               </Nuxt-link>
                                               <div
                                                 class="level-4"
@@ -143,7 +143,7 @@
                                                       "
                                                       class="nav-link pl-0"
                                                       :to="`/collections/${subChildItemfor.menu_url_key}/`"
-                                                      >{{ subChildItemfor.name }}
+                                                      >{{ subChildItemfor.name.toLowerCase() }}
                                                     </Nuxt-link>
                                                   </li>
                                                 </ul>
