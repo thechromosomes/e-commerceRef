@@ -56,15 +56,6 @@
 
     <!-- Start of bottom images Section -->
     <span v-html="homePageData.content_1"></span>
-<!-- 
-    <div class="row">
-      <div class="col-md-3">
-        <div class="">
-
-        </div>
-      </div>
-    </div> -->
-
   </div>
 </template>
 
@@ -197,3 +188,43 @@ export default {
   },
 };
 </script>
+<style>
+.home-benefits-section{
+  margin: 50px 0;
+}
+.home-benefits-section .benefits-section-col{
+  max-width: 290px;
+  margin: 0 auto;
+  padding: 15px;
+}
+.home-benefits-section .benefits-section-div{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+.home-benefits-section .benefits-section-div img{
+  max-width: 100%;
+  width: 110px;
+  margin-bottom: 20px;
+}
+.home-benefits-section .benefits-section-div h3{
+  font-size: 18px;
+  margin: 0 0 14px 0;
+  line-height: 1;
+}
+.home-benefits-section .benefits-section-div p{
+   margin: 0 0 14px 0;
+}
+.home-benefits-section .view-all-link{
+  font-weight: bold;
+  text-decoration: underline;
+}
+@media(max-width:991px){
+  .home-benefits-section .benefits-section-col{
+    max-width: 290px;
+    margin: 0 auto;
+    padding: 35px;
+  }
+}
+</style>

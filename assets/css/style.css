@@ -3891,3 +3891,106 @@ p.input-error {
 .menu-mobile-sidebar .account-nav{
   display: none;
 }
+
+/* online service page css */
+.services-section{
+  margin: 50px 0;
+  padding: 20px 0;  
+  background-color: #f6f6f6;
+}
+.services-section .services-section-col{
+  margin: 0 auto;
+  padding: 35px 15px;
+  margin-bottom: 20px;
+}
+.services-section .services-section-div{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+    max-width:320px;
+    margin: 0 auto;
+}
+.services-section .services-section-div img{
+  max-width: 100%;
+  width: 110px;
+  margin-bottom: 20px;
+  height: 156px;
+  object-fit: contain;
+}
+.services-section .services-section-div h2{
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.services-section .services-section-div p{
+   margin: 0 0 14px 0;
+}
+.services-section .view-all-link{
+  font-weight: bold;
+  text-decoration: underline;
+}
+@media(max-width:991px){
+  .services-section .services-section-col{
+    max-width: 290px;
+    margin: 0 auto;
+    padding: 35px;
+  }
+}
+.d-code-banner{
+    background-image: url('@/assets/img/diesel-dcode-fullbleed-desktop.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+     margin: 50px 0;
+    padding: 15px;
+}
+.d-code-banner h2{
+    font-size:70px;
+    font-weight:700;
+    letter-spacing:1.5;
+    line-height:77px;
+}
+.d-code-banner p{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16px;
+    margin: 14px 0;
+}
+.d-code-banner a.button{
+    display: inline-block;
+    font-size:14px;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #fff;
+    color: #000;
+    padding: 12px 40px;
+}
+@media(max-width:767px){
+    .d-code-banner{
+        background-image: url('@/assets/img/diesel-dcode-fullbleed-mobile.jpg');
+        align-items: flex-end;
+        padding-bottom: 45px;
+    }
+    .d-code-banner h2{
+        font-size: 46px;
+        line-height: 50px;
+        letter-spacing: 0.8px;
+    }
+    .d-code-banner a.button{
+        width: 100%;
+        padding: 10px;
+    }
+}
