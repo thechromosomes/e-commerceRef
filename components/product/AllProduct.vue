@@ -365,7 +365,7 @@
                 class="showing-results"
                 v-show="list.Product_list.length > 0"
               >
-                Showing: {{ calculateResult }} Product(s)
+                Showing: {{ list.totalProduct }} Product(s)
               </div>
               <div class="sort-order" v-show="list.Product_list.length > 0">
                 <div class="sort-list" :class="showSort ? 'open' : ''">
@@ -764,13 +764,13 @@ export default {
       this.showSort = false;
     },
 
-    async loadMore() {
-      await this.$store.commit("universalListMutate", {
-        data: Number(this.list.page) + 1,
-        changeState: "page",
-      });
-      this.getProductList(this.list.page);
-    },
+    // async loadMore() {
+    //   await this.$store.commit("universalListMutate", {
+    //     data: Number(this.list.page) + 1,
+    //     changeState: "page",
+    //   });
+    //   this.getProductList(this.list.page);
+    // },
     // render wish list class icon
     renderWishList(item) {
       let ProductId = item.id_product;
@@ -865,7 +865,7 @@ export default {
       }
       if (window.scrollY >= loader_position - 2000) {
         await this.$store.commit("universalListMutate", {
-          data: Number(this.list.page) + 1,
+          data: parseInt(this.list.page) + 1,
           changeState: "page",
         });
         if (
