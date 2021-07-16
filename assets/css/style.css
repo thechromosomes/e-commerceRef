@@ -3786,6 +3786,10 @@ p.input-error {
   text-indent: -624.9375rem;
   position: absolute;
   right: -13%;
+  transition: all linear 0.2s;
+}
+.set.active > a:after{
+  transform: rotate(-180deg);
 }
 .kids-table {
   width: 100%;
