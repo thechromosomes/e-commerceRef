@@ -6,11 +6,11 @@
           <div class="account-top-section">
             <h4 class="wishlist-title">Wishlist</h4>
             <div class="content-asset">
-              <p>
+              <!-- <p>
                 Create your wishlist: save up to 50 items to always be informed
                 on their availability and add them directly to your Shopping Bag
                 at any moment.
-              </p>
+              </p> -->
             </div>
             <div class="section-actions">
               <button
@@ -21,14 +21,14 @@
                 ADD ALL TO SHOPPING BAG
               </button>
 
+              <div class="wishlist-products-list empty" v-else>
+                <h4>YOUR WISHLIST IS EMPTY</h4>
+                <Nuxt-link to="/" class="btn btn-default"
+                  >Start Shopping</Nuxt-link
+                >
+              </div>
               <button
-                v-else
-                class="add-all-to-cart"
-                @click="() => this.$router.push('/')"
-              >
-                BACK TO SHOPPING
-              </button>
-              <button
+                v-if="wislistProducts.length > 0"
                 type="button"
                 @click="showSocialicons = true"
                 class="share-button d-flex"

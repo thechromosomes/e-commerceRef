@@ -1,170 +1,176 @@
 <template>
   <div>
-    <div class="container acc-page">
-      <div class="row">
-        <div class="span12">
-          <h1 class="title clearfix">My Account</h1>
+    <div class="account-page">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="title clearfix">My Account</h1>
+          </div>
         </div>
-      </div>
-      <div class="row new-ord same-table clearboth">
-        <!-- side bar code -->
-        <Sidebar />
-        <div
-          class="cur-or cus-order-del cus-ore rte profile-data"
-          v-if="myOrder.length"
-        >
-          <table
-            style="border-collapse: collapse; margin-bottom: 15px"
-            role="presentation"
-            width="100%"
-            border="0"
-            class="Delivery-Information table_responsive"
-          >
-            <thead>
-              <tr>
-                <th scope="col">Item</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Discount</th>
-                <th scope="col">Subtotal</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr v-for="(items, index) in myOrder" :key="index">
-                <td class="list-center-mobile" data-label="Item">
-                  <div class="order-list">
-                    <div class="order-img">
-                      <img
-                        :src="items.image"
-                        :alt="items.name"
-                        :title="items.name"
-                      />
+        <div class="row">
+          <div class="col-md-12 col-lg-3 col-12">
+            <Sidebar />
+          </div>
+          <div class="col-md-12 col-lg-9 col-12">
+            <div v-if="myOrder.length">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Item</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Discount</th>
+                      <th scope="col">Subtotal</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(items, index) in myOrder" :key="index">
+                      <td class="list-center-mobile" data-label="Item">
+                        <div class="order-list">
+                          <div class="order-img">
+                            <img
+                              :src="items.image"
+                              :alt="items.name"
+                              :title="items.name"
+                            />
+                          </div>
+                          <div class="order-info">
+                            <h2>{{ items.name.toUpperCase() }}</h2>
+                            <p v-if="!JSON.parse(items.size).lens">
+                              <span>COLOR:</span>
+                              <span>{{ JSON.parse(items.size).color }}</span>
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="align-center" data-label="Price">
+                        {{ items.price }}
+                      </td>
+                      <td class="align-center" data-label="Quantity">
+                        {{ items.qty }}
+                      </td>
+                      <td class="align-center" data-label="Discount">
+                        {{ items.discount_amount || `-` }}
+                      </td>
+                      <td class="align-center" data-label="Subtotal">
+                        {{ items.row_total }}
+                      </td>
+                      <td class="align-center" data-label="Status">
+                        {{ items.item_status }}
+                      </td>
+                      <td class="align-center" data-label="Action">
+                        <span
+                          style="cursor: pointer"
+                          @click="cancelOrder(items.bag_id)"
+                          v-if="
+                            items.bag_id != null &&
+                            items.cancel_item == 1 &&
+                            items.bundle_set_id == null &&
+                            items.item_status != 'Cancelled'
+                          "
+                          >cancel</span
+                        >
+                        <span
+                          style="cursor: pointer"
+                          @click="returnorder(items.bag_id, index)"
+                          v-else-if="
+                            items.return_item == 1 &&
+                            items.bundle_set_id == null
+                          "
+                          >Return</span
+                        >
+                        <span v-else> - </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- order details -->
+              <!-- order detail -->
+              <div class="row">
+                <div class="order-detail col-12">
+                  <div class="row">
+                    <div class="col-12 col-md-6 billing-address content-box">
+                      <p>
+                        <span class="font-bold"> <strong>Ship To</strong></span
+                        ><br />
+                        {{ this.shipping_address.name }}<br />
+                        {{ this.shipping_address.address }}<br />
+                        {{ this.shipping_address.city }},
+                        {{ this.shipping_address.state }},
+                        {{ this.shipping_address.pincode }}<br />
+                        T: {{ this.shipping_address.phone }}
+                      </p>
                     </div>
-                    <div class="order-info">
-                      <h2>{{ items.name.toUpperCase() }}</h2>
-                      <p v-if="!JSON.parse(items.size).lens">
-                        <span>COLOR:</span>
-                        <span>{{ JSON.parse(items.size).color }}</span>
+                    <div class="col-12 col-md-6">
+                      <div class="thankyou-total w-100 content-box">
+                        <p>
+                          <strong class="font-bold">Subtotal : </strong>
+                          <span class="price">
+                            Rs.
+                            <span id="cart_subtotal">{{
+                              this.total
+                            }}</span></span
+                          >
+                        </p>
+                        <p>
+                          <strong class="font-bold">Discount :</strong>
+                          <span class="price">
+                            Rs.
+                            <span
+                              class="price"
+                              v-text="this.discount"
+                              v-if="
+                                this.discount != null && this.discount != ''
+                              "
+                            ></span
+                            ><span class="price" v-else>0</span></span
+                          >
+                        </p>
+                        <p
+                          v-if="
+                            shipping_charge != null && shipping_charge != '0'
+                          "
+                        >
+                          <strong class="font-bold">Shipping Charges :</strong>
+                          <span class="price"> Rs. {{ shipping_charge }}</span>
+                        </p>
+                        <p v-if="cod_charges != null && cod_charges != '0'">
+                          <strong class="font-bold">COD Charges :</strong>
+                          <span class="price"> Rs. {{ cod_charges }}</span>
+                        </p>
+                        <p>
+                          <strong class="font-bold">Grand Total :</strong>
+                          <span class="price">
+                            Rs.
+                            <span id="grand_subtotal">{{
+                              this.grand_total
+                            }}</span></span
+                          >
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-12 billing-method content-box">
+                      <p>
+                        <span class="font-bold">
+                          <strong>Payment Method</strong> </span
+                        ><br />
+                        <span style="text-transform: uppercase">{{
+                          this.payment_method
+                        }}</span>
                       </p>
                     </div>
                   </div>
-                </td>
-                <td class="align-center" data-label="Price">
-                  {{ items.price }}
-                </td>
-                <td class="align-center" data-label="Quantity">
-                  {{ items.qty }}
-                </td>
-                <td class="align-center" data-label="Discount">
-                  {{ items.discount_amount || `-` }}
-                </td>
-                <td class="align-center" data-label="Subtotal">
-                  {{ items.row_total }}
-                </td>
-                <td class="align-center" data-label="Status">
-                  {{ items.item_status }}
-                </td>
-                <td class="align-center" data-label="Action">
-                  <span
-                    style="cursor: pointer"
-                    @click="cancelOrder(items.bag_id)"
-                    v-if="
-                      items.bag_id != null &&
-                      items.cancel_item == 1 &&
-                      items.bundle_set_id == null &&
-                      items.item_status != 'Cancelled'
-                    "
-                    >cancel</span
-                  >
-                  <span
-                    style="cursor: pointer"
-                    @click="returnorder(items.bag_id, index)"
-                    v-else-if="items.return_item == 1 && items.bundle_set_id == null"
-                    >Return</span
-                  >
-                  <span v-else> - </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- order detail -->
-          <div class="row">
-            <div class="order-detail">
-              <div class="row">
-                <div class="col-12 billing-address content-box">
-                  <p>
-                    <span class="font-bold">Ship To</span><br />
-                    {{ this.shipping_address.name }}<br />
-                    {{ this.shipping_address.address }}<br />
-                    {{ this.shipping_address.city }},
-                    {{ this.shipping_address.state }},
-                    {{ this.shipping_address.pincode }}<br />
-                    T: {{ this.shipping_address.phone }}
-                  </p>
-                </div>
-                <div class="col-12 billing-method content-box">
-                  <p>
-                    <span class="font-bold">Payment Method</span><br />
-                    <span style="text-transform: uppercase">{{
-                      this.payment_method
-                    }}</span>
-                  </p>
                 </div>
               </div>
             </div>
-
-            <div class="order-detail">
-              <div class="row">
-                <div class="col-12">
-                  <div class="thankyou-total w-100 content-box">
-                    <p>
-                      <strong class="font-bold">Subtotal : </strong>
-                      <span class="price">
-                        Rs.
-                        <span id="cart_subtotal">{{ this.total }}</span></span
-                      >
-                    </p>
-                    <p>
-                      <strong class="font-bold">Discount :</strong>
-                      <span class="price">
-                        Rs.
-                        <span
-                          class="price"
-                          v-text="this.discount"
-                          v-if="this.discount != null && this.discount != ''"
-                        ></span
-                        ><span class="price" v-else>0</span></span
-                      >
-                    </p>
-                    <p v-if="shipping_charge != null && shipping_charge != '0'">
-                      <strong class="font-bold">Shipping Charges :</strong>
-                      <span class="price"> Rs. {{ shipping_charge }}</span>
-                    </p>
-                    <p v-if="cod_charges != null && cod_charges != '0'">
-                      <strong class="font-bold">COD Charges :</strong>
-                      <span class="price"> Rs. {{ cod_charges }}</span>
-                    </p>
-                    <p>
-                      <strong class="font-bold">Grand Total :</strong>
-                      <span class="price">
-                        Rs.
-                        <span id="grand_subtotal">{{
-                          this.grand_total
-                        }}</span></span
-                      >
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div v-else style="margin-left: 25%">
+              <p>No product found please try adding new products</p>
             </div>
           </div>
-        </div>
-        <div v-else style="margin-left: 25%">
-          <p>No product found please try adding new products</p>
         </div>
       </div>
     </div>
@@ -191,18 +197,14 @@
                       style="font-size: 16px; line-height: 33px; height: auto"
                     >
                       <option value="">--Select Reason--</option>
-                      <option
-                        v-for="(reason, i) in reason"
-                        :value="i"
-                        :key="i"
-                      >
+                      <option v-for="(reason, i) in reason" :value="i" :key="i">
                         {{ reason.reason }}
                       </option>
                     </select>
                   </div>
 
                   <!-- cod form -->
-                  <template v-if="return_popup&&payment_method=='cod'">
+                  <template v-if="return_popup && payment_method == 'cod'">
                     <div class="field col-md-6 col-12 mt-3">
                       <input
                         type="text"
@@ -258,7 +260,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 import Sidebar from "@/components/my-account/Sidebar.vue";
 export default {
   components: {
@@ -423,7 +425,7 @@ export default {
     // order cancel follow function
     cancelThisOrder() {
       var form = {};
-      
+
       form.customer_id = this.$store.state.cartAjax.customer_id;
       form.customer_session = this.$store.state.cartAjax.customer_session;
       form.reason_id = this.reason[this.selected_reason].reason_id;
@@ -458,7 +460,8 @@ export default {
     returnThisOrder() {
       if (this.account_no == this.re_account_no) {
         if (this.ifsc_code != "") {
-          axios.get(`https://ifsc.razorpay.com/${this.ifsc_code}`)
+          axios
+            .get(`https://ifsc.razorpay.com/${this.ifsc_code}`)
             .then((response) => {
               this.bank_name = response.data.BANK;
               this.branch_name = response.data.BRANCH;
@@ -518,31 +521,36 @@ export default {
           });
       }
     },
-    cod_refund(){
-        var form = new FormData();
-        form.append("cart_id", this.cart_id);
-        form.append("account_holder", this.account_holder);
-        form.append("account_no",this.account_no);
-        form.append("bank_name", this.bank_name);
-        form.append("branch_name", this.branch_name);
-        form.append("ifsc_code", this.ifsc_code);
-        form.append("customer_id", this.$store.state.cartAjax.customer_id);
-        form.append("customer_session", this.$store.state.cartAjax.customer_session);
-        this.$store.dispatch("cartAjax/actCartAjax", {
-            method:'post',
-            token:this.$store.state.cartAjax.customer_token,
-            url:`/customer/cod-return`,
-            params:form
-        }).then(response => {
-           this.request_return();
-           this.account_holder='';
-           this.account_no='';
-           this.re_account_no='';
-           this.bank_name='';
-           this.branch_name='';
-           this.ifsc_code='';
+    cod_refund() {
+      var form = new FormData();
+      form.append("cart_id", this.cart_id);
+      form.append("account_holder", this.account_holder);
+      form.append("account_no", this.account_no);
+      form.append("bank_name", this.bank_name);
+      form.append("branch_name", this.branch_name);
+      form.append("ifsc_code", this.ifsc_code);
+      form.append("customer_id", this.$store.state.cartAjax.customer_id);
+      form.append(
+        "customer_session",
+        this.$store.state.cartAjax.customer_session
+      );
+      this.$store
+        .dispatch("cartAjax/actCartAjax", {
+          method: "post",
+          token: this.$store.state.cartAjax.customer_token,
+          url: `/customer/cod-return`,
+          params: form,
         })
-      }, 
+        .then((response) => {
+          this.request_return();
+          this.account_holder = "";
+          this.account_no = "";
+          this.re_account_no = "";
+          this.bank_name = "";
+          this.branch_name = "";
+          this.ifsc_code = "";
+        });
+    },
     returnorder(cart_id, v) {
       this.selected_bagId = cart_id;
       this.return_id = v;
@@ -552,7 +560,8 @@ export default {
       form.customer_session = this.$store.state.cartAjax.customer_session;
       form.action = "return";
       form.bag_id = cart_id;
-      this.$store.dispatch("cartAjax/actCartAjax", {
+      this.$store
+        .dispatch("cartAjax/actCartAjax", {
           method: "post",
           token: this.$store.state.cartAjax.customer_token,
           url: `/order/get-cancel-return-reasons`,

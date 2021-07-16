@@ -1677,7 +1677,7 @@ p.p-price span.line-throu {
 }
 
 .search-box {
-  z-index: 99999;
+  z-index: 2;
   position: fixed;
   overflow-y: auto;
   overflow-x: hidden;
@@ -1689,14 +1689,17 @@ p.p-price span.line-throu {
 }
 
 .search-box-overlay {
-  z-index: 99999;
+  z-index: 2;
   /* height: 8% !important; */
   height: 71px;
   box-shadow: 0 0px 0px 0 rgb(255 255 255 / 2%),
-    0 0px 0px 0px rgb(255 255 255 / 12%), 0 5px 5px 0 rgb(115 115 115 / 20%); overflow: hidden; 
-    /* background-color: transparent;  */
+    0 0px 0px 0px rgb(255 255 255 / 12%), 0 5px 5px 0 rgb(115 115 115 / 20%);
+  overflow: hidden;
+  /* background-color: transparent;  */
 }
-.search-box.search-box-overlay{z-index: 999999;}
+.search-box.search-box-overlay {
+  z-index: 2;
+}
 
 .search-box .site-search {
   width: 100%;
@@ -2968,6 +2971,7 @@ p.input-error {
 }
 .login:hover .dropdown-menu-account {
   display: block;
+  z-index: 999999;
 }
 .search_box ul li.mini-cart:hover .cart-full-count .minicart-wrapper {
   max-height: 1000px;
@@ -3788,7 +3792,7 @@ p.input-error {
   right: -13%;
   transition: all linear 0.2s;
 }
-.set.active > a:after{
+.set.active > a:after {
   transform: rotate(-180deg);
 }
 .kids-table {
@@ -3842,11 +3846,11 @@ p.input-error {
 
 /* help dropdown css */
 .nav-item .hover-menu {
-  font-size: .875rem;
+  font-size: 0.875rem;
   font-weight: 400;
   position: absolute;
   background-color: #fff;
-  transition: max-height .3s ease-in-out,padding .3s ease-in-out;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
   max-height: 0;
   overflow: hidden;
   margin-top: 0;
@@ -3859,142 +3863,142 @@ p.input-error {
   z-index: 9;
   border-top: 0;
 }
-.nav-item .hover-menu li{
+.nav-item .hover-menu li {
   cursor: pointer;
 }
 .nav-item .hover-menu .hover-item {
   list-style-type: none;
   padding: 10px 0;
-  padding: 10px 0!important;
+  padding: 10px 0 !important;
   text-align: left;
 }
-.nav-item .hover-menu .hover-item a{
+.nav-item .hover-menu .hover-item a {
   font-weight: 400;
   text-transform: none;
   letter-spacing: normal;
 }
-.nav-item .hover-menu .hover-item a:hover{
+.nav-item .hover-menu .hover-item a:hover {
   text-decoration: underline;
 }
-.help-link:hover .hover-menu{
+.help-link:hover .hover-menu {
   display: block;
   max-height: 100vh;
 }
 /* end help dropdown css */
 
 /* login button mobile css */
-@media(max-width:991px){
+@media (max-width: 991px) {
   .login:hover .dropdown-menu-account {
     display: none;
   }
-  .search_box ul li.mini-cart:hover .cart-full-count .minicart-wrapper{
+  .search_box ul li.mini-cart:hover .cart-full-count .minicart-wrapper {
     max-height: 0;
   }
 }
 /* hide account nav for desktop */
-.menu-mobile-sidebar .account-nav{
+.menu-mobile-sidebar .account-nav {
   display: none;
 }
 
 /* online service page css */
-.services-section{
+.services-section {
   margin: 50px 0;
-  padding: 20px 0;  
+  padding: 20px 0;
   background-color: #f6f6f6;
 }
-.services-section .services-section-col{
+.services-section .services-section-col {
   margin: 0 auto;
   padding: 35px 15px;
   margin-bottom: 20px;
 }
-.services-section .services-section-div{
+.services-section .services-section-div {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
-    max-width:320px;
-    margin: 0 auto;
+  max-width: 320px;
+  margin: 0 auto;
 }
-.services-section .services-section-div img{
+.services-section .services-section-div img {
   max-width: 100%;
   width: 110px;
   margin-bottom: 20px;
   height: 156px;
   object-fit: contain;
 }
-.services-section .services-section-div h2{
+.services-section .services-section-div h2 {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 0.8px;
   line-height: 1.1;
   margin-bottom: 20px;
 }
-.services-section .services-section-div p{
-   margin: 0 0 14px 0;
+.services-section .services-section-div p {
+  margin: 0 0 14px 0;
 }
-.services-section .view-all-link{
+.services-section .view-all-link {
   font-weight: bold;
   text-decoration: underline;
 }
-@media(max-width:991px){
-  .services-section .services-section-col{
+@media (max-width: 991px) {
+  .services-section .services-section-col {
     max-width: 290px;
     margin: 0 auto;
     padding: 35px;
   }
 }
-.d-code-banner{
-    background-image: url('@/assets/img/diesel-dcode-fullbleed-desktop.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-     margin: 50px 0;
-    padding: 15px;
+.d-code-banner {
+  background-image: url("@/assets/img/diesel-dcode-fullbleed-desktop.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  margin: 50px 0;
+  padding: 15px;
 }
-.d-code-banner h2{
-    font-size:70px;
-    font-weight:700;
-    letter-spacing:1.5;
-    line-height:77px;
+.d-code-banner h2 {
+  font-size: 70px;
+  font-weight: 700;
+  letter-spacing: 1.5;
+  line-height: 77px;
 }
-.d-code-banner p{
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 16px;
-    margin: 14px 0;
+.d-code-banner p {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  margin: 14px 0;
 }
-.d-code-banner a.button{
-    display: inline-block;
-    font-size:14px;
-    width: auto;
-    text-align: center;
-    cursor: pointer;
-    font-weight: 700;
-    text-transform: uppercase;
-    background: none repeat scroll 0 0 #fff;
-    border: 1px solid #fff;
-    color: #000;
-    padding: 12px 40px;
+.d-code-banner a.button {
+  display: inline-block;
+  font-size: 14px;
+  width: auto;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #fff;
+  color: #000;
+  padding: 12px 40px;
 }
-@media(max-width:767px){
-    .d-code-banner{
-        background-image: url('@/assets/img/diesel-dcode-fullbleed-mobile.jpg');
-        align-items: flex-end;
-        padding-bottom: 45px;
-    }
-    .d-code-banner h2{
-        font-size: 46px;
-        line-height: 50px;
-        letter-spacing: 0.8px;
-    }
-    .d-code-banner a.button{
-        width: 100%;
-        padding: 10px;
-    }
+@media (max-width: 767px) {
+  .d-code-banner {
+    background-image: url("@/assets/img/diesel-dcode-fullbleed-mobile.jpg");
+    align-items: flex-end;
+    padding-bottom: 45px;
+  }
+  .d-code-banner h2 {
+    font-size: 46px;
+    line-height: 50px;
+    letter-spacing: 0.8px;
+  }
+  .d-code-banner a.button {
+    width: 100%;
+    padding: 10px;
+  }
 }

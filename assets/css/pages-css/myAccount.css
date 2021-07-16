@@ -226,7 +226,33 @@
   border-radius: 0px;
   font-size: 14px;
 }
+.order-list {
+  width: 300px;
+  /* background: red; */
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.order-list .order-img {
+  width: 20%;
+  text-align: center;
+}
+.order-list .order-img img {
+  width: 100%;
+}
+.order-list .order-info {
+  width: 80%;
+  padding: 10px;
+}
 
+.order-list .order-info h2 {
+  font-size: 16px;
+  margin: 0px;
+}
+.order-list .order-info p {
+  font-size: 12px;
+  margin-bottom: 0px !important;
+}
 .action_bottom input:hover,
 .action_bottom a:hover {
   background-color: #000;
@@ -249,5 +275,20 @@
 @media (max-width: 767px) {
   .address-list .ship-adress-area {
     width: 100%;
+  }
+
+  .account-page .title {
+    text-align: center;
+  }
+
+  .sidebar ul li a {
+    text-align: center;
+  }
+  .submit_box {
+    display: flex;
+  }
+
+  .order-detail {
+    text-align: center;
   }
 }
