@@ -485,12 +485,14 @@ export default {
       this.menuhover = menu;
     },
     stSearch(e) {
-      var name = /^(?!\s*$).+/;
-      if (e.target.value.match(name)) {
-        this.$store.commit("st_search", e.target.value);
-      } else {
-        this.$store.commit("st_search", "");
-      }
+      // var name = /^(?!\s*$).+/;
+      // if (e.target.value.match(name)) {
+      //   this.$store.commit("st_search", e.target.value);
+      // } else {
+      //   this.$store.commit("st_search", "");
+      // }
+
+      _.debounce(console.log(">>>>>>>>>>", e.target.value), 2000)
     },
 
     toogleSearch(event) {

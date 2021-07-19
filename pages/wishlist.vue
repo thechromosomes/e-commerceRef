@@ -21,7 +21,7 @@
                 ADD ALL TO SHOPPING BAG
               </button>
 
-              <div class="wishlist-products-list empty" v-else>
+              <div class="wishlist-products-list empty" v-if="$store.state.product_loader == false && wislistProducts.length == 0">
                 <h4>YOUR WISHLIST IS EMPTY</h4>
                 <Nuxt-link to="/" class="btn btn-default"
                   >Start Shopping</Nuxt-link

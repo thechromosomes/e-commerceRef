@@ -105,7 +105,7 @@
             </div>
             <div class="footer-link-content">
               <div class="link-text">
-                <NuxtLink to="/cms/your-order-status">Order Status</NuxtLink>
+                <NuxtLink to="/trackorder">Order Status</NuxtLink>
               </div>
               <div class="link-text">
                 <NuxtLink to="/cms/shipping">Delivery</NuxtLink>

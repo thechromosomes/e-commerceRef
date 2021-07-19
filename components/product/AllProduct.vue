@@ -533,7 +533,7 @@ export default {
     return {
       titleContent: false,
       scrollPosition: "",
-      activeDropdown: null,
+      activeDropdown: -1,
       showSort: false,
       gtm_product_impressions: [],
       productSetting: {
@@ -886,7 +886,7 @@ export default {
       if (this.activeDropdown != index) {
         this.activeDropdown = index;
       } else {
-        this.activeDropdown = null;
+        this.activeDropdown = -1;
       }
     },
 
