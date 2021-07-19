@@ -513,16 +513,14 @@ export default {
     },
 
     toogleSearch(event) {
-      console.log("working");
       this.$store.commit("activeSearchToggle", {
         payload: event,
       });
-
-      //  if (this.$store.state.searchActive) {
-      //   setTimeout(() => {
-      //     this.$refs.headerSearchBar.focus();
-      //   }, 0);
-      // }
+      if (this.$store.state.searchActive) {
+        setTimeout(() => {
+          this.$refs.headerSearchBar.focus();
+        }, 0);
+      }
     },
     showhoverCart() {
       this.ShowhoverCart = false;
