@@ -517,9 +517,9 @@ export default {
         payload: event,
       });
       if (this.$store.state.searchActive) {
-        setTimeout(() => {
-          this.$refs.headerSearchBar.focus();
-        }, 0);
+         this.$nextTick(() => {
+            this.$refs.headerSearchBar.focus();
+          });
       }
     },
     showhoverCart() {
