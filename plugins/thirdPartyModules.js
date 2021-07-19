@@ -2,6 +2,9 @@ import Vue from 'vue';
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import VueSocialSharing from 'vue-social-sharing'
+import vueDebounce from 'vue-debounce'
+
+Vue.use(vueDebounce)
 
 Vue.use(VueSocialSharing);
 

@@ -13,7 +13,7 @@
         <div class="wrap" style="display: none">
           <NuxtLink class="logo logo--left" to="/">
             <img
-              alt="Steve Madden"
+              alt="DIESLE"
               class="logo__image logo__image--medium"
               src="@/assets/img/logo.svg"
             />
@@ -687,10 +687,6 @@
                     >
                   </div>
                 </div>
-                <!-- end add payement method -->
-                <!-- <div class="main__footer">
-                  <p class="copyright-text">All rights reserved Steve Madden</p>
-                </div> -->
               </div>
               <div class="sidebar" v-if="showSummary">
                 <div class="sidebar__content">

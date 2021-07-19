@@ -908,11 +908,11 @@ export default {
     // render seo tags
     title() {
       if (this.list.meta_title != "") return this.list.meta_title;
-      return "STEVE MADDEN ALL PRODUCT";
+      return "DIESEL ALL PRODUCT";
     },
     description() {
       if (this.list.meta_description !== "") return this.list.meta_description;
-      return "STEVE MADDEN";
+      return "DIESEL";
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;

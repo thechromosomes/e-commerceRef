@@ -8,7 +8,7 @@
       </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid"> 
+      <div class="container-fluid">
         <div class="mobile-screen-icon">
           <button
             class="navbar-toggler"
@@ -49,11 +49,12 @@
                       'active-nav':
                         $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
                         item.name.toUpperCase(),
+                      'show-dropdown': levelOneActiveItemIndex === index,
                     }"
                   >
                     <span
                       class="stripeImage"
-                      @click="onmenuhover(item.name)"
+                      @click="onmenuhover(item.name, index)"
                     ></span>
                     <NuxtLink
                       :to="`/clp/${item.menu_url_key}`"
@@ -61,8 +62,9 @@
                       class="nav-link first"
                       :class="{
                         'active-nav-link':
-                          $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
-                          item.name.toUpperCase(),
+                          $store.state.activeUrlKey
+                            .split('-')[0]
+                            .toUpperCase() == item.name.toUpperCase(),
                       }"
                       >{{ item.name }}</NuxtLink
                     >
@@ -80,6 +82,10 @@
                             class="nav-item"
                             v-for="(childItem, childIndex) in item.childs"
                             :key="childIndex"
+                            :class="{
+                              'show-inner-dropdown':
+                                levelTwoActiveItemIndex === childIndex,
+                            }"
                           >
                             <template
                               v-if="
@@ -87,7 +93,10 @@
                               "
                             >
                               <li class="nav-item">
-                                <span class="stripeImage"></span>
+                                <span
+                                  class="stripeImage"
+                                  @click="toggleInnerMenu(childIndex)"
+                                ></span>
                                 <a
                                   :class="{
                                     'active-sub-nav':
@@ -104,7 +113,9 @@
                                     <div class="row">
                                       <div
                                         class="col-md-12"
-                                        :class="childItem.image ? 'col-lg-9' : ''"
+                                        :class="
+                                          childItem.image ? 'col-lg-9' : ''
+                                        "
                                       >
                                         <div class="levelthreemenu">
                                           <ul>
@@ -120,10 +131,11 @@
                                                 "
                                                 class="nav-link pl-0"
                                                 :class="{
-                                                  haslevel4: subChildItem.childs,
+                                                  haslevel4:
+                                                    subChildItem.childs,
                                                 }"
                                                 :to="`/collections/${subChildItem.menu_url_key}/`"
-                                                >{{ subChildItem.name}}
+                                                >{{ subChildItem.name }}
                                               </Nuxt-link>
                                               <div
                                                 class="level-4"
@@ -143,7 +155,9 @@
                                                       "
                                                       class="nav-link pl-0"
                                                       :to="`/collections/${subChildItemfor.menu_url_key}/`"
-                                                      >{{ subChildItemfor.name.toLowerCase() }}
+                                                      >{{
+                                                        subChildItemfor.name
+                                                      }}
                                                     </Nuxt-link>
                                                   </li>
                                                 </ul>
@@ -191,29 +205,38 @@
                   </li>
                 </ul>
                 <ul class="account-nav">
-                  <li class="nav-item help-link" 
-                  v-if="
-                    $store.state.cartAjax.customer_id != null &&
-                    $store.state.cartAjax.customer_id != '' &&
-                    $store.state.cartAjax.customer_session != '' &&
-                    $store.state.cartAjax.customer_session != null
-                  "
-                  @click="showMobileMenu = false"
+                  <li
+                    class="nav-item help-link"
+                    v-if="
+                      $store.state.cartAjax.customer_id != null &&
+                      $store.state.cartAjax.customer_id != '' &&
+                      $store.state.cartAjax.customer_session != '' &&
+                      $store.state.cartAjax.customer_session != null
+                    "
+                    @click="showMobileMenu = false"
                   >
-                    <Nuxt-link to="/Dashboard" >Account</Nuxt-link>                    
+                    <Nuxt-link to="/Dashboard">Account</Nuxt-link>
                   </li>
-                  <li class="nav-item help-link" v-else @click="showMobileMenu = false">
-                      <Nuxt-link to="/login"  >Login</Nuxt-link>                    
+                  <li
+                    class="nav-item help-link"
+                    v-else
+                    @click="showMobileMenu = false"
+                  >
+                    <Nuxt-link to="/login">Login</Nuxt-link>
                   </li>
                   <li class="nav-item help-link">
-                      <span @click="toggleHelpPopup()">Help</span>                    
+                    <span @click="toggleHelpPopup()">Help</span>
                   </li>
                 </ul>
               </client-only>
-            </div>           
+            </div>
           </div>
-          <div class="menu-mobile help-mobile-sidebar" v-if="showHelpSidebar" @click="showHelpSidebar = false">
-             <div class="menu-mobile-sidebar" @click="$event.stopPropagation()">
+          <div
+            class="menu-mobile help-mobile-sidebar"
+            v-if="showHelpSidebar"
+            @click="showHelpSidebar = false"
+          >
+            <div class="menu-mobile-sidebar" @click="$event.stopPropagation()">
               <div class="mobile-heading">
                 <h2>Help</h2>
                 <div
@@ -223,35 +246,52 @@
                 ></div>
               </div>
               <client-only>
-              <ul class="hover-menu navbar-nav mr-auto">
-                  <li class="hover-item"  @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/your-order-status" title="Order Status">Check your order </Nuxt-link>
+                <ul class="hover-menu navbar-nav mr-auto">
+                  <li class="hover-item" @click="showHelpSidebar = false">
+                    <Nuxt-link
+                      class="hover-link"
+                      to="/cms/your-order-status"
+                      title="Order Status"
+                      >Check your order
+                    </Nuxt-link>
                   </li>
-                  <li class="hover-item"  @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/return-your-order" title="Returns">Return your order</Nuxt-link>
+                  <li class="hover-item" @click="showHelpSidebar = false">
+                    <Nuxt-link
+                      class="hover-link"
+                      to="/cms/return-your-order"
+                      title="Returns"
+                      >Return your order</Nuxt-link
+                    >
                   </li>
-                  <li class="hover-item"  @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/shipping">Delivery </Nuxt-link>
+                  <li class="hover-item" @click="showHelpSidebar = false">
+                    <Nuxt-link class="hover-link" to="/cms/shipping"
+                      >Delivery
+                    </Nuxt-link>
                   </li>
-                  <li class="hover-item"  @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/size-conversion">Size Conversion </Nuxt-link>
+                  <li class="hover-item" @click="showHelpSidebar = false">
+                    <Nuxt-link class="hover-link" to="/cms/size-conversion"
+                      >Size Conversion
+                    </Nuxt-link>
                   </li>
-                  <li class="hover-item"  @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/contact-us">Send us a Message </Nuxt-link>
+                  <li class="hover-item" @click="showHelpSidebar = false">
+                    <Nuxt-link class="hover-link" to="/cms/contact-us"
+                      >Send us a Message
+                    </Nuxt-link>
                   </li>
-                  <li class="hover-item"  @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/contact-us">Contact us </Nuxt-link>
+                  <li class="hover-item" @click="showHelpSidebar = false">
+                    <Nuxt-link class="hover-link" to="/cms/contact-us"
+                      >Contact us
+                    </Nuxt-link>
                   </li>
                   <!-- <li class="hover-item">
                     <Nuxt-link class="hover-link" to="https://uk.diesel.com/en/help-show?content=covid-19" title="Contact us">Our Covid-19 Statement </Nuxt-link>
                   </li> -->
                 </ul>
               </client-only>
-             </div>
-           </div>
-          
+            </div>
+          </div>
         </div>
-         
+
         <div class="site-logo">
           <NuxtLink class="navbar-brand" to="/"
             ><img src="~/assets//img/logo.svg" alt="logo"
@@ -264,28 +304,57 @@
               <li class="desktop_only" @click="toogleSearch(true)">
                 <a style="cursor: pointer">Search</a>
               </li>
-              <li class="nav-item help-link dropdown desktop_only" role="menuitem" aria-label="Open Help">
-                <a href="#" class="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span id="open-help-span">Help</span>
+              <li
+                class="nav-item help-link dropdown desktop_only"
+                role="menuitem"
+                aria-label="Open Help"
+              >
+                <a
+                  href="#"
+                  class=""
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span id="open-help-span">Help</span>
                 </a>
                 <ul class="hover-menu">
                   <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/your-order-status" title="Order Status">Check your order </Nuxt-link>
+                    <Nuxt-link
+                      class="hover-link"
+                      to="/cms/your-order-status"
+                      title="Order Status"
+                      >Check your order
+                    </Nuxt-link>
                   </li>
                   <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/return-your-order" title="Returns">Return your order</Nuxt-link>
+                    <Nuxt-link
+                      class="hover-link"
+                      to="/cms/return-your-order"
+                      title="Returns"
+                      >Return your order</Nuxt-link
+                    >
                   </li>
                   <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/shipping">Delivery </Nuxt-link>
+                    <Nuxt-link class="hover-link" to="/cms/shipping"
+                      >Delivery
+                    </Nuxt-link>
                   </li>
                   <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/size-conversion">Size Conversion </Nuxt-link>
+                    <Nuxt-link class="hover-link" to="/cms/size-conversion"
+                      >Size Conversion
+                    </Nuxt-link>
                   </li>
                   <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/contact-us">Send us a Message </Nuxt-link>
+                    <Nuxt-link class="hover-link" to="/cms/contact-us"
+                      >Send us a Message
+                    </Nuxt-link>
                   </li>
                   <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/contact-us">Contact us </Nuxt-link>
+                    <Nuxt-link class="hover-link" to="/cms/contact-us"
+                      >Contact us
+                    </Nuxt-link>
                   </li>
                   <!-- <li class="hover-item">
                     <Nuxt-link class="hover-link" to="https://uk.diesel.com/en/help-show?content=covid-19" title="Contact us">Our Covid-19 Statement </Nuxt-link>
@@ -362,7 +431,7 @@
                     <span class="mobile_only user-icon"></span>
                   </div>
                 </nuxt-link>
-              </li>              
+              </li>
               <li>
                 <nuxt-link to="/wishlist">
                   <div class="wishlist">
@@ -412,10 +481,10 @@
     <!-- search box -->
     <div
       class="search-box"
-      :class="{ 'search-box-overlay': $store.state.list.search_input != '' }"
       v-if="$store.state.searchActive"
+      @click="toogleSearch(false)"
     >
-      <div class="site-search">
+      <div class="site-search" @click="$event.stopPropagation()">
         <div class="search_icon">
           <span class=""></span>
         </div>
@@ -428,7 +497,7 @@
             placeholder="What are you looking for?"
             autofocus="autofocus"
             v-model="searchInput"
-            @keyup="stSearch"
+            v-debounce:500ms="stSearch"
             name="st"
           />
         </div>
@@ -455,7 +524,9 @@ export default {
       showMobileMenu: false,
       scrollPosition: null,
       ShowhoverCart: false,
-      showHelpSidebar:false
+      showHelpSidebar: false,
+      levelOneActiveItemIndex: -1,
+      levelTwoActiveItemIndex: -1,
     };
   },
   async mounted() {
@@ -481,31 +552,47 @@ export default {
   },
 
   methods: {
-    onmenuhover(menu) {
-      this.menuhover = menu;
+    toggleInnerMenu(index) {
+      // toggle inner dropdown menu
+      if (this.levelTwoActiveItemIndex === index) {
+        this.levelTwoActiveItemIndex = -1;
+      } else {
+        this.levelTwoActiveItemIndex = index;
+      }
     },
-    stSearch(e) {
-      // var name = /^(?!\s*$).+/;
-      // if (e.target.value.match(name)) {
-      //   this.$store.commit("st_search", e.target.value);
-      // } else {
-      //   this.$store.commit("st_search", "");
-      // }
+    onmenuhover(menu, index) {
+      this.menuhover = menu;
+      // toggle dropdown menu
+      if (this.levelOneActiveItemIndex === index) {
+        this.levelOneActiveItemIndex = -1;
+      } else {
+        this.levelOneActiveItemIndex = index;
+        this.levelTwoActiveItemIndex = -1;
+      }
+    },
 
-      _.debounce(console.log(">>>>>>>>>>", e.target.value), 2000)
+    test() {
+      alert('h')
+    },
+    stSearch(val, e) {
+      var name = /^(?!\s*$).+/;
+      if (e.target.value.match(name)) {
+        this.$store.commit("st_search", e.target.value);
+      } else {
+        this.$store.commit("st_search", "");
+      }
     },
 
     toogleSearch(event) {
-      console.log("working");
       this.$store.commit("activeSearchToggle", {
         payload: event,
       });
 
-      //  if (this.$store.state.searchActive) {
-      //   setTimeout(() => {
-      //     this.$refs.headerSearchBar.focus();
-      //   }, 0);
-      // }
+      if (this.$store.state.searchActive) {
+        setTimeout(() => {
+          this.$refs.headerSearchBar.focus();
+        }, 0);
+      }
     },
     showhoverCart() {
       this.ShowhoverCart = false;
@@ -557,12 +644,10 @@ export default {
           console.log("error from the log out page", error);
         });
     },
-    toggleHelpPopup(){
-      console.log(this.showHelpSidebar);
+    toggleHelpPopup() {
       this.showMobileMenu = false;
       this.showHelpSidebar = !this.showHelpSidebar;
-       console.log(this.showHelpSidebar);
-    }
+    },
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);

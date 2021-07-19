@@ -50,7 +50,7 @@
                   :zoom="zoom"
                   map-type-id="terrain"
                   ref="map"
-                  style="width: 100%; height: 400px"
+                  style="width: 100%; height: 580px"
                 >
                   <gmap-info-window
                     :options="infoOptions"
