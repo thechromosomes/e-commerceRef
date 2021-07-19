@@ -572,7 +572,7 @@ export default {
     },
 
     test() {
-      alert('h')
+      alert("h");
     },
     stSearch(val, e) {
       var name = /^(?!\s*$).+/;
@@ -587,11 +587,10 @@ export default {
       this.$store.commit("activeSearchToggle", {
         payload: event,
       });
-
       if (this.$store.state.searchActive) {
-        setTimeout(() => {
+        this.$nextTick(() => {
           this.$refs.headerSearchBar.focus();
-        }, 0);
+        });
       }
     },
     showhoverCart() {
