@@ -48,12 +48,13 @@
                     :class="{
                       'active-nav':
                         $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
-                        item.name.toUpperCase(),
+                        item.name.toUpperCase(), 'show-dropdown':levelOneActiveItemIndex === index
                     }"
+                    
                   >
                     <span
                       class="stripeImage"
-                      @click="onmenuhover(item.name)"
+                      @click="onmenuhover(item.name, index)"
                     ></span>
                     <NuxtLink
                       :to="`/clp/${item.menu_url_key}`"
@@ -80,6 +81,7 @@
                             class="nav-item"
                             v-for="(childItem, childIndex) in item.childs"
                             :key="childIndex"
+                            :class="{'show-inner-dropdown':levelTwoActiveItemIndex === childIndex}"
                           >
                             <template
                               v-if="
@@ -87,7 +89,7 @@
                               "
                             >
                               <li class="nav-item">
-                                <span class="stripeImage"></span>
+                                <span class="stripeImage" @click="toggleInnerMenu(childIndex)"></span>
                                 <a
                                   :class="{
                                     'active-sub-nav':
@@ -123,7 +125,7 @@
                                                   haslevel4: subChildItem.childs,
                                                 }"
                                                 :to="`/collections/${subChildItem.menu_url_key}/`"
-                                                >{{ subChildItem.name}}
+                                                >{{ subChildItem.name }}
                                               </Nuxt-link>
                                               <div
                                                 class="level-4"
@@ -143,7 +145,7 @@
                                                       "
                                                       class="nav-link pl-0"
                                                       :to="`/collections/${subChildItemfor.menu_url_key}/`"
-                                                      >{{ subChildItemfor.name.toLowerCase() }}
+                                                      >{{ subChildItemfor.name }}
                                                     </Nuxt-link>
                                                   </li>
                                                 </ul>
@@ -412,10 +414,10 @@
     <!-- search box -->
     <div
       class="search-box"
-      :class="{ 'search-box-overlay': $store.state.list.search_input != '' }"
       v-if="$store.state.searchActive"
+      @click="toogleSearch(false)"
     >
-      <div class="site-search">
+      <div class="site-search" @click="$event.stopPropagation()">
         <div class="search_icon">
           <span class=""></span>
         </div>
@@ -455,7 +457,9 @@ export default {
       showMobileMenu: false,
       scrollPosition: null,
       ShowhoverCart: false,
-      showHelpSidebar:false
+      showHelpSidebar:false,
+      levelOneActiveItemIndex:-1,
+      levelTwoActiveItemIndex:-1
     };
   },
   async mounted() {
@@ -481,8 +485,23 @@ export default {
   },
 
   methods: {
-    onmenuhover(menu) {
+    toggleInnerMenu(index){
+      // toggle inner dropdown menu
+      if(this.levelTwoActiveItemIndex === index){
+        this.levelTwoActiveItemIndex = -1;
+      }else{
+        this.levelTwoActiveItemIndex  = index;
+      }
+    },
+    onmenuhover(menu,index) {
       this.menuhover = menu;
+      // toggle dropdown menu
+      if(this.levelOneActiveItemIndex === index){
+        this.levelOneActiveItemIndex = -1;
+      }else{
+        this.levelOneActiveItemIndex  = index;
+        this.levelTwoActiveItemIndex = -1;
+      }
     },
     stSearch(e) {
       var name = /^(?!\s*$).+/;

@@ -27,6 +27,7 @@
   }
   .search-box {
     top: 52px;
+    z-index: 9;
   }
   /* mobile menu design  */
   .header .navbar .navbar-collapse .navbar-nav .nav-item {
