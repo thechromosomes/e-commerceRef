@@ -250,7 +250,7 @@
                   <li class="hover-item" @click="showHelpSidebar = false">
                     <Nuxt-link
                       class="hover-link"
-                      to="/cms/your-order-status"
+                      to="/trackorder"
                       title="Order Status"
                       >Check your order
                     </Nuxt-link>
@@ -278,14 +278,6 @@
                       >Send us a Message
                     </Nuxt-link>
                   </li>
-                  <li class="hover-item" @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/contact-us"
-                      >Contact us
-                    </Nuxt-link>
-                  </li>
-                  <!-- <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="https://uk.diesel.com/en/help-show?content=covid-19" title="Contact us">Our Covid-19 Statement </Nuxt-link>
-                  </li> -->
                 </ul>
               </client-only>
             </div>
@@ -351,14 +343,6 @@
                       >Send us a Message
                     </Nuxt-link>
                   </li>
-                  <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/contact-us"
-                      >Contact us
-                    </Nuxt-link>
-                  </li>
-                  <!-- <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="https://uk.diesel.com/en/help-show?content=covid-19" title="Contact us">Our Covid-19 Statement </Nuxt-link>
-                  </li> -->
                 </ul>
               </li>
               <li>
@@ -571,9 +555,6 @@ export default {
       }
     },
 
-    test() {
-      alert("h");
-    },
     stSearch(val, e) {
       var name = /^(?!\s*$).+/;
       if (e.target.value.match(name)) {

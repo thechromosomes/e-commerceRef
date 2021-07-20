@@ -1,50 +1,5 @@
 <template>
   <footer class="footer">
-    <!-- <div class="footer-container" id="bb-footer-original">
-      <div class="row newsletter-social">
-        <div class="col-lg-8 newsletter bbMarginAuto">
-          <div class="content-asset text-center">
-            <h5>SIGN UP FOR THE NEWSLETTER</h5>
-            <div class="form-box">
-              <div class="email-box">
-                <input
-                  type="email"
-                  placeholder="Enter your Email address*"
-                  required
-                  autocomplete="off"
-                />
-                <span class="error"></span>
-              </div>
-              <div class="gender">
-                <div class="radio-button-wrapper">
-                  <input type="radio" id="test1" name="radio-group" />
-                  <label for="test1">MEN</label>
-                </div>
-                <div class="radio-button-wrapper">
-                  <input type="radio" id="test2" name="radio-group" />
-                  <label for="test2">WOMEN</label>
-                </div>
-              </div>
-              <p class="privacy-policy-newsletter">
-                By clicking Sign up you have read and agreed to our
-                <a href="#" class="more">
-                  <span class="svgMore"></span>
-                  <span class="learn-more-text"><u> privacy policy</u></span>
-                </a>
-              </p>
-              <div class="button-signup-container">
-                <input
-                  class="button-signup btn-d-code"
-                  type="button"
-                  tabindex="0"
-                  value="Sign up"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
     <div class="footer-container" id="bb-footer-clone">
       <div class="row newsletter-social">
@@ -118,9 +73,9 @@
                   >Size Conversion</NuxtLink
                 >
               </div>
-              <div class="link-text">
+              <!-- <div class="link-text">
                 <NuxtLink to="/cms/contact-us">Send us a message</NuxtLink>
-              </div>
+              </div> -->
               <div class="link-text">
                 <NuxtLink to="/cms/contact-us">Contact Us</NuxtLink>
               </div>
@@ -205,14 +160,14 @@
                   >For Responsible Living</NuxtLink
                 >
               </div>
-              <div class="link-text">
+              <!-- <div class="link-text">
                 <a
                   class="link-text"
                   target="_blank"
                   href="https://www.otb.net/en/otb-career/"
                   >Work with us</a
                 >
-              </div>
+              </div> -->
               <div class="link-text">
                 <a
                   class="link-text"

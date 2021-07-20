@@ -5,13 +5,7 @@
         <div class="containers">
           <div class="account-top-section">
             <h4 class="wishlist-title">Wishlist</h4>
-            <div class="content-asset">
-              <!-- <p>
-                Create your wishlist: save up to 50 items to always be informed
-                on their availability and add them directly to your Shopping Bag
-                at any moment.
-              </p> -->
-            </div>
+            <div class="content-asset"></div>
             <div class="section-actions">
               <button
                 class="add-all-to-cart"
@@ -21,7 +15,13 @@
                 ADD ALL TO SHOPPING BAG
               </button>
 
-              <div class="wishlist-products-list empty" v-if="$store.state.product_loader == false && wislistProducts.length == 0">
+              <div
+                class="wishlist-products-list empty"
+                v-if="
+                  $store.state.product_loader == false &&
+                  wislistProducts.length == 0
+                "
+              >
                 <h4>YOUR WISHLIST IS EMPTY</h4>
                 <Nuxt-link to="/" class="btn btn-default"
                   >Start Shopping</Nuxt-link
@@ -100,6 +100,7 @@
                 <select
                   @change="updateViaColor(mainIndex)"
                   v-model="selectedColor[mainIndex]"
+                  :class="{ error: sizeAlert && sizeAlertIndes == mainIndex }"
                 >
                   <option value="" disabled>Select Color</option>
                   <option
@@ -167,6 +168,8 @@ export default {
       sizeAlertIndes: "",
       showSocialicons: false,
       mainsizeAlert: false,
+      colorAlert: true,
+      colorIndex: "",
       selectedLengthAttr: "",
       lengthAlert: false,
       lengthAlertIndes: "",
@@ -355,16 +358,24 @@ export default {
         this.lengthAlert = true;
         this.lengthAlertIndes = sizeIndex;
         return;
+      }
+
+      if ((this.selectedColr = "")) {
+        this.colorAlert = true;
+        this.colorIndex = sizeIndex;
+        return;
       } else {
         this.sizeAlert = false;
         this.lengthAlert = false;
+        this.colorAlert = false;
+        this.colorIndex = "";
         this.sizeAlertIndes = "";
         this.lengthAlertIndes = "";
         try {
           var form = {};
           var product_options_json = JSON.stringify({
             size: this.selectedSize[sizeIndex],
-            color: item.color,
+            color: this.selectedColor[sizeIndex].color,
           });
           form.product_id =
             item.variation[this.selectedSize[sizeIndex]].id_product;

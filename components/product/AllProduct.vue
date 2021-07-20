@@ -79,7 +79,7 @@
                   ></span>
                   <div class="item" @click="handleFitFilter(fitFilterItem)">
                     <div class="filter-image">
-                      <img  :src="fitFilterItem.image" alt="img" class="w-100" />
+                      <img :src="fitFilterItem.image" alt="img" class="w-100" />
                     </div>
                     <div class="category-filter-title">
                       <a>{{ fitFilterItem.value }}</a>
@@ -196,11 +196,7 @@
                                   :key="index"
                                 >
                                   <span
-                                    @click.prevent="
-                                      $store.commit('updateFilterArray', {
-                                        item,
-                                      })
-                                    "
+                                    @click.prevent="updateFilterArray(item)"
                                   >
                                     <a
                                       class="selection-box"
@@ -298,11 +294,7 @@
                     v-for="(item, index) in filter.options"
                     :key="index"
                   >
-                    <span
-                      @click.prevent="
-                        $store.commit('updateFilterArray', { item })
-                      "
-                    >
+                    <span @click.prevent="updateFilterArray(item)">
                       <a
                         class="selection-box"
                         :class="
@@ -466,11 +458,11 @@
                 </div>
               </div>
             </div>
-              <div
+            <div
               class="no_products text-center"
               v-else-if="
-                list.Product_list.length == 0 && 
-                list.product_loader == false && 
+                list.Product_list.length == 0 &&
+                list.product_loader == false &&
                 $store.state.pageLoader == false
               "
             >
@@ -746,8 +738,14 @@ export default {
       this.openSort = false;
     },
 
+    updateFilterArray(item) {
+      this.$store.commit("updateFilterArray", {
+        item,
+      });
+      this.activeDropdown = -1;
+    },
+
     removeFilter(paramsData) {
-      console.log("paramsData", paramsData);
       this.$store.commit("updateFilterArray", { paramsData });
     },
 
