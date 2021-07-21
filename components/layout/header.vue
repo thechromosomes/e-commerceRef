@@ -278,6 +278,11 @@
                       >Send us a Message
                     </Nuxt-link>
                   </li>
+                  <li>
+                     <Nuxt-link class="hover-link" to="/cms/allCmsView"
+                      >View All
+                    </Nuxt-link>
+                  </li>
                 </ul>
               </client-only>
             </div>
@@ -341,6 +346,11 @@
                   <li class="hover-item">
                     <Nuxt-link class="hover-link" to="/cms/contact-us"
                       >Send us a Message
+                    </Nuxt-link>
+                  </li>
+                   <li class="hover-item">
+                    <Nuxt-link class="hover-link" to="/cms/allCmsView"
+                      >View All
                     </Nuxt-link>
                   </li>
                 </ul>

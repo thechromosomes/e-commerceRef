@@ -80,7 +80,9 @@
                 <NuxtLink to="/cms/contact-us">Contact Us</NuxtLink>
               </div>
               <div class="link-text">
-                <!-- <NuxtLink to="/cms/Contact us">View All</NuxtLink> -->
+                <Nuxt-link class="hover-link" to="/cms/allCmsView"
+                      >View All
+                    </Nuxt-link>
               </div>
             </div>
           </div>

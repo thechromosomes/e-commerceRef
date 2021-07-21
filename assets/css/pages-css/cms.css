@@ -110,6 +110,7 @@
   }
 }
 
+
 /* cms pages css  */
 .cms-pages_contenct {
   width: 100%;
@@ -273,4 +274,12 @@
   .check-order-static-form {
     width: 100%;
   }
+}
+@media (max-width: 767px) {
+  .view-all-cms .content h5{
+   padding-top: 2rem;
+    padding-bottom: 0rem!important;
+}
+.view-all-cms .content-asset{ padding-left: 0px!important;}
+
 }
