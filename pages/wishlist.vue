@@ -7,18 +7,17 @@
             <h4 class="wishlist-title">Wishlist</h4>
             <div class="content-asset"></div>
             <div class="section-actions">
-              <button
+              <!-- <button
                 class="add-all-to-cart"
                 v-if="wislistProducts.length > 0"
                 @click="addAllToShoppingBag()"
               >
                 ADD ALL TO SHOPPING BAG
-              </button>
-
+              </button> -->
               <div
                 class="wishlist-products-list empty"
                 v-if="
-                  $store.state.product_loader == false &&
+                  $store.state.pageLoader == false &&
                   wislistProducts.length == 0
                 "
               >
@@ -27,7 +26,7 @@
                   >Start Shopping</Nuxt-link
                 >
               </div>
-              <button
+              <!-- <button
                 v-if="wislistProducts.length > 0"
                 type="button"
                 @click="showSocialicons = true"
@@ -52,11 +51,11 @@
                   class="icon icon-close-black-md"
                   @click.prevent="showSocialicons = false"
                 ></a>
-              </div>
+              </div> -->
             </div>
-            <div v-if="mainsizeAlert" style="clear: both; margin-top: 10px">
+            <!-- <div v-if="mainsizeAlert" style="clear: both; margin-top: 10px">
               <p class="promotion-text">please select the variants first.</p>
-            </div>
+            </div>-->
           </div>
 
           <div class="product-flext">
@@ -98,18 +97,19 @@
               </div>
               <div class="select-box">
                 <select
-                  @change="updateViaColor(mainIndex)"
                   v-model="selectedColor[mainIndex]"
                   :class="{ error: sizeAlert && sizeAlertIndes == mainIndex }"
                 >
                   <option value="" disabled>Select Color</option>
-                  <option
-                    v-for="(size, index) in item.color_variation"
-                    :key="index"
-                    :value="size"
-                  >
-                    {{ size.color }}
-                  </option>
+                  <template v-for="(size, index) in item.color_variation">
+                    <option
+                      v-if="selectedSize[mainIndex] == size.size"
+                      :key="index"
+                      :value="size"
+                    >
+                      {{ size.color }}
+                    </option>
+                  </template>
                 </select>
               </div>
               <div class="select-box">
@@ -124,18 +124,24 @@
                   v-model="selectedLength[mainIndex]"
                 >
                   <option value="" disabled>Select Length</option>
-                  <option
-                    v-for="(size, index) in item.item_lengths"
-                    :key="index"
-                    :value="size"
-                  >
-                    {{ size.configrable_atribute_value }}
-                  </option>
+                  <template v-for="(size, index) in item.item_lengths">
+                    <option
+                      :key="index"
+                      :value="size"
+                      v-if="
+                        selectedSize[mainIndex] == size.size &&
+                        selectedColor[mainIndex] &&
+                        selectedColor[mainIndex].color == size.color
+                      "
+                    >
+                      {{ size.configrable_atribute_value }}
+                    </option>
+                  </template>
                 </select>
               </div>
               <button
                 class="add-to-cart--wishlist"
-                @click.prevent="addToCart(item, mainIndex)"
+                @click="addToCart(item, mainIndex)"
               >
                 Add to bag
               </button>
@@ -244,8 +250,8 @@ export default {
           this.$toast.error(response.message);
           throw "no response from api";
         }
-        this.wislistProducts.splice(index, 1);
-        this.selectedSize.splice(index, 1);
+        // this.wislistProducts.splice(index, 1);
+        // this.selectedSize.splice(index, 1);
       } catch (error) {
         this.$globalError(
           `error from the wishlist page (reomoveFromCart) >>>> ${error}`
@@ -353,14 +359,14 @@ export default {
       }
       if (
         this.isLengthAvailable[sizeIndex] == true &&
-        Object.keys(this.selectedLength[sizeIndex]).length === 0
+        this.selectedLength[sizeIndex] == ""
       ) {
         this.lengthAlert = true;
         this.lengthAlertIndes = sizeIndex;
         return;
       }
 
-      if ((this.selectedColr = "")) {
+      if (this.selectedColor[sizeIndex] == "") {
         this.colorAlert = true;
         this.colorIndex = sizeIndex;
         return;
@@ -381,10 +387,16 @@ export default {
             item.variation[this.selectedSize[sizeIndex]].id_product;
           form.product_parent_id = item.id_product;
           form.product_options = product_options_json;
-          form.fynd_size = item.fynd_size;
-          form.fynd_uid = item.fynd_uid;
+          if (this.isLengthAvailable[sizeIndex] == true) {
+            form.fynd_size = this.selectedLength[sizeIndex].fynd_size;
+            form.fynd_uid = this.selectedLength[sizeIndex].fynd_uid;
+            form.sku = this.selectedLength[sizeIndex].sku;
+          } else {
+            form.fynd_size = this.selectedColor[sizeIndex].fynd_size;
+            form.fynd_uid = this.selectedColor[sizeIndex].fynd_uid;
+            form.sku = this.selectedColor[sizeIndex].sku;
+          }
           form.name = item.name;
-          form.sku = item.variation[this.selectedSize[sizeIndex]].sku;
           form.master_sku = item.sku;
           form.price = item.price;
           form.qty_ordered = 1;
@@ -427,6 +439,7 @@ export default {
               data: response,
             });
             if (response.success) this.reomoveFromCart(item, sizeIndex);
+
             // google tag manager
             if (response.success) {
               this.$gtm.push({

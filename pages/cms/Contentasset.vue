@@ -11,7 +11,7 @@
             </p>
             &nbsp;
             <p>
-              We will respont to every message within 1 working day. Monday to
+              We will respond to every message within 1 working day. Monday to
               Saturday, excluding national holidays.
             </p>
           </div>

@@ -184,6 +184,7 @@ export const mutations = {
           address,
           cart_token,
           token,
+          grand_total
         } = payload.data;
 
         if (customer.id && customer_session && token) {
@@ -209,6 +210,7 @@ export const mutations = {
         }
         if (products && products.length > 0) {
           state.cart_product = products;
+          state.cart_total = grand_total
         }
         if (cart_id && cart_session && cart_token) {
           $cookies.set(

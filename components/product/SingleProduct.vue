@@ -298,29 +298,6 @@
                   </ul>
                 </div>
               </div>
-              <!-- expand-open for open class -->
-              <div
-                class="product-care-instructions"
-                :class="[size ? 'expand-open' : 'expand-close']"
-                @click="toggleDropDown('size')"
-              >
-                <h2>SIZE & FIT <span class="title"></span></h2>
-                <div class="care-instructions product-expand-block">
-                  <ul class="product-information-list">
-                    <li class="product-information-element">
-                      Model is wearing a size S and is 177 cm / 5'9"
-                    </li>
-                    <li class="product-information-element">
-                      <a
-                        href="/on/demandware.store/Sites-DieselNonEcommerce-Site/en_TR/Product-SizeChart?cid=sizechart-dsl-bottom-women-25"
-                        data-toggle="modal"
-                        data-target="#sizeChartModal"
-                        ><u>Size Info</u></a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
               <div
                 v-if="
                   singleProductList.single_prod_data.care_instructions &&
@@ -353,6 +330,16 @@
                   </div>
                 </div>
               </div>
+              <div class="store-locator-link">
+                <a href="#" @click="toggleDropDown('showSizeChart')"
+                  >SIZE & FIT</a
+                >
+              </div>
+
+              <!-- show pdf -->
+              <div v-if="showSizeChart">
+                <VueModal />
+              </div>
             </div>
           </div>
         </div>
@@ -368,15 +355,6 @@
     </transition>
     <!-- YOU MAY ALSO LIKE -->
     <YouMayLike :likeData="singleProductList.single_prod_data.recommended" />
-    <div v-if="showSizeChart">
-      <iframe
-        src="../../assets/kids.pdf"
-        frameBorder="0"
-        scrolling="auto"
-        height="100%"
-        width="100%"
-      ></iframe>
-    </div>
 
     <!--  IN-STORE PICKUP  -->
     <div class="store-model-overlay" v-if="storemodel">
@@ -430,9 +408,10 @@ import VueSlickCarousel from "vue-slick-carousel";
 import { mapState } from "vuex";
 import ImageZoom from "./imageZoom";
 import YouMayLike from "./YouMayLike";
+import VueModal from "./modal";
 
 export default {
-  components: { VueSlickCarousel, ImageZoom, YouMayLike },
+  components: { VueSlickCarousel, ImageZoom, YouMayLike, VueModal },
   data() {
     return {
       fixedMobileCart: false,
@@ -567,6 +546,9 @@ export default {
   },
 
   methods: {
+    CloseModal() {
+      this.showSizeChart = false;
+    },
     async openInStorePickUp() {
       if (Object.keys(this.selectedSizeAttr).length === 0) {
         this.sizeAlert = true;

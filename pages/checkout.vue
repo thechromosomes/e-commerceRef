@@ -746,7 +746,6 @@
                                     >{{ JSON.parse(item.size).color }} /
                                     {{ JSON.parse(item.size).size }}</span
                                   >
-                                  
                                 </th>
                                 <td class="product__quantity visually-hidden">
                                   2
@@ -1038,6 +1037,12 @@ export default {
     };
   },
 
+  head() {
+    return {
+      script: [{ src: "https://checkout.razorpay.com/v1/checkout.js" }],
+    };
+  },
+
   // form validatiors
   validators: {
     "user.email": function (value) {
@@ -1196,9 +1201,7 @@ export default {
               },
             });
           } else {
-             this.$toast.error(
-               response.message
-              );
+            this.$toast.error(response.message);
             throw response.message;
           }
         } else {

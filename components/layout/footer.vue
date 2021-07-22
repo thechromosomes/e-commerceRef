@@ -36,11 +36,6 @@
                 <a href="https://www.facebook.com/Diesel" target="_blank" class="icon-facebook-black">Facebook</a>
               </div>
               <div class="social-icons">
-                <a href="https://twitter.com/diesel" target="_blank" class="icon-twitter-black-sm"
-                  >Twitter</a
-                >
-              </div>
-              <div class="social-icons">
                 <a href="https://www.youtube.com/user/DieselPlanet" target="_blank" class="icon-youtube">Youtube</a>
               </div>
             </div>
