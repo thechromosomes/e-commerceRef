@@ -5,7 +5,7 @@
         <div class="st-product-element-top">
           <div
             class="product-imageSlider"
-            v-if="item.gallery && item.gallery.length > 0 && !isDeviceMobile"
+            v-if="item.gallery && item.gallery.length > 0"
           >
             <VueSlickCarousel v-bind="slickOptions">
               <div

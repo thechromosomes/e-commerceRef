@@ -3,6 +3,17 @@
   padding: 30px 0px;
 }
 
+.thank-image{
+  width: 100%;
+}
+.thank-image img {
+  max-width: 50px;
+}
+
+.thank-image span {
+  margin-left: 5px;
+}
+
 .page_container h3 {
   font-size: 25px;
   letter-spacing: 0.5px;

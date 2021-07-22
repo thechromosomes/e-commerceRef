@@ -187,7 +187,8 @@
                 v-if="
                   singleProductList.single_prod_data.item_lengths &&
                   Object.keys(singleProductList.single_prod_data.item_lengths)
-                    .length > 0
+                    .length > 0 &&
+                  selectedSizeAttr != ''
                 "
               >
                 <span
@@ -196,28 +197,34 @@
                 >
                   CHOOSE Length
                   <span v-if="selectedLengthAttr"
-                    >: {{ selectedLengthAttr.configrable_atribute_value }}
+                    >: {{ selectedLengthAttr.item_length }}
                   </span>
                 </span>
                 <ul class="swatch-attribute-values color">
-                  <li
-                    class="attribute-value js_attribute-value"
-                    v-for="(size, index) in singleProductList.single_prod_data
+                  <template
+                    v-for="(size, index) in singleProductList.single_prod_data  
                       .item_lengths"
-                    :key="index"
-                    :class="[size.quantity == 0 ? 'unavailable' : '']"
-                    @click="hanldeLengt(size)"
                   >
-                    <span
-                      :class="
-                        selectedLengthAttr.configrable_atribute_value ===
-                        size.configrable_atribute_value
-                          ? 'selected-size'
-                          : ''
+                    <li
+                      v-if="
+                        selectedSizeAttr.configrable_atribute_value == size.configrable_atribute_value
                       "
-                      >{{ size.configrable_atribute_value }}</span
+                      class="attribute-value js_attribute-value"
+                      :key="index"
+                      :class="[size.quantity == 0 ? 'unavailable' : '']"
+                      @click="hanldeLengt(size)"
                     >
-                  </li>
+                      <span
+                        :class="
+                          selectedLengthAttr.item_length ===
+                          size.item_length
+                            ? 'selected-size'
+                            : ''
+                        "
+                        >{{ size.item_length }}</span
+                      >
+                    </li>
+                  </template>
                 </ul>
               </li>
             </ul>
@@ -702,6 +709,7 @@ export default {
       if (Object.keys(this.selectedSizeAttr).length === 0) {
         this.sizeAlert = true;
         this.selectedSizeError = "Please select size";
+        return;
       }
       if (
         this.isLengthAvailable &&
@@ -720,15 +728,22 @@ export default {
             size: this.selectedSizeAttr.configrable_atribute_value,
             color: this.singleProductList.single_prod_data.color,
           });
+
+          if (this.isLengthAvailable) {
+            form.fynd_size = this.selectedLengthAttr.configrable_atribute_value;
+            form.fynd_uid = this.selectedLengthAttr.single_prod_data.fynd_uid;
+            form.sku = this.selectedLengthAttr.sku;
+          } else {
+            form.fynd_size = this.selectedSizeAttr.configrable_atribute_value;
+            form.fynd_uid = this.singleProductList.single_prod_data.fynd_uid;
+            form.sku = this.selectedSizeAttr.sku;
+          }
           form.length = this.selectedLengthAttr.configrable_atribute_value;
           form.product_id = this.selectedSizeAttr.id_product;
           form.product_parent_id =
             this.singleProductList.single_prod_data.id_product;
           form.product_options = product_options_json;
-          form.fynd_size = this.selectedSizeAttr.configrable_atribute_value;
-          form.fynd_uid = this.singleProductList.single_prod_data.fynd_uid;
           form.name = this.singleProductList.single_prod_data.name;
-          form.sku = this.selectedSizeAttr.sku;
           form.master_sku = this.singleProductList.single_prod_data.sku;
           form.price = this.singleProductList.single_prod_data.price;
           form.qty_ordered = this.addToCartVal;
@@ -988,7 +1003,7 @@ export default {
         });
       }
     },
-    "$store.state.cartAjax.cart_page_erro_page": function () {
+    "$store.state.cartAjax.cart_page_error_message": function () {
       if (
         this.$store.state.cartAjax.cart_page_error_message != "" &&
         this.$store.state.cartAjax.cart_page_error_message != null
