@@ -109,7 +109,7 @@
                       >
                         <div
                           class="st-result-inner"
-                          :class="{ 'st-filter-outer-open': showSort }"
+                          :class="{ 'st-sort-outer-open': showSort }"
                         >
                           <div class="st-col-md-6 pl0 st-mt10">
                             <span class="st-item-result">
@@ -161,14 +161,15 @@
                                               :key="s.label"
                                             >
                                               <div class="st-checkbox">
-                                                <label>
+                                                <label
+                                                  @click="sorting(s.label)"
+                                                >
                                                   <span
                                                     :class="{
                                                       activeColor:
                                                         s.active === true,
                                                     }"
                                                     class="sort-filter-name"
-                                                    @click="sorting(s.label)"
                                                     >{{ s.label }}</span
                                                   >
                                                 </label>
@@ -364,8 +365,10 @@
                   <div class="search-banner-desktop">
                     <div class="search-banner-content">
                       <h1 class="search-banner-title search-black">
-                        Results <span v-show="searchQuery.trim().length > 0"
-                    >for : {{ searchQuery | truncate(20) }}</span>
+                        Results
+                        <span v-show="searchQuery.trim().length > 0"
+                          >for : {{ searchQuery | truncate(20) }}</span
+                        >
                       </h1>
                     </div>
                   </div>
@@ -373,52 +376,55 @@
                 <div class="noresults-wrapper">
                   <h1 class="noresults-header">0 Results</h1>
                   <div class="noresults-text">
-                    <p>Sorry, we could not find any products or categories for "{{ searchQuery | truncate(20) }}". Please try searching for a different keyword or choose something from our suggestions below:</p>
+                    <p>
+                      Sorry, we could not find any products or categories for
+                      "{{ searchQuery | truncate(20) }}". Please try searching
+                      for a different keyword or choose something from our
+                      suggestions below:
+                    </p>
                   </div>
                 </div>
                 <div class="noresults-suggestions d-flex">
                   <ul class="noresults-link-wrapper">
                     <li class="noresults-link noresults-link-title">
-                      <Nuxt-link to="/clp/man">
-                        MAN
+                      <Nuxt-link to="/clp/man"> MAN </Nuxt-link>
+                    </li>
+                    <li class="noresults-link">
+                      <Nuxt-link to="/collections/man-jeans-jeans/">
+                        Jeans Man
                       </Nuxt-link>
                     </li>
                     <li class="noresults-link">
-                    <Nuxt-link to="/collections/man-jeans-jeans/">
-                      Jeans Man
-                    </Nuxt-link>
+                      <Nuxt-link to="/collections/man-shoes-sneakers/">
+                        Sneakers Man
+                      </Nuxt-link>
                     </li>
                     <li class="noresults-link">
-                    <Nuxt-link to="/collections/man-shoes-sneakers/">
-                      Sneakers Man
-                    </Nuxt-link>
-                    </li>
-                    <li class="noresults-link">
-                    <Nuxt-link to="/collections/man-accessories-belts/">
-                      Belts Man
-                    </Nuxt-link>
+                      <Nuxt-link to="/collections/man-accessories-belts/">
+                        Belts Man
+                      </Nuxt-link>
                     </li>
                   </ul>
                   <ul class="noresults-link-wrapper">
                     <li class="noresults-link noresults-link-title">
-                    <Nuxt-link to="/clp/woman">
-                      WOMAN
-                    </Nuxt-link>
+                      <Nuxt-link to="/clp/woman"> WOMAN </Nuxt-link>
                     </li>
                     <li class="noresults-link">
-                    <Nuxt-link to="/collections/woman-jeans-jeans/">
-                      Jeans Woman
-                    </Nuxt-link>
+                      <Nuxt-link to="/collections/woman-jeans-jeans/">
+                        Jeans Woman
+                      </Nuxt-link>
                     </li>
                     <li class="noresults-link">
-                    <Nuxt-link to="/collections/woman-apparel-jackets/">
-                      Jackets Woman
-                    </Nuxt-link>
+                      <Nuxt-link to="/collections/woman-apparel-jackets/">
+                        Jackets Woman
+                      </Nuxt-link>
                     </li>
                     <li class="noresults-link">
-                    <Nuxt-link to="/collections/woman-apparel-tshirts---tops/">
-                      Tshirt & Tops 
-                    </Nuxt-link>
+                      <Nuxt-link
+                        to="/collections/woman-apparel-tshirts---tops/"
+                      >
+                        Tshirt & Tops
+                      </Nuxt-link>
                     </li>
                   </ul>
                 </div>
@@ -629,7 +635,7 @@ export default {
       setTimeout(() => {
         if (!this.isDeviceMobile) {
           if (this.showSort)
-            document.querySelector(".st-filter-outer-open").style.minHeight =
+            document.querySelector(".st-sort-outer-open").style.minHeight =
               "290px";
           else
             document.querySelector(".st-result-inner").style.minHeight = "0px";
@@ -1108,9 +1114,8 @@ export default {
         this.scrollVal = window.scrollY;
       }
       if (window.scrollY > this.onFocusScroll + 100 && this.isDeviceMobile) {
-        if(   document.querySelector("input[name='st']")){
-
-        document.querySelector("input[name='st']").blur();
+        if (document.querySelector("input[name='st']")) {
+          document.querySelector("input[name='st']").blur();
         }
         this.onFocusScroll = window.scrollY;
       }
@@ -1394,32 +1399,32 @@ export default {
 };
 </script>
 <style scoped>
-.search-banner-desktop{
-    min-height: 60px;
+.search-banner-desktop {
+  min-height: 60px;
 }
 .search-banner-title {
-    text-transform: uppercase;
-    margin: 0;
-    font-size: 1.75rem;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 1.75rem;
 }
-.noresults-wrapper{
+.noresults-wrapper {
   padding: 40px 15px 0;
 }
-.noresults-header{
+.noresults-header {
   text-transform: uppercase;
   font-size: 40px;
   padding-top: 40px;
   margin-bottom: 26px;
 }
 .noresults-text {
-    font-size: 14px;
-    line-height: 26px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+  font-size: 14px;
+  line-height: 26px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 .noresults-text p {
-    margin: 14px auto;
-    max-width:600px
+  margin: 14px auto;
+  max-width: 600px;
 }
 .noresults-suggestions {
   max-width: 600px;
@@ -1429,22 +1434,21 @@ export default {
   padding-bottom: 100px;
 }
 .noresults-link {
-    list-style-type: none;
-    text-transform: capitalize;
-    font-size: 13px;
-    padding: 10px;
+  list-style-type: none;
+  text-transform: capitalize;
+  font-size: 13px;
+  padding: 10px;
 }
 .noresults-link-title {
-    font-size: 14px;
-    text-transform: uppercase;
-    font-weight: 700;
-    padding: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 10px;
 }
-.noresults-link-wrapper{
-    margin-right: auto;
-    margin-left: auto;
-    text-align: center;
-    max-width: 600px;
+.noresults-link-wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  max-width: 600px;
 }
-
 </style>

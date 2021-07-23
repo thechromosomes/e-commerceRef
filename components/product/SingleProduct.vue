@@ -187,7 +187,8 @@
                 v-if="
                   singleProductList.single_prod_data.item_lengths &&
                   Object.keys(singleProductList.single_prod_data.item_lengths)
-                    .length > 0
+                    .length > 0 &&
+                  selectedSizeAttr != ''
                 "
               >
                 <span
@@ -196,28 +197,34 @@
                 >
                   CHOOSE Length
                   <span v-if="selectedLengthAttr"
-                    >: {{ selectedLengthAttr.configrable_atribute_value }}
+                    >: {{ selectedLengthAttr.item_length }}
                   </span>
                 </span>
                 <ul class="swatch-attribute-values color">
-                  <li
-                    class="attribute-value js_attribute-value"
-                    v-for="(size, index) in singleProductList.single_prod_data
+                  <template
+                    v-for="(size, index) in singleProductList.single_prod_data  
                       .item_lengths"
-                    :key="index"
-                    :class="[size.quantity == 0 ? 'unavailable' : '']"
-                    @click="hanldeLengt(size)"
                   >
-                    <span
-                      :class="
-                        selectedLengthAttr.configrable_atribute_value ===
-                        size.configrable_atribute_value
-                          ? 'selected-size'
-                          : ''
+                    <li
+                      v-if="
+                        selectedSizeAttr.configrable_atribute_value == size.configrable_atribute_value
                       "
-                      >{{ size.configrable_atribute_value }}</span
+                      class="attribute-value js_attribute-value"
+                      :key="index"
+                      :class="[size.quantity == 0 ? 'unavailable' : '']"
+                      @click="hanldeLengt(size)"
                     >
-                  </li>
+                      <span
+                        :class="
+                          selectedLengthAttr.item_length ===
+                          size.item_length
+                            ? 'selected-size'
+                            : ''
+                        "
+                        >{{ size.item_length }}</span
+                      >
+                    </li>
+                  </template>
                 </ul>
               </li>
             </ul>
@@ -298,29 +305,6 @@
                   </ul>
                 </div>
               </div>
-              <!-- expand-open for open class -->
-              <div
-                class="product-care-instructions"
-                :class="[size ? 'expand-open' : 'expand-close']"
-                @click="toggleDropDown('size')"
-              >
-                <h2>SIZE & FIT <span class="title"></span></h2>
-                <div class="care-instructions product-expand-block">
-                  <ul class="product-information-list">
-                    <li class="product-information-element">
-                      Model is wearing a size S and is 177 cm / 5'9"
-                    </li>
-                    <li class="product-information-element">
-                      <a
-                        href="/on/demandware.store/Sites-DieselNonEcommerce-Site/en_TR/Product-SizeChart?cid=sizechart-dsl-bottom-women-25"
-                        data-toggle="modal"
-                        data-target="#sizeChartModal"
-                        ><u>Size Info</u></a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
               <div
                 v-if="
                   singleProductList.single_prod_data.care_instructions &&
@@ -353,6 +337,16 @@
                   </div>
                 </div>
               </div>
+              <div class="store-locator-link">
+                <a href="#" @click="toggleDropDown('showSizeChart')"
+                  >SIZE & FIT</a
+                >
+              </div>
+
+              <!-- show pdf -->
+              <div v-if="showSizeChart">
+                <VueModal />
+              </div>
             </div>
           </div>
         </div>
@@ -368,15 +362,6 @@
     </transition>
     <!-- YOU MAY ALSO LIKE -->
     <YouMayLike :likeData="singleProductList.single_prod_data.recommended" />
-    <div v-if="showSizeChart">
-      <iframe
-        src="../../assets/kids.pdf"
-        frameBorder="0"
-        scrolling="auto"
-        height="100%"
-        width="100%"
-      ></iframe>
-    </div>
 
     <!--  IN-STORE PICKUP  -->
     <div class="store-model-overlay" v-if="storemodel">
@@ -430,9 +415,10 @@ import VueSlickCarousel from "vue-slick-carousel";
 import { mapState } from "vuex";
 import ImageZoom from "./imageZoom";
 import YouMayLike from "./YouMayLike";
+import VueModal from "./modal";
 
 export default {
-  components: { VueSlickCarousel, ImageZoom, YouMayLike },
+  components: { VueSlickCarousel, ImageZoom, YouMayLike, VueModal },
   data() {
     return {
       fixedMobileCart: false,
@@ -567,6 +553,9 @@ export default {
   },
 
   methods: {
+    CloseModal() {
+      this.showSizeChart = false;
+    },
     async openInStorePickUp() {
       if (Object.keys(this.selectedSizeAttr).length === 0) {
         this.sizeAlert = true;
@@ -720,6 +709,7 @@ export default {
       if (Object.keys(this.selectedSizeAttr).length === 0) {
         this.sizeAlert = true;
         this.selectedSizeError = "Please select size";
+        return;
       }
       if (
         this.isLengthAvailable &&
@@ -738,15 +728,22 @@ export default {
             size: this.selectedSizeAttr.configrable_atribute_value,
             color: this.singleProductList.single_prod_data.color,
           });
+
+          if (this.isLengthAvailable) {
+            form.fynd_size = this.selectedLengthAttr.configrable_atribute_value;
+            form.fynd_uid = this.selectedLengthAttr.single_prod_data.fynd_uid;
+            form.sku = this.selectedLengthAttr.sku;
+          } else {
+            form.fynd_size = this.selectedSizeAttr.configrable_atribute_value;
+            form.fynd_uid = this.singleProductList.single_prod_data.fynd_uid;
+            form.sku = this.selectedSizeAttr.sku;
+          }
           form.length = this.selectedLengthAttr.configrable_atribute_value;
           form.product_id = this.selectedSizeAttr.id_product;
           form.product_parent_id =
             this.singleProductList.single_prod_data.id_product;
           form.product_options = product_options_json;
-          form.fynd_size = this.selectedSizeAttr.configrable_atribute_value;
-          form.fynd_uid = this.singleProductList.single_prod_data.fynd_uid;
           form.name = this.singleProductList.single_prod_data.name;
-          form.sku = this.selectedSizeAttr.sku;
           form.master_sku = this.singleProductList.single_prod_data.sku;
           form.price = this.singleProductList.single_prod_data.price;
           form.qty_ordered = this.addToCartVal;
@@ -1006,7 +1003,7 @@ export default {
         });
       }
     },
-    "$store.state.cartAjax.cart_page_erro_page": function () {
+    "$store.state.cartAjax.cart_page_error_message": function () {
       if (
         this.$store.state.cartAjax.cart_page_error_message != "" &&
         this.$store.state.cartAjax.cart_page_error_message != null

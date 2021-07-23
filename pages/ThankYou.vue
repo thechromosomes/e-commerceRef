@@ -66,7 +66,11 @@
                     <td scope="row"><strong>Status:</strong> {{ status }}</td>
                     <td scope="row"></td>
                     <td scope="row"></td>
-                    <td scope="row">
+                    <td scope="row" v-if="$store.state.cartAjax.cod_charge">
+                      <strong>Delivery Charge</strong> ₹
+                      {{ $store.state.cartAjax.cod_charge }}
+                    </td>
+                    <td scope="row" v-else>
                       <strong>Delivery Charge</strong> ₹
                       {{ $store.state.cartAjax.cod_charge }}
                     </td>
@@ -106,7 +110,7 @@
                 <tbody>
                   <tr v-for="(item, index) in order" :key="index">
                     <td scope="row">
-                      <div>
+                      <div class="thank-image">
                         <img class="" :src="item.image" alt="BPLAYED" />
                         <span>{{ item.name }}</span>
                       </div>
