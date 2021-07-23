@@ -1,55 +1,15 @@
 <template>
   <div class="clp_pages">
-    <div class="newclp">
-      <div class="clp_banner">
-        <div class="img-box">
-          <img
-            src="@/assets/img/clp-banner-man.jpg"
-            alt=" img "
-            class="desktop_only w-100"
-          />
-          <img
-            src="@/assets/img/clp-banner-man_mobile.jpg"
-            alt=" img "
-            class="mobile_only w-100"
-          />
-        </div>
-        <div class="content">
-          <div class="content-box">
-            <h3>THE NEW DENIM COLLECTION</h3>
-            <p>
-              CLEAN UP YOUR ACT WITH SOPHISTICATED NEW TAKES ON OUR SIGNATURE
-              DENIM.
-            </p>
-            <a href="#" class="secondary-white-btn">
-              VIEW ALL DENIM
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <div v-html="cmsData.content"></div>
+    
     <Slideproduct :slideImg="is_new" />
 
     <CategorySlider :slideImg="jackets" />
     <TowImages :slideImg="trending" />
 
     <NewIn :slideImg="is_new" />
-
-    <!-- NEW SNEAKERS -->
-    <div class="new-sneakers">
-      <h4>NEW SNEAKERS</h4>
-      <div class="img-box w-100">
-        <img
-          src="@/assets/img/diesel-yukandnet-man.jpg"
-          alt="img"
-          class="w-100"
-        />
-      </div>
-      <p>TAKE A STEP BACK WITH COLOURFUL SNEAKERS INSPIRED BY 90S STYLE.</p>
-    </div>
-
-    <div class="accessories">
+<span v-html="cmsData.content_1"></span>
+   <div class="accessories">
       <div class="accessories-content">
         <div class="left-content">
           <h4>
@@ -110,6 +70,7 @@ export default {
       jackets: [],
       accessories: [],
       trending: [],
+      cmsData:[],
       settings: {
         infinite: true,
         slidesToShow: 1,
@@ -237,7 +198,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["is_new"])
+    ...mapState(["is_new","cmsPagesData"])
   },
 
   methods: {
@@ -277,10 +238,12 @@ export default {
     this.getProductList("man-apparel-jackets", "jackets");
     this.getProductList("man-jeans", "trending");
     this.getProductList("man-accessories-other-accessories", "accessories");
-  }
+    let pageData = this.$store.state.cmsPagesData["man-clp"];
+      this.cmsData = pageData;
+  },
 };
 </script>
 
 <style scoped>
-@import url("@/assets/css/clp-page.css");
+ /* @import url("@/assets/css/clp-page.css");  */
 </style>

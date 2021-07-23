@@ -9,7 +9,8 @@
       <client-only>
         <div class="slide_content" v-if="bannerSlide.length > 0">
           <VueSlickCarousel ref="slick" v-bind="settings2">
-            <div class="item" v-for="(item, index) in bannerSlide" :key="index">
+            <template  v-for="(item, index) in bannerSlide" >
+            <div class="item" v-if="item.banner_type === 'Banner'" :key="index">
               <img
                 :src="item.desktop_image"
                 alt="img"
@@ -24,6 +25,7 @@
                 <div class="" v-html="item.description"></div>
               </div>
             </div>
+            </template>
           </VueSlickCarousel>
         </div>
       </client-only>

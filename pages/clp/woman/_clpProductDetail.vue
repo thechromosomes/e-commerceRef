@@ -1,85 +1,41 @@
 <template>
   <div class="clp_pages woman">
-    <section class="slide-img">
-      <div class="content">
-        <img
-          src="@/assets/img/woman.jpg"
-          alt="img"
-          class="w-100 desktop_only"
-        />
-        <img
-          src="https://uk.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dwa7ecba5a/2021/FW21-Prefall-drop/diesel-pre-fall-lauch-woman-mobile.jpg?sw=640"
-          alt="img"
-          class="w-100 mobile_only"
-        />
-        <div class="content-text">
-          <h4>DIESEL X DIESEL</h4>
-          <p>A LINE-UP OF LIMITED PIECES, SELECTED FROM THE ARCHIVES.</p>
-          <a class="button primary-btn" href="#" role="button">DISCOVER NOW</a>
-        </div>
-      </div>
-    </section>
+   <div v-html="cmsData.content" ></div>
 
     <ProductSilder :slideImg="sneakers" />
 
     <div class="collections_slide">
       <div class="slide_content">
-        <VueSlickCarousel ref="slick" v-bind="settings">
-          <div class="item">
-            <img
-              src="@/assets/img/collections_slide_HP1.jpg"
-              alt="img"
-              class="desktop_only w-100"
-            />
-            <img
-              src="@/assets/img/collections_slide_MP1.jpg"
-              alt="img"
-              class="mobile_only w-100"
-            />
-            <div class="img_content">
-              <h4>READY-TO-WEAR</h4>
-              <h5>SUMMER 2021</h5>
-              <p class="module-text">
-                Utility designs meet camo and cyber-punk prints.
-                <br />
-                The final touch: a twist of colour to welcome the new season.
-              </p>
-              <a class="button secondary-white-btn" href="#" role="button"
-                >SHOP NEW ARRIVALS</a
-              >
+        <client-only>
+        <div class="slide_content" v-if="bannerSlide.length > 0 ">
+          <VueSlickCarousel ref="slick" v-bind="settings">
+          <template  v-for="(item, index) in bannerSlide" > 
+            <div  class="item" v-if="item.banner_type === 'Woman'" :key="index">
+            
+              <img
+                :src="item.desktop_image"
+                alt="img"
+                class="desktop_only w-100"
+              />
+              <img
+                :src="item.mobile_image"
+                alt="img"
+                class="mobile_only w-100"
+              />
+              <div class="img_content">
+                <div class="" v-html="item.description"></div>
+              </div>
             </div>
-          </div>
-          <div class="item">
-            <img
-              src="@/assets/img/collections_slide_HP2.jpg"
-              alt="img"
-              class="desktop_only w-100"
-            />
-            <img
-              src="@/assets/img/collections_slide_MP2.jpg"
-              alt="img"
-              class="mobile_only w-100"
-            />
-            <div class="img_content">
-              <h4>READY-TO-WEAR</h4>
-              <h5>SUMMER 2021</h5>
-              <p class="module-text">
-                Utility designs meet camo and cyber-punk prints.
-                <br />
-                The final touch: a twist of colour to welcome the new season.
-              </p>
-              <a class="button secondary-white-btn" href="#" role="button"
-                >SHOP NEW ARRIVALS</a
-              >
-            </div>
-          </div>
-        </VueSlickCarousel>
+            </template>
+          </VueSlickCarousel>
+        </div>
+      </client-only>
       </div>
     </div>
 
     <CategorySlider :slideImg="sweaters" />
 
-    <TowImages :slideImg="trending"/>
+    <div v-html="cmsData.content"></div>
     <NewIn :slideImg="is_new" />
 
     <div class="accessories">
@@ -145,7 +101,7 @@ export default {
       sneakers: [],
       sweaters: [],
       trending: [],
-
+      cmsData:[],
       settings: {
         infinite: true,
         slidesToShow: 1,
@@ -272,7 +228,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["is_new"]),
+    ...mapState(["is_new","cmsPagesData","bannerSlide",]),
   },
 
   methods: {
@@ -314,10 +270,13 @@ export default {
     this.getProductList("woman-shoes-sneakers", "sneakers");
     this.getProductList("woman-apparel-sweaters", "sweaters")
     this.getProductList("woman-apparel-tshirts---tops", "trending")
+    let pageData = this.$store.state.cmsPagesData["women-clp"];
+      this.cmsData = pageData;
   },
 };
 </script>
 
 <style scoped>
-@import url("@/assets/css/clp-page.css");
+ @import url("@/assets/css/clp-page.css");
+
 </style>
