@@ -9,22 +9,26 @@
       <client-only>
         <div class="slide_content" v-if="bannerSlide.length > 0">
           <VueSlickCarousel ref="slick" v-bind="settings2">
-            <template  v-for="(item, index) in bannerSlide" >
-            <div class="item" v-if="item.banner_type === 'Banner'" :key="index">
-              <img
-                :src="item.desktop_image"
-                alt="img"
-                class="desktop_only w-100"
-              />
-              <img
-                :src="item.mobile_image"
-                alt="img"
-                class="mobile_only w-100"
-              />
-              <div class="img_content">
-                <div class="" v-html="item.description"></div>
+            <template v-for="(item, index) in bannerSlide">
+              <div
+                class="item"
+                v-if="item.banner_type === 'Banner'"
+                :key="index"
+              >
+                <img
+                  :src="item.desktop_image"
+                  alt="img"
+                  class="desktop_only w-100"
+                />
+                <img
+                  :src="item.mobile_image"
+                  alt="img"
+                  class="mobile_only w-100"
+                />
+                <div class="img_content">
+                  <div class="" v-html="item.description"></div>
+                </div>
               </div>
-            </div>
             </template>
           </VueSlickCarousel>
         </div>
@@ -32,7 +36,11 @@
     </div>
 
     <client-only>
-      <section class="new_in" style="min-height:250px;" v-if="is_new.length > 0">
+      <section
+        class="new_in"
+        style="min-height: 250px"
+        v-if="is_new.length > 0"
+      >
         <div class="container-fluid">
           <div class="content_new_in">
             <h2 class="swiper-header">NEW IN</h2>
@@ -109,7 +117,7 @@ export default {
         ],
       },
       settings2: {
-        lazyLoad:"ondemand",
+        lazyLoad: "ondemand",
         focusOnSelect: true,
         dots: true,
         infinite: true,
@@ -191,39 +199,39 @@ export default {
 };
 </script>
 <style>
-.home-benefits-section{
+.home-benefits-section {
   margin: 50px 0;
 }
-.home-benefits-section .benefits-section-col{
+.home-benefits-section .benefits-section-col {
   max-width: 290px;
   margin: 0 auto;
   padding: 15px;
 }
-.home-benefits-section .benefits-section-div{
+.home-benefits-section .benefits-section-div {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
 }
-.home-benefits-section .benefits-section-div img{
+.home-benefits-section .benefits-section-div img {
   max-width: 100%;
   width: 110px;
   margin-bottom: 20px;
 }
-.home-benefits-section .benefits-section-div h3{
+.home-benefits-section .benefits-section-div h3 {
   font-size: 18px;
   margin: 0 0 14px 0;
   line-height: 1;
 }
-.home-benefits-section .benefits-section-div p{
-   margin: 0 0 14px 0;
+.home-benefits-section .benefits-section-div p {
+  margin: 0 0 14px 0;
 }
-.home-benefits-section .view-all-link{
+.home-benefits-section .view-all-link {
   font-weight: bold;
   text-decoration: underline;
 }
-@media(max-width:991px){
-  .home-benefits-section .benefits-section-col{
+@media (max-width: 991px) {
+  .home-benefits-section .benefits-section-col {
     max-width: 290px;
     margin: 0 auto;
     padding: 35px;

@@ -1,26 +1,24 @@
 <template>
   <div class="clp_pages kid">
-      <div v-html="cmsData.content"></div>
-   
+    <div v-html="cmsData.content"></div>
 
     <ProductSilder :slideImg="jeans" />
- <div v-html="cmsData.content_1"></div>
-   
+    <div v-html="cmsData.content_1"></div>
 
     <ProductSilder :slideImg="shirts" />
     <!-- new design -->
     <div class="item-four-show" v-if="jboys && jboys.length > 0">
-      <h4 class="title" style="background:#2c3e50;">JUNIOR BOYS</h4>
+      <h4 class="title" style="background: #2c3e50">JUNIOR BOYS</h4>
       <div class="item-box">
         <div class="item" v-for="(item, index) in jboys" :key="index">
-          <img
-            :src="item.image"
-            alt=""
-            class="w-100"
-          />
+          <img :src="item.image" alt="" class="w-100" />
           <div class="content">
-            <h3 class="module-title"><a :href="`/product/${item.url_key}`">{{item.name}}</a></h3>
-            <a class="module-link" :href="`/product/${item.url_key}`">SHOP NOW</a>
+            <h3 class="module-title">
+              <a :href="`/product/${item.url_key}`">{{ item.name }}</a>
+            </h3>
+            <a class="module-link" :href="`/product/${item.url_key}`"
+              >SHOP NOW</a
+            >
           </div>
         </div>
       </div>
@@ -37,10 +35,10 @@ export default {
     return {
       slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
       Item: [1, 2, 3, 4],
-      jeans:[],
+      jeans: [],
       shirts: [],
-      jboys:[],
-       cmsData:[],
+      jboys: [],
+      cmsData: [],
 
       settings2: {
         infinite: true,
@@ -57,8 +55,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 3.5
-            }
+              slidesToShow: 3.5,
+            },
           },
           {
             breakpoint: 767,
@@ -66,8 +64,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 480,
@@ -75,10 +73,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5
-            }
-          }
-        ]
+              slidesToShow: 1.5,
+            },
+          },
+        ],
       },
       settings3: {
         infinite: true,
@@ -95,8 +93,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -104,8 +102,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -113,11 +111,11 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
-      }
+              slidesToShow: 1,
+            },
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -159,14 +157,11 @@ export default {
     this.getProductList("kid-apparel-shirts", "shirts");
     this.getProductList("kid-apparel-sweaters", "jboys");
     let pageData = this.$store.state.cmsPagesData["kid-clp"];
-      this.cmsData = pageData;
-
-
+    this.cmsData = pageData;
   },
 };
 </script>
 
 <style scoped>
- /* @import url("@/assets/css/clp-page.css");  */
- 
+/* @import url("@/assets/css/clp-page.css");  */
 </style>

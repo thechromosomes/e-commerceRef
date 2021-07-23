@@ -21,6 +21,15 @@
               <nuxt-link :to="`/product/${product.url_key}`">
                 <span class="name">{{ product.name }}</span>
                 <span class="price">MRP ₹{{ product.selling_price }}</span>
+                <span
+                  ><div
+                    class="cart__meta-text pre-order-message error"
+                    data-product-id="5172417462405"
+                    v-show="product.fynd_qty == 0"
+                  >
+                    Product out of stock
+                  </div>
+                </span>
               </nuxt-link>
             </div>
             <span class="p-remove">
@@ -66,7 +75,7 @@ export default {
   props: ["handleClick"],
   data() {
     return {
-      toggelCar: true
+      toggelCar: true,
     };
   },
   methods: {
@@ -83,13 +92,13 @@ export default {
           method: "post",
           url: `/product/remove-product`,
           token: this.$store.state.cartAjax.cart_token,
-          params: form
+          params: form,
         });
         if (response) {
           this.$store.commit("cartAjax/updateCartDetail", {
             error: null,
             data: response,
-            vm: this
+            vm: this,
           });
           if (response.success) {
             this.$gtm.push({
@@ -103,11 +112,11 @@ export default {
                       id: item.master_sku,
                       price: item.selling_price,
                       variant: item.fynd_size,
-                      quantity: item.qty
-                    }
-                  ]
-                }
-              }
+                      quantity: item.qty,
+                    },
+                  ],
+                },
+              },
             });
           }
         } else {
@@ -117,31 +126,31 @@ export default {
         this.$globalError(`error from remove cart >>>> ${error}`);
         console.log("error from remove cart >>>", error);
       }
-    }
+    },
   },
   watch: {
-    "$store.state.cartAjax.cart_page_message": function() {
+    "$store.state.cartAjax.cart_page_message": function () {
       if (
         this.$store.state.cartAjax.cart_page_message != "" &&
         this.$store.state.cartAjax.cart_page_message != null
       ) {
         this.$toast.open(this.$store.state.cartAjax.cart_page_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
     },
-    "$store.state.cartAjax.cart_page_erro_page": function() {
+    "$store.state.cartAjax.cart_page_erro_page": function () {
       if (
         this.$store.state.cartAjax.cart_page_error_message != "" &&
         this.$store.state.cartAjax.cart_page_error_message != null
       ) {
         this.$toast.error(this.$store.state.cartAjax.cart_page_error_message);
         this.$store.commit("cartAjax/removePageMessage", {
-          data: ""
+          data: "",
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>

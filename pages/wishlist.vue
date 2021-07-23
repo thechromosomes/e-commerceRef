@@ -86,13 +86,11 @@
                   :class="{ error: sizeAlert && sizeAlertIndes == mainIndex }"
                 >
                   <option value="" disabled>Select Size</option>
-                  <option
-                    v-for="(size, index) in item.variation"
-                    :key="index"
-                    :disabled="size.quantity == 0"
-                  >
-                    {{ size.configrable_atribute_value }}
-                  </option>
+                  <template v-for="(size, index) in item.variation">
+                    <option :key="index" :disabled="size.quantity == 0">
+                      {{ size.configrable_atribute_value }}
+                    </option>
+                  </template>
                 </select>
               </div>
               <div class="select-box">
@@ -106,6 +104,7 @@
                       v-if="selectedSize[mainIndex] == size.size"
                       :key="index"
                       :value="size"
+                      :disabled="size.quantity == 0"
                     >
                       {{ size.color }}
                     </option>
@@ -128,6 +127,7 @@
                     <option
                       :key="index"
                       :value="size"
+                      :disabled="size.quantity == 0"
                       v-if="
                         selectedSize[mainIndex] == size.size &&
                         selectedColor[mainIndex] &&

@@ -1,15 +1,15 @@
 <template>
   <div class="clp_pages">
     <div v-html="cmsData.content"></div>
-    
+
     <Slideproduct :slideImg="is_new" />
 
     <CategorySlider :slideImg="jackets" />
     <TowImages :slideImg="trending" />
 
     <NewIn :slideImg="is_new" />
-<span v-html="cmsData.content_1"></span>
-   <div class="accessories">
+    <span v-html="cmsData.content_1"></span>
+    <div class="accessories">
       <div class="accessories-content">
         <div class="left-content">
           <h4>
@@ -22,7 +22,10 @@
           >
         </div>
         <div class="right-content">
-          <div class="slide_new_in" v-if="accessories && accessories.length > 0">
+          <div
+            class="slide_new_in"
+            v-if="accessories && accessories.length > 0"
+          >
             <client-only>
               <VueSlickCarousel ref="slick" v-bind="settings4">
                 <div
@@ -62,7 +65,7 @@ export default {
     NewIn,
     CategorySlider,
     TowImages,
-    Slideproduct
+    Slideproduct,
   },
   data() {
     return {
@@ -70,7 +73,7 @@ export default {
       jackets: [],
       accessories: [],
       trending: [],
-      cmsData:[],
+      cmsData: [],
       settings: {
         infinite: true,
         slidesToShow: 1,
@@ -78,7 +81,7 @@ export default {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 2000
+        autoplaySpeed: 2000,
       },
       settings2: {
         infinite: true,
@@ -95,8 +98,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 3.5
-            }
+              slidesToShow: 3.5,
+            },
           },
           {
             breakpoint: 767,
@@ -104,8 +107,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 480,
@@ -113,10 +116,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5
-            }
-          }
-        ]
+              slidesToShow: 1.5,
+            },
+          },
+        ],
       },
       settings3: {
         infinite: true,
@@ -133,8 +136,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -142,8 +145,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -151,10 +154,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
+              slidesToShow: 1,
+            },
+          },
+        ],
       },
 
       settings4: {
@@ -172,8 +175,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -181,8 +184,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -190,15 +193,15 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
-      }
+              slidesToShow: 1,
+            },
+          },
+        ],
+      },
     };
   },
   computed: {
-    ...mapState(["is_new","cmsPagesData"])
+    ...mapState(["is_new", "cmsPagesData"]),
   },
 
   methods: {
@@ -216,7 +219,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
 
         if (response) {
@@ -228,22 +231,23 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error: "Oops there seems to be some Network issue, please try again"
+            error:
+              "Oops there seems to be some Network issue, please try again",
           });
         }
       }
-    }
+    },
   },
   created() {
     this.getProductList("man-apparel-jackets", "jackets");
     this.getProductList("man-jeans", "trending");
     this.getProductList("man-accessories-other-accessories", "accessories");
     let pageData = this.$store.state.cmsPagesData["man-clp"];
-      this.cmsData = pageData;
+    this.cmsData = pageData;
   },
 };
 </script>
 
 <style scoped>
- /* @import url("@/assets/css/clp-page.css");  */
+/* @import url("@/assets/css/clp-page.css");  */
 </style>

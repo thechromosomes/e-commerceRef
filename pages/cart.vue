@@ -59,9 +59,10 @@
                             <br />
                             <span
                               ><div
-                                class="cart__meta-text pre-order-message"
+                                class="cart__meta-text pre-order-message error"
                                 data-product-id="5172417462405"
-                              ></div>
+                                v-show="product.fynd_qty == 0"
+                              >Product out of stock</div>
                             </span>
                           </NuxtLink>
                         </div>

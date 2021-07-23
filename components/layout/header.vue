@@ -449,7 +449,7 @@
               </li>
               <li class="mini-cart">
                 <div class="carts">
-                  <a href="/cart">
+                  <nuxt-link to="/cart">
                     <span
                       class="cart-full-count"
                       v-if="$store.state.cartAjax.cart_product.length != 0"
@@ -464,7 +464,7 @@
                       </div>
                     </span>
                     <span class="cart-icon cart-blank" v-else></span>
-                  </a>
+                  </nuxt-link>
                 </div>
               </li>
             </ul>

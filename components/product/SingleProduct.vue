@@ -202,12 +202,13 @@
                 </span>
                 <ul class="swatch-attribute-values color">
                   <template
-                    v-for="(size, index) in singleProductList.single_prod_data  
+                    v-for="(size, index) in singleProductList.single_prod_data
                       .item_lengths"
                   >
                     <li
                       v-if="
-                        selectedSizeAttr.configrable_atribute_value == size.configrable_atribute_value
+                        selectedSizeAttr.configrable_atribute_value ==
+                        size.configrable_atribute_value
                       "
                       class="attribute-value js_attribute-value"
                       :key="index"
@@ -216,8 +217,7 @@
                     >
                       <span
                         :class="
-                          selectedLengthAttr.item_length ===
-                          size.item_length
+                          selectedLengthAttr.item_length === size.item_length
                             ? 'selected-size'
                             : ''
                         "
@@ -337,10 +337,33 @@
                   </div>
                 </div>
               </div>
-              <div class="store-locator-link">
-                <a href="#" @click="toggleDropDown('showSizeChart')"
-                  >SIZE & FIT</a
-                >
+              <div
+                class="product-care-instructions"
+                :class="[size ? 'expand-open' : 'expand-close']"
+                @click="toggleDropDown('size')"
+              >
+                <h2>SIZE & FIT <span class="title"></span></h2>
+                <div class="care-instructions product-expand-block">
+                  <ul class="product-information-list">
+                    <li
+                      class="product-information-element"
+                      v-show="
+                        singleProductList.single_prod_data.model_fit != ''
+                      "
+                    >
+                      {{ singleProductList.single_prod_data.model_fit }}
+                    </li>
+                    <li class="product-information-element">
+                      <a
+                        href="/cms/size-conversion"
+                        target="_blank"
+                        data-toggle="modal"
+                        data-target="#sizeChartModal"
+                        ><u>Size Info</u></a
+                      >
+                    </li>
+                  </ul>
+                </div>
               </div>
 
               <!-- show pdf -->
@@ -560,6 +583,7 @@ export default {
       if (Object.keys(this.selectedSizeAttr).length === 0) {
         this.sizeAlert = true;
         this.selectedSizeError = "Please select size";
+        return;
       }
       if (
         this.isLengthAvailable &&
@@ -567,7 +591,6 @@ export default {
       ) {
         this.lengthAlert = true;
         this.lengthError = "please select length";
-        return;
       } else {
         var response = await this.$store.dispatch("cartAjax/actCartAjax", {
           method: "post",
@@ -632,10 +655,11 @@ export default {
       }
     },
 
-    hanldeSize(size) {
+    hanldeSize(size, index) {
       if (size.quantity == 0) return;
       this.sizeAlert = false;
       this.selectedSizeAttr = size;
+      this.selectedLengthAttr = "";
     },
 
     hanldeLengt(size) {
@@ -730,11 +754,11 @@ export default {
           });
 
           if (this.isLengthAvailable) {
-            form.fynd_size = this.selectedLengthAttr.configrable_atribute_value;
+            form.fynd_size = this.selectedLengthAttr.fynd_size;
             form.fynd_uid = this.selectedLengthAttr.fynd_uid;
             form.sku = this.selectedLengthAttr.sku;
           } else {
-            form.fynd_size = this.selectedSizeAttr.configrable_atribute_value;
+            form.fynd_size = this.selectedSizeAttr.fynd_size;
             form.fynd_uid = this.singleProductList.fynd_uid;
             form.sku = this.selectedSizeAttr.sku;
           }
