@@ -731,11 +731,11 @@ export default {
 
           if (this.isLengthAvailable) {
             form.fynd_size = this.selectedLengthAttr.configrable_atribute_value;
-            form.fynd_uid = this.selectedLengthAttr.single_prod_data.fynd_uid;
+            form.fynd_uid = this.selectedLengthAttr.fynd_uid;
             form.sku = this.selectedLengthAttr.sku;
           } else {
             form.fynd_size = this.selectedSizeAttr.configrable_atribute_value;
-            form.fynd_uid = this.singleProductList.single_prod_data.fynd_uid;
+            form.fynd_uid = this.singleProductList.fynd_uid;
             form.sku = this.selectedSizeAttr.sku;
           }
           form.length = this.selectedLengthAttr.configrable_atribute_value;

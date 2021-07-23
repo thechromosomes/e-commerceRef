@@ -134,7 +134,7 @@
                         selectedColor[mainIndex].color == size.color
                       "
                     >
-                      {{ size.configrable_atribute_value }}
+                      {{ size.item_length }}
                     </option>
                   </template>
                 </select>
