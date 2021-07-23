@@ -1,70 +1,15 @@
 <template>
   <div class="clp_pages kid">
-    <section class="slide-img">
-      <div class="content  ">
-        <img
-          src="@/assets/img/kids.jpg"
-          alt="img"
-          class="w-100 desktop_only "
-        />
-        <img
-          src="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dwdbc2c3df/SS21/KID/lk-ss21-launch-mobile.jpg"
-          alt="img"
-          class="w-100 mobile_only "
-        />
-        <div class="content-text">
-          <h4>
-            XMAS COLLECTION
-          </h4>
-          <a class="button primary-btn" href="#" role="button"
-            >DISCOVER FOR BOYS</a
-          >
-          <a class="button primary-btn" href="#" role="button"
-            >DISCOVER FOR GIRLS</a
-          >
-        </div>
-      </div>
-    </section>
+      <div v-html="cmsData.content"></div>
+   
 
     <ProductSilder :slideImg="jeans" />
-
-    <div class="two-banners-section slot-margin ">
-      <h2 class="category-heading text-center">DENIM COLLECTION</h2>
-      <div class="category-box">
-        <div class="category-item">
-          <a href="#">
-            <img
-              alt="Shop Now on Diesel.com"
-              class="category-image w-100"
-              src="https://global.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw47504a83/landing-kid/landing-kid-junior-boy-denim.jpg"
-              title="Shop Now on Diesel.com"
-            />
-          </a>
-          <div class="info">
-            <h3 class="module-title"><a href="/collections/kid-jeans">WORKWEAR ATTITUDE</a></h3>
-            <a class="module-link" href="/collections/kid-jeans">SHOP NOW</a>
-          </div>
-        </div>
-        <div class="category-item">
-          <a href="#">
-            <img
-              alt="Shop Now on Diesel.com"
-              class="category-image w-100"
-              src="https://global.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dwe6cd383a/landing-kid/landing-kid-junior-girl-denim.jpg"
-              title="Shop Now on Diesel.com"
-            />
-          </a>
-          <div class="info">
-            <h3 class="module-title"><a href="/collections/kid-jeans">WORKWEAR ATTITUDE</a></h3>
-            <a class="module-link" href="/collections/kid-jeans">SHOP NOW</a>
-          </div>
-        </div>
-      </div>
-    </div>
+ <div v-html="cmsData.content_1"></div>
+   
 
     <ProductSilder :slideImg="shirts" />
     <!-- new design -->
-    <div class="item-four-show" v-if="jboys.length > 0">
+    <div class="item-four-show" v-if="jboys && jboys.length > 0">
       <h4 class="title" style="background:#2c3e50;">JUNIOR BOYS</h4>
       <div class="item-box">
         <div class="item" v-for="(item, index) in jboys" :key="index">
@@ -95,6 +40,7 @@ export default {
       jeans:[],
       shirts: [],
       jboys:[],
+       cmsData:[],
 
       settings2: {
         infinite: true,
@@ -212,6 +158,8 @@ export default {
     this.getProductList("kid-jeans", "jeans");
     this.getProductList("kid-apparel-shirts", "shirts");
     this.getProductList("kid-apparel-sweaters", "jboys");
+    let pageData = this.$store.state.cmsPagesData["kid-clp"];
+      this.cmsData = pageData;
 
 
   },
@@ -219,5 +167,6 @@ export default {
 </script>
 
 <style scoped>
-@import url("@/assets/css/clp-page.css");
+ /* @import url("@/assets/css/clp-page.css");  */
+ 
 </style>
