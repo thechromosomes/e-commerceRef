@@ -2,7 +2,9 @@
   <div class="cms_page">
     <div class="containers">
       <div class="top-search">
-        <h4 class="help_headline">{{ title }}</h4>
+        <h4 class="help_headline" v-if="title">
+          {{ title }}
+        </h4>
       </div>
       <div class="row">
         <div class="col-lg-3 col-12">
@@ -51,7 +53,7 @@ import Contentasset from "./Contentasset";
 
 export default {
   components: {
-    Contentasset,
+    Contentasset
   },
   data() {
     return {
@@ -61,7 +63,7 @@ export default {
       title: "",
       meta_description: "",
       meta_title: "",
-      meta_keyword: "diesel",
+      meta_keyword: "diesel"
     };
   },
 
@@ -71,20 +73,20 @@ export default {
       meta: [
         {
           name: "description",
-          content: this.meta_description,
+          content: this.meta_description
         },
         {
           property: "keywords",
-          content: this.meta_keyword,
-        },
-      ],
+          content: this.meta_keyword
+        }
+      ]
     };
   },
 
   methods: {
     updateData(name) {
       this.tapData = name.content;
-      this.tapDiff = name.meta_title
+      this.tapDiff = name.meta_title;
     },
     rendeSeo(title, description, meta_keyword, url_key) {
       if (url_key == this.$route.params.cmsPage && title === this.tapDiff) {
@@ -97,13 +99,13 @@ export default {
     vanillaJs() {
       var clickMe = document.querySelectorAll(".set");
       if (clickMe) {
-        clickMe.forEach((event) => {
+        clickMe.forEach(event => {
           event.addEventListener("click", () => {
             event.classList.toggle("active");
           });
         });
       }
-    },
+    }
   },
 
   async fetch() {
@@ -119,7 +121,7 @@ export default {
       let cmsData = await this.$store.dispatch("pimAjax", {
         method: "get",
         url: `/pimresponse.php`,
-        params: form,
+        params: form
       });
       if (cmsData.response.success != 0) {
         this.cmsData = cmsData.result;
@@ -146,7 +148,7 @@ export default {
     if (this.$route.params.cmsPage === "size-conversion") {
       this.vanillaJs();
     }
-  },
+  }
 };
 </script>
 <style scoped>

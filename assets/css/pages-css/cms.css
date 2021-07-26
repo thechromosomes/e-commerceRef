@@ -110,7 +110,6 @@
   }
 }
 
-
 /* cms pages css  */
 .cms-pages_contenct {
   width: 100%;
@@ -149,8 +148,8 @@
   width: 100%;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 30px;
-  letter-spacing: 1.5px;
+  font-size: 25px;
+  letter-spacing: 0.5px;
 }
 
 .cms-pages .content-asset {
@@ -270,16 +269,46 @@
 .submenu li.active {
   background-color: #e8e8e8;
 }
+
+/* cms pages css */
+.content p {
+  padding: 0 !important;
+  color: #000 !important;
+}
+.content p.parea {
+  font-size: 14px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+.content p.mini-parea {
+  padding-left: 25px !important;
+}
+.alink {
+  color: #007bff;
+}
+.cms-list {
+  padding-left: 25px;
+}
+.cms-list li {
+  padding-bottom: 10px;
+}
+.content h4.title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0;
+  letter-spacing: 0.5px;
+}
 @media (max-width: 991px) {
   .check-order-static-form {
     width: 100%;
   }
 }
 @media (max-width: 767px) {
-  .view-all-cms .content h5{
-   padding-top: 2rem;
-    padding-bottom: 0rem!important;
-}
-.view-all-cms .content-asset{ padding-left: 0px!important;}
-
+  .view-all-cms .content h5 {
+    padding-top: 2rem;
+    padding-bottom: 0rem !important;
+  }
+  .view-all-cms .content-asset {
+    padding-left: 0px !important;
+  }
 }

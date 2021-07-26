@@ -25,7 +25,7 @@
                     src="@/assets/img/phone.png"
                     style="margin-right: 5px;"
                     title="Phone"
-                  />Phone: 0 8002606687</a
+                  />Phone: 022- 48930102</a
                 ></u
               >
               <br />
@@ -35,16 +35,17 @@
             <br />
             <p style="padding: 0;margin:0">
               <u
-                ><a href="#" title="Send us a Message"
+                ><a
+                  href="mailto:support@dieselindia.com"
+                  title="Send us a Message"
                   ><img
                     alt="Email"
                     src="@/assets/img/email.png"
                     style="margin-right: 5px;"
                     title="Email"
-                  />E-mail</a
+                  />E-mail: support@dieselindia.com</a
                 ></u
               ><br />
-              From 9 am to 8 pm, Monday to Saturday
             </p>
           </div>
         </div>
