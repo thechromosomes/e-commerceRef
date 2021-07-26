@@ -101,10 +101,9 @@
                   <option value="" disabled>Select Color</option>
                   <template v-for="(size, index) in item.color_variation">
                     <option
-                      v-if="selectedSize[mainIndex] == size.size"
+                      v-if="selectedSize[mainIndex] == size.size && size.quantity != 0"
                       :key="index"
                       :value="size"
-                      :disabled="size.quantity == 0"
                     >
                       {{ size.color }}
                     </option>
@@ -127,11 +126,13 @@
                     <option
                       :key="index"
                       :value="size"
-                      :disabled="size.quantity == 0"
                       v-if="
                         selectedSize[mainIndex] == size.size &&
                         selectedColor[mainIndex] &&
-                        selectedColor[mainIndex].color == size.color
+                        selectedColor[mainIndex].color == size.color &&
+                        selectedColor[mainIndex].fynd_uid == size.fynd_uid &&
+                        selectedColor[mainIndex].fynd_size == size.fynd_size &&
+                        size.quantity != 0
                       "
                     >
                       {{ size.item_length }}

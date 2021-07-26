@@ -62,7 +62,9 @@
                                 class="cart__meta-text pre-order-message error"
                                 data-product-id="5172417462405"
                                 v-show="product.fynd_qty == 0"
-                              >Product out of stock</div>
+                              >
+                                Product out of stock
+                              </div>
                             </span>
                           </NuxtLink>
                         </div>
@@ -73,12 +75,23 @@
                               :class="{
                                 disable:
                                   addToCartValClassRender[index] == 1 ||
-                                  $store.state.cartAjax.cart_product[
-                                    index
-                                  ].qty == 1,
+                                  $store.state.cartAjax.cart_product[index]
+                                    .qty == 1,
                               }"
-                              @click.prevent="addCartVal('minus', product, index)"
-                              >- <span class="tooltiptext">Tooltip text</span></a
+                              @click.prevent="
+                                addCartVal(
+                                  'minus',
+                                  product,
+                                  index,
+                                  addToCartValClassRender[index] == 1 ||
+                                    $store.state.cartAjax.cart_product[index]
+                                      .qty == 1
+                                )
+                              "
+                              >-
+                              <span class="tooltiptext"
+                                >Minimun quantity</span
+                              ></a
                             >
                             <input
                               name="updates[]"
@@ -91,20 +104,34 @@
                               :class="{
                                 disable:
                                   addToCartValClassRender[index] ==
-                                    $store.state.cartAjax.cart_product[
-                                      index
-                                    ].max_qty ||
+                                    $store.state.cartAjax.cart_product[index]
+                                      .max_qty ||
                                   addToCartValClassRender[index] == 5 ||
-                                  $store.state.cartAjax.cart_product[
-                                    index
-                                  ].qty ==
-                                    $store.state.cartAjax.cart_product[
-                                      index
-                                    ].max_qty,
+                                  $store.state.cartAjax.cart_product[index]
+                                    .qty ==
+                                    $store.state.cartAjax.cart_product[index]
+                                      .max_qty,
                               }"
                               class="plus-symbol tooltip"
-                              @click.prevent="addCartVal('add', product, index)"
-                              >+ <span class="tooltiptext">Tooltip text</span></a
+                              @click.prevent="
+                                addCartVal(
+                                  'add',
+                                  product,
+                                  index,
+                                  addToCartValClassRender[index] ==
+                                    $store.state.cartAjax.cart_product[index]
+                                      .max_qty ||
+                                    addToCartValClassRender[index] == 5 ||
+                                    $store.state.cartAjax.cart_product[index]
+                                      .qty ==
+                                      $store.state.cartAjax.cart_product[index]
+                                        .max_qty
+                                )
+                              "
+                              >+
+                              <span class="tooltiptext"
+                                >Reached max quantity</span
+                              ></a
                             >
                           </div>
                         </div>
@@ -193,7 +220,7 @@
                           >
                         </strong>
                       </h4>
-                      
+
                       <div class="buttons-checkout">
                         <input
                           type="submit"
@@ -322,7 +349,10 @@ export default {
       }
     },
 
-    addCartVal(cartval, product, index) {
+    addCartVal(cartval, product, index, disabled) {
+      if (disabled) {
+        return;
+      }
       this.addToCartVal = product.qty;
       this.addToCartValClassRender[index] = product.qty;
       if (Object.keys(product).length === 0) {
@@ -436,17 +466,16 @@ export default {
 
 /* disabel button */
 .minus-symbol.disable {
-  pointer-events: none;
+  pointer-events: auto;
   opacity: 0.5;
 }
 .plus-symbol.disable {
-  pointer-events: none;
+  pointer-events: auto;
   opacity: 0.5;
 }
 .tooltip {
   position: relative;
   display: inline-block;
- 
 }
 
 .tooltip .tooltiptext {
@@ -464,7 +493,7 @@ export default {
   margin-left: -60px;
   opacity: 0;
   transition: opacity 0.3s;
-  opacity: 1!important;
+  opacity: 1 !important;
 }
 
 .tooltip .tooltiptext::after {
@@ -477,21 +506,23 @@ export default {
   border-style: solid;
   border-color: rgb(0, 0, 0) transparent transparent transparent;
 }
-.tooltip.disable{ cursor: default!important;opacity: 1!important; background-color: rgba(0,0,0,.5)!important;}
+.tooltip.disable {
+  cursor: default !important;
+  opacity: 1 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
 .tooltip.disable:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
 
 /* =============== 767 media ============== */
-@media (max-width:767px){
+@media (max-width: 767px) {
   .tooltip .tooltiptext::after {
-   
     left: 20%;
-   
-} 
-.tooltip .tooltiptext{ margin-left: -16px;}
-  
+  }
+  .tooltip .tooltiptext {
+    margin-left: -16px;
+  }
 }
-
 </style>
