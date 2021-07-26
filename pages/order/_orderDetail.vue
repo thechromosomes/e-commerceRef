@@ -176,7 +176,7 @@
     </div>
     <!-- cancel reaspon pop up -->
     <div class="model-bg" v-if="reason_popup || return_popup">
-      <div class="modal" id="return_modal">
+      <div class="modal showModal" id="return_modal">
         <div class="over-flow"></div>
         <div class="modal-dialog" style="max-width: 600px">
           <div class="modal-content">
@@ -246,8 +246,8 @@
                       />
                     </div>
                   </template>
-                  <!-- cod from End -->
-                  <div class="field col-md-4 col-12">
+                  <!-- cod from End -->  
+                  <div class="field col-md-4 col-12 mt-2 text-right w-100">
                     <button class="w-100 submit sp-black-btn">Submit</button>
                   </div>
                 </div>

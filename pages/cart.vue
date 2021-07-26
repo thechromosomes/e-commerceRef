@@ -165,17 +165,6 @@
                           Remove
                         </button>
                       </div>
-                      <h4 class="total">
-                        Total:
-                        <strong>
-                          <span class="price"
-                            >₹{{
-                              $store.state.cartAjax.cart_total
-                                | numberWithCommas
-                            }}</span
-                          >
-                        </strong>
-                      </h4>
                       <h4
                         class="total"
                         v-if="
@@ -193,6 +182,18 @@
                           >
                         </strong>
                       </h4>
+                      <h4 class="total">
+                        Total:
+                        <strong>
+                          <span class="price"
+                            >₹{{
+                              $store.state.cartAjax.cart_total
+                                | numberWithCommas
+                            }}</span
+                          >
+                        </strong>
+                      </h4>
+                      
                       <div class="buttons-checkout">
                         <input
                           type="submit"

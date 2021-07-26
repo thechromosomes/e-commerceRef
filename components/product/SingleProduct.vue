@@ -208,7 +208,7 @@
                     <li
                       v-if="
                         selectedSizeAttr.configrable_atribute_value ==
-                        size.configrable_atribute_value
+                        size.configrable_atribute_value && size.quantity != 0
                       "
                       class="attribute-value js_attribute-value"
                       :key="index"
@@ -1062,6 +1062,7 @@ export default {
         },
       });
     }
+
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateAddToCart);

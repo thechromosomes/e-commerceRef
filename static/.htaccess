@@ -1,10 +1,16 @@
+RewriteRule index.html http://localhost:9000/ [P]
+RewriteRule (.*) http://localhost:9000/$1 [P]
+RewriteEngine On
+
+
 # Security Headers
 <IfModule mod_headers.c>
-	Header set X-XSS-Protection "1; mode=block"
-	Header set X-Frame-Options "SAMEORIGIN"
-	Header set X-Content-Type-Options "nosniff"
-	Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-	# Header set Content-Security-Policy ...
-	Header set Referrer-Policy "same-origin"
-	Header set Feature-Policy "geolocation 'self'; vibrate 'none'"
+Header set X-XSS-Protection "1; mode=block"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-Content-Type-Options "nosniff"
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+# Header set Content-Security-Policy ...
+Header set Referrer-Policy "same-origin"
+Header set Feature-Policy "geolocation 'self'; vibrate 'none'"
+Header always set Permissions-Policy "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()"
 </IfModule>
