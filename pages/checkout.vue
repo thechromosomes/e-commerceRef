@@ -857,7 +857,7 @@
                                 >
                                   <span class="price price_icon">₹</span
                                   ><span class="price">{{
-                                    $store.state.cartAjax.cart_total
+                                    $store.state.cartAjax.cart_subtotal
                                       | numberWithCommas
                                   }}</span>
                                 </span>
@@ -921,25 +921,6 @@
                                   ><span class="price">{{
                                     $store.state.cartAjax.discount_amount
                                       | numberWithCommas
-                                  }}</span>
-                                </span>
-                              </td>
-                            </tr>
-                            <tr
-                              class="total-line total-line--shipping"
-                              v-if="
-                                $store.state.cartAjax.discount_amount != '' &&
-                                $store.state.cartAjax.discount_amount != null
-                              "
-                            >
-                              <th class="total-line__name" scope="row">
-                                <span> Discount </span>
-                              </th>
-                              <td class="total-line__price">
-                                <span class="order-summary__small-text">
-                                  <span class="price price_icon">₹</span
-                                  ><span class="price">{{
-                                    $store.state.cartAjax.discount_amount
                                   }}</span>
                                 </span>
                               </td>

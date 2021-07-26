@@ -1,6 +1,5 @@
 <template>
   <footer class="footer">
-
     <div class="footer-container" id="bb-footer-clone">
       <div class="row newsletter-social">
         <div class="col-lg-8 newsletter">
@@ -30,13 +29,28 @@
             <h4 class="social-header">Connect with us on social media:</h4>
             <div class="social-icons-container">
               <div class="social-icons">
-                <a href="https://instagram.com/diesel" target="_blank" class="icon-instagram">Instagram</a>
+                <a
+                  href="https://instagram.com/diesel"
+                  target="_blank"
+                  class="icon-instagram"
+                  >Instagram</a
+                >
               </div>
               <div class="social-icons">
-                <a href="https://www.facebook.com/Diesel" target="_blank" class="icon-facebook-black">Facebook</a>
+                <a
+                  href="https://www.facebook.com/Diesel"
+                  target="_blank"
+                  class="icon-facebook-black"
+                  >Facebook</a
+                >
               </div>
               <div class="social-icons">
-                <a href="https://www.youtube.com/user/DieselPlanet" target="_blank" class="icon-youtube">Youtube</a>
+                <a
+                  href="https://www.youtube.com/user/DieselPlanet"
+                  target="_blank"
+                  class="icon-youtube"
+                  >Youtube</a
+                >
               </div>
             </div>
           </div>
@@ -61,7 +75,7 @@
                 <NuxtLink to="/cms/shipping">Delivery</NuxtLink>
               </div>
               <div class="link-text">
-                <NuxtLink to="/cms/return-your-order">Returns</NuxtLink>
+                <NuxtLink to="/cms/legal-area">Returns</NuxtLink>
               </div>
               <div class="link-text">
                 <NuxtLink class="link-text" to="/cms/size-conversion"
@@ -76,8 +90,8 @@
               </div>
               <div class="link-text">
                 <Nuxt-link class="hover-link" to="/cms/allCmsView"
-                      >View All
-                    </Nuxt-link>
+                  >View All
+                </Nuxt-link>
               </div>
             </div>
           </div>
@@ -108,25 +122,20 @@
               </div>
               <div class="link-text">
                 <NuxtLink class="link-text" to="/cms/terms-of-conditions">
-                  Terms of sale</NuxtLink
+                  Terms & Conditions</NuxtLink
                 >
               </div>
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/terms-of-conditions"
-                  >Terms of Use</NuxtLink
-                >
-              </div>
-              <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/legal-area"
-                  >Return policy</NuxtLink
+                <NuxtLink class="link-text" to="/cms/return-your-order"
+                  >Returns & Refund Policy</NuxtLink
                 >
               </div>
               <div class="link-text">
                 <a
                   class="link-text"
                   target="_blank"
-                  href="https://uk.diesel.com/en/help-show?content=accessibility-statement"
-                  >Accessibility Statement</a
+                  href="/cms/Accessibility Statement"
+                  >Fees & Payment Policy</a
                 >
               </div>
             </div>
@@ -145,11 +154,11 @@
                   >About Diesel</NuxtLink
                 >
               </div>
-              <div class="link-text">
+              <!-- <div class="link-text">
                 <NuxtLink class="link-text" to="/cmsLive/dcode-program"
                   >D:Code Program</NuxtLink
                 >
-              </div>
+              </div> -->
               <div class="link-text">
                 <NuxtLink
                   class="link-text living"
@@ -175,7 +184,7 @@
               </div>
             </div>
           </div>
-          <div
+          <!-- <div
             class="footer-items"
             :class="CorporateOpen ? 'dropdown-open' : ''"
           >
@@ -187,9 +196,6 @@
               <span class="dropdown-arrow_icon"></span>
             </div>
             <div class="footer-link-content">
-              <!-- <div class="link-text">
-                <a class="link-text living" href="#">For Responsible Living</a>
-              </div> -->
               <div class="link-text">
                 <a
                   class="link-text"
@@ -211,18 +217,8 @@
                   >Other Corporate information
                 </NuxtLink>
               </div>
-              <!-- <div class="link-text">
-                <a class="link-text" href="#"
-                  >UK Gender Pay Gap
-                </a>
-              </div> -->
-              <!-- <div class="link-text">
-                <a class="link-text" href="#"
-                  >Diesel is part of OTB
-                </a>
-              </div> -->
             </div>
-          </div>
+          </div> -->
           <div class="footer-items">
             <div class="footer-navigation">
               <span class="footer-link-text"
@@ -230,25 +226,6 @@
               >
             </div>
           </div>
-          <!-- <div class="footer-items">
-            <div class="footer-navigation">
-              <span class="footer-link-text">SHIP TO</span>
-            </div>
-          </div> -->
-          <!-- <div class="footer-items" :class="langOpen ? 'dropdown-open' : ''">
-            <div
-              class="footer-navigation"
-              @click="() => (langOpen = !langOpen)"
-            >
-              <span class="footer-link-text">LANGUAGE</span>
-              <span class="dropdown-arrow_icon"></span>
-            </div>
-            <div class="footer-link-content">
-              <div class="link-text">
-                <a class="link-text" href="#">English </a>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -256,46 +233,8 @@
     <div class="footer-container">
       <div class="copyright-notice">
         <p class="copyright">
-          Copyright © 2021 Diesel SpA - All rights reserved - VAT 00642650246 -
-          <NuxtLink to="#" class="postscript" @click.prevent="modelShow = true">
-            Vendor information.</NuxtLink
-          >
-          <small aria-hidden="true" class="version">v4.5.5</small>
+          Copyright ©️2021 Diesel Fashion India Reliance Pvt.Ltd
         </p>
-
-        <div class="modal vendor-popup" id="vendorPopupModal" v-if="modelShow">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-body">
-                <div
-                  class="icon-close-black modal-close"
-                  @click.prevent="modelShow = false"
-                ></div>
-
-                <div class="content-asset">
-                  <span class="modal-title">Diesel S.P.A.</span>
-                  <div class="modal-text-container">
-                    <span class="modal-text"
-                      >Via dell’Industria, 4/6 – Breganze (Vicenza), Italy</span
-                    >
-                    <span class="modal-text">
-                      <a
-                        href="https://global.diesel.com/help-show?content=sendmessage"
-                        >E-Mail Address</a
-                      >
-                    </span>
-                    <span class="modal-text"
-                      >Vicenza Companies Register tax code/VAT no.:
-                      00642650246</span
-                    >
-                    <span class="modal-text">R.E.A. no.: VI-143773</span>
-                    <span class="modal-text">Share capital € 22,500,00.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </footer>
@@ -305,15 +244,14 @@
 export default {
   data() {
     return {
-      modelShow: false,
       wodOpen: false,
       CorporateOpen: false,
       help: false,
       cooPolicyOpen: false,
       worldOpen: false,
-      langOpen: false
+      langOpen: false,
     };
   },
-  methods: {}
+  methods: {},
 };
 </script>

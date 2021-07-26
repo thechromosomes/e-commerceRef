@@ -72,7 +72,7 @@
                     </td>
                     <td scope="row" v-else>
                       <strong>Delivery Charge</strong> ₹
-                      {{ $store.state.cartAjax.cod_charge }}
+                      0
                     </td>
                   </tr>
                   <tr>

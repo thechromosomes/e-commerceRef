@@ -62,23 +62,36 @@
                                 class="cart__meta-text pre-order-message error"
                                 data-product-id="5172417462405"
                                 v-show="product.fynd_qty == 0"
-                              >Product out of stock</div>
+                              >
+                                Product out of stock
+                              </div>
                             </span>
                           </NuxtLink>
                         </div>
                         <div class="qty_info">
                           <div class="">
                             <a
-                              class="minus-symbol"
+                              class="minus-symbol tooltip"
                               :class="{
                                 disable:
                                   addToCartValClassRender[index] == 1 ||
-                                  $store.state.cartAjax.cart_product[
-                                    index
-                                  ].qty == 1,
+                                  $store.state.cartAjax.cart_product[index]
+                                    .qty == 1,
                               }"
-                              @click.prevent="addCartVal('minus', product, index)"
-                              >-</a
+                              @click.prevent="
+                                addCartVal(
+                                  'minus',
+                                  product,
+                                  index,
+                                  addToCartValClassRender[index] == 1 ||
+                                    $store.state.cartAjax.cart_product[index]
+                                      .qty == 1
+                                )
+                              "
+                              >-
+                              <span class="tooltiptext"
+                                >Minimun quantity</span
+                              ></a
                             >
                             <input
                               name="updates[]"
@@ -91,20 +104,34 @@
                               :class="{
                                 disable:
                                   addToCartValClassRender[index] ==
-                                    $store.state.cartAjax.cart_product[
-                                      index
-                                    ].max_qty ||
+                                    $store.state.cartAjax.cart_product[index]
+                                      .max_qty ||
                                   addToCartValClassRender[index] == 5 ||
-                                  $store.state.cartAjax.cart_product[
-                                    index
-                                  ].qty ==
-                                    $store.state.cartAjax.cart_product[
-                                      index
-                                    ].max_qty,
+                                  $store.state.cartAjax.cart_product[index]
+                                    .qty ==
+                                    $store.state.cartAjax.cart_product[index]
+                                      .max_qty,
                               }"
-                              class="plus-symbol"
-                              @click.prevent="addCartVal('add', product, index)"
-                              >+</a
+                              class="plus-symbol tooltip"
+                              @click.prevent="
+                                addCartVal(
+                                  'add',
+                                  product,
+                                  index,
+                                  addToCartValClassRender[index] ==
+                                    $store.state.cartAjax.cart_product[index]
+                                      .max_qty ||
+                                    addToCartValClassRender[index] == 5 ||
+                                    $store.state.cartAjax.cart_product[index]
+                                      .qty ==
+                                      $store.state.cartAjax.cart_product[index]
+                                        .max_qty
+                                )
+                              "
+                              >+
+                              <span class="tooltiptext"
+                                >Reached max quantity</span
+                              ></a
                             >
                           </div>
                         </div>
@@ -165,17 +192,6 @@
                           Remove
                         </button>
                       </div>
-                      <h4 class="total">
-                        Total:
-                        <strong>
-                          <span class="price"
-                            >₹{{
-                              $store.state.cartAjax.cart_total
-                                | numberWithCommas
-                            }}</span
-                          >
-                        </strong>
-                      </h4>
                       <h4
                         class="total"
                         v-if="
@@ -193,6 +209,18 @@
                           >
                         </strong>
                       </h4>
+                      <h4 class="total">
+                        Total:
+                        <strong>
+                          <span class="price"
+                            >₹{{
+                              $store.state.cartAjax.cart_total
+                                | numberWithCommas
+                            }}</span
+                          >
+                        </strong>
+                      </h4>
+
                       <div class="buttons-checkout">
                         <input
                           type="submit"
@@ -321,7 +349,10 @@ export default {
       }
     },
 
-    addCartVal(cartval, product, index) {
+    addCartVal(cartval, product, index, disabled) {
+      if (disabled) {
+        return;
+      }
       this.addToCartVal = product.qty;
       this.addToCartValClassRender[index] = product.qty;
       if (Object.keys(product).length === 0) {
@@ -435,12 +466,63 @@ export default {
 
 /* disabel button */
 .minus-symbol.disable {
-  pointer-events: none;
+  pointer-events: auto;
   opacity: 0.5;
 }
 .plus-symbol.disable {
-  pointer-events: none;
+  pointer-events: auto;
   opacity: 0.5;
 }
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  opacity: 1 !important;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0) transparent transparent transparent;
+}
+.tooltip.disable {
+  cursor: default !important;
+  opacity: 1 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.tooltip.disable:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* =============== 767 media ============== */
+@media (max-width: 767px) {
+  .tooltip .tooltiptext::after {
+    left: 20%;
+  }
+  .tooltip .tooltiptext {
+    margin-left: -16px;
+  }
+}
 </style>
