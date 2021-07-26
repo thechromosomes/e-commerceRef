@@ -69,7 +69,7 @@
                         <div class="qty_info">
                           <div class="">
                             <a
-                              class="minus-symbol"
+                              class="minus-symbol tooltip"
                               :class="{
                                 disable:
                                   addToCartValClassRender[index] == 1 ||
@@ -78,7 +78,7 @@
                                   ].qty == 1,
                               }"
                               @click.prevent="addCartVal('minus', product, index)"
-                              >-</a
+                              >- <span class="tooltiptext">Tooltip text</span></a
                             >
                             <input
                               name="updates[]"
@@ -102,9 +102,9 @@
                                       index
                                     ].max_qty,
                               }"
-                              class="plus-symbol"
+                              class="plus-symbol tooltip"
                               @click.prevent="addCartVal('add', product, index)"
-                              >+</a
+                              >+ <span class="tooltiptext">Tooltip text</span></a
                             >
                           </div>
                         </div>
@@ -441,6 +441,56 @@ export default {
 .plus-symbol.disable {
   pointer-events: none;
   opacity: 0.5;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+ 
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  opacity: 1!important;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0) transparent transparent transparent;
+}
+.tooltip.disable{ cursor: default!important;opacity: 1!important; background-color: rgba(0,0,0,.5)!important;}
+.tooltip.disable:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* =============== 767 media ============== */
+@media (max-width:767px){
+  .tooltip .tooltiptext::after {
+   
+    left: 20%;
+   
+} 
+.tooltip .tooltiptext{ margin-left: -16px;}
+  
 }
 
 </style>
