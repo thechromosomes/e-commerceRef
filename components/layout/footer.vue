@@ -112,12 +112,12 @@
               </div> -->
               <div class="link-text">
                 <NuxtLink class="link-text" to="/cms/legal-area"
-                  >Cookie Policy</NuxtLink
+                  >Privacy Policy</NuxtLink
                 >
               </div>
               <div class="link-text">
                 <NuxtLink class="link-text" to="/cms/legal-area"
-                  >Information on Personal data</NuxtLink
+                  >Shipping & Delivery Policy</NuxtLink
                 >
               </div>
               <div class="link-text">
@@ -131,11 +131,8 @@
                 >
               </div>
               <div class="link-text">
-                <a
-                  class="link-text"
-                  target="_blank"
-                  href="/cms/Accessibility Statement"
-                  >Fees & Payment Policy</a
+                <NuxtLink class="link-text" to="/cms/fees-and-payments-policy"
+                  >Fees & Payment Policy</NuxtLink
                 >
               </div>
             </div>
@@ -249,9 +246,9 @@ export default {
       help: false,
       cooPolicyOpen: false,
       worldOpen: false,
-      langOpen: false,
+      langOpen: false
     };
   },
-  methods: {},
+  methods: {}
 };
 </script>

@@ -29,8 +29,8 @@
                 ></u
               >
               <br />
-              &nbsp; From 9 am to 8 pm CET (from 8 am to 7 pm GMT), Monday to
-              Saturday.
+              Monday to Saturday 10 AM to 7 PM. Non-Operational on Public
+              Holidays
             </p>
             <br />
             <p style="padding: 0;margin:0">
