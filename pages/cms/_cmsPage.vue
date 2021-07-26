@@ -129,7 +129,7 @@ export default {
           this.tapData = cmsData.result[a].content;
           this.tapDiff = cmsData.result[a].meta_title;
 
-          this.title = cmsData.result[a].parent_name;
+          this.title = cmsData.result[a].parent_name.replaceAll("-", " ");
           return;
         }
       } else {
