@@ -420,12 +420,12 @@
                       >
                         <VueSlickCarousel v-bind="productSetting">
                           <div
-                            class="item"
+                            class="item lazy-loader"
                             v-for="(image, imgIndex) in singleProd.gallery"
                             :key="imgIndex"
                           >
                             <Nuxt-link :to="`/product/${singleProd.url_key}`">
-                              <img :src="image.image" alt="img" class="w-100" />
+                              <img v-lazy="image.image" class="w-100" />
                             </Nuxt-link>
                           </div>
                         </VueSlickCarousel>
@@ -973,3 +973,12 @@ export default {
   },
 };
 </script>
+<style scoped>
+.lazy-loader{
+  height: 100%;
+}
+  img[lazy=loaded], img[lazy=loading] {
+    height: 100%;
+    border:solid red
+  }
+</style>

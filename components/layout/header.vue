@@ -99,7 +99,7 @@
                                   @click="toggleInnerMenu(childIndex)"
                                 ></span>
                                 <a
-                                @click.native="showMobileMenu = false"
+                                @click.prevent="showMobileMenu = false"
                                   :class="{
                                     'active-sub-nav':
                                       $store.state.activeUrlKey

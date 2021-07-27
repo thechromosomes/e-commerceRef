@@ -23,8 +23,8 @@ export default {
       url: `/pimresponse.php`,
       params: form,
     });
-    this.$store.commit("setCmsData", cmsData);
-    let pageData = this.$store.state.cmsPagesData[this.$route.params.cmsPage];
+    // this.$store.commit("setCmsData", cmsData);
+    let pageData = cmsData.result[this.$route.params.cmsPage];
     if (pageData != undefined) {
       this.cmsData = pageData.content;
     } else {

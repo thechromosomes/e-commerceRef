@@ -152,12 +152,21 @@ export default {
       }
     },
   },
-  created() {
+  async created() {
+    let form = {};
+    form.service = "cms_page";
+    form.store = 1;
+    form.url_key = "kid-clp";
+
+    let cmsData = await this.$store.dispatch("pimAjax", {
+      method: "get",
+      url: `/pimresponse.php`,
+      params: form,
+    });
+    this.cmsData = cmsData.result["kid-clp"];
     this.getProductList("kid-jeans", "jeans");
     this.getProductList("kid-apparel-shirts", "shirts");
     this.getProductList("kid-apparel-sweaters", "jboys");
-    let pageData = this.$store.state.cmsPagesData["kid-clp"];
-    this.cmsData = pageData;
   },
 };
 </script>
