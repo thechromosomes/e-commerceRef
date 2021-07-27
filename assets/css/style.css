@@ -1722,6 +1722,7 @@ p.p-price span.line-throu {
   padding: 5px 20px;
   border: none;
   font-family: var(--fontFamily);
+
 }
 .search-box .site-search .search_icon {
   width: 6%;
@@ -4105,7 +4106,8 @@ p.input-error {
 }
 .swiper-overflow-gift-swiper .slide-item {
   width: 100%;
-  margin: 0 -10px;
+  margin: 0 0px;
+  overflow: hidden;
 }
 .swiper-overflow-gift-swiper .item {
   margin-right: 20px;
@@ -4466,4 +4468,9 @@ p.input-error {
   .new-sneakers p {
     font-size: 16px;
   }
+}
+
+
+.remove-scrollBar {
+  overflow: hidden;
 }
