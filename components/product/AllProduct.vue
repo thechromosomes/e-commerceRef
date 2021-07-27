@@ -973,12 +973,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.lazy-loader{
-  height: 100%;
-}
-  img[lazy=loaded], img[lazy=loading] {
-    height: 100%;
-    border:solid red
-  }
-</style>
