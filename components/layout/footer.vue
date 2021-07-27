@@ -246,9 +246,8 @@ export default {
       help: false,
       cooPolicyOpen: false,
       worldOpen: false,
-      langOpen: false
+      langOpen: false,
     };
   },
-  methods: {}
 };
 </script>

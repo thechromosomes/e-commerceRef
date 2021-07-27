@@ -5,6 +5,7 @@ export default async (context) => {
     let form = {};
     form.service = "cms_page";
     form.store = 1;
+    form.url_key = "home"
 
     let cmsData = await context.store.dispatch("pimAjax", {
       method: "get",
@@ -41,7 +42,7 @@ export default async (context) => {
     // is new api call
     let bestSellerForm = {};
     bestSellerForm.service = "is_new";
-    bestSellerForm.count =6;
+    bestSellerForm.count = 6;
     bestSellerForm.store = 1;
     context.store.dispatch("getBestSeller", {
       method: "get",

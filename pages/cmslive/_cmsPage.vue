@@ -9,17 +9,27 @@
 export default {
   data() {
     return {
-      cmsData: {}
+      cmsData: {},
     };
   },
 
   async fetch() {
+    let form = {};
+    form.service = "cms_page";
+    form.store = 1;
+
+    let cmsData = await this.$store.dispatch("pimAjax", {
+      method: "get",
+      url: `/pimresponse.php`,
+      params: form,
+    });
+    this.$store.commit("setCmsData", cmsData);
     let pageData = this.$store.state.cmsPagesData[this.$route.params.cmsPage];
     if (pageData != undefined) {
       this.cmsData = pageData.content;
     } else {
       this.$router.push("/404");
     }
-  }
+  },
 };
 </script>
