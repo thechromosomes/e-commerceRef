@@ -57,6 +57,7 @@
                       @click="onmenuhover(item.name, index)"
                     ></span>
                     <NuxtLink
+                      @click.native="showMobileMenu = false"
                       :to="`/clp/${item.menu_url_key}`"
                       @mouseover.native="onmenuhover(item.name)"
                       class="nav-link first"
@@ -98,6 +99,7 @@
                                   @click="toggleInnerMenu(childIndex)"
                                 ></span>
                                 <a
+                                @click.native="showMobileMenu = false"
                                   :class="{
                                     'active-sub-nav':
                                       $store.state.activeUrlKey
@@ -279,7 +281,7 @@
                     </Nuxt-link>
                   </li>
                   <li>
-                     <Nuxt-link class="hover-link" to="/cms/allCmsView"
+                    <Nuxt-link class="hover-link" to="/cms/allCmsView"
                       >View All
                     </Nuxt-link>
                   </li>
@@ -348,7 +350,7 @@
                       >Send us a Message
                     </Nuxt-link>
                   </li>
-                   <li class="hover-item">
+                  <li class="hover-item">
                     <Nuxt-link class="hover-link" to="/cms/allCmsView"
                       >View All
                     </Nuxt-link>
@@ -492,6 +494,7 @@
             autofocus="autofocus"
             v-model="searchInput"
             v-debounce:500ms="stSearch"
+            @keyup="searchClose"
             name="st"
           />
         </div>
@@ -546,6 +549,11 @@ export default {
   },
 
   methods: {
+    searchClose(event) {
+      if (event.keyCode === 13) {
+        this.toogleSearch(false);
+      }
+    },
     toggleInnerMenu(index) {
       // toggle inner dropdown menu
       if (this.levelTwoActiveItemIndex === index) {
