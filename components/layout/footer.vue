@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="footer-container" id="bb-footer-clone">
+    <!-- <div class="footer-container" id="bb-footer-clone">
       <div class="row newsletter-social">
         <div class="col-lg-8 newsletter">
           <div class="content-asset">
@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="container-fluid">
       <div class="footer-wrapper">
@@ -246,8 +246,8 @@ export default {
       help: false,
       cooPolicyOpen: false,
       worldOpen: false,
-      langOpen: false,
+      langOpen: false
     };
-  },
+  }
 };
 </script>

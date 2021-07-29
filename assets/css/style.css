@@ -4504,3 +4504,42 @@ p.input-error {
 .remove-scrollBar {
   overflow: hidden;
 }
+
+/* cms pages css */
+.content p {
+  padding: 0 !important;
+  color: #000 !important;
+}
+.content p.parea {
+  font-size: 14px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+.content p.mini-parea {
+  padding-left: 25px !important;
+}
+.alink {
+  color: #007bff;
+}
+.cms-list {
+  padding-left: 25px;
+}
+.cms-list li {
+  padding-bottom: 10px;
+}
+.content h4.title {
+  font-size: 21px;
+  font-weight: 700;
+  margin: 17px 0;
+  letter-spacing: 0.5px;
+}
+.no_products p {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin: 0;
+}
+.no_products h1 {
+  text-transform: uppercase;
+  margin: 0;
+}
