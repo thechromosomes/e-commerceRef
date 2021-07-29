@@ -420,12 +420,12 @@
                       >
                         <VueSlickCarousel v-bind="productSetting">
                           <div
-                            class="item"
+                            class="item lazy-loader"
                             v-for="(image, imgIndex) in singleProd.gallery"
                             :key="imgIndex"
                           >
                             <Nuxt-link :to="`/product/${singleProd.url_key}`">
-                              <img :src="image.image" alt="img" class="w-100" />
+                              <img v-lazy="image.image" class="w-100" />
                             </Nuxt-link>
                           </div>
                         </VueSlickCarousel>
@@ -466,7 +466,7 @@
                 $store.state.pageLoader == false
               "
             >
-              <h1>Sorry !</h1>
+              <h1>Sorry :(</h1>
               <p>{{ list.page_error }}</p>
               <img
                 src="@/assets/img/no_product.png"
@@ -501,7 +501,10 @@
           </div>
 
           <!-- lie -->
-          <YouMayLike :likeData="likeData" />
+          <YouMayLike
+            :likeData="likeData"
+            v-if="$store.state.pageLoader == false && showYouMayLike"
+          />
         </div>
       </div>
     </div>
@@ -524,6 +527,7 @@ export default {
   data() {
     return {
       titleContent: false,
+      showYouMayLike: false,
       scrollPosition: "",
       activeDropdown: -1,
       showSort: false,
@@ -953,6 +957,11 @@ export default {
       this.servergtm();
     }
     this.$store.commit("firstgtmState");
+
+    // lazy loading
+    this.$Lazyload.$once("loaded", () => {
+      this.showYouMayLike = true;
+    });
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updatePage);

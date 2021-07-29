@@ -1,5 +1,5 @@
 export const state = () => ({
-   // base URL is using in og tags and log generator API >>> all product
+  // base URL is using in og tags and log generator API >>> all product
   // BASE_URL: "https://di.hostx1.de",
   BASE_URL: "http://localhost:9000",
   pimApi: "https://dipim.dieselindia.com//pim",
@@ -52,7 +52,7 @@ export const state = () => ({
   is_new: [],
   intialSearchPath: "",
   activeUrlKey: "dummy-placeholder",
-  searchActive: false
+  searchActive: false,
 });
 
 export const actions = {
@@ -61,14 +61,27 @@ export const actions = {
       context.commit("updatePageLoader", { display: true });
     }
     let request = data.params;
+    // cancel request after n time
+    const source = this.$axios.CancelToken.source();
+    let timeout = 1000 * 15;
+    let id =
+      timeout &&
+      setTimeout(() => {
+        id = 0;
+        source.cancel(`Request auto canceled after timeout of ${timeout}ms.`);
+      }, timeout);
+
     var authOptions = {
       method: data.method,
       url: context.state.pimApi + data.url,
       headers: {
         "Content-Type": "application/json",
       },
+      cancelToken: source.token,
       params: request,
     };
+
+ 
 
     return new Promise((resolve, reject) => {
       this.$axios(authOptions)
@@ -162,7 +175,7 @@ export const mutations = {
     }
   },
 
-  activeSearchToggle(state, {payload}){
+  activeSearchToggle(state, { payload }) {
     state.searchActive = payload;
   },
 

@@ -238,12 +238,21 @@ export default {
       }
     },
   },
-  created() {
+  async created() {
+    let form = {};
+    form.service = "cms_page";
+    form.store = 1;
+    form.url_key = "man-clp";
+
+    let cmsData = await this.$store.dispatch("pimAjax", {
+      method: "get",
+      url: `/pimresponse.php`,
+      params: form,
+    });
+    this.cmsData = cmsData.result["man-clp"];
     this.getProductList("man-apparel-jackets", "jackets");
     this.getProductList("man-jeans", "trending");
     this.getProductList("man-accessories-other-accessories", "accessories");
-    let pageData = this.$store.state.cmsPagesData["man-clp"];
-    this.cmsData = pageData;
   },
 };
 </script>

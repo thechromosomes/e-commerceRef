@@ -1,4 +1,8 @@
 @media (max-width: 991px) {
+  .search-box .site-search .search_form input ,
+  .login-box .systemForm input.input-box{
+    font-size: 16px;
+  }
   .visual-filters-container .slick-arrow.slick-prev {
     left: 0px;
   }

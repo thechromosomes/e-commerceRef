@@ -1,35 +1,38 @@
 <template>
   <div class="clp_pages woman">
-   <div v-html="cmsData.content" ></div>
+    <div v-html="cmsData.content"></div>
 
     <ProductSilder :slideImg="sneakers" />
 
     <div class="collections_slide">
       <div class="slide_content">
         <client-only>
-        <div class="slide_content" v-if="bannerSlide.length > 0 ">
-          <VueSlickCarousel ref="slick" v-bind="settings">
-          <template  v-for="(item, index) in bannerSlide" > 
-            <div  class="item" v-if="item.banner_type === 'Woman'" :key="index">
-            
-              <img
-                :src="item.desktop_image"
-                alt="img"
-                class="desktop_only w-100"
-              />
-              <img
-                :src="item.mobile_image"
-                alt="img"
-                class="mobile_only w-100"
-              />
-              <div class="img_content">
-                <div class="" v-html="item.description"></div>
-              </div>
-            </div>
-            </template>
-          </VueSlickCarousel>
-        </div>
-      </client-only>
+          <div class="slide_content" v-if="bannerSlide.length > 0">
+            <VueSlickCarousel ref="slick" v-bind="settings">
+              <template v-for="(item, index) in bannerSlide">
+                <div
+                  class="item"
+                  v-if="item.banner_type === 'Woman'"
+                  :key="index"
+                >
+                  <img
+                    :src="item.desktop_image"
+                    alt="img"
+                    class="desktop_only w-100"
+                  />
+                  <img
+                    :src="item.mobile_image"
+                    alt="img"
+                    class="mobile_only w-100"
+                  />
+                  <div class="img_content">
+                    <div class="" v-html="item.description"></div>
+                  </div>
+                </div>
+              </template>
+            </VueSlickCarousel>
+          </div>
+        </client-only>
       </div>
     </div>
 
@@ -51,7 +54,10 @@
           >
         </div>
         <div class="right-content">
-          <div class="slide_new_in" v-if="accessories && accessories.length > 0">
+          <div
+            class="slide_new_in"
+            v-if="accessories && accessories.length > 0"
+          >
             <client-only>
               <VueSlickCarousel ref="slick" v-bind="settings4">
                 <div
@@ -101,7 +107,7 @@ export default {
       sneakers: [],
       sweaters: [],
       trending: [],
-      cmsData:[],
+      cmsData: [],
       settings: {
         infinite: true,
         slidesToShow: 1,
@@ -228,7 +234,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["is_new","cmsPagesData","bannerSlide",]),
+    ...mapState(["is_new", "cmsPagesData", "bannerSlide"]),
   },
 
   methods: {
@@ -265,18 +271,27 @@ export default {
       }
     },
   },
-  created() {
+  async created() {
+    let form = {};
+    form.service = "cms_page";
+    form.store = 1;
+    form.url_key = "women-clp";
+
+    let cmsData = await this.$store.dispatch("pimAjax", {
+      method: "get",
+      url: `/pimresponse.php`,
+      params: form,
+    });
+    this.cmsData = cmsData.result["women-clp"];
+
     this.getProductList("woman-accessories-other-accessories", "accessories");
     this.getProductList("woman-shoes-sneakers", "sneakers");
-    this.getProductList("woman-apparel-sweaters", "sweaters")
-    this.getProductList("woman-apparel-tshirts---tops", "trending")
-    let pageData = this.$store.state.cmsPagesData["women-clp"];
-      this.cmsData = pageData;
+    this.getProductList("woman-apparel-sweaters", "sweaters");
+    this.getProductList("woman-apparel-tshirts---tops", "trending");
   },
 };
 </script>
 
 <style scoped>
- @import url("@/assets/css/clp-page.css");
-
+@import url("@/assets/css/clp-page.css");
 </style>
