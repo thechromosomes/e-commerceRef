@@ -558,7 +558,6 @@ export default {
 
   methods: {
     handleHamClose(url) {
-      alert("hi");
       if (url && url != "") {
         this.$toastshowMobileMenu = false;
       }
