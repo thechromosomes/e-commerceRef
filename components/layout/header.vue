@@ -49,7 +49,7 @@
                       'active-nav':
                         $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
                         item.name.toUpperCase(),
-                      'show-dropdown': levelOneActiveItemIndex === index
+                      'show-dropdown': levelOneActiveItemIndex === index,
                     }"
                   >
                     <span
@@ -65,7 +65,7 @@
                         'active-nav-link':
                           $store.state.activeUrlKey
                             .split('-')[0]
-                            .toUpperCase() == item.name.toUpperCase()
+                            .toUpperCase() == item.name.toUpperCase(),
                       }"
                       >{{ item.name }}</NuxtLink
                     >
@@ -73,8 +73,8 @@
                       class="dropdown_menu"
                       v-if="
                         item.childs &&
-                          item.childs.length > 0 &&
-                          menuhover == item.name
+                        item.childs.length > 0 &&
+                        menuhover == item.name
                       "
                     >
                       <div class="level-2">
@@ -85,7 +85,7 @@
                             :key="childIndex"
                             :class="{
                               'show-inner-dropdown':
-                                levelTwoActiveItemIndex === childIndex
+                                levelTwoActiveItemIndex === childIndex,
                             }"
                           >
                             <template
@@ -93,19 +93,18 @@
                                 childItem.childs && childItem.childs.length > 0
                               "
                             >
-                              <li class="nav-item">
-                                <span
-                                  class="stripeImage"
-                                  @click="toggleInnerMenu(childIndex)"
-                                ></span>
+                              <li
+                                class="nav-item"
+                                @click="toggleInnerMenu(childIndex)"
+                              >
+                                <span class="stripeImage"></span>
                                 <a
-                                  @click.prevent="showMobileMenu = false"
                                   :class="{
                                     'active-sub-nav':
                                       $store.state.activeUrlKey
                                         .split('-')[1]
                                         .toUpperCase() ==
-                                      childItem.name.toUpperCase()
+                                      childItem.name.toUpperCase(),
                                   }"
                                   class="nav-link"
                                   >{{ childItem.name }}
@@ -122,21 +121,23 @@
                                         <div class="levelthreemenu">
                                           <ul>
                                             <li
-                                              v-for="(subChildItem,
-                                              subCgildIndex) in childItem.childs"
+                                              v-for="(
+                                                subChildItem, subCgildIndex
+                                              ) in childItem.childs"
                                               :key="subCgildIndex"
                                             >
                                               <Nuxt-link
                                                 @click.native="
-                                                  showMobileMenu = false
+                                                  handleHamClose(
+                                                    subChildItem.menu_url_key
+                                                  )
                                                 "
                                                 class="nav-link pl-0"
                                                 :class="{
-                                                  haslevel4: subChildItem.childs
+                                                  haslevel4:
+                                                    subChildItem.childs,
                                                 }"
-                                                :to="
-                                                  `/collections/${subChildItem.menu_url_key}/`
-                                                "
+                                                :to="`/collections/${subChildItem.menu_url_key}/`"
                                                 >{{ subChildItem.name }}
                                               </Nuxt-link>
                                               <div
@@ -145,8 +146,10 @@
                                               >
                                                 <ul class="ul-level-4">
                                                   <li
-                                                    v-for="(subChildItemfor,
-                                                    subCgildIndexfor) in subChildItem.childs"
+                                                    v-for="(
+                                                      subChildItemfor,
+                                                      subCgildIndexfor
+                                                    ) in subChildItem.childs"
                                                     :key="subCgildIndexfor"
                                                   >
                                                     <Nuxt-link
@@ -154,9 +157,7 @@
                                                         showMobileMenu = false
                                                       "
                                                       class="nav-link pl-0"
-                                                      :to="
-                                                        `/collections/${subChildItemfor.menu_url_key}/`
-                                                      "
+                                                      :to="`/collections/${subChildItemfor.menu_url_key}/`"
                                                       >{{
                                                         subChildItemfor.name
                                                       }}
@@ -194,7 +195,7 @@
                                     $store.state.activeUrlKey
                                       .split('-')[1]
                                       .toUpperCase() ==
-                                    childItem.name.toUpperCase()
+                                    childItem.name.toUpperCase(),
                                 }"
                                 :to="`/collections/${childItem.menu_url_key}/`"
                                 >{{ childItem.name }}</Nuxt-link
@@ -211,9 +212,9 @@
                     class="nav-item help-link"
                     v-if="
                       $store.state.cartAjax.customer_id != null &&
-                        $store.state.cartAjax.customer_id != '' &&
-                        $store.state.cartAjax.customer_session != '' &&
-                        $store.state.cartAjax.customer_session != null
+                      $store.state.cartAjax.customer_id != '' &&
+                      $store.state.cartAjax.customer_session != '' &&
+                      $store.state.cartAjax.customer_session != null
                     "
                     @click="showMobileMenu = false"
                   >
@@ -361,9 +362,9 @@
                 <nuxt-link
                   v-if="
                     $store.state.cartAjax.customer_id != null &&
-                      $store.state.cartAjax.customer_id != '' &&
-                      $store.state.cartAjax.customer_session != '' &&
-                      $store.state.cartAjax.customer_session != null
+                    $store.state.cartAjax.customer_id != '' &&
+                    $store.state.cartAjax.customer_session != '' &&
+                    $store.state.cartAjax.customer_session != null
                   "
                   to="/Dashboard"
                 >
@@ -371,9 +372,9 @@
                     class="login login-user"
                     v-if="
                       $store.state.cartAjax.customer_id != null &&
-                        $store.state.cartAjax.customer_id != '' &&
-                        $store.state.cartAjax.customer_session != '' &&
-                        $store.state.cartAjax.customer_session != null
+                      $store.state.cartAjax.customer_id != '' &&
+                      $store.state.cartAjax.customer_session != '' &&
+                      $store.state.cartAjax.customer_session != null
                     "
                     to="/Dashboard"
                   >
@@ -386,7 +387,7 @@
                             :class="[
                               $route.path == '/Dashboard'
                                 ? 'active-account-sidebar'
-                                : ''
+                                : '',
                             ]"
                             to="/Dashboard"
                             >Account Dashboard</nuxt-link
@@ -397,7 +398,7 @@
                             :class="[
                               $route.path == '/addresses'
                                 ? 'active-account-sidebar'
-                                : ''
+                                : '',
                             ]"
                             to="/addresses"
                             >My Address Book</nuxt-link
@@ -408,7 +409,7 @@
                             :class="[
                               $route.path == '/myorder'
                                 ? 'active-account-sidebar'
-                                : ''
+                                : '',
                             ]"
                             to="/myorder"
                             >My Orders</nuxt-link
@@ -513,7 +514,7 @@ import Hovercart from "./Hovercart";
 
 export default {
   components: {
-    Hovercart
+    Hovercart,
   },
   data() {
     return {
@@ -523,14 +524,14 @@ export default {
       ShowhoverCart: false,
       showHelpSidebar: false,
       levelOneActiveItemIndex: -1,
-      levelTwoActiveItemIndex: -1
+      levelTwoActiveItemIndex: -1,
     };
   },
   head() {
     return {
       bodyAttrs: {
-        class: this.showMobileMenu ? "overflow-hidden" : ""
-      }
+        class: this.showMobileMenu ? "overflow-hidden" : "",
+      },
     };
   },
   async mounted() {
@@ -551,11 +552,17 @@ export default {
       },
       set(value) {
         return;
-      }
-    }
+      },
+    },
   },
 
   methods: {
+    handleHamClose(url) {
+      alert("hi");
+      if (url && url != "") {
+        this.$toastshowMobileMenu = false;
+      }
+    },
     searchClose(event) {
       if (event.keyCode === 13) {
         this.toogleSearch(false);
@@ -591,7 +598,7 @@ export default {
 
     toogleSearch(event) {
       this.$store.commit("activeSearchToggle", {
-        payload: event
+        payload: event,
       });
       if (this.$store.state.searchActive) {
         this.$nextTick(() => {
@@ -605,7 +612,7 @@ export default {
     updateScroll() {
       this.scrollPosition = window.scrollY;
     },
-    logOut: async function() {
+    logOut: async function () {
       var form = {};
       form.customer_id = this.$store.state.cartAjax.customer_id;
       form.customer_session = this.$store.state.cartAjax.customer_session;
@@ -614,9 +621,9 @@ export default {
           method: "post",
           url: `/customer/logout`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form
+          params: form,
         })
-        .then(async response => {
+        .then(async (response) => {
           if (response.data.success === true) {
             $cookies.remove(
               window.location.hostname.substring(10, 4) + "_cart_token"
@@ -645,18 +652,18 @@ export default {
             this.$router.push("/");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("error from the log out page", error);
         });
     },
     toggleHelpPopup() {
       this.showMobileMenu = false;
       this.showHelpSidebar = !this.showHelpSidebar;
-    }
+    },
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateScroll);
-  }
+  },
 };
 </script>
 <style scoped>
