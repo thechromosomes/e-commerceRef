@@ -3409,7 +3409,8 @@ p.input-error {
   font-weight: 600;
   transition: all 0.2s linear;
   font-size: 15px;
-  position: relative; text-transform: uppercase;
+  position: relative;
+  text-transform: uppercase;
 }
 
 .size-page .set > a i {
@@ -4004,31 +4005,62 @@ p.input-error {
     padding: 10px;
   }
 }
-@media(max-width:991px){
-  .header .navbar .navbar-collapse .navbar-nav .nav-item:hover .dropdown_menu{
+@media (max-width: 991px) {
+  .header .navbar .navbar-collapse .navbar-nav .nav-item:hover .dropdown_menu {
     display: none;
   }
-  .header .navbar .navbar-collapse .navbar-nav .nav-item .dropdown_menu .level-2 .navbar-nav .nav-item:hover .dropdown_menu_level-3{
+  .header
+    .navbar
+    .navbar-collapse
+    .navbar-nav
+    .nav-item
+    .dropdown_menu
+    .level-2
+    .navbar-nav
+    .nav-item:hover
+    .dropdown_menu_level-3 {
     display: none;
   }
-  .header .navbar .navbar-collapse .navbar-nav .nav-item.show-dropdown > .stripeImage{
+  .header
+    .navbar
+    .navbar-collapse
+    .navbar-nav
+    .nav-item.show-dropdown
+    > .stripeImage {
     transform: rotateX(-180deg);
   }
-  .header .navbar .navbar-collapse .navbar-nav .nav-item.show-dropdown .dropdown_menu{
+  .header
+    .navbar
+    .navbar-collapse
+    .navbar-nav
+    .nav-item.show-dropdown
+    .dropdown_menu {
     display: block;
   }
-  .header .navbar .navbar-collapse .navbar-nav .nav-item .nav-link{
+  .header .navbar .navbar-collapse .navbar-nav .nav-item .nav-link {
     width: calc(100% - 35px);
   }
-  .header .navbar .navbar-collapse .navbar-nav .nav-item.show-inner-dropdown .stripeImage{
+  .header
+    .navbar
+    .navbar-collapse
+    .navbar-nav
+    .nav-item.show-inner-dropdown
+    .stripeImage {
     transform: rotateX(-180deg);
   }
-  .header .navbar .navbar-collapse .navbar-nav .nav-item .dropdown_menu  .level-2 .navbar-nav .nav-item.show-inner-dropdown .dropdown_menu_level-3{
+  .header
+    .navbar
+    .navbar-collapse
+    .navbar-nav
+    .nav-item
+    .dropdown_menu
+    .level-2
+    .navbar-nav
+    .nav-item.show-inner-dropdown
+    .dropdown_menu_level-3 {
     display: block;
   }
 }
-
-
 
 /* ============= clp page css =========== */
 .tape-wrapper {
@@ -4106,6 +4138,7 @@ p.input-error {
 .swiper-overflow-gift-swiper .slide-item {
   width: 100%;
   margin: 0 -10px;
+  overflow: hidden;
 }
 .swiper-overflow-gift-swiper .item {
   margin-right: 20px;

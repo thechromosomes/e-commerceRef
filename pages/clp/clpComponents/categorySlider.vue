@@ -9,7 +9,7 @@
           <div class="slide-item" v-if="slideImg && slideImg.length > 0">
             <VueSlickCarousel ref="slick" v-bind="settings">
               <div class="item" v-for="(item, index) in slideImg" :key="index">
-                <div class="img-box">
+                <div class="img-box ">
                   <Nuxt-link :to="`/product/${item.url_key}`"
                     ><img
                       :src="item.image"
@@ -57,8 +57,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 3.5,
-            },
+              slidesToShow: 3.5
+            }
           },
           {
             breakpoint: 767,
@@ -66,8 +66,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 480,
@@ -75,16 +75,16 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
-      },
+              slidesToShow: 1.5
+            }
+          }
+        ]
+      }
     };
   },
   created() {
     // console.log(this.$route);
-  },
+  }
 };
 </script>
 

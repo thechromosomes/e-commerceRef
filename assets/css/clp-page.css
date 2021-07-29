@@ -77,6 +77,7 @@ body {
 .swiper-overflow-gift-swiper .slide-item {
   width: 100%;
   margin: 0 -10px;
+  overflow: hidden;
 }
 .swiper-overflow-gift-swiper .item {
   margin-right: 20px;
