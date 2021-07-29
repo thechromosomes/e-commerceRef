@@ -4543,3 +4543,7 @@ p.input-error {
   text-transform: uppercase;
   margin: 0;
 }
+
+body.overflow-hidden {
+  overflow: hidden;
+}
