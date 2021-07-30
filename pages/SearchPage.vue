@@ -122,7 +122,7 @@
                                 ></span
                               >
                             </span>
-                            <span class="st-brand-outer">
+                            <!-- <span class="st-brand-outer">
                               <a
                                 href="https://www.searchtap.io/?utm_source=diesel&amp;utm_medium=website"
                                 target="_blank"
@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="st-brand"></div>
                               </a>
-                            </span>
+                            </span> -->
                           </div>
 
                           <div class="st-col-md-6 hidden-mobile">

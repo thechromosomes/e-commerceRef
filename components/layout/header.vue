@@ -558,9 +558,7 @@ export default {
 
   methods: {
     handleHamClose(url) {
-      if (url && url != "") {
-        this.$toastshowMobileMenu = false;
-      }
+      this.showMobileMenu = false;
     },
     searchClose(event) {
       if (event.keyCode === 13) {
