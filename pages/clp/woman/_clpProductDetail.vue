@@ -2,7 +2,7 @@
   <div class="clp_pages woman">
     <div v-html="cmsData.content"></div>
 
-    <ProductSilder :slideImg="sneakers" />
+    <Slideproduct :slideImg="denimMustHave" />
 
     <div class="collections_slide">
       <div class="slide_content">
@@ -38,8 +38,7 @@
 
     <CategorySlider :slideImg="sweaters" />
 
-    <div v-html="cmsData.content"></div>
-    <NewIn :slideImg="is_new" />
+    <NewIn :slideImg="newOne" />
 
     <div class="accessories">
       <div class="accessories-content">
@@ -48,8 +47,8 @@
             BAGS & <br />
             ACCESSORIES
           </h4>
-          <a href="/collections/woman-accessories-bags/"> VIEW ALL BAGS</a>
-          <a href="/collections/woman-accessories-other-accessories/">
+          <a href="/collections/wlp-all-bags/"> VIEW ALL BAGS</a>
+          <a href="/collections/wlp-all-accessories/">
             NEW ACCESSORIES</a
           >
         </div>
@@ -86,6 +85,7 @@
 
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
+import Slideproduct from "../clpComponents/Slideproduct";
 import NewIn from "../clpComponents/newIn";
 import ProductSilder from "../clpComponents/productSilder";
 import CategorySlider from "../clpComponents/categorySlider";
@@ -99,11 +99,14 @@ export default {
     ProductSilder,
     CategorySlider,
     TowImages,
+    Slideproduct
   },
   data() {
     return {
       slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
       accessories: [],
+      newOne: [],
+      denimMustHave: [],
       sneakers: [],
       sweaters: [],
       trending: [],
@@ -288,6 +291,10 @@ export default {
     this.getProductList("woman-shoes-sneakers", "sneakers");
     this.getProductList("woman-apparel-sweaters", "sweaters");
     this.getProductList("woman-apparel-tshirts---tops", "trending");
+    this.getProductList("wlp-denim-must-have", "denimMustHave");
+    this.getProductList("wlp-new-in", "newOne");
+
+
   },
 };
 </script>

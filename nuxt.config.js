@@ -141,9 +141,6 @@ export default {
           if (error) {
             let finalError = await error;
             console.log("finalError", finalError);
-            res.redirect("/404");
-          } else {
-            res.redirect("/404");
           }
         });
       },

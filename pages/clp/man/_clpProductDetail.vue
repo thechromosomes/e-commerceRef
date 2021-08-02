@@ -2,12 +2,12 @@
   <div class="clp_pages">
     <div v-html="cmsData.content"></div>
 
-    <Slideproduct :slideImg="is_new" />
+    <Slideproduct :slideImg="denimMustHave" />
 
     <CategorySlider :slideImg="jackets" />
     <TowImages :slideImg="trending" />
 
-    <NewIn :slideImg="is_new" />
+    <NewIn :slideImg="newIn" />
     <span v-html="cmsData.content_1"></span>
     <div class="accessories">
       <div class="accessories-content">
@@ -16,8 +16,8 @@
             BAGS & <br />
             ACCESSORIES
           </h4>
-          <a href="/collections/man-accessories-bags/"> VIEW ALL BAGS</a>
-          <a href="/collections/man-accessories-other-accessories/">
+          <a href="/collections/mlp-all-bags/"> VIEW ALL BAGS</a>
+          <a href="/collections/mlp-all-accessories/">
             NEW ACCESSORIES</a
           >
         </div>
@@ -71,6 +71,8 @@ export default {
     return {
       slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
       jackets: [],
+      newIn:[],
+      denimMustHave: [],
       accessories: [],
       trending: [],
       cmsData: [],
@@ -201,7 +203,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["is_new", "cmsPagesData"]),
+    ...mapState(["is_new"]),
   },
 
   methods: {
@@ -251,7 +253,9 @@ export default {
     });
     this.cmsData = cmsData.result["man-clp"];
     this.getProductList("man-apparel-jackets", "jackets");
-    this.getProductList("man-jeans", "trending");
+    this.getProductList("mlp-new-in", "newIn");
+    this.getProductList("mlp-denim-must-have", "denimMustHave");
+    this.getProductList("mlp-best sellers", "trending");
     this.getProductList("man-accessories-other-accessories", "accessories");
   },
 };

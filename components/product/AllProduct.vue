@@ -10,7 +10,7 @@
                 search-banner-arrow-back-mobile
               "
             >
-              <span class="icon-arrow-black-left" role="navigation"></span>
+              <span class="icon-arrow-black-left" role="navigation" @click="$router.back()"></span>
             </div>
             <div
               class="search-banner-title-mobile"

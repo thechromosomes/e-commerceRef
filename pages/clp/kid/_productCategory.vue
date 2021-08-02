@@ -5,12 +5,11 @@
     <ProductSilder :slideImg="jeans" />
     <div v-html="cmsData.content_1"></div>
 
-    <ProductSilder :slideImg="shirts" />
     <!-- new design -->
     <div class="item-four-show" v-if="jboys && jboys.length > 0">
-      <h4 class="title" style="background: #2c3e50">JUNIOR BOYS</h4>
+      <h4 class="title" style="background: #2c3e50">JUNIOR BOYS & GIRLS</h4>
       <div class="item-box">
-        <div class="item" v-for="(item, index) in jboys" :key="index">
+        <div class="item" v-for="(item, index) in jboys.slice(0, 8)" :key="index">
           <img :src="item.image" alt="" class="w-100" />
           <div class="content">
             <h3 class="module-title">
@@ -36,7 +35,6 @@ export default {
       slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
       Item: [1, 2, 3, 4],
       jeans: [],
-      shirts: [],
       jboys: [],
       cmsData: [],
 
@@ -164,9 +162,8 @@ export default {
       params: form,
     });
     this.cmsData = cmsData.result["kid-clp"];
-    this.getProductList("kid-jeans", "jeans");
-    this.getProductList("kid-apparel-shirts", "shirts");
-    this.getProductList("kid-apparel-sweaters", "jboys");
+    this.getProductList("klp-denim-must-have", "jeans");
+    this.getProductList("kid-apparel-all-apparel", "jboys");
   },
 };
 </script>
