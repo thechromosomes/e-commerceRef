@@ -287,7 +287,7 @@ export default {
     });
     this.cmsData = cmsData.result["women-clp"];
 
-    this.getProductList("woman-accessories-other-accessories", "accessories");
+    this.getProductList("wlp-all-accessories", "accessories");
     this.getProductList("woman-shoes-sneakers", "sneakers");
     this.getProductList("woman-apparel-sweaters", "sweaters");
     this.getProductList("woman-apparel-tshirts---tops", "trending");

@@ -36,13 +36,13 @@ export default {
 
   // Plugins to run before rendering page
   plugins: [
-    { src: "@/plugins/globalErrorHandler", ssr: true },
-    { src: "@/plugins/tokenAndCms.js", ssr: true },
-    { src: "@/plugins/axios", ssr: true },
-    { src: "@/plugins/vue-cookies", ssr: true },
-    { src: "@plugins/thirdPartyModulesSsr", ssr: true },
-    { src: "@plugins/thirdPartyModules", ssr: false },
-    { src: "@plugins/fetchCookies", ssr: false },
+    { src: "@/plugins/globalErrorHandler", ssr: true, defer: true },
+    { src: "@/plugins/tokenAndCms.js", ssr: true, defer: true },
+    { src: "@/plugins/axios", ssr: true, defer: true },
+    { src: "@/plugins/vue-cookies", ssr: true, defer: true },
+    { src: "@plugins/thirdPartyModulesSsr", ssr: true, defer: true },
+    { src: "@plugins/thirdPartyModules", ssr: false, defer: true },
+    { src: "@plugins/fetchCookies", ssr: false, defer: true },
   ],
 
   //  Customize the progress bar color

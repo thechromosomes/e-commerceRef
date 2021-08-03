@@ -256,7 +256,7 @@ export default {
     this.getProductList("mlp-new-in", "newIn");
     this.getProductList("mlp-denim-must-have", "denimMustHave");
     this.getProductList("mlp-best sellers", "trending");
-    this.getProductList("man-accessories-other-accessories", "accessories");
+    this.getProductList("mlp-all-accessories", "accessories");
   },
 };
 </script>

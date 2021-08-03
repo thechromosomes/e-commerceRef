@@ -14,9 +14,10 @@
             .gallery"
           :key="imgIndex"
         >
-          <a href="#" @click.prevent="toggleZoomImg(imgIndex)"
-            ><img :src="image.image" alt="img" class="w-100"
-          /></a>
+          <a href="#" @click.prevent="toggleZoomImg(imgIndex)">
+            <!-- <img :src="image.image" alt="img" class="w-100" /> -->
+            <img v-lazy="image.image" class="w-100" />
+          </a>
         </div>
       </VueSlickCarousel>
     </div>
@@ -67,9 +68,10 @@
                   .gallery"
                 :key="imgIndex"
               >
-                <a href="#" @click.prevent="toggleZoomImg(imgIndex)"
-                  ><img :src="image.image" alt="img" class="w-100"
-                /></a>
+                <a href="#" @click.prevent="toggleZoomImg(imgIndex)">
+                  <!-- <img :src="image.image" alt="img" class="w-100" /> -->
+                  <img v-lazy="image.image" class="w-100" />
+                </a>
               </div>
             </div>
           </div>
@@ -208,7 +210,7 @@
                     <li
                       v-if="
                         selectedSizeAttr.configrable_atribute_value ==
-                        size.configrable_atribute_value && size.quantity != 0
+                          size.configrable_atribute_value && size.quantity != 0
                       "
                       class="attribute-value js_attribute-value"
                       :key="index"
@@ -279,9 +281,10 @@
               <div
                 class="product-care-instructions care"
                 :class="[otherDetails ? 'expand-open' : 'expand-close']"
-                @click="toggleDropDown('otherDetails')"
               >
-                <h2>OTHER DETAILS <span class="title"></span></h2>
+                <h2 @click="toggleDropDown('otherDetails')">
+                  OTHER DETAILS <span class="title"></span>
+                </h2>
                 <div class="care-instructions product-expand-block">
                   <ul class="product-information-list">
                     <li
@@ -340,9 +343,10 @@
               <div
                 class="product-care-instructions"
                 :class="[size ? 'expand-open' : 'expand-close']"
-                @click="toggleDropDown('size')"
               >
-                <h2>SIZE & FIT <span class="title"></span></h2>
+                <h2 @click="toggleDropDown('size')">
+                  SIZE & FIT <span class="title"></span>
+                </h2>
                 <div class="care-instructions product-expand-block">
                   <ul class="product-information-list">
                     <li
@@ -1062,7 +1066,6 @@ export default {
         },
       });
     }
-
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updateAddToCart);

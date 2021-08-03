@@ -1033,7 +1033,8 @@ export default {
             "neck",
             "length",
             "sleeve",
-            "fit"
+            "fit",
+            // "gender"
           )
           .facetCount(99)
           .numericFacets("discounted_price", [
@@ -1389,6 +1390,18 @@ export default {
           onTop: false,
           isStatic: false,
         },
+
+        // for gender
+        //  {
+        //   title: "Gender",
+        //   field: "gender",
+        //   type: "textFacet",
+        //   isOpen: false,
+        //   values: [],
+        //   selected: [],
+        //   onTop: false,
+        //   isStatic: false,
+        // },
       ],
     };
   },
