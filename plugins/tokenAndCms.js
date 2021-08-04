@@ -30,7 +30,7 @@ export default async (context) => {
     }
 
     //  get bannerSlide
-    context.store.dispatch("getBannerSlider", {
+    await context.store.dispatch("getBannerSlider", {
       method: "get",
       url: `/pimresponse.php`,
       params: {

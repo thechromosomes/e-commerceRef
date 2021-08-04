@@ -1,12 +1,14 @@
 <template>
   <div>
     <!-- home page cms -->
-    <div v-if="Object.keys(homePageData).length != 0">
-      <span v-html="homePageData.content"></span>
-    </div>
+    <LazyHydrate ssr-only>
+      <div v-if="Object.keys(homePageData).length != 0">
+        <span v-html="homePageData.content"></span>
+      </div>
+    </LazyHydrate>
 
-    <div class="collections_slide">
-      <client-only>
+    <LazyHydrate when-visible>
+      <div class="collections_slide">
         <div class="slide_content" v-if="bannerSlide.length > 0">
           <VueSlickCarousel ref="slick" v-bind="settings2">
             <template v-for="(item, index) in bannerSlide">
@@ -32,10 +34,10 @@
             </template>
           </VueSlickCarousel>
         </div>
-      </client-only>
-    </div>
+      </div>
+    </LazyHydrate>
 
-    <client-only>
+    <LazyHydrate when-visible>
       <section
         class="new_in"
         style="min-height: 250px"
@@ -62,19 +64,22 @@
           </div>
         </div>
       </section>
-    </client-only>
+    </LazyHydrate>
 
     <!-- Start of bottom images Section -->
-    <span v-html="homePageData.content_1"></span>
+    <LazyHydrate when-visible>
+      <span v-html="homePageData.content_1"></span>
+    </LazyHydrate>
   </div>
 </template>
 
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
+import LazyHydrate from "vue-lazy-hydration";
 import { mapState } from "vuex";
 
 export default {
-  components: { VueSlickCarousel },
+  components: { VueSlickCarousel, LazyHydrate },
 
   data() {
     return {

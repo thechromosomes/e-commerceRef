@@ -246,8 +246,11 @@ export default {
       help: false,
       cooPolicyOpen: false,
       worldOpen: false,
-      langOpen: false
+      langOpen: false,
     };
-  }
+  },
+  mounted() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  },
 };
 </script>

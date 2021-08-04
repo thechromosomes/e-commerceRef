@@ -69,13 +69,13 @@
                 <!-- main__header -->
                 <div class="checkout_page_head">
                   <div class="checkout_logo">
-                    <a href="/" class="logo logo-left">
+                    <NuxtLink to="/" class="logo logo-left">
                       <img
                         src="@/assets/img/logo.svg"
                         alt="logo"
                         class="logo__image logo__image-medium"
                       />
-                    </a>
+                    </NuxtLink>
                   </div>
                   <div class="checkout_link">
                     <nav>
