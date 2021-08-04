@@ -39,157 +39,64 @@
                   @click="showMobileMenu = !showMobileMenu"
                 ></div>
               </div>
-              <client-only>
-                <ul class="navbar-nav mr-auto">
-                  <li
-                    class="nav-item"
-                    v-for="(item, index) in header"
-                    :key="index"
+              <ul class="navbar-nav mr-auto">
+                <li
+                  class="nav-item"
+                  v-for="(item, index) in header"
+                  :key="index"
+                  :class="{
+                    'active-nav':
+                      $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
+                      item.name.toUpperCase(),
+                    'show-dropdown': levelOneActiveItemIndex === index,
+                  }"
+                >
+                  <span
+                    class="stripeImage"
+                    @click="onmenuhover(item.name, index)"
+                  ></span>
+                  <NuxtLink
+                    @click.native="showMobileMenu = false"
+                    :to="`/clp/${item.menu_url_key}`"
+                    @mouseover.native="onmenuhover(item.name)"
+                    class="nav-link first"
                     :class="{
-                      'active-nav':
+                      'active-nav-link':
                         $store.state.activeUrlKey.split('-')[0].toUpperCase() ==
                         item.name.toUpperCase(),
-                      'show-dropdown': levelOneActiveItemIndex === index,
                     }"
+                    >{{ item.name }}</NuxtLink
                   >
-                    <span
-                      class="stripeImage"
-                      @click="onmenuhover(item.name, index)"
-                    ></span>
-                    <NuxtLink
-                      @click.native="showMobileMenu = false"
-                      :to="`/clp/${item.menu_url_key}`"
-                      @mouseover.native="onmenuhover(item.name)"
-                      class="nav-link first"
-                      :class="{
-                        'active-nav-link':
-                          $store.state.activeUrlKey
-                            .split('-')[0]
-                            .toUpperCase() == item.name.toUpperCase(),
-                      }"
-                      >{{ item.name }}</NuxtLink
-                    >
-                    <div
-                      class="dropdown_menu"
-                      v-if="
-                        item.childs &&
-                        item.childs.length > 0 &&
-                        menuhover == item.name
-                      "
-                    >
-                      <div class="level-2">
-                        <ul class="navbar-nav">
-                          <li
-                            class="nav-item"
-                            v-for="(childItem, childIndex) in item.childs"
-                            :key="childIndex"
-                            :class="{
-                              'show-inner-dropdown':
-                                levelTwoActiveItemIndex === childIndex,
-                            }"
+                  <div
+                    class="dropdown_menu"
+                    v-if="
+                      item.childs &&
+                      item.childs.length > 0 &&
+                      menuhover == item.name
+                    "
+                  >
+                    <div class="level-2">
+                      <ul class="navbar-nav">
+                        <li
+                          class="nav-item"
+                          v-for="(childItem, childIndex) in item.childs"
+                          :key="childIndex"
+                          :class="{
+                            'show-inner-dropdown':
+                              levelTwoActiveItemIndex === childIndex,
+                          }"
+                        >
+                          <template
+                            v-if="
+                              childItem.childs && childItem.childs.length > 0
+                            "
                           >
-                            <template
-                              v-if="
-                                childItem.childs && childItem.childs.length > 0
-                              "
+                            <li
+                              class="nav-item"
+                              @click="toggleInnerMenu(childIndex)"
                             >
-                              <li
-                                class="nav-item"
-                                @click="toggleInnerMenu(childIndex)"
-                              >
-                                <span class="stripeImage"></span>
-                                <a
-                                  :class="{
-                                    'active-sub-nav':
-                                      $store.state.activeUrlKey
-                                        .split('-')[1]
-                                        .toUpperCase() ==
-                                      childItem.name.toUpperCase(),
-                                  }"
-                                  class="nav-link"
-                                  >{{ childItem.name }}
-                                </a>
-                                <div class="dropdown_menu_level-3">
-                                  <div class="level-3">
-                                    <div class="row">
-                                      <div
-                                        class="col-md-12"
-                                        :class="
-                                          childItem.image ? 'col-lg-9' : ''
-                                        "
-                                      >
-                                        <div class="levelthreemenu">
-                                          <ul>
-                                            <li
-                                              v-for="(
-                                                subChildItem, subCgildIndex
-                                              ) in childItem.childs"
-                                              :key="subCgildIndex"
-                                            >
-                                              <Nuxt-link
-                                                @click.native="
-                                                  handleHamClose(
-                                                    subChildItem.menu_url_key
-                                                  )
-                                                "
-                                                class="nav-link pl-0"
-                                                :class="{
-                                                  haslevel4:
-                                                    subChildItem.childs,
-                                                }"
-                                                :to="`/collections/${subChildItem.menu_url_key}/`"
-                                                >{{ subChildItem.name }}
-                                              </Nuxt-link>
-                                              <div
-                                                class="level-4"
-                                                v-show="subChildItem.childs"
-                                              >
-                                                <ul class="ul-level-4">
-                                                  <li
-                                                    v-for="(
-                                                      subChildItemfor,
-                                                      subCgildIndexfor
-                                                    ) in subChildItem.childs"
-                                                    :key="subCgildIndexfor"
-                                                  >
-                                                    <Nuxt-link
-                                                      @click.native="
-                                                        showMobileMenu = false
-                                                      "
-                                                      class="nav-link pl-0"
-                                                      :to="`/collections/${subChildItemfor.menu_url_key}/`"
-                                                      >{{
-                                                        subChildItemfor.name
-                                                      }}
-                                                    </Nuxt-link>
-                                                  </li>
-                                                </ul>
-                                              </div>
-                                            </li>
-                                          </ul>
-                                        </div>
-                                      </div>
-                                      <div
-                                        class="col-md-12 col-lg-3"
-                                        v-show="childItem.image"
-                                      >
-                                        <div class="menu_img-section">
-                                          <img
-                                            :src="childItem.image"
-                                            alt="img"
-                                            class="w-100"
-                                          />
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </li>
-                            </template>
-                            <template v-else>
-                              <Nuxt-link
-                                @click.native="showMobileMenu = false"
-                                class="nav-link pl-0"
+                              <span class="stripeImage"></span>
+                              <a
                                 :class="{
                                   'active-sub-nav':
                                     $store.state.activeUrlKey
@@ -197,16 +104,103 @@
                                       .toUpperCase() ==
                                     childItem.name.toUpperCase(),
                                 }"
-                                :to="`/collections/${childItem.menu_url_key}/`"
-                                >{{ childItem.name }}</Nuxt-link
-                              >
-                            </template>
-                          </li>
-                        </ul>
-                      </div>
+                                class="nav-link"
+                                >{{ childItem.name }}
+                              </a>
+                              <div class="dropdown_menu_level-3">
+                                <div class="level-3">
+                                  <div class="row">
+                                    <div
+                                      class="col-md-12"
+                                      :class="childItem.image ? 'col-lg-9' : ''"
+                                    >
+                                      <div class="levelthreemenu">
+                                        <ul>
+                                          <li
+                                            v-for="(
+                                              subChildItem, subCgildIndex
+                                            ) in childItem.childs"
+                                            :key="subCgildIndex"
+                                          >
+                                            <Nuxt-link
+                                              @click.native="
+                                                handleHamClose(
+                                                  subChildItem.menu_url_key
+                                                )
+                                              "
+                                              class="nav-link pl-0"
+                                              :class="{
+                                                haslevel4: subChildItem.childs,
+                                              }"
+                                              :to="`/collections/${subChildItem.menu_url_key}/`"
+                                              >{{ subChildItem.name }}
+                                            </Nuxt-link>
+                                            <div
+                                              class="level-4"
+                                              v-show="subChildItem.childs"
+                                            >
+                                              <ul class="ul-level-4">
+                                                <li
+                                                  v-for="(
+                                                    subChildItemfor,
+                                                    subCgildIndexfor
+                                                  ) in subChildItem.childs"
+                                                  :key="subCgildIndexfor"
+                                                >
+                                                  <Nuxt-link
+                                                    @click.native="
+                                                      showMobileMenu = false
+                                                    "
+                                                    class="nav-link pl-0"
+                                                    :to="`/collections/${subChildItemfor.menu_url_key}/`"
+                                                    >{{ subChildItemfor.name }}
+                                                  </Nuxt-link>
+                                                </li>
+                                              </ul>
+                                            </div>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="col-md-12 col-lg-3"
+                                      v-show="childItem.image"
+                                    >
+                                      <div class="menu_img-section">
+                                        <img
+                                          :src="childItem.image"
+                                          alt="img"
+                                          class="w-100"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          </template>
+                          <template v-else>
+                            <Nuxt-link
+                              @click.native="showMobileMenu = false"
+                              class="nav-link pl-0"
+                              :class="{
+                                'active-sub-nav':
+                                  $store.state.activeUrlKey
+                                    .split('-')[1]
+                                    .toUpperCase() ==
+                                  childItem.name.toUpperCase(),
+                              }"
+                              :to="`/collections/${childItem.menu_url_key}/`"
+                              >{{ childItem.name }}</Nuxt-link
+                            >
+                          </template>
+                        </li>
+                      </ul>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </li>
+              </ul>
+              <!-- <client-only> -->
                 <ul class="account-nav">
                   <li
                     class="nav-item help-link"
@@ -231,7 +225,7 @@
                     <span @click="toggleHelpPopup()">Help</span>
                   </li>
                 </ul>
-              </client-only>
+              <!-- </client-only> -->
             </div>
           </div>
           <div
@@ -248,44 +242,44 @@
                   @click="showHelpSidebar = !showHelpSidebar"
                 ></div>
               </div>
-                <ul class="hover-menu navbar-nav mr-auto">
-                  <li class="hover-item" @click="showHelpSidebar = false">
-                    <Nuxt-link
-                      class="hover-link"
-                      to="/trackorder"
-                      title="Order Status"
-                      >Check your order
-                    </Nuxt-link>
-                  </li>
-                  <li class="hover-item" @click="showHelpSidebar = false">
-                    <Nuxt-link
-                      class="hover-link"
-                      to="/cms/return-your-order"
-                      title="Returns"
-                      >Return your order</Nuxt-link
-                    >
-                  </li>
-                  <li class="hover-item" @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/legal-area"
-                      >Delivery
-                    </Nuxt-link>
-                  </li>
-                  <li class="hover-item" @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/size-conversion"
-                      >Size Conversion
-                    </Nuxt-link>
-                  </li>
-                  <li class="hover-item" @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/contact-us"
-                      >Send us a Message
-                    </Nuxt-link>
-                  </li>
-                  <li>
-                    <Nuxt-link class="hover-link" to="/cms/allCmsView"
-                      >View All
-                    </Nuxt-link>
-                  </li>
-                </ul>
+              <ul class="hover-menu navbar-nav mr-auto">
+                <li class="hover-item" @click="showHelpSidebar = false">
+                  <Nuxt-link
+                    class="hover-link"
+                    to="/trackorder"
+                    title="Order Status"
+                    >Check your order
+                  </Nuxt-link>
+                </li>
+                <li class="hover-item" @click="showHelpSidebar = false">
+                  <Nuxt-link
+                    class="hover-link"
+                    to="/cms/return-your-order"
+                    title="Returns"
+                    >Return your order</Nuxt-link
+                  >
+                </li>
+                <li class="hover-item" @click="showHelpSidebar = false">
+                  <Nuxt-link class="hover-link" to="/cms/legal-area"
+                    >Delivery
+                  </Nuxt-link>
+                </li>
+                <li class="hover-item" @click="showHelpSidebar = false">
+                  <Nuxt-link class="hover-link" to="/cms/size-conversion"
+                    >Size Conversion
+                  </Nuxt-link>
+                </li>
+                <li class="hover-item" @click="showHelpSidebar = false">
+                  <Nuxt-link class="hover-link" to="/cms/contact-us"
+                    >Send us a Message
+                  </Nuxt-link>
+                </li>
+                <li>
+                  <Nuxt-link class="hover-link" to="/cms/allCmsView"
+                    >View All
+                  </Nuxt-link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -297,65 +291,65 @@
         </div>
 
         <div class="search_box">
-          <client-only>
-            <ul>
-              <li class="desktop_only" @click="toogleSearch(true)">
-                <a style="cursor: pointer">Search</a>
-              </li>
-              <li
-                class="nav-item help-link dropdown desktop_only"
-                role="menuitem"
-                aria-label="Open Help"
+          <ul>
+            <li class="desktop_only" @click="toogleSearch(true)">
+              <a style="cursor: pointer">Search</a>
+            </li>
+            <li
+              class="nav-item help-link dropdown desktop_only"
+              role="menuitem"
+              aria-label="Open Help"
+            >
+              <a
+                href="#"
+                class=""
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
-                <a
-                  href="#"
-                  class=""
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span id="open-help-span">Help</span>
-                </a>
-                <ul class="hover-menu">
-                  <li class="hover-item">
-                    <Nuxt-link
-                      class="hover-link"
-                      to="/cms/your-order-status"
-                      title="Order Status"
-                      >Check your order
-                    </Nuxt-link>
-                  </li>
-                  <li class="hover-item">
-                    <Nuxt-link
-                      class="hover-link"
-                      to="/cms/return-your-order"
-                      title="Returns"
-                      >Return your order</Nuxt-link
-                    >
-                  </li>
-                  <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/legal-area"
-                      >Delivery
-                    </Nuxt-link>
-                  </li>
-                  <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/size-conversion"
-                      >Size Conversion
-                    </Nuxt-link>
-                  </li>
-                  <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/contact-us"
-                      >Send us a Message
-                    </Nuxt-link>
-                  </li>
-                  <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/allCmsView"
-                      >View All
-                    </Nuxt-link>
-                  </li>
-                </ul>
-              </li>
+                <span id="open-help-span">Help</span>
+              </a>
+              <ul class="hover-menu">
+                <li class="hover-item">
+                  <Nuxt-link
+                    class="hover-link"
+                    to="/cms/your-order-status"
+                    title="Order Status"
+                    >Check your order
+                  </Nuxt-link>
+                </li>
+                <li class="hover-item">
+                  <Nuxt-link
+                    class="hover-link"
+                    to="/cms/return-your-order"
+                    title="Returns"
+                    >Return your order</Nuxt-link
+                  >
+                </li>
+                <li class="hover-item">
+                  <Nuxt-link class="hover-link" to="/cms/legal-area"
+                    >Delivery
+                  </Nuxt-link>
+                </li>
+                <li class="hover-item">
+                  <Nuxt-link class="hover-link" to="/cms/size-conversion"
+                    >Size Conversion
+                  </Nuxt-link>
+                </li>
+                <li class="hover-item">
+                  <Nuxt-link class="hover-link" to="/cms/contact-us"
+                    >Send us a Message
+                  </Nuxt-link>
+                </li>
+                <li class="hover-item">
+                  <Nuxt-link class="hover-link" to="/cms/allCmsView"
+                    >View All
+                  </Nuxt-link>
+                </li>
+              </ul>
+            </li>
+            <!-- <client-only> -->
               <li>
                 <nuxt-link
                   v-if="
@@ -468,8 +462,8 @@
                   </nuxt-link>
                 </div>
               </li>
-            </ul>
-          </client-only>
+            <!-- </client-only> -->
+          </ul>
         </div>
       </div>
     </nav>

@@ -10,7 +10,11 @@
                 search-banner-arrow-back-mobile
               "
             >
-              <span class="icon-arrow-black-left" role="navigation" @click="$router.back()"></span>
+              <span
+                class="icon-arrow-black-left"
+                role="navigation"
+                @click="$router.back()"
+              ></span>
             </div>
             <div
               class="search-banner-title-mobile"
@@ -414,22 +418,24 @@
                       <span>{{ singleProd.promotional_tags }}</span>
                     </div>
                     <client-only>
-                      <div
-                        class="list_slide"
-                        v-if="singleProd.gallery.length > 0"
-                      >
-                        <VueSlickCarousel v-bind="productSetting">
-                          <div
-                            class="item lazy-loader"
-                            v-for="(image, imgIndex) in singleProd.gallery"
-                            :key="imgIndex"
-                          >
-                            <Nuxt-link :to="`/product/${singleProd.url_key}`">
-                              <img v-lazy="image.image" class="w-100" />
-                            </Nuxt-link>
-                          </div>
-                        </VueSlickCarousel>
-                      </div>
+                      <LazyHydrate when-visible>
+                        <div
+                          class="list_slide"
+                          v-if="singleProd.gallery.length > 0"
+                        >
+                          <VueSlickCarousel v-bind="productSetting">
+                            <div
+                              class="item lazy-loader"
+                              v-for="(image, imgIndex) in singleProd.gallery"
+                              :key="imgIndex"
+                            >
+                              <Nuxt-link :to="`/product/${singleProd.url_key}`">
+                                <img v-lazy="image.image" class="w-100" />
+                              </Nuxt-link>
+                            </div>
+                          </VueSlickCarousel>
+                        </div>
+                      </LazyHydrate>
                     </client-only>
                     <div class="title-body">
                       <p class="p-price">
@@ -520,10 +526,11 @@
 
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
+import LazyHydrate from "vue-lazy-hydration";
 import { mapState } from "vuex";
 import YouMayLike from "./YouMayLike";
 export default {
-  components: { VueSlickCarousel, YouMayLike },
+  components: { VueSlickCarousel, YouMayLike, LazyHydrate },
   data() {
     return {
       titleContent: false,
