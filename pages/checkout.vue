@@ -229,27 +229,7 @@
                                     </p>
                                   </span>
                                 </div>
-                                <p
-                                  class="pobox plaese-note-para input-success"
-                                  id="checkoutAddressError"
-                                >
-                                  Please note we do not ship to PO boxes.
-                                </p>
                               </div>
-                              <!-- <div
-                                class="field field--required"
-                                data-address-field="first_name"
-                              >
-                                <div class="field__input-wrapper">
-                                  <input
-                                    placeholder="Apartment, suite, etc. (optional)"
-                                    autocomplete="off"
-                                    class="field__input"
-                                    type="text"
-                                    v-model="user.address2"
-                                  />
-                                </div>
-                              </div> -->
 
                               <div class="field field--required field--third">
                                 <div class="field__input-wrapper">
@@ -1027,7 +1007,7 @@ export default {
   // form validatiors
   validators: {
     "user.email": function (value) {
-      return Validator.value(value).required().email();
+      return Validator.value(value).email();
     },
     "user.firstName": function (value) {
       return Validator.value(value).required();
@@ -1142,7 +1122,6 @@ export default {
           pinCode &&
           mobileNo &&
           city &&
-          email &&
           validation
         ) {
           var form = {};
@@ -1182,7 +1161,9 @@ export default {
               },
             });
           } else {
-            this.$toast.error(response.message);
+            for (const [key, value] of Object.entries(response.data)) {
+              this.$toast.error(value[0]);
+            }
             throw response.message;
           }
         } else {

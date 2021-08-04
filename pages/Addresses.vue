@@ -258,7 +258,7 @@ import AllAddresses from "@/components/my-account/AllAddresses.vue";
 export default {
   components: {
     Sidebar,
-    AllAddresses
+    AllAddresses,
   },
   data() {
     return {
@@ -279,39 +279,39 @@ export default {
         city: "",
         address_type: "home",
         address_id: "",
-        defaultAddress: false
-      }
+        defaultAddress: false,
+      },
     };
   },
 
   // form validatiors
   validators: {
-    "user.firstName": function(value) {
+    "user.firstName": function (value) {
       return Validator.value(value).required();
     },
-    "user.lastName": function(value) {
+    "user.lastName": function (value) {
       return Validator.value(value).required();
     },
-    "user.address": function(value) {
+    "user.address": function (value) {
       return Validator.value(value).required();
     },
-    "user.pinCode": function(value) {
+    "user.pinCode": function (value) {
       return Validator.value(value)
         .required()
         .integer()
         .minLength(6)
         .maxLength(6);
     },
-    "user.mobileNo": function(value) {
+    "user.mobileNo": function (value) {
       return Validator.value(value)
         .required()
         .integer()
         .minLength(10)
         .maxLength(10);
     },
-    "user.city": function(value) {
+    "user.city": function (value) {
       return Validator.value(value).required();
-    }
+    },
   },
 
   methods: {
@@ -350,7 +350,7 @@ export default {
           address2,
           address_type,
           address_id,
-          defaultAddress
+          defaultAddress,
         } = this.user;
         if (
           state &&
@@ -400,17 +400,19 @@ export default {
             method: "post",
             url,
             token,
-            params: form
+            params: form,
           });
 
           if (response.success) {
             this.$store.commit("cartAjax/updateAddress", {
               payload: response,
-              vm: this
+              vm: this,
             });
             this.showForm = false;
           } else {
-            this.$toast.error(response.message);
+            for (const [key, value] of Object.entries(response.data)) {
+              this.$toast.error(value[0]);
+            }
             throw response.message;
           }
         } else {
@@ -425,7 +427,7 @@ export default {
     },
 
     // get detil via pin code
-    fetchUserDetail: function() {
+    fetchUserDetail: function () {
       var pin_code = /^([0-9]{6,})+$/;
       if (
         this.user.pinCode != null &&
@@ -442,9 +444,9 @@ export default {
           .dispatch("pimAjax", {
             method: "post",
             url: `/pimresponse.php`,
-            params: form
+            params: form,
           })
-          .then(response => {
+          .then((response) => {
             if (response.result == "") {
               this.pin_code_error = "Sorry this pincode is not serviceable.";
               this.pin_code_success = "";
@@ -462,7 +464,7 @@ export default {
               this.pin_code_error = "";
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.log("error from the shipping page >>> ", error);
             this.$globalError(
               `error from the shipping page (fetchUserDetail) >>>> ${error}`
@@ -478,7 +480,7 @@ export default {
         this.pin_code_error = "Please enter valid Pin code";
         this.pin_code_success = "";
       }
-    }
+    },
   },
   mounted() {
     if (
@@ -488,12 +490,12 @@ export default {
       return this.$router.push("/login");
   },
   watch: {
-    "user.pinCode": function() {
+    "user.pinCode": function () {
       if (this.user.pinCode >= 1000) {
         this.fetchUserDetail();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

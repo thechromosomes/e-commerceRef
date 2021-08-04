@@ -71,7 +71,7 @@
                             items.bundle_set_id == null &&
                             items.item_status != 'Cancelled'
                           "
-                          >cancel</span
+                          ><u>cancel</u></span
                         >
                         <span
                           style="cursor: pointer"

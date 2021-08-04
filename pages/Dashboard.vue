@@ -34,18 +34,18 @@
                       </div>
 
                       <div class="profile-data">
-                        <h2>my profile</h2>
-                        <h3>profile information</h3>
+                        <h2>My profile</h2>
+                        <h3>Profile information</h3>
                         <p class="name">
-                          name: <span>{{ customer.full_name }}</span>
+                          Name: <span>{{ customer.full_name }}</span>
                         </p>
                         <p class="name">
-                          email: <span>{{ customer.email }}</span>
+                          Email: <span>{{ customer.email }}</span>
                         </p>
                         <p class="name">password: <span>*******</span></p>
                         <div class="edit">
                           <nuxt-link to="/EditProfile"
-                            >edit my profile</nuxt-link
+                            >Edit my profile</nuxt-link
                           >
                         </div>
                       </div>
@@ -65,10 +65,10 @@
                       <div class="profile-data">
                         <h2>My Address book</h2>
                         <p class="name">
-                          name: <span>{{ customer.full_name }}</span>
+                          Name: <span>{{ customer.full_name }}</span>
                         </p>
                         <p class="name">
-                          address:
+                          Address:
                           <span
                             class="add-data"
                             v-if="

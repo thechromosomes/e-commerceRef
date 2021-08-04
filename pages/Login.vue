@@ -122,7 +122,7 @@ export default {
           if (response.success) {
             this.showOtp = true;
             this.pageError = "";
-            this.$toast.open(`otp sent to ${this.mobileNumber}`);
+            this.$toast.open(`OTP sent to ${this.mobileNumber}`);
           } else {
             if (
               !response.success &&

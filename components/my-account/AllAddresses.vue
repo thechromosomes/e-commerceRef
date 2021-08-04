@@ -10,10 +10,10 @@
             :key="index"
           >
             <p class="name">
-              name: <span>{{ `${item.full_name}` }}</span>
+              Name: <span>{{ `${item.full_name}` }}</span>
             </p>
             <p class="name">
-              mobile: <span>{{ ` ${item.phone}` }}</span>
+              Mobile: <span>{{ ` ${item.phone}` }}</span>
             </p>
             <p class="name">
               Address:

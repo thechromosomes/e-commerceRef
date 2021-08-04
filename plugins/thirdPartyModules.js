@@ -3,7 +3,6 @@ import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-sugar.css";
 import vueDebounce from "vue-debounce";
 import * as VueGoogleMaps from "vue2-google-maps";
-import SimpleVueValidation from "simple-vue-validator";
 import VueLazyload from "vue-lazyload";
 
 Vue.use(VueLazyload, {
@@ -13,10 +12,9 @@ Vue.use(VueLazyload, {
 });
 
 Vue.use(vueDebounce);
-Vue.use(SimpleVueValidation);
 Vue.use(VueToast, {
   position: "top",
-  queue: true,
+  queue: false,
 });
 Vue.use(VueGoogleMaps, {
   load: {

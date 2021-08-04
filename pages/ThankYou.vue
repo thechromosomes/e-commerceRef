@@ -71,8 +71,21 @@
                       {{ $store.state.cartAjax.cod_charge }}
                     </td>
                     <td scope="row" v-else>
-                      <strong>Delivery Charge</strong> ₹
-                      0
+                      <strong>Delivery Charge</strong> ₹ 0
+                    </td>
+                  </tr>
+                  <tr>
+                    <td scope="row">
+                      <!-- <strong>Your Order Number:</strong>  -->
+                    </td>
+                    <td scope="row"></td>
+                    <td scope="row"></td>
+                    <td scope="row" v-if="total_discount_amount">
+                      <strong>Discount amount</strong> ₹
+                      {{ total_discount_amount }}
+                    </td>
+                    <td scope="row" v-else>
+                      <strong>Discount amount</strong> ₹ 0
                     </td>
                   </tr>
                   <tr>
@@ -144,7 +157,7 @@ export default {
         pincode: "",
         city: "",
         state: "",
-        phone: ""
+        phone: "",
       },
       payment_method: "",
       order_no: "",
@@ -154,7 +167,7 @@ export default {
       gtm_product: [],
       delivery_msg: "",
       wigzo_sku: [],
-      team_sku: ""
+      team_sku: "",
     };
   },
 
@@ -170,9 +183,9 @@ export default {
           method: "post",
           url: `/order/get-order`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form
+          params: form,
         })
-        .then(response => {
+        .then((response) => {
           if (response.success === true) {
             this.order = response.data.products;
             this.total = response.data.grand_total;
@@ -206,22 +219,22 @@ export default {
                     revenue: this.total,
                     tax: "0",
                     shipping: "0",
-                    coupon: this.discount_code
+                    coupon: this.discount_code,
                   },
-                  products: this.$store.state.cartAjax.gtm_product
-                }
-              }
+                  products: this.$store.state.cartAjax.gtm_product,
+                },
+              },
             }),
               this.$store.commit("cartAjax/flushCart");
           } else {
             this.$router.push("/");
           }
         });
-    }
+    },
   },
   mounted() {
     this.getOrder();
-  }
+  },
 };
 </script>
 <style scoped>

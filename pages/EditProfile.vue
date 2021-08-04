@@ -109,31 +109,29 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    Sidebar
+    Sidebar,
   },
   data() {
     return {
       newEmailError: null,
       updateprofileData: {
         newEmailAddress: this.$store.state.cartAjax.customerDetail.email || "",
-        name: this.$store.state.cartAjax.customerDetail.full_name || ""
-      }
+        name: this.$store.state.cartAjax.customerDetail.full_name || "",
+      },
     };
   },
   //   form validators
   validators: {
-    "updateprofileData.newEmailAddress": function(value) {
-      return Validator.value(value)
-        .required()
-        .email();
+    "updateprofileData.newEmailAddress": function (value) {
+      return Validator.value(value).required().email();
     },
-    "updateprofileData.name": function(value) {
+    "updateprofileData.name": function (value) {
       return Validator.value(value).required();
-    }
+    },
   },
 
   methods: {
-    updateprofile: async function() {
+    updateprofile: async function () {
       try {
         var validation = await this.$validate();
         if (validation) {
@@ -148,33 +146,38 @@ export default {
           method: "post",
           url: `/customer/update-customer`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form
+          params: form,
         });
         if (response.success) {
           this.$store.commit("cartAjax/updateCustomerDetail", {
             payload: response,
-            vm: this
+            vm: this,
           });
         } else {
-          this.$toast.errro(response.message);
-          throw `succes false >>> ${response.message}`;
+          for (const [key, value] of Object.entries(response.data)) {
+            this.$toast.error(value[0]);
+          }
+          throw `success false >>> ${response.message}`;
         }
       } catch (error) {
         this.$globalError(`error from the updated profile >>>> ${error}`);
         console.log("error from the updated profile >>> ", error);
       }
-    }
+    },
   },
   computed: {
     ...mapState({
-      customer: state => state.cartAjax.customerDetail
-    })
+      customer: (state) => state.cartAjax.customerDetail,
+    }),
   },
-  created() {
-    if (Object.keys(this.$store.state.cartAjax.customerDetail).length == 0) {
-      this.$router.push("./login");
+  mounted() {
+    if (
+      this.$store.state.cartAjax.customer_session == "" &&
+      this.$store.state.cartAjax.customer_id == ""
+    ) {
+      this.$router.push("/login");
     }
-  }
+  },
 };
 </script>
 <style scoped>

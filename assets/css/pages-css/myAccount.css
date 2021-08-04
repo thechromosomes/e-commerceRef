@@ -13,8 +13,8 @@
   letter-spacing: 0.5px;
   font-weight: bold;
   margin-bottom: 0px;
-  text-transform: uppercase;
-}
+  /* text-transform: uppercase;*/
+} 
 
 .account-page .my-profile .profile-content {
   display: flex;
@@ -32,7 +32,7 @@
 .account-page .my-profile .profile-data h2 {
   font-weight: bold;
   font-size: 22px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 .account-page .my-profile .profile-data h3 {
   font-weight: bold;
@@ -44,14 +44,13 @@
 .account-page .my-profile .profile-data .name {
   font-size: 16px;
   font-weight: bold;
-  text-transform: uppercase;
   margin-bottom: 0px;
 }
 .account-page .my-profile .profile-data .edit {
   padding: 20px 0px;
 }
 .account-page .my-profile .profile-data .edit a {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   padding: 10px 20px;
   border: 1px solid #000;
   transition: all 0.5s;
@@ -79,7 +78,6 @@
   text-align: center; */
 }
 .sidebar ul li a {
-  text-transform: uppercase;
   padding: 12px 15px;
   color: #252525;
   border: 1px solid #eee;
@@ -145,7 +143,7 @@
   letter-spacing: 0.5px;
   font-weight: bold;
   margin-bottom: 0px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 .address-list {
   display: flex;
@@ -168,7 +166,7 @@
 .ship-adress-area .name {
   font-size: 16px;
   font-weight: bold;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   margin-bottom: 0px;
 }
 .remove-address {
@@ -184,7 +182,7 @@
   letter-spacing: 0.5px;
   font-weight: bold;
   margin-bottom: 0px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 .active-account-sidebar {
   font-weight: bold;
@@ -211,7 +209,7 @@
   letter-spacing: 0.5px;
   font-weight: bold;
   margin-bottom: 0px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   margin-top: 20px;
 }
 .action_bottom {
@@ -219,7 +217,7 @@
 }
 .action_bottom input,
 .action_bottom a {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   padding: 8px 20px;
   border: 1px solid #000;
   transition: all 0.5s;

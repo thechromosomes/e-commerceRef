@@ -248,7 +248,6 @@
                   @click="showHelpSidebar = !showHelpSidebar"
                 ></div>
               </div>
-              <client-only>
                 <ul class="hover-menu navbar-nav mr-auto">
                   <li class="hover-item" @click="showHelpSidebar = false">
                     <Nuxt-link
@@ -267,7 +266,7 @@
                     >
                   </li>
                   <li class="hover-item" @click="showHelpSidebar = false">
-                    <Nuxt-link class="hover-link" to="/cms/shipping"
+                    <Nuxt-link class="hover-link" to="/cms/legal-area"
                       >Delivery
                     </Nuxt-link>
                   </li>
@@ -287,7 +286,6 @@
                     </Nuxt-link>
                   </li>
                 </ul>
-              </client-only>
             </div>
           </div>
         </div>
@@ -337,7 +335,7 @@
                     >
                   </li>
                   <li class="hover-item">
-                    <Nuxt-link class="hover-link" to="/cms/shipping"
+                    <Nuxt-link class="hover-link" to="/cms/legal-area"
                       >Delivery
                     </Nuxt-link>
                   </li>

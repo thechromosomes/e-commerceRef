@@ -1878,15 +1878,6 @@ p.p-price span.line-throu {
 .cartItemProducts .productItem .image-info img {
   width: 100%;
 }
-.input-error {
-  color: red !important;
-  margin-bottom: 5px;
-}
-p.input-error {
-  color: red !important;
-  padding: 0 !important;
-  font-size: 12px;
-}
 .cartItemProducts .productItem .item_name {
   width: 40%;
   padding: 5px 20px;
@@ -1928,11 +1919,7 @@ p.input-error {
   width: 10%;
   text-align: center;
 }
-.input-success {
-  color: green !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
+
 .cartItemProducts .productItem .price_info span {
   font-size: 20px;
   font-weight: 700;
@@ -4546,4 +4533,21 @@ p.input-error {
 
 body.overflow-hidden {
   overflow: hidden;
+}
+
+
+/* error classes css */
+.input-error {
+  color: red !important;
+  margin-bottom: 5px;
+}
+p.input-error {
+  color: red !important;
+  padding: 0 !important;
+  font-size: 12px;
+}
+p.input-success {
+  color: green !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }

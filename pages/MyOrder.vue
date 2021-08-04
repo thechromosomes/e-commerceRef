@@ -40,7 +40,7 @@
                       </td>
                       <td class="align-center" data-label="Action">
                         <NuxtLink :to="`/order/${item.order_quote_id}`"
-                          >View & Track</NuxtLink
+                          ><u>View & Track</u></NuxtLink
                         >
                       </td>
                     </tr>

@@ -72,7 +72,7 @@
                 <NuxtLink to="/trackorder">Order Status</NuxtLink>
               </div>
               <div class="link-text">
-                <NuxtLink to="/cms/shipping">Delivery</NuxtLink>
+                <NuxtLink to="/cms/legal-area">Delivery</NuxtLink>
               </div>
               <div class="link-text">
                 <NuxtLink to="/cms/legal-area">Returns</NuxtLink>
