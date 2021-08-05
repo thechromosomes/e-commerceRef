@@ -58,40 +58,40 @@
             <h6>SHOP BY FIT</h6>
           </div>
           <div class="visual-filters-container">
-            <client-only>
-              <VueSlickCarousel ref="slick" v-bind="settings">
-                <div
-                  class="category-filter"
-                  v-for="(fitFilterItem, FitFilterIndex) in list.fit_filter"
-                  :key="FitFilterIndex"
-                  :class="
-                    list.applied_filters.findIndex(
-                      (x) =>
-                        x === `${fitFilterItem.code}~${fitFilterItem.value_key}`
-                    ) >= 0
-                      ? 'active'
-                      : ''
+            <!-- <client-only> -->
+            <VueSlickCarousel ref="slick" v-bind="settings">
+              <div
+                class="category-filter"
+                v-for="(fitFilterItem, FitFilterIndex) in list.fit_filter"
+                :key="FitFilterIndex"
+                :class="
+                  list.applied_filters.findIndex(
+                    (x) =>
+                      x === `${fitFilterItem.code}~${fitFilterItem.value_key}`
+                  ) >= 0
+                    ? 'active'
+                    : ''
+                "
+              >
+                <span
+                  class="active-arrow-colse"
+                  @click="
+                    removeFilter(
+                      `${fitFilterItem.code}~${fitFilterItem.value_key}`
+                    )
                   "
-                >
-                  <span
-                    class="active-arrow-colse"
-                    @click="
-                      removeFilter(
-                        `${fitFilterItem.code}~${fitFilterItem.value_key}`
-                      )
-                    "
-                  ></span>
-                  <div class="item" @click="handleFitFilter(fitFilterItem)">
-                    <div class="filter-image">
-                      <img :src="fitFilterItem.image" alt="img" class="w-100" />
-                    </div>
-                    <div class="category-filter-title">
-                      <a>{{ fitFilterItem.value }}</a>
-                    </div>
+                ></span>
+                <div class="item" @click="handleFitFilter(fitFilterItem)">
+                  <div class="filter-image">
+                    <img :src="fitFilterItem.image" alt="img" class="w-100" />
+                  </div>
+                  <div class="category-filter-title">
+                    <a>{{ fitFilterItem.value }}</a>
                   </div>
                 </div>
-              </VueSlickCarousel>
-            </client-only>
+              </div>
+            </VueSlickCarousel>
+            <!-- </client-only> -->
           </div>
         </div>
         <!-- visual-filters end  sticky-->
@@ -417,26 +417,26 @@
                     <div class="offers">
                       <span>{{ singleProd.promotional_tags }}</span>
                     </div>
-                    <client-only>
-                      <LazyHydrate when-visible>
-                        <div
-                          class="list_slide"
-                          v-if="singleProd.gallery.length > 0"
-                        >
-                          <VueSlickCarousel v-bind="productSetting">
-                            <div
-                              class="item lazy-loader"
-                              v-for="(image, imgIndex) in singleProd.gallery"
-                              :key="imgIndex"
-                            >
-                              <Nuxt-link :to="`/product/${singleProd.url_key}`">
-                                <img v-lazy="image.image" class="w-100" />
-                              </Nuxt-link>
-                            </div>
-                          </VueSlickCarousel>
-                        </div>
-                      </LazyHydrate>
-                    </client-only>
+                    <!-- <client-only> -->
+                    <LazyHydrate when-visible>
+                      <div
+                        class="list_slide"
+                        v-if="singleProd.gallery.length > 0"
+                      >
+                        <VueSlickCarousel v-bind="productSetting">
+                          <div
+                            class="item lazy-loader"
+                            v-for="(image, imgIndex) in singleProd.gallery"
+                            :key="imgIndex"
+                          >
+                            <Nuxt-link :to="`/product/${singleProd.url_key}`">
+                              <img v-lazy="image.image" class="w-100" />
+                            </Nuxt-link>
+                          </div>
+                        </VueSlickCarousel>
+                      </div>
+                    </LazyHydrate>
+                    <!-- </client-only> -->
                     <div class="title-body">
                       <p class="p-price">
                         <span
@@ -903,17 +903,38 @@ export default {
     handleFitFilter(item) {
       this.$store.commit("updateFilterArray", { item });
     },
+
+    // you may also like
+    youMayLike() {
+      this.$store
+        .dispatch("pimAjax", {
+          method: "get",
+          url: `/pimresponse.php`,
+          token: this.$store.state.cartAjax.customer_token,
+          params: {
+            service: "like",
+            store: 1,
+            url_key: this.$route.params.productCategory,
+            noLoader: true,
+          },
+        })
+        .then((like) => {
+          if (like.response) {
+            this.likeData = like.result.likes;
+          }
+        })
+        .catch((error) => {
+          this.$globalError(`error from the all product page ${error}`);
+        });
+    },
   },
 
   computed: {
     calculateResult() {
       return this.list.Product_list.length;
-      // if (this.list.Product_list.length < 12) {
-      // } else {
-      // }
-      // return this.list.total_page * 12;
     },
     ...mapState(["list"]),
+
     // render seo tags
     title() {
       if (this.list.meta_title != "") return this.list.meta_title;
@@ -937,37 +958,18 @@ export default {
       this.$globalError(`error from the all product page ${error}`);
     }
   },
-  mounted() {
-    this.$store
-      .dispatch("pimAjax", {
-        method: "get",
-        url: `/pimresponse.php`,
-        token: this.$store.state.cartAjax.customer_token,
-        params: {
-          service: "like",
-          store: 1,
-          url_key: this.$route.params.productCategory,
-        },
-      })
-      .then((like) => {
-        if (like.response) {
-          this.likeData = like.result.likes;
-        }
-      })
-      .catch((error) => {
-        this.$globalError(`error from the all product page ${error}`);
-      });
-    // add window event listner for lazy loading products
-    window.addEventListener("scroll", this.updatePage);
-
+  async mounted() {
     if (this.$store.state.list.firstgtm == true) {
       this.servergtm();
     }
     this.$store.commit("firstgtmState");
 
     // lazy loading
-    this.$Lazyload.$once("loaded", () => {
+    this.$Lazyload.$once("loaded", async () => {
+      this.youMayLike();
       this.showYouMayLike = true;
+      // add window event listner for lazy loading products
+      window.addEventListener("scroll", this.updatePage);
     });
   },
   beforeDestroy() {

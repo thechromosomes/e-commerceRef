@@ -3,7 +3,7 @@
 export default async (context) => {
   try {
     // update mobile information
-    await context.store.commit("updateDeviceInfo", {
+    context.store.commit("updateDeviceInfo", {
       payload: context.$device.isMobile,
     });
 
@@ -26,22 +26,26 @@ export default async (context) => {
         customerSession,
         customerToken,
       };
-      let userInfo = await context.store.dispatch("cartAjax/actCartAjax", {
-        method: "post",
-        url: `/customer/account-details`,
-        token: context.store.state.cartAjax.customer_token,
-        params: {
-          customer_id: customerId,
-          store: 1,
-          customer_session: customerSession,
-        },
-      });
-      if (userInfo.success) {
-        userData.address = userInfo.data.address;
-        userData.maddress = userInfo.data.maddress;
-        userData.customerDetail = userInfo.data;
-        context.store.commit("cartAjax/updateUserInfo", { userData });
-      }
+      context.store
+        .dispatch("cartAjax/actCartAjax", {
+          method: "post",
+          url: `/customer/account-details`,
+          token: context.store.state.cartAjax.customer_token,
+          params: {
+            customer_id: customerId,
+            store: 1,
+            customer_session: customerSession,
+            noLoader: true
+          },
+        })
+        .then((userInfo) => {
+          if (userInfo.success) {
+            userData.address = userInfo.data.address;
+            userData.maddress = userInfo.data.maddress;
+            userData.customerDetail = userInfo.data;
+            context.store.commit("cartAjax/updateUserInfo", { userData });
+          }
+        });
     }
 
     // fetch cart detail via cookies
@@ -65,6 +69,7 @@ export default async (context) => {
         cart_token: cartToken,
         customer_session: customerSession,
         customer_id: customerId,
+        noLoader: true
       };
 
       context.store.commit("cartAjax/updateCartCookieData", { form });
@@ -89,7 +94,7 @@ export default async (context) => {
 
     // fetch wish list
     if (customerSession && customerId && customerToken) {
-      let response = await context.store
+      context.store
         .dispatch("cartAjax/actCartAjax", {
           method: "post",
           url: `/wishlist/customer-wishlist`,
@@ -97,8 +102,10 @@ export default async (context) => {
           params: {
             customer_id: customerId,
             customer_session: customerSession,
+            noLoader: true
           },
         })
+        .then((response) => {
           if (response.success) {
             context.store.commit("cartAjax/updateWishList", {
               payload: response.data,
@@ -106,6 +113,7 @@ export default async (context) => {
           } else {
             throw "no response from api " + response.message;
           }
+        });
     }
   } catch (error) {
     console.log("there is an error from fetchCookies plugin >>> ", error);

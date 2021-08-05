@@ -19,11 +19,13 @@
               >
                 <img
                   :src="item.desktop_image"
+                  v-if="!$device.isMobile"
                   alt="img"
                   class="desktop_only w-100"
                 />
                 <img
                   :src="item.mobile_image"
+                  v-if="$device.isMobile"
                   alt="img"
                   class="mobile_only w-100"
                 />

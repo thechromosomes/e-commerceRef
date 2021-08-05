@@ -30,7 +30,10 @@ export const state = () => ({
 
 export const actions = {
   actCartAjax({ rootState, commit, state }, data) {
-    commit("updatePageLoader", { display: true }, { root: true });
+    if (!data.params.noLoader) {
+      commit("updatePageLoader", { display: true }, { root: true });
+    }
+    // commit("updatePageLoader", { display: true }, { root: true });
     let request = data.params;
     var authOptions = {
       method: data.method,

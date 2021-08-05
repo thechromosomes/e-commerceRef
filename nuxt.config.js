@@ -1,4 +1,3 @@
-
 export default {
   head: {
     title: "Diesel Online Store: jeans, clothing, shoes, bags and watches.",
@@ -23,7 +22,12 @@ export default {
       },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-    script: [],
+    script: [
+      {
+        src: "/gumlet.js",
+        async: true,
+      },
+    ],
   },
 
   // Global CSS
@@ -55,10 +59,9 @@ export default {
   // Auto import components
   components: true,
 
-
   modules: [
     "@nuxtjs/axios",
-    // "@nuxtjs/pwa",
+    "@nuxtjs/pwa",
     "@nuxtjs/device",
     "@nuxtjs/gtm",
 
@@ -80,7 +83,7 @@ export default {
   ],
 
   // PWA module configuration
-    manifest: {
+  manifest: {
     name: "Diesel",
     lang: "en",
     title: "Diesel",
@@ -91,38 +94,37 @@ export default {
     ogImage: `icon.png`,
     icons: [
       {
-        src: `/icon.svg`,
+        src: `/icon.png`,
         size: "144x144",
-        type: "image/svg",
+        type: "image/png",
       },
       {
-        src: `/icon.svg`,
+        src: `/icon.png`,
         size: "128x128",
-        type: "image/svg",
+        type: "image/png",
       },
       {
-        src: `/icon.svg`,
+        src: `/icon.png`,
         size: "152x152",
-        type: "image/svg",
+        type: "image/png",
       },
       {
-        src: `/icon.svg`,
+        src: `/icon.png`,
         size: "180x180",
-        type: "image/svg",
+        type: "image/png",
       },
       {
-        src: `/icon.svg`,
+        src: `/icon.png`,
         size: "192x192",
-        type: "image/svg",
+        type: "image/png",
       },
       {
-        src: `/icon.svg`,
+        src: `/icon.png`,
         size: "256x256",
-        type: "image/svg",
+        type: "image/png",
       },
     ],
   },
-
 
   // google tag manger
   gtm: {
@@ -130,8 +132,8 @@ export default {
     enabled: true,
     debug: true,
     loadScript: true,
+    scriptDefer: true,
   },
-
 
   // error handler hook
   hooks: {
