@@ -36,7 +36,7 @@
                         {{ item.shipping_name }}
                       </td>
                       <td class="align-center" data-label="Order Total">
-                        {{ item.order_subtotal }}
+                        {{ item.grand_total }}
                       </td>
                       <td class="align-center" data-label="Action">
                         <NuxtLink :to="`/order/${item.order_quote_id}`"

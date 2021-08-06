@@ -20,7 +20,10 @@
               class="search-banner-title-mobile"
               v-if="list.Product_list.length > 0"
             >
+              <template v-if="list.pageHead">
+
               {{ list.pageHead.toUpperCase() }}
+              </template>
             </div>
             <div class="search-banner-result-count-mobile">
               <span> {{ list.totalProduct }} Results </span>
@@ -33,7 +36,9 @@
         >
           <div class="search-banner-content">
             <h1 class="search-banner-title search-black">
+              <template v-if="list.pageHead">
               {{ list.pageHead.toUpperCase() }}
+              </template>
             </h1>
 
             <span

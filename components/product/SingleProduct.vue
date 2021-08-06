@@ -15,7 +15,6 @@
           :key="imgIndex"
         >
           <a href="#" @click.prevent="toggleZoomImg(imgIndex)">
-            <!-- <img :src="image.image" alt="img" class="w-100" /> -->
             <img v-lazy="image.image" class="w-100" />
           </a>
         </div>
@@ -69,7 +68,6 @@
                 :key="imgIndex"
               >
                 <a href="#" @click.prevent="toggleZoomImg(imgIndex)">
-                  <!-- <img :src="image.image" alt="img" class="w-100" /> -->
                   <img v-lazy="image.image" class="w-100" />
                 </a>
               </div>

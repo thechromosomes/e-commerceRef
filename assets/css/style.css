@@ -327,6 +327,9 @@ button:hover {
   bottom: 50px;
   text-align: center;
 }
+.slide-img.banner-top .content-text{
+  bottom: 100px;
+} 
 .slide-img .content-text h4 {
   font-size: 18px;
   color: #fff;
@@ -334,6 +337,12 @@ button:hover {
   font-weight: 700;
   font-family: var(--fontFamily);
   margin: 20px 0px;
+}
+.slide-img.banner-top .content-text h4{
+    font-size: 36px;
+    color: #fff;
+    line-height: 1.4;
+    margin: 20px 0px 50px;
 }
 .slide-img .content-text .button {
   background: #000;
@@ -351,7 +360,35 @@ button:hover {
   background-color: #494949;
   border-color: #494949;
 }
-
+.slide-img.banner-top .content-text .button{
+    background: #fff;
+    border: 1px solid #fff;
+    color: #000;
+    letter-spacing: 1px;
+    padding: 15px 40px;
+    font-size: 16px;
+}
+.slide-img.banner-top .content-text .button:hover {
+  background-color: #000;
+  border-color: #000;
+  color: #fff;
+}
+.slide-img-banner-btn{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.slide-img-banner-btn a{
+  margin-bottom: 20px;
+  width: 200px;
+}
+@media(max-width:767px){
+  .slide-img.banner-top .content-text h4{
+        padding: 0 20px;
+    font-size: 32px;
+    margin-bottom: 70px;
+  }
+}
 /* product_details css design */
 
 .product_details.main_section {
