@@ -201,30 +201,30 @@
                 </li>
               </ul>
               <!-- <client-only> -->
-                <ul class="account-nav">
-                  <li
-                    class="nav-item help-link"
-                    v-if="
-                      $store.state.cartAjax.customer_id != null &&
-                      $store.state.cartAjax.customer_id != '' &&
-                      $store.state.cartAjax.customer_session != '' &&
-                      $store.state.cartAjax.customer_session != null
-                    "
-                    @click="showMobileMenu = false"
-                  >
-                    <Nuxt-link to="/Dashboard">Account</Nuxt-link>
-                  </li>
-                  <li
-                    class="nav-item help-link"
-                    v-else
-                    @click="showMobileMenu = false"
-                  >
-                    <Nuxt-link to="/login">Login</Nuxt-link>
-                  </li>
-                  <li class="nav-item help-link">
-                    <span @click="toggleHelpPopup()">Help</span>
-                  </li>
-                </ul>
+              <ul class="account-nav">
+                <li
+                  class="nav-item help-link"
+                  v-if="
+                    $store.state.cartAjax.customer_id != null &&
+                    $store.state.cartAjax.customer_id != '' &&
+                    $store.state.cartAjax.customer_session != '' &&
+                    $store.state.cartAjax.customer_session != null
+                  "
+                  @click="showMobileMenu = false"
+                >
+                  <Nuxt-link to="/Dashboard">Account</Nuxt-link>
+                </li>
+                <li
+                  class="nav-item help-link"
+                  v-else
+                  @click="showMobileMenu = false"
+                >
+                  <Nuxt-link to="/login">Login</Nuxt-link>
+                </li>
+                <li class="nav-item help-link">
+                  <span @click="toggleHelpPopup()">Help</span>
+                </li>
+              </ul>
               <!-- </client-only> -->
             </div>
           </div>
@@ -260,7 +260,9 @@
                   >
                 </li>
                 <li class="hover-item" @click="showHelpSidebar = false">
-                  <Nuxt-link class="hover-link" to="/cms/legal-area"
+                  <Nuxt-link
+                    class="hover-link"
+                    to="/cms/legal-area/?for=delivery-and-shipping-policy"
                     >Delivery
                   </Nuxt-link>
                 </li>
@@ -269,13 +271,16 @@
                     >Size Conversion
                   </Nuxt-link>
                 </li>
-                <li class="hover-item" @click="showHelpSidebar = false">
+                <li >
                   <Nuxt-link class="hover-link" to="/cms/contact-us"
                     >Send us a Message
                   </Nuxt-link>
                 </li>
-                <li>
-                  <Nuxt-link class="hover-link" to="/cms/allCmsView"
+                <li class="hover-item" @click="showHelpSidebar = false">
+                  <Nuxt-link
+                   
+                    class="hover-link"
+                    to="/cms/allCmsView"
                     >View All
                   </Nuxt-link>
                 </li>
@@ -314,7 +319,7 @@
                 <li class="hover-item">
                   <Nuxt-link
                     class="hover-link"
-                    to="/cms/your-order-status"
+                    to="/trackorder"
                     title="Order Status"
                     >Check your order
                   </Nuxt-link>
@@ -328,7 +333,9 @@
                   >
                 </li>
                 <li class="hover-item">
-                  <Nuxt-link class="hover-link" to="/cms/legal-area"
+                  <Nuxt-link
+                    class="hover-link"
+                    to="/cms/legal-area/?for=delivery-and-shipping-policy"
                     >Delivery
                   </Nuxt-link>
                 </li>
@@ -350,8 +357,18 @@
               </ul>
             </li>
             <!-- <client-only> -->
-              <li>
-                <nuxt-link
+            <li>
+              <nuxt-link
+                v-if="
+                  $store.state.cartAjax.customer_id != null &&
+                  $store.state.cartAjax.customer_id != '' &&
+                  $store.state.cartAjax.customer_session != '' &&
+                  $store.state.cartAjax.customer_session != null
+                "
+                to="/Dashboard"
+              >
+                <div
+                  class="login login-user"
                   v-if="
                     $store.state.cartAjax.customer_id != null &&
                     $store.state.cartAjax.customer_id != '' &&
@@ -360,108 +377,97 @@
                   "
                   to="/Dashboard"
                 >
-                  <div
-                    class="login login-user"
-                    v-if="
-                      $store.state.cartAjax.customer_id != null &&
-                      $store.state.cartAjax.customer_id != '' &&
-                      $store.state.cartAjax.customer_session != '' &&
-                      $store.state.cartAjax.customer_session != null
-                    "
-                    to="/Dashboard"
-                  >
-                    <span class="desktop_only"> account </span>
-                    <span class="mobile_only user-icon"></span>
-                    <div class="dropdown-menu-account">
-                      <ul>
-                        <li>
-                          <nuxt-link
-                            :class="[
-                              $route.path == '/Dashboard'
-                                ? 'active-account-sidebar'
-                                : '',
-                            ]"
-                            to="/Dashboard"
-                            >Account Dashboard</nuxt-link
-                          >
-                        </li>
-                        <li>
-                          <nuxt-link
-                            :class="[
-                              $route.path == '/addresses'
-                                ? 'active-account-sidebar'
-                                : '',
-                            ]"
-                            to="/addresses"
-                            >My Address Book</nuxt-link
-                          >
-                        </li>
-                        <li>
-                          <nuxt-link
-                            :class="[
-                              $route.path == '/myorder'
-                                ? 'active-account-sidebar'
-                                : '',
-                            ]"
-                            to="/myorder"
-                            >My Orders</nuxt-link
-                          >
-                        </li>
-                        <li>
-                          <a @click.prevent="logOut">Logout</a>
-                        </li>
-                      </ul>
-                    </div>
+                  <span class="desktop_only"> account </span>
+                  <span class="mobile_only user-icon"></span>
+                  <div class="dropdown-menu-account">
+                    <ul>
+                      <li>
+                        <nuxt-link
+                          :class="[
+                            $route.path == '/Dashboard'
+                              ? 'active-account-sidebar'
+                              : '',
+                          ]"
+                          to="/Dashboard"
+                          >Account Dashboard</nuxt-link
+                        >
+                      </li>
+                      <li>
+                        <nuxt-link
+                          :class="[
+                            $route.path == '/addresses'
+                              ? 'active-account-sidebar'
+                              : '',
+                          ]"
+                          to="/addresses"
+                          >My Address Book</nuxt-link
+                        >
+                      </li>
+                      <li>
+                        <nuxt-link
+                          :class="[
+                            $route.path == '/myorder'
+                              ? 'active-account-sidebar'
+                              : '',
+                          ]"
+                          to="/myorder"
+                          >My Orders</nuxt-link
+                        >
+                      </li>
+                      <li>
+                        <a @click.prevent="logOut">Logout</a>
+                      </li>
+                    </ul>
                   </div>
-                </nuxt-link>
-                <nuxt-link v-else to="/login">
-                  <div class="login">
-                    <span class="desktop_only">Login</span>
-                    <span class="mobile_only user-icon"></span>
-                  </div>
-                </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link to="/wishlist">
-                  <div class="wishlist">
-                    <span
-                      class="wishlist-full-count"
-                      v-if="
-                        Object.keys($store.state.cartAjax.wishlist).length != 0
-                      "
-                    >
-                      <span class="wishlist-icon wish-full"></span>
-                      <span class="wishlist-count">
-                        {{
-                          $store.state.cartAjax.wishlist.product.split(",")
-                            .length
-                        }}
-                      </span>
-                    </span>
-                    <span class="wishlist-icon wish-blank" v-else></span>
-                  </div>
-                </nuxt-link>
-              </li>
-              <li class="mini-cart">
-                <div class="carts">
-                  <nuxt-link to="/cart">
-                    <span
-                      class="cart-full-count"
-                      v-if="$store.state.cartAjax.cart_product.length != 0"
-                    >
-                      <span class="cart-icon cart-full"></span>
-                      <span class="cart-count">
-                        {{ $store.state.cartAjax.cart_product.length }}
-                      </span>
-
-                      <div class="minicart-wrapper">
-                        <Hovercart v-if="true" :handleClick="showhoverCart" />
-                      </div>
-                    </span>
-                    <span class="cart-icon cart-blank" v-else></span>
-                  </nuxt-link>
                 </div>
-              </li>
+              </nuxt-link>
+              <nuxt-link v-else to="/login">
+                <div class="login">
+                  <span class="desktop_only">Login</span>
+                  <span class="mobile_only user-icon"></span>
+                </div>
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="/wishlist">
+                <div class="wishlist">
+                  <span
+                    class="wishlist-full-count"
+                    v-if="
+                      Object.keys($store.state.cartAjax.wishlist).length != 0
+                    "
+                  >
+                    <span class="wishlist-icon wish-full"></span>
+                    <span class="wishlist-count">
+                      {{
+                        $store.state.cartAjax.wishlist.product.split(",").length
+                      }}
+                    </span>
+                  </span>
+                  <span class="wishlist-icon wish-blank" v-else></span>
+                </div>
+              </nuxt-link>
+            </li>
+            <li class="mini-cart">
+              <div class="carts">
+                <nuxt-link to="/cart">
+                  <span
+                    class="cart-full-count"
+                    v-if="$store.state.cartAjax.cart_product.length != 0"
+                  >
+                    <span class="cart-icon cart-full"></span>
+                    <span class="cart-count">
+                      {{ $store.state.cartAjax.cart_product.length }}
+                    </span>
+
+                    <div class="minicart-wrapper">
+                      <Hovercart v-if="true" :handleClick="showhoverCart" />
+                    </div>
+                  </span>
+                  <span class="cart-icon cart-blank" v-else></span>
+                </nuxt-link>
+              </div>
+            </li>
             <!-- </client-only> -->
           </ul>
         </div>

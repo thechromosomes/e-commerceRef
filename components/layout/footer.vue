@@ -72,10 +72,10 @@
                 <NuxtLink to="/trackorder">Order Status</NuxtLink>
               </div>
               <div class="link-text">
-                <NuxtLink to="/cms/legal-area">Delivery</NuxtLink>
+                <NuxtLink to="/cms/legal-area/?for=delivery-and-shipping-policy">Delivery</NuxtLink>
               </div>
               <div class="link-text">
-                <NuxtLink to="/cms/legal-area">Returns</NuxtLink>
+                <NuxtLink to="/cms/legal-area/?for=return-policy">Returns</NuxtLink>
               </div>
               <div class="link-text">
                 <NuxtLink class="link-text" to="/cms/size-conversion"
@@ -111,12 +111,12 @@
                 <a class="link-text" href="#">Privacy Policy</a>
               </div> -->
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/legal-area"
+                <NuxtLink class="link-text" to="/cms/legal-area/?for=privacy-policy"
                   >Privacy Policy</NuxtLink
                 >
               </div>
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/legal-area"
+                <NuxtLink class="link-text" to="/cms/legal-area/?for=delivery-and-shipping-policy"
                   >Shipping & Delivery Policy</NuxtLink
                 >
               </div>

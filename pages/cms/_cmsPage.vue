@@ -53,7 +53,7 @@ import Contentasset from "./Contentasset";
 
 export default {
   components: {
-    Contentasset
+    Contentasset,
   },
   data() {
     return {
@@ -63,7 +63,7 @@ export default {
       title: "",
       meta_description: "",
       meta_title: "",
-      meta_keyword: "diesel"
+      meta_keyword: "diesel",
     };
   },
 
@@ -73,13 +73,13 @@ export default {
       meta: [
         {
           name: "description",
-          content: this.meta_description
+          content: this.meta_description,
         },
         {
           property: "keywords",
-          content: this.meta_keyword
-        }
-      ]
+          content: this.meta_keyword,
+        },
+      ],
     };
   },
 
@@ -99,13 +99,13 @@ export default {
     vanillaJs() {
       var clickMe = document.querySelectorAll(".set");
       if (clickMe) {
-        clickMe.forEach(event => {
+        clickMe.forEach((event) => {
           event.addEventListener("click", () => {
             event.classList.toggle("active");
           });
         });
       }
-    }
+    },
   },
 
   async fetch() {
@@ -121,15 +121,34 @@ export default {
       let cmsData = await this.$store.dispatch("pimAjax", {
         method: "get",
         url: `/pimresponse.php`,
-        params: form
+        params: form,
       });
       if (cmsData.response.success != 0) {
         this.cmsData = cmsData.result;
+        let queryData = this.$route.query.for;
         for (var a in cmsData.result) {
-          this.tapData = cmsData.result[a].content;
-          this.tapDiff = cmsData.result[a].meta_title;
+          if (queryData) {
+            if (
+              cmsData.result[queryData] &&
+              cmsData.result[queryData].content
+            ) {
+              this.tapData = cmsData.result[queryData].content;
+              this.tapDiff = cmsData.result[queryData].meta_title;
+              this.title = cmsData.result[queryData].parent_name.replaceAll(
+                "-",
+                " "
+              );
+            } else {
+              this.tapData = cmsData.result[a].content;
+              this.tapDiff = cmsData.result[a].meta_title;
+              this.title = cmsData.result[a].parent_name.replaceAll("-", " ");
+            }
+          } else {
+            this.tapData = cmsData.result[a].content;
+            this.tapDiff = cmsData.result[a].meta_title;
+            this.title = cmsData.result[a].parent_name.replaceAll("-", " ");
+          }
 
-          this.title = cmsData.result[a].parent_name.replaceAll("-", " ");
           return;
         }
       } else {
@@ -148,7 +167,7 @@ export default {
     if (this.$route.params.cmsPage === "size-conversion") {
       this.vanillaJs();
     }
-  }
+  },
 };
 </script>
 <style scoped>

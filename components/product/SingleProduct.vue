@@ -357,7 +357,8 @@
                     </li>
                     <li class="product-information-element">
                       <a
-                        href="/cms/size-conversion"
+                      v-if="singleProductList.single_prod_data.gender"
+                        :href="`/cms/size-conversion/?for=${singleProductList.single_prod_data.gender.toLowerCase()}`"
                         target="_blank"
                         data-toggle="modal"
                         data-target="#sizeChartModal"
@@ -477,6 +478,47 @@ export default {
         autoplaySpeed: 2000,
       },
     };
+  },
+
+  jsonld() {
+    if (this.singleProductList.single_prod_data) {
+      return {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        name: this.singleProductList.single_prod_data.name,
+        image: this.singleProductList.single_prod_data.image,
+        description: this.singleProductList.single_prod_data.meta_description,
+        sku: this.singleProductList.single_prod_data.sku,
+        brand: {
+          "@type": "Brand",
+          name: this.singleProductList.single_prod_data.brand_name,
+        },
+        review: {
+          "@type": "Review",
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: "5",
+            bestRating: "5",
+          },
+          author: {
+            "@type": "Organization",
+            name: "Diesel India",
+          },
+        },
+        offers: {
+          "@type": "Offer",
+          url:
+            this.$store.state.BASE_URL +
+            "/product/" +
+            this.$store.state.singleProductList.url_key,
+          priceCurrency: "INR",
+          price: this.singleProductList.single_prod_data.selling_price,
+          availability: "https://schema.org/InStock",
+        },
+      };
+    } else {
+      return null;
+    }
   },
 
   head() {

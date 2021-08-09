@@ -38,33 +38,30 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="
-                  col-lg-9 col-12
-                  d-md-none d-lg-block d-sm-none d-lg-block d-none d-lg-block
-                "
-              >
+              <div class="col-lg-9 col-12">
                 <span>
                   <div class="contact-page">
                     <div class="container">
                       <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                           <div class="all-cms-content">
                             <div class="single_icon_holder">
                               <p>
                                 <span style="font-size: 14px"
-                                  ><a href="#">Check Order Status</a></span
+                                  ><NuxtLink to="/trackorder"
+                                    >Check Order Status</NuxtLink
+                                  ></span
                                 >
                               </p>
-                              <a href="#"
+                              <NuxtLink to="/trackorder"
                                 ><img
                                   alt="Go to uk.diesel.com (help-show subpage) #1"
                                   src="~assets/img/box_track.png"
-                              /></a>
+                              /></NuxtLink>
                             </div>
                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                           <div class="all-cms-content">
                             <div
                               class="single_icon_holder"
@@ -72,86 +69,59 @@
                             >
                               <p>
                                 <span style="font-size: 14px"
-                                  ><a href="">Delivery</a></span
+                                  ><nuxt-link to="/cms/return-your-order"
+                                    >Returns</nuxt-link
+                                  ></span
                                 >
                               </p>
-                              <a href="#"
-                                ><img
-                                  alt="Go to uk.diesel.com (help-show subpage) #2"
-                                  src="~assets/img/delivery_truck.png"
-                              /></a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="all-cms-content">
-                            <div
-                              class="single_icon_holder"
-                              style="padding-bottom: 20px"
-                            >
-                              <p>
-                                <span style="font-size: 14px"
-                                  ><a href="">Returns</a></span
-                                >
-                              </p>
-                              <a href="#">
+                              <NuxtLink to="/cms/return-your-order">
                                 <img
                                   alt="Go to uk.diesel.com (help-show subpage) #3"
                                   src="~assets/img/box_shipping.png"
-                              /></a>
+                              /></NuxtLink>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="row row-mt-30 pd-bottom">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
+                          <div class="all-cms-content">
+                            <div
+                              class="single_icon_holder"
+                              style="padding-bottom: 20px"
+                            >
+                              <p>
+                                <span style="font-size: 14px"
+                                  ><NuxtLink
+                                    to="/cms/legal-area/?for=delivery-and-shipping-policy"
+                                    >Delivery</NuxtLink
+                                  ></span
+                                >
+                              </p>
+                              <NuxtLink
+                                to="/cms/legal-area/?for=delivery-and-shipping-policy"
+                                ><img
+                                  alt="Go to uk.diesel.com (help-show subpage) #2"
+                                  src="~assets/img/delivery_truck.png"
+                              /></NuxtLink>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
                           <div class="all-cms-content">
                             <div class="single_icon_holder">
                               <p>
                                 <span style="font-size: 14px"
-                                  ><a href="">Size conversion</a></span
+                                  ><nuxt-link to="/cms/size-conversion"
+                                    >Size conversion</nuxt-link
+                                  ></span
                                 >
                               </p>
-                              <a href="#"
+                              <nuxt-link to="/cms/size-conversion"
                                 ><img
                                   alt="Go to uk.diesel.com (help-show subpage) #4"
                                   src="~assets/img/clothes_hanger.png"
-                              /></a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="all-cms-content">
-                            <div class="single_icon_holder">
-                              <p>
-                                <span style="font-size: 14px"
-                                  ><a href="#">Click and collect</a></span
-                                >
-                              </p>
-                              <a href="#"
-                                ><img
-                                  alt="Go to uk.diesel.com (help-show subpage) #5"
-                                  src="~assets/img/storefront.png"
-                              /></a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="all-cms-content">
-                            <div class="single_icon_holder">
-                              <p>
-                                <span style="font-size: 14px"
-                                  ><a href="#">Diesel Virtual Sessions</a></span
-                                >
-                              </p>
-                              <a href="#"
-                                ><img
-                                  alt="Go to inside.chat (PKVVX73WV subpage) #1"
-                                  height="103"
-                                  src="~assets/img/new3-virtual-appointment.png"
-                                  title=""
-                                  width="67"
-                              /></a>
+                              /></nuxt-link>
                             </div>
                           </div>
                         </div>

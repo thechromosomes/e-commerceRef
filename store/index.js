@@ -1,7 +1,7 @@
 export const state = () => ({
   // base URL is using in og tags and log generator API >>> all product
   // BASE_URL: "https://di.hostx1.de",
-  BASE_URL: "http://localhost:9000",
+  BASE_URL: "https://shop.dieselindia.com/",
   pimApi: "https://dipim.dieselindia.com//pim",
   list: {
     firstgtm: true,

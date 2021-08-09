@@ -21,8 +21,7 @@
               v-if="list.Product_list.length > 0"
             >
               <template v-if="list.pageHead">
-
-              {{ list.pageHead.toUpperCase() }}
+                {{ list.pageHead.toUpperCase() }}
               </template>
             </div>
             <div class="search-banner-result-count-mobile">
@@ -37,7 +36,7 @@
           <div class="search-banner-content">
             <h1 class="search-banner-title search-black">
               <template v-if="list.pageHead">
-              {{ list.pageHead.toUpperCase() }}
+                {{ list.pageHead.toUpperCase() }}
               </template>
             </h1>
 
@@ -587,6 +586,24 @@ export default {
       openSort: false,
       likeData: [],
       mobileFilter: false,
+    };
+  },
+
+  jsonld() {
+    let items = [];
+    this.list.Product_list.forEach((item, index) => {
+      items.push({
+        "@type": "ListItem",
+        position: index + 1,
+        url: this.$store.state.BASE_URL + "/product/" + item.url,
+        name: item.name,
+        image: item.image,
+      });
+    });
+    return {
+      "@context": "https://schema.org/",
+      "@type": "ItemList",
+      itemListElement: items,
     };
   },
 
