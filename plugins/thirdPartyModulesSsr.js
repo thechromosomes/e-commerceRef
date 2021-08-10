@@ -1,6 +1,9 @@
 import Vue from 'vue';
 
 import SimpleVueValidation from 'simple-vue-validator';
+import NuxtJsonld from 'nuxt-jsonld';
+
+Vue.use(NuxtJsonld);
 Vue.use(SimpleVueValidation);
 
 Vue.filter("numberWithCommas", (num) => {

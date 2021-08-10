@@ -595,7 +595,7 @@ export default {
       items.push({
         "@type": "ListItem",
         position: index + 1,
-        url: this.$store.state.BASE_URL + "/product/" + item.url,
+        url: this.$store.state.BASE_URL + "/product/" + item.url_key,
         name: item.name,
         image: item.image,
       });

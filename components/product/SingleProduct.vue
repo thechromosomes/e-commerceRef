@@ -254,7 +254,7 @@
                 role="presentation"
                 class="store-locator-pin icon-pin"
               ></span>
-              <a href="#" @click="openInStorePickUp()">In-store pickup</a>
+              <a href="#" @click="openInStorePickUp()">Check Availability</a>
             </div>
             <div class="product-collapsible-sections">
               <div
@@ -396,7 +396,7 @@
           <span class="close-icon"></span>
         </a>
         <div class="titel">
-          <h2>IN-STORE PICKUP</h2>
+          <h2>Check Availability</h2>
         </div>
         <div class="model-content">
           <div class="srtor-search-box">

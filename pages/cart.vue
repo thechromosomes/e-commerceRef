@@ -203,7 +203,7 @@
                           $store.state.cartAjax.discount_amount != null
                         "
                       >
-                        Dsicount:
+                        Discount:
                         <strong>
                           <span class="price"
                             >₹{{
@@ -426,7 +426,7 @@ export default {
             error: null,
             data: response,
           });
-          this.$toast.open(response.message);
+          // this.$toast.open(response.message);
         } else {
           this.$toast.error(response.message);
         }

@@ -76,7 +76,6 @@
                   </tr>
                   <tr>
                     <td scope="row">
-                      <!-- <strong>Your Order Number:</strong>  -->
                     </td>
                     <td scope="row"></td>
                     <td scope="row"></td>

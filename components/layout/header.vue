@@ -271,16 +271,13 @@
                     >Size Conversion
                   </Nuxt-link>
                 </li>
-                <li >
+                <li>
                   <Nuxt-link class="hover-link" to="/cms/contact-us"
                     >Send us a Message
                   </Nuxt-link>
                 </li>
                 <li class="hover-item" @click="showHelpSidebar = false">
-                  <Nuxt-link
-                   
-                    class="hover-link"
-                    to="/cms/allCmsView"
+                  <Nuxt-link class="hover-link" to="/cms/allCmsView"
                     >View All
                   </Nuxt-link>
                 </li>

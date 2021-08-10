@@ -25,6 +25,7 @@
     "jquery": "^3.6.0",
     "nuxt": "^2.14.12",
     "nuxt-fontawesome": "^0.4.0",
+    "nuxt-jsonld": "^1.5.2",
     "query-string": "^4.3.4",
     "simple-vue-validator": "^0.16.0",
     "vue-cookies": "^1.7.4",

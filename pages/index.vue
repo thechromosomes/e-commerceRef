@@ -155,6 +155,32 @@ export default {
       },
     };
   },
+
+  jsonld() {
+    return {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      name: "diesel india",
+      image: "/icon.png",
+      "@id": "",
+      url: this.$store.state.BASE_URL,
+      telephone: "022- 48930102",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${this.$store.state.BASE_URL}/searchpage/?q={search_term_string}`,
+        "query-input": "required name=search_term_string",
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress:
+          "Diesel Fashion India Reliance Pvt. Ltd, 7th Floor, Maker Towers E, Cuffe Parade",
+        addressLocality: "Mumbai",
+        postalCode: "400005",
+        addressCountry: "IN",
+      },
+      sameAs: [" https://www.instagram.com/diesel/"],
+    };
+  },
   head() {
     return {
       title: this.title,
