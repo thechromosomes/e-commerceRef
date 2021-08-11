@@ -16,9 +16,7 @@
                 @click="$router.back()"
               ></span>
             </div>
-            <div
-              class="search-banner-title-mobile"
-            >
+            <div class="search-banner-title-mobile">
               <template v-if="list.pageHead">
                 {{ list.pageHead.toUpperCase() }}
               </template>
@@ -28,9 +26,7 @@
             </div>
           </div>
         </div>
-        <div
-          class="search-banner-desktop desktop_only"
-        >
+        <div class="search-banner-desktop desktop_only">
           <div class="search-banner-content">
             <h1 class="search-banner-title search-black">
               <template v-if="list.pageHead">
@@ -68,7 +64,7 @@
                 :key="FitFilterIndex"
                 :class="
                   list.applied_filters.findIndex(
-                    (x) =>
+                    x =>
                       x === `${fitFilterItem.code}~${fitFilterItem.value_key}`
                   ) >= 0
                     ? 'active'
@@ -208,7 +204,7 @@
                                       class="selection-box"
                                       :class="
                                         list.applied_filters.findIndex(
-                                          (x) =>
+                                          x =>
                                             x ===
                                             `${item.code}~${item.value_key}`
                                         ) >= 0
@@ -305,7 +301,7 @@
                         class="selection-box"
                         :class="
                           list.applied_filters.findIndex(
-                            (x) => x === `${item.code}~${item.value_key}`
+                            x => x === `${item.code}~${item.value_key}`
                           ) >= 0
                             ? 'selected-box'
                             : 'not-selected-box'
@@ -323,8 +319,8 @@
     </div>
 
     <!-- applied filters -->
-    <div class="desktop_only" v-if="list.applied_filters.length > 0">
-      <div class="filter-bar">
+    <div class="" v-if="list.applied_filters.length > 0">
+      <div class="filter-bar mobile_filter">
         <div class="filter-clearall-container">
           <a
             class="reset"
@@ -470,8 +466,8 @@
               class="no_products text-center"
               v-else-if="
                 list.Product_list.length == 0 &&
-                list.product_loader == false &&
-                $store.state.pageLoader == false
+                  list.product_loader == false &&
+                  $store.state.pageLoader == false
               "
             >
               <h1>Sorry :(</h1>
@@ -548,7 +544,7 @@ export default {
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: false,
-        arrows: true,
+        arrows: true
       },
       settings: {
         infinite: true,
@@ -565,8 +561,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 3.5,
-            },
+              slidesToShow: 3.5
+            }
           },
           {
             breakpoint: 767,
@@ -574,16 +570,16 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 3,
-            },
-          },
-        ],
+              slidesToShow: 3
+            }
+          }
+        ]
       },
       sorting: "default",
       openFiltter: false,
       openSort: false,
       likeData: [],
-      mobileFilter: false,
+      mobileFilter: false
     };
   },
 
@@ -595,13 +591,13 @@ export default {
         position: index + 1,
         url: this.$store.state.BASE_URL + "/product/" + item.url_key,
         name: item.name,
-        image: item.image,
+        image: item.image
       });
     });
     return {
       "@context": "https://schema.org/",
       "@type": "ItemList",
-      itemListElement: items,
+      itemListElement: items
     };
   },
 
@@ -612,29 +608,29 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.list.meta_description,
+          content: this.list.meta_description
         },
         {
           hid: "keyword",
           name: "keyword",
-          content: this.list.meta_keyword,
+          content: this.list.meta_keyword
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title",
+          property: "og:title"
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description",
+          property: "og:description"
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url",
-        },
-      ],
+          property: "og:url"
+        }
+      ]
     };
   },
 
@@ -647,8 +643,8 @@ export default {
         category: this.list.pageHead,
         ecommerce: {
           currencyCode: "INR",
-          impressions: this.gtm_product_impressions,
-        },
+          impressions: this.gtm_product_impressions
+        }
       });
     },
     async getProductList(page) {
@@ -657,10 +653,15 @@ export default {
       try {
         await this.$store.commit("prepareState", {
           routeParam: this.$route.params.productCategory,
-          pageNo: pageNumber,
+          pageNo: pageNumber
         });
-        let { service, store, pass_url_key, page, count } =
-          this.$store.state.list;
+        let {
+          service,
+          store,
+          pass_url_key,
+          page,
+          count
+        } = this.$store.state.list;
 
         let form = {};
         form.service = service;
@@ -690,13 +691,13 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
           await this.$store.commit("updateState", {
             error: null,
-            data: response,
+            data: response
           });
           // // google tag manager
           this.gtm_product_impressions = [];
@@ -719,7 +720,7 @@ export default {
                 category,
                 list,
                 position,
-                appliedFilter,
+                appliedFilter
               });
             }
             this.$gtm.push({
@@ -729,8 +730,8 @@ export default {
               category: response.result.products[0].category,
               ecommerce: {
                 currencyCode: "INR",
-                impressions: this.gtm_product_impressions,
-              },
+                impressions: this.gtm_product_impressions
+              }
             });
           }
           if (process.browser && pageNumber == 1) {
@@ -752,8 +753,7 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
@@ -771,7 +771,7 @@ export default {
 
     updateFilterArray(item) {
       this.$store.commit("updateFilterArray", {
-        item,
+        item
       });
       this.activeDropdown = -1;
     },
@@ -787,8 +787,8 @@ export default {
         query: {
           ...this.$route.query,
           sort: event.code,
-          sort_dir: event.dir,
-        },
+          sort_dir: event.dir
+        }
       });
       this.showSort = false;
     },
@@ -809,10 +809,10 @@ export default {
       if (Object.keys(wishList).length != 0) {
         const groupResult = wishList.group
           .split(",")
-          .filter((word) => word == groupId);
+          .filter(word => word == groupId);
         const productResult = wishList.product
           .split(",")
-          .filter((word) => word == ProductId);
+          .filter(word => word == ProductId);
 
         if (groupResult.length > 0 && productResult.length > 0) {
           return "wishlist-active";
@@ -835,7 +835,7 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id,
+          group_id: item.group_id
         };
 
         if (data === "add") {
@@ -843,21 +843,21 @@ export default {
             method: "post",
             url: `/wishlist/add-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
         } else {
           var response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/wishlist/remove-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
         }
 
         if (response.success) {
           this.$toast.open(response.message);
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data,
+            payload: response.data
           });
 
           this.$gtm.push({
@@ -873,11 +873,11 @@ export default {
                     id: item.sku,
                     price: item.selling_price,
                     category: item.category,
-                    position: 1,
-                  },
-                ],
-              },
-            },
+                    position: 1
+                  }
+                ]
+              }
+            }
           });
         } else {
           throw "no response from api";
@@ -895,7 +895,7 @@ export default {
       if (window.scrollY >= loader_position - 2000) {
         await this.$store.commit("universalListMutate", {
           data: parseInt(this.list.page) + 1,
-          changeState: "page",
+          changeState: "page"
         });
         if (
           this.list.page <= this.list.total_page &&
@@ -935,18 +935,18 @@ export default {
             service: "like",
             store: 1,
             url_key: this.$route.params.productCategory,
-            noLoader: true,
-          },
+            noLoader: true
+          }
         })
-        .then((like) => {
+        .then(like => {
           if (like.response) {
             this.likeData = like.result.likes;
           }
         })
-        .catch((error) => {
+        .catch(error => {
           this.$globalError(`error from the all product page ${error}`);
         });
-    },
+    }
   },
 
   computed: {
@@ -966,7 +966,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
+    }
   },
 
   async fetch() {
@@ -997,17 +997,17 @@ export default {
     this.$store.commit("flushActiveUrlKey");
   },
   watch: {
-    "$route.query": function () {
+    "$route.query": function() {
       this.getProductList();
     },
 
     "$store.state.list.sortingData": {
       deep: true,
-      handler: function () {
+      handler: function() {
         // this.sorting.code = this.list.sortingData.code;
         // this.sorting.dir = this.list.sortingData.dir;
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>

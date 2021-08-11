@@ -678,6 +678,7 @@
     padding: 0;
     padding-bottom: 10px;
   }
+
   .filter-bar {
     display: unset;
     align-items: unset;
@@ -697,6 +698,34 @@
   }
   .filter-value {
     display: block;
+  }
+  .filter-bar.mobile_filter {
+    display: flex;
+    position: static;
+    width: 100%;
+    padding-top: 0;
+  }
+  .filter-bar.mobile_filter .filter-clearall-container {
+    width: 100px;
+    margin: 0;
+  }
+  .filter-bar.mobile_filter .filter-clearall-container a {
+    font-size: 10px;
+  }
+  .filter-close-container {
+    font-size: 9px;
+  }
+  .icon-close-black.icon-close-black-filter {
+    transform: scale(0.5);
+    left: -20px;
+  }
+  .filter-bar.mobile_filter .filters-close-main-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  .filter-bar.mobile_filter .filter-value {
+    margin-right: 20px;
   }
   .wish-list-icon.single {
     top: 77px;
