@@ -410,7 +410,7 @@ export default {
             });
             this.showForm = false;
           } else {
-            for (const [key, value] of Object.entries(response.data)) {
+            for (const [key, value] of Object.entries(JSON.parse(response.data))) {
               this.$toast.error(value[0]);
             }
             throw response.message;

@@ -26,6 +26,7 @@ export const state = () => ({
   showLogIn: false,
   discount_code: "",
   gtm_product: [],
+  show_cod: null
 });
 
 export const actions = {
@@ -81,6 +82,7 @@ export const mutations = {
           state.discount_amount = data.data.discount_amount;
           state.address = data.data.address;
           state.maddress = data.data.maddress;
+          state.show_cod = data.data.show_cod
           state.discount_code = data.data.discount_code;
           if (Object.keys(data.data.customer).length != 0) {
             state.customerDetail = data.data.customer;

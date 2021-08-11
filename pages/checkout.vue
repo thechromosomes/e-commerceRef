@@ -639,7 +639,10 @@
                     </button>
                   </div>
 
-                  <div class="shipping-method-inner">
+                  <div
+                    class="shipping-method-inner"
+                    v-if="$store.state.cartAjax.show_cod == 1"
+                  >
                     <a
                       @click.prevent="switchPayment('cod')"
                       class="paying-div"

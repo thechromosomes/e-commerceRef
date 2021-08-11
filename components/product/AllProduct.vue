@@ -18,7 +18,6 @@
             </div>
             <div
               class="search-banner-title-mobile"
-              v-if="list.Product_list.length > 0"
             >
               <template v-if="list.pageHead">
                 {{ list.pageHead.toUpperCase() }}
@@ -31,7 +30,6 @@
         </div>
         <div
           class="search-banner-desktop desktop_only"
-          v-if="list.Product_list.length > 0"
         >
           <div class="search-banner-content">
             <h1 class="search-banner-title search-black">
