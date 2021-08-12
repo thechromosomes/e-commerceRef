@@ -47,7 +47,7 @@
                         </div>
                       </td>
                       <td class="align-center" data-label="Price">
-                        {{ items.price }}
+                        {{ items.selling_price }}
                       </td>
                       <td class="align-center" data-label="Quantity">
                         {{ items.qty }}
@@ -67,9 +67,9 @@
                           @click="cancelOrder(items.bag_id)"
                           v-if="
                             items.bag_id != null &&
-                            items.cancel_item == 1 &&
-                            items.bundle_set_id == null &&
-                            items.item_status != 'Cancelled'
+                              items.cancel_item == 1 &&
+                              items.bundle_set_id == null &&
+                              items.item_status != 'Cancelled'
                           "
                           ><u>cancel</u></span
                         >
@@ -78,7 +78,7 @@
                           @click="returnorder(items.bag_id, index)"
                           v-else-if="
                             items.return_item == 1 &&
-                            items.bundle_set_id == null
+                              items.bundle_set_id == null
                           "
                           >Return</span
                         >
@@ -246,7 +246,7 @@
                       />
                     </div>
                   </template>
-                  <!-- cod from End -->  
+                  <!-- cod from End -->
                   <div class="field col-md-4 col-12 mt-2 text-right w-100">
                     <button class="w-100 submit sp-black-btn">Submit</button>
                   </div>
@@ -264,7 +264,7 @@ import axios from "axios";
 import Sidebar from "@/components/my-account/Sidebar.vue";
 export default {
   components: {
-    Sidebar,
+    Sidebar
   },
   data() {
     return {
@@ -304,8 +304,8 @@ export default {
         pincode: "",
         city: "",
         state: "",
-        phone: "",
-      },
+        phone: ""
+      }
     };
   },
 
@@ -334,14 +334,14 @@ export default {
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
           store: this.$store.state.list.store,
-          order_id: this.$route.params.orderDetail,
+          order_id: this.$route.params.orderDetail
         };
 
         let response = await this.$store.dispatch("cartAjax/actCartAjax", {
           method: "post",
           url: `/customer/order-details`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         });
 
         if (response.success) {
@@ -392,9 +392,9 @@ export default {
           method: "post",
           url: `/order/get-cancel-return-reasons`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         })
-        .then((response) => {
+        .then(response => {
           if (response.success === true) {
             this.reason = response.data;
             this.reason_popup = true;
@@ -402,7 +402,7 @@ export default {
             this.$toast.error(response.message);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           if (error.message === "Network Error") {
             this.$toast.error(
               "Oops there seems to be some Network issue, please try again."
@@ -436,9 +436,9 @@ export default {
           method: "post",
           url: `/order/cancel-item`,
           token: this.$store.state.cartAjax.customer_token,
-          params: form,
+          params: form
         })
-        .then((response) => {
+        .then(response => {
           if (response.success === true) {
             this.reason_popup = false;
             this.$toast.success(response.message);
@@ -447,7 +447,7 @@ export default {
             this.$toast.error(response.message);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           if (error.message === "Network Error") {
             this.$toast.error(
               "Oops there seems to be some Network issue, please try again."
@@ -462,12 +462,12 @@ export default {
         if (this.ifsc_code != "") {
           axios
             .get(`https://ifsc.razorpay.com/${this.ifsc_code}`)
-            .then((response) => {
+            .then(response => {
               this.bank_name = response.data.BANK;
               this.branch_name = response.data.BRANCH;
               this.cod_refund();
             })
-            .catch((error) => {
+            .catch(error => {
               this.$toast.error("Please Enter Correct IFSC Code");
             });
         } else {
@@ -497,9 +497,9 @@ export default {
             method: "post",
             token: this.$store.state.cartAjax.customer_token,
             url: `/customer/return-request`,
-            params: form,
+            params: form
           })
-          .then((response) => {
+          .then(response => {
             if (response.success === true) {
               if (this.ifsc_code != "") {
                 this.cod_refund();
@@ -513,7 +513,7 @@ export default {
               this.$toast.error(response.message);
             }
           })
-          .catch((error) => {
+          .catch(error => {
             if (error.message === "Network Error") {
               this.$store.state.error_message = error.message;
             }
@@ -539,9 +539,9 @@ export default {
           method: "post",
           token: this.$store.state.cartAjax.customer_token,
           url: `/customer/cod-return`,
-          params: form,
+          params: form
         })
-        .then((response) => {
+        .then(response => {
           this.request_return();
           this.account_holder = "";
           this.account_no = "";
@@ -565,9 +565,9 @@ export default {
           method: "post",
           token: this.$store.state.cartAjax.customer_token,
           url: `/order/get-cancel-return-reasons`,
-          params: form,
+          params: form
         })
-        .then((response) => {
+        .then(response => {
           if (response.success === true) {
             this.reason = response.data;
             this.return_popup = true;
@@ -575,7 +575,7 @@ export default {
             this.$toast.error(response.message);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           if (error.message === "Network Error") {
             this.$toast.error(
               "Oops there seems to be some Network issue, please try again."
@@ -587,8 +587,8 @@ export default {
     hidePopUP() {
       this.reason_popup = false;
       this.return_popup = false;
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>

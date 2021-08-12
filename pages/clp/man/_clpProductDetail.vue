@@ -1,209 +1,81 @@
 <template>
   <div class="clp_pages">
     <div v-html="cmsData.content"></div>
-
-    <Slideproduct :slideImg="denimMustHave" />
-
-    <CategorySlider :slideImg="jackets" />
-    <TowImages :slideImg="trending" />
-
-    <NewIn :slideImg="newIn" />
-    <span v-html="cmsData.content_1"></span>
-    <div class="accessories">
-      <div class="accessories-content">
-        <div class="left-content">
-          <h4>
-            BAGS & <br />
-            ACCESSORIES
-          </h4>
-          <a href="/collections/mlp-all-bags/"> VIEW ALL BAGS</a>
-          <a href="/collections/mlp-all-accessories/">
-            NEW ACCESSORIES</a
-          >
-        </div>
-        <div class="right-content">
-          <div
-            class="slide_new_in"
-            v-if="accessories && accessories.length > 0"
-          >
-            <client-only>
-              <VueSlickCarousel ref="slick" v-bind="settings4">
-                <div
-                  class="item"
-                  v-for="(item, index) in accessories"
-                  :key="index"
-                >
-                  <NuxtLink :to="`/product/${item.url_key}`"
-                    ><img :src="item.image" alt="img" class="w-100"
-                  /></NuxtLink>
-                  <div class="tile-body">
-                    <p>{{ item.color }}</p>
-                    <NuxtLink :to="`/product/${item.url_key}`">
-                      {{ item.name }}</NuxtLink
-                    >
-                  </div>
-                </div>
-              </VueSlickCarousel>
-            </client-only>
-          </div>
-        </div>
-      </div>
+    <div class="fit_guide">
+      <FitGuide :FitGuides="FitGuides" />
     </div>
+    <NewIn :slideImg="newIn" />
+    <div class="footwear">
+      <NewIn :slideImg="Footwear" />
+    </div>
+
+    <span v-html="cmsData.content_1"></span>
   </div>
 </template>
 
 <script>
-import VueSlickCarousel from "vue-slick-carousel";
 import NewIn from "../clpComponents/newIn";
-import Slideproduct from "../clpComponents/Slideproduct";
-import CategorySlider from "../clpComponents/categorySlider";
-import TowImages from "../clpComponents/towImages";
+import FitGuide from "../clpComponents/FitGuide";
+
 import { mapState } from "vuex";
 export default {
   components: {
-    VueSlickCarousel,
     NewIn,
-    CategorySlider,
-    TowImages,
-    Slideproduct,
+    FitGuide
   },
   data() {
     return {
       slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
+      FitGuides: [
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/man-denim-skinny.jpg?w=200&dpr=1.0",
+          name: "SKINNY",
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~skinny"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/man-denim-slim.jpg?w=200&dpr=1.0",
+          name: "Slim",
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/man-denim-straight.jpg?w=200&dpr=1.0",
+          name: "Straight",
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~straight"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/man-denim-tapered.jpg?w=200&dpr=1.0",
+          name: "Tapered",
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/man-denim-carrot.jpg?w=200&dpr=1.0",
+          name: "Carrot",
+          url:
+            "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered&filter=fit~carrot"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/man-denim-bootcut.jpg?w=200&dpr=1.0",
+          name: "Bootcut",
+          url:
+            "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered&filter=fit~carrot&filter=fit~bootcut"
+        }
+      ],
       jackets: [],
-      newIn:[],
-      denimMustHave: [],
+      newIn: [],
+      Footwear: [],
       accessories: [],
       trending: [],
-      cmsData: [],
-      settings: {
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        dots: true,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-      },
-      settings2: {
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              centerMode: true,
-              centerPadding: "0px",
-              slidesToShow: 3.5,
-            },
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
-      },
-      settings3: {
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: true,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
-      },
-
-      settings4: {
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
-      },
+      cmsData: []
     };
   },
   computed: {
-    ...mapState(["is_new"]),
+    ...mapState(["is_new"])
   },
 
   methods: {
@@ -221,7 +93,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
@@ -233,12 +105,11 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
-    },
+    }
   },
   async created() {
     let form = {};
@@ -249,15 +120,15 @@ export default {
     let cmsData = await this.$store.dispatch("pimAjax", {
       method: "get",
       url: `/pimresponse.php`,
-      params: form,
+      params: form
     });
     this.cmsData = cmsData.result["man-clp"];
     this.getProductList("man-apparel-jackets", "jackets");
     this.getProductList("mlp-new-in", "newIn");
-    this.getProductList("mlp-denim-must-have", "denimMustHave");
+    this.getProductList("man-shoes-all-shoes", "Footwear");
     this.getProductList("mlp-best sellers", "trending");
     this.getProductList("mlp-all-accessories", "accessories");
-  },
+  }
 };
 </script>
 

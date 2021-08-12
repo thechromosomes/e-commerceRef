@@ -2,14 +2,33 @@
   <div class="clp_pages kid">
     <div v-html="cmsData.content"></div>
 
-    <ProductSilder :slideImg="jeans" />
-    <div v-html="cmsData.content_1"></div>
+    <NewIn :slideImg="newIn" />
+    <!-- <ProductSilder :slideImg="jeans" /> -->
+    <!-- <div v-html="cmsData.content_1"></div> -->
 
+    <div class="shop_by_category kids">
+      <div class="shop_by_category_items w-100">
+        <div
+          class="item"
+          v-for="(ShopByItem, ShopByIndex) in ShopByCategory"
+          :key="ShopByIndex"
+        >
+          <div class="img-box">
+            <img :src="ShopByItem.image" alt="img" class="w-100" />
+          </div>
+          <h5>{{ ShopByItem.name }}</h5>
+        </div>
+      </div>
+    </div>
     <!-- new design -->
-    <div class="item-four-show" v-if="jboys && jboys.length > 0">
+    <div class="item-four-show d-none" v-if="jboys && jboys.length > 0">
       <h4 class="title" style="background: #2c3e50">JUNIOR BOYS & GIRLS</h4>
       <div class="item-box">
-        <div class="item" v-for="(item, index) in jboys.slice(0, 8)" :key="index">
+        <div
+          class="item"
+          v-for="(item, index) in jboys.slice(0, 8)"
+          :key="index"
+        >
           <img :src="item.image" alt="" class="w-100" />
           <div class="content">
             <h3 class="module-title">
@@ -26,94 +45,36 @@
 </template>
 
 <script>
-import VueSlickCarousel from "vue-slick-carousel";
-import ProductSilder from "../clpComponents/productSilder";
+import NewIn from "../clpComponents/newIn";
 export default {
-  components: { VueSlickCarousel, ProductSilder },
+  components: {
+    NewIn
+  },
   data() {
     return {
       slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
       Item: [1, 2, 3, 4],
-      jeans: [],
       jboys: [],
       cmsData: [],
-
-      settings2: {
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              centerMode: true,
-              centerPadding: "0px",
-              slidesToShow: 3.5,
-            },
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
-      },
-      settings3: {
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: true,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
-      },
+      newIn: [],
+      ShopByCategory: [
+        {
+          image: require("@/assets/img/2placeholder.jpg"),
+          name: "Denim"
+        },
+        {
+          image: require("@/assets/img/2placeholder.jpg"),
+          name: "T-shirts"
+        },
+        {
+          image: require("@/assets/img/2placeholder.jpg"),
+          name: "Shirts"
+        },
+        {
+          image: require("@/assets/img/2placeholder.jpg"),
+          name: "Loungewear"
+        }
+      ]
     };
   },
   methods: {
@@ -131,7 +92,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
@@ -143,12 +104,11 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
-    },
+    }
   },
   async created() {
     let form = {};
@@ -159,12 +119,12 @@ export default {
     let cmsData = await this.$store.dispatch("pimAjax", {
       method: "get",
       url: `/pimresponse.php`,
-      params: form,
+      params: form
     });
     this.cmsData = cmsData.result["kid-clp"];
-    this.getProductList("klp-denim-must-have", "jeans");
     this.getProductList("kid-apparel-all-apparel", "jboys");
-  },
+    this.getProductList("kid-new-arrivals", "newIn");
+  }
 };
 </script>
 

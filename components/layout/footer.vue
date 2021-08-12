@@ -1,8 +1,8 @@
 <template>
   <footer class="footer">
-    <!-- <div class="footer-container" id="bb-footer-clone">
+    <div class="footer-container" id="bb-footer-clone">
       <div class="row newsletter-social">
-        <div class="col-lg-8 newsletter">
+        <!-- <div class="col-lg-8 newsletter">
           <div class="content-asset">
             <div class="complete-registration">
               <div class="img-box">
@@ -23,8 +23,62 @@
               </div>
             </div>
           </div>
+        </div> -->
+        <div class="newsletter col-lg-6 col-12">
+          <div id="bb-footer-original" class="footer-container">
+            <div class="newsletter-social">
+              <div class="content-asset">
+                <h5>SIGN UP FOR THE NEWSLETTER</h5>
+                <div class="form-box">
+                  <div class="email-box">
+                    <input
+                      type="text"
+                      placeholder="Enter your Email address*"
+                    />
+                  </div>
+                  <div class="gender">
+                    <div class="radio-button-wrapper">
+                      <input
+                        class="gender-radio is-valid"
+                        type="radio"
+                        id="formMaleId"
+                        name="gender"
+                        value="male"
+                      /><label for="formMaleId">Men</label>
+                    </div>
+                    <div class="radio-button-wrapper">
+                      <input
+                        class="gender-radio is-valid"
+                        type="radio"
+                        id="formFemaleId"
+                        name="gender"
+                        value="female"
+                      /><label for="formFemaleId">Women</label>
+                    </div>
+                  </div>
+                  <p class="privacy-policy-newsletter">
+                    By clicking Sign up you have read and agreed to our
+                    <a href="" class="more"
+                      ><span class="svgMore"></span
+                      ><span class="learn-more-text"
+                        ><u> privacy policy</u></span
+                      ></a
+                    >
+                  </p>
+                  <div class="button-signup-container">
+                    <input
+                      class="button-signup btn-d-code"
+                      type="submit"
+                      tabindex="0"
+                      value="Sign up"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-4 social-media">
+        <div class="col-lg-6 social-media col-12">
           <div class="content-asset">
             <h4 class="social-header">Connect with us on social media:</h4>
             <div class="social-icons-container">
@@ -56,7 +110,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <div class="container-fluid">
       <div class="footer-wrapper">
@@ -72,10 +126,14 @@
                 <NuxtLink to="/trackorder">Order Status</NuxtLink>
               </div>
               <div class="link-text">
-                <NuxtLink to="/cms/legal-area/?for=delivery-and-shipping-policy">Delivery</NuxtLink>
+                <NuxtLink to="/cms/legal-area/?for=delivery-and-shipping-policy"
+                  >Delivery</NuxtLink
+                >
               </div>
               <div class="link-text">
-                <NuxtLink to="/cms/legal-area/?for=return-policy">Returns</NuxtLink>
+                <NuxtLink to="/cms/legal-area/?for=return-policy"
+                  >Returns</NuxtLink
+                >
               </div>
               <div class="link-text">
                 <NuxtLink class="link-text" to="/cms/size-conversion"
@@ -111,12 +169,16 @@
                 <a class="link-text" href="#">Privacy Policy</a>
               </div> -->
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/legal-area/?for=privacy-policy"
+                <NuxtLink
+                  class="link-text"
+                  to="/cms/legal-area/?for=privacy-policy"
                   >Privacy Policy</NuxtLink
                 >
               </div>
               <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/legal-area/?for=delivery-and-shipping-policy"
+                <NuxtLink
+                  class="link-text"
+                  to="/cms/legal-area/?for=delivery-and-shipping-policy"
                   >Shipping & Delivery Policy</NuxtLink
                 >
               </div>
@@ -246,11 +308,11 @@ export default {
       help: false,
       cooPolicyOpen: false,
       worldOpen: false,
-      langOpen: false,
+      langOpen: false
     };
   },
   mounted() {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  },
+  }
 };
 </script>

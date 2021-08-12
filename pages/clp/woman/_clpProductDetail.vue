@@ -2,80 +2,29 @@
   <div class="clp_pages woman">
     <div v-html="cmsData.content"></div>
 
-    <Slideproduct :slideImg="denimMustHave" />
-
-    <div class="collections_slide">
-      <div class="slide_content">
-        <client-only>
-          <div class="slide_content" v-if="bannerSlide.length > 0">
-            <VueSlickCarousel ref="slick" v-bind="settings">
-              <template v-for="(item, index) in bannerSlide">
-                <div
-                  class="item"
-                  v-if="item.banner_type === 'Woman'"
-                  :key="index"
-                >
-                  <img
-                    :src="item.desktop_image"
-                    alt="img"
-                    class="desktop_only w-100"
-                  />
-                  <img
-                    :src="item.mobile_image"
-                    alt="img"
-                    class="mobile_only w-100"
-                  />
-                  <div class="img_content">
-                    <div class="" v-html="item.description"></div>
-                  </div>
-                </div>
-              </template>
-            </VueSlickCarousel>
-          </div>
-        </client-only>
-      </div>
+    <div class="fit_guide">
+      <FitGuide :FitGuides="FitGuides" />
     </div>
-
-    <CategorySlider :slideImg="sweaters" />
 
     <NewIn :slideImg="newOne" />
 
-    <div class="accessories">
-      <div class="accessories-content">
-        <div class="left-content">
-          <h4>
-            BAGS & <br />
-            ACCESSORIES
-          </h4>
-          <a href="/collections/wlp-all-bags/"> VIEW ALL BAGS</a>
-          <a href="/collections/wlp-all-accessories/">
-            NEW ACCESSORIES</a
-          >
-        </div>
-        <div class="right-content">
-          <div
-            class="slide_new_in"
-            v-if="accessories && accessories.length > 0"
-          >
-            <client-only>
-              <VueSlickCarousel ref="slick" v-bind="settings4">
-                <div
-                  class="item"
-                  v-for="(item, index) in accessories"
-                  :key="index"
-                >
-                  <NuxtLink :to="`/product/${item.url_key}`"
-                    ><img :src="item.image" alt="img" class="w-100"
-                  /></NuxtLink>
-                  <div class="tile-body">
-                    <p>{{ item.color }}</p>
-                    <NuxtLink :to="`/product/${item.url_key}`">
-                      {{ item.name }}</NuxtLink
-                    >
-                  </div>
-                </div>
-              </VueSlickCarousel>
-            </client-only>
+    <div class="footwear">
+      <NewIn :slideImg="topsWear" />
+    </div>
+
+    <div class="dresses_box">
+      <div class="dresses_item">
+        <div
+          class="item"
+          v-for="(dressesItem, dressesIndex) in dresses"
+          :key="dressesIndex"
+        >
+          <div class="img-box w-100">
+            <img :src="dressesItem.image" alt="img" class="w-100" />
+          </div>
+          <div class="content">
+            <span>{{ dressesItem.color }}</span>
+            <h4>{{ dressesItem.name }}</h4>
           </div>
         </div>
       </div>
@@ -85,159 +34,72 @@
 
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
-import Slideproduct from "../clpComponents/Slideproduct";
 import NewIn from "../clpComponents/newIn";
-import ProductSilder from "../clpComponents/productSilder";
-import CategorySlider from "../clpComponents/categorySlider";
-import TowImages from "../clpComponents/towImages";
+import FitGuide from "../clpComponents/FitGuide";
 import { mapState } from "vuex";
 
 export default {
   components: {
     VueSlickCarousel,
     NewIn,
-    ProductSilder,
-    CategorySlider,
-    TowImages,
-    Slideproduct
+    FitGuide
   },
   data() {
     return {
       slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
-      accessories: [],
+      FitGuides: [
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/woman-denim-skinny.jpg?w=200&dpr=1.0",
+          name: "Super Skinny",
+          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~skinny"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/man-denim-slim.jpg?w=200&dpr=1.0",
+          name: "Slim",
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/woman-denim-slim.jpg?w=200&dpr=1.0",
+          name: "Slim",
+          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~slim"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/woman-denim-straight.jpg?w=200&dpr=1.0",
+          name: "Straight",
+          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~straight"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/woman-denim-boyfriend.jpg?w=200&dpr=1.0",
+          name: "Boyfriend",
+          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~boyfriend"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/woman-denim-wide.jpg?w=200&dpr=1.0",
+          name: "Flare/Wide",
+          url: "/collections/woman-jeans-new-arrival-jeans/?filter=fit~wide"
+        },
+        {
+          image:
+            "https://diesel.gumlet.io/fit_images/woman-denim-bootcut.jpg?w=200&dpr=1.0",
+          name: "Bootcut",
+          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~bootcut"
+        }
+      ],
       newOne: [],
-      denimMustHave: [],
       sneakers: [],
-      sweaters: [],
-      trending: [],
-      cmsData: [],
-      settings: {
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        dots: true,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-      },
-      settings2: {
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              centerMode: true,
-              centerPadding: "0px",
-              slidesToShow: 3.5,
-            },
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
-      },
-      settings3: {
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
-      },
-      settings4: {
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              arrows: false,
-              centerMode: false,
-              centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
-      },
+      topsWear: [],
+      dresses: [],
+      cmsData: []
     };
   },
   computed: {
-    ...mapState(["is_new", "cmsPagesData", "bannerSlide"]),
+    ...mapState(["is_new", "cmsPagesData", "bannerSlide"])
   },
 
   methods: {
@@ -255,7 +117,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
@@ -267,12 +129,11 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
-    },
+    }
   },
   async created() {
     let form = {};
@@ -283,19 +144,13 @@ export default {
     let cmsData = await this.$store.dispatch("pimAjax", {
       method: "get",
       url: `/pimresponse.php`,
-      params: form,
+      params: form
     });
     this.cmsData = cmsData.result["women-clp"];
-
-    this.getProductList("wlp-all-accessories", "accessories");
-    this.getProductList("woman-shoes-sneakers", "sneakers");
-    this.getProductList("woman-apparel-sweaters", "sweaters");
-    this.getProductList("woman-apparel-tshirts---tops", "trending");
-    this.getProductList("wlp-denim-must-have", "denimMustHave");
+    this.getProductList("woman-apparel-tshirts---tops", "topsWear");
     this.getProductList("wlp-new-in", "newOne");
-
-
-  },
+    this.getProductList("wlp-new-in", "dresses");
+  }
 };
 </script>
 

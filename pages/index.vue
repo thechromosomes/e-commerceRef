@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- home page cms -->
-    <LazyHydrate ssr-only>
+    <!-- <LazyHydrate ssr-only>
       <div v-if="Object.keys(homePageData).length != 0">
         <span v-html="homePageData.content"></span>
       </div>
-    </LazyHydrate>
+    </LazyHydrate> -->
 
     <LazyHydrate when-visible>
       <div class="collections_slide">
@@ -19,13 +19,11 @@
               >
                 <img
                   :src="item.desktop_image"
-                  v-if="!$device.isMobile"
                   alt="img"
                   class="desktop_only w-100"
                 />
                 <img
                   :src="item.mobile_image"
-                  v-if="$device.isMobile"
                   alt="img"
                   class="mobile_only w-100"
                 />
@@ -47,26 +45,81 @@
       >
         <div class="container-fluid">
           <div class="content_new_in">
-            <h2 class="swiper-header">NEW IN</h2>
-            <div class="slide_new_in">
-              <VueSlickCarousel ref="slick" v-bind="settings">
-                <div class="item" v-for="(item, index) in is_new" :key="index">
-                  <NuxtLink :to="`product/${item.url_key}`"
-                    ><img :src="item.image" alt="img" class="w-100"
-                  /></NuxtLink>
-                  <div class="tile-body">
-                    <p>{{ item.color }}</p>
-                    <NuxtLink :to="`product/${item.url_key}`">
-                      {{ item.name }}
-                    </NuxtLink>
-                  </div>
+            <div class="row">
+              <div class="col-lg-3 col-12">
+                <div class="new_in_new">
+                  <h2 class="swiper-header">NEW IN | man</h2>
+                  <Nuxt-link to="/" class="btn-shop">
+                    shop now
+                  </Nuxt-link>
                 </div>
-              </VueSlickCarousel>
+              </div>
+              <div class="col-lg-9 col-12">
+                <div class="slide_new_in">
+                  <VueSlickCarousel ref="slick" v-bind="settings">
+                    <div
+                      class="item"
+                      v-for="(item, index) in is_new"
+                      :key="index"
+                    >
+                      <NuxtLink :to="`product/${item.url_key}`"
+                        ><img :src="item.image" alt="img" class="w-100"
+                      /></NuxtLink>
+                      <div class="tile-body">
+                        <p>{{ item.color }}</p>
+                        <NuxtLink :to="`product/${item.url_key}`">
+                          {{ item.name }}
+                        </NuxtLink>
+                      </div>
+                    </div>
+                  </VueSlickCarousel>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
     </LazyHydrate>
+
+    <div class="shop_category">
+      <div class="row">
+        <div class="col-lg-6 col-12">
+          <div class="img-box w-100">
+            <img
+              src="https://diesel.gumlet.io/cms_images/1628750180placeholder.jpg?w=1300&dpr=1.0"
+              alt=" img "
+              class="w-100"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6 col-12">
+          <div class="img-box w-100">
+            <img
+              src="https://diesel.gumlet.io/cms_images/1628750180placeholder.jpg?w=1300&dpr=1.0"
+              alt=" img "
+              class="w-100"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shop_by_category">
+      <div class="shop_by_category_items w-100">
+        <VueSlickCarousel ref="slick" v-bind="settings3">
+          <div
+            class="item"
+            v-for="(ShopByItem, ShopByIndex) in ShopByCategory"
+            :key="ShopByIndex"
+          >
+            <div class="img-box">
+              <img :src="ShopByItem.image" alt="img" class="w-100" />
+            </div>
+            <h5>{{ ShopByItem.name }}</h5>
+          </div>
+        </VueSlickCarousel>
+      </div>
+    </div>
 
     <!-- Start of bottom images Section -->
     <LazyHydrate when-visible>
@@ -87,10 +140,10 @@ export default {
     return {
       settings: {
         infinite: true,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
         dots: false,
-        arrows: false,
+        arrows: true,
         autoplay: true,
         autoplaySpeed: 2000,
         responsive: [
@@ -100,8 +153,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -109,8 +162,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 480,
@@ -118,10 +171,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
+              slidesToShow: 1
+            }
+          }
+        ]
       },
       settings2: {
         lazyLoad: "ondemand",
@@ -140,19 +193,70 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
+              slidesToScroll: 1
+            }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
-          },
-        ],
+              slidesToScroll: 1
+            }
+          }
+        ]
       },
+      settings3: {
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+          {
+            breakpoint: 991,
+            settings: {
+              arrows: false,
+              slidesToShow: 2.5
+            }
+          },
+          {
+            breakpoint: 767,
+            settings: {
+              arrows: false,
+              slidesToShow: 1.5
+            }
+          }
+        ]
+      },
+      ShopByCategory: [
+        {
+          image: require("@/assets/img/2placeholder.jpg"),
+          name: "Male Denim"
+        },
+        {
+          image: require("@/assets/img/2placeholder.jpg"),
+          name: "Female Denim"
+        },
+        {
+          image: require("@/assets/img/2placeholder.jpg"),
+          name: "T-Shirts"
+        },
+        {
+          image: require("@/assets/img/2placeholder.jpg"),
+          name: "Footwear"
+        },
+        {
+          image: require("@/assets/img/2placeholder.jpg"),
+          name: "Underwear"
+        },
+        {
+          image: require("@/assets/img/2placeholder.jpg"),
+          name: "Bags & Accessories"
+        }
+      ]
     };
   },
 
@@ -168,7 +272,7 @@ export default {
       potentialAction: {
         "@type": "SearchAction",
         target: `${this.$store.state.BASE_URL}/searchpage/?q={search_term_string}`,
-        "query-input": "required name=search_term_string",
+        "query-input": "required name=search_term_string"
       },
       address: {
         "@type": "PostalAddress",
@@ -176,9 +280,9 @@ export default {
           "Diesel Fashion India Reliance Pvt. Ltd, 7th Floor, Maker Towers E, Cuffe Parade",
         addressLocality: "Mumbai",
         postalCode: "400005",
-        addressCountry: "IN",
+        addressCountry: "IN"
       },
-      sameAs: [" https://www.instagram.com/diesel/"],
+      sameAs: [" https://www.instagram.com/diesel/"]
     };
   },
   head() {
@@ -188,24 +292,24 @@ export default {
         {
           hid: this.description,
           name: this.description,
-          content: this.description,
+          content: this.description
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title",
+          property: "og:title"
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description",
+          property: "og:description"
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url",
-        },
-      ],
+          property: "og:url"
+        }
+      ]
     };
   },
 
@@ -227,13 +331,13 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
-  },
+    }
+  }
 };
 </script>
 <style>
 .home-benefits-section {
-  margin: 50px 0;
+  margin-bottom: 20px;
 }
 .home-benefits-section .benefits-section-col {
   max-width: 290px;
