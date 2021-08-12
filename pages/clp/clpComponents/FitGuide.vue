@@ -26,7 +26,7 @@ export default {
       settings: {
         infinite: true,
         slidesToShow: 3.5,
-        slidesToScroll: 1,
+        slidesToScroll: 2,
         dots: false,
         arrows: false,
         autoplay: true,
@@ -60,6 +60,8 @@ export default {
 <style>
 .fit_guide {
   width: 100%;
+  max-lines: 1330px;
+  margin: 0 auto;
 }
 .fit_guide .fit_guide_items {
   padding: 10px 20px;
