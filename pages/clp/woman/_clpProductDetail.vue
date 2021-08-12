@@ -62,12 +62,6 @@ export default {
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/woman-denim-slim.jpg?w=200&dpr=1.0",
-          name: "Slim",
-          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~slim"
-        },
-        {
-          image:
             "https://diesel.gumlet.io/fit_images/woman-denim-straight.jpg?w=200&dpr=1.0",
           name: "Straight",
           url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~straight"

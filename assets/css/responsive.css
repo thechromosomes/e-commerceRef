@@ -1020,9 +1020,36 @@
   .shop_category .img-box {
     margin: 10px 0;
   }
+  .social-media .content-asset {
+    padding: 0 0px;
+  }
+  .shop_by_category.kids .shop_by_category_items .item {
+    width: 25%;
+  }
+  .shop_by_category .shop_by_category_items .item h5 {
+    font-size: 16px;
+  }
+  .dresses_box .dresses_item .item {
+    width: 50%;
+  }
 }
 
 @media (max-width: 767px) {
+  .shop_by_category {
+    padding: 0;
+  }
+  .fit_guide .fit_guide_items .item .content h3 {
+    font-size: 20px !important;
+  }
+  .fit_guide .fit_guide_items .item .content a {
+    font-size: 14px !important;
+  }
+  .dresses_box .dresses_item .item {
+    padding: 5px;
+  }
+  .shop_by_category.kids .shop_by_category_items .item {
+    width: 50%;
+  }
   #bb-footer-original .newsletter-social .content-asset h5 {
     font-size: 18px;
   }
