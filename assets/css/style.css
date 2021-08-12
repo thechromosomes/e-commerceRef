@@ -552,6 +552,9 @@ button:hover {
   width: 100%;
   padding: 20px 0px;
 }
+.social-media .content-asset {
+  padding: 0 50px;
+}
 .product_info .content-asset {
   width: 100%;
 }
@@ -2258,7 +2261,10 @@ p.p-price span.line-throu {
   background: transparent;
   font-weight: 700;
 }
-
+#bb-footer-original .button-signup-container .button-signup:hover {
+  color: #000;
+  background: #fff;
+}
 .newsletter-social {
   position: relative;
   /* max-width: 1270px;
@@ -4618,6 +4624,8 @@ p.input-success {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  max-width: 1320px;
+  margin: 0 auto;
 }
 .dresses_box .dresses_item .item {
   width: 25%;
@@ -4683,7 +4691,17 @@ p.input-success {
 .shop_by_category.kids .shop_by_category_items {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1330px;
+  margin: 0 auto;
 }
 .shop_by_category.kids .shop_by_category_items .item {
   padding: 10px 10px;
+  width: 20%;
+}
+.new_in .content_new_in,
+.shop_category,
+.shop_by_category .shop_by_category_items {
+  max-width: 1320px;
+  margin: 0 auto;
 }

@@ -66,6 +66,8 @@ export default {
 .fit_guide .fit_guide_items {
   padding: 10px 20px;
   width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
 }
 .fit_guide .fit_guide_items .item {
   position: relative;
