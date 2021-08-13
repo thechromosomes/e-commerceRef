@@ -53,9 +53,6 @@
                 ></a>
               </div> -->
             </div>
-            <!-- <div v-if="mainsizeAlert" style="clear: both; margin-top: 10px">
-              <p class="promotion-text">please select the variants first.</p>
-            </div>-->
           </div>
 
           <div class="product-flext">
@@ -79,29 +76,16 @@
                   </h4>
                 </div>
               </NuxtLink>
-
-              <div class="select-box">
-                <select
-                  v-model="selectedSize[mainIndex]"
-                  :class="{ error: sizeAlert && sizeAlertIndes == mainIndex }"
-                >
-                  <option value="" disabled>Select Size</option>
-                  <template v-for="(size, index) in item.variation">
-                    <option :key="index" :disabled="size.quantity == 0">
-                      {{ size.configrable_atribute_value }}
-                    </option>
-                  </template>
-                </select>
-              </div>
               <div class="select-box">
                 <select
                   v-model="selectedColor[mainIndex]"
                   :class="{ error: sizeAlert && sizeAlertIndes == mainIndex }"
+                  @change="updateColor(mainIndex)"
                 >
                   <option value="" disabled>Select Color</option>
                   <template v-for="(size, index) in item.color_variation">
                     <option
-                      v-if="selectedSize[mainIndex] == size.size && size.quantity != 0"
+                      v-if="size.quantity != 0"
                       :key="index"
                       :value="size"
                     >
@@ -110,6 +94,28 @@
                   </template>
                 </select>
               </div>
+
+              <div class="select-box">
+                <select
+                  v-model="selectedSize[mainIndex]"
+                  :class="{ error: sizeAlert && sizeAlertIndes == mainIndex }"
+                >
+                  <option value="" disabled>Select Size</option>
+                  <template v-for="(size, index) in item.variation">
+                    <option
+                      :key="index"
+                      :value="size"
+                      v-if="
+                        size.quantity != 0 &&
+                        selectedColor[mainIndex].fynd_uid == size.fynd_uid
+                      "
+                    >
+                      {{ size.configrable_atribute_value }}
+                    </option>
+                  </template>
+                </select>
+              </div>
+
               <div class="select-box">
                 <select
                   v-if="
@@ -127,11 +133,9 @@
                       :key="index"
                       :value="size"
                       v-if="
-                        selectedSize[mainIndex] == size.size &&
-                        selectedColor[mainIndex] &&
-                        selectedColor[mainIndex].color == size.color &&
-                        selectedColor[mainIndex].fynd_uid == size.fynd_uid &&
-                        selectedColor[mainIndex].fynd_size == size.fynd_size &&
+                        selectedSize[mainIndex].size == size.size &&
+                        selectedSize[mainIndex].fynd_uid == size.fynd_uid &&
+                        selectedSize[mainIndex].fynd_size == size.fynd_size &&
                         size.quantity != 0
                       "
                     >
@@ -263,7 +267,7 @@ export default {
     },
 
     // update product via color refrence
-    updateViaColor(index) {
+    updateColor(index) {
       try {
         let tempPost = { ...this.wislistProducts[index] };
         tempPost.image = this.selectedColor[index].image;
@@ -381,24 +385,26 @@ export default {
         try {
           var form = {};
           var product_options_json = JSON.stringify({
-            size: this.selectedSize[sizeIndex],
+            size: this.selectedSize[sizeIndex].configrable_atribute_value,
             color: this.selectedColor[sizeIndex].color,
           });
-          form.product_id =
-            item.variation[this.selectedSize[sizeIndex]].id_product;
+
           form.product_parent_id = item.id_product;
           form.product_options = product_options_json;
           if (this.isLengthAvailable[sizeIndex] == true) {
             form.fynd_size = this.selectedLength[sizeIndex].fynd_size;
             form.fynd_uid = this.selectedLength[sizeIndex].fynd_uid;
             form.sku = this.selectedLength[sizeIndex].sku;
+            form.product_id = this.selectedLength[sizeIndex].id_product;
+            form.master_sku = this.selectedLength[sizeIndex].sku;
           } else {
-            form.fynd_size = this.selectedColor[sizeIndex].fynd_size;
-            form.fynd_uid = this.selectedColor[sizeIndex].fynd_uid;
-            form.sku = this.selectedColor[sizeIndex].sku;
+            form.fynd_size = this.selectedSize[sizeIndex].fynd_size;
+            form.fynd_uid = this.selectedSize[sizeIndex].fynd_uid;
+            form.sku = this.selectedSize[sizeIndex].sku;
+            form.product_id = this.selectedSize[sizeIndex].id_product;
+            form.master_sku = this.selectedSize[sizeIndex].sku;
           }
           form.name = item.name;
-          form.master_sku = item.sku;
           form.price = item.price;
           form.qty_ordered = 1;
           form.final_price = item.selling_price;
@@ -457,8 +463,10 @@ export default {
                         price: item.selling_price,
                         category: item.sub_category,
                         variant:
-                          item.variation[this.selectedSize[sizeIndex]]
-                            .configrable_atribute_value,
+                          item.variation[
+                            this.selectedSize[sizeIndex]
+                              .configrable_atribute_value
+                          ].configrable_atribute_value,
                         quantity: "1",
                       },
                     ],
