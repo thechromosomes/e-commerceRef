@@ -5,14 +5,25 @@ export default async (context) => {
     let form = {};
     form.service = "cms_page";
     form.store = 1;
-    form.url_key = "home"
+    form.url_key = "home";
 
-    let cmsData = await context.store.dispatch("pimAjax", {
+    context.store
+      .dispatch("pimAjax", {
+        method: "get",
+        url: `/pimresponse.php`,
+        params: form,
+      })
+      .then((cmsData) => context.store.commit("setCmsData", cmsData));
+
+    //  get bannerSlide
+    await context.store.dispatch("getBannerSlider", {
       method: "get",
       url: `/pimresponse.php`,
-      params: form,
+      params: {
+        service: "banner_slider",
+        store: 1,
+      },
     });
-    context.store.commit("setCmsData", cmsData);
 
     // set header menu
     let header = {};
@@ -29,20 +40,10 @@ export default async (context) => {
       throw "while fetching header menu data from backend API";
     }
 
-    //  get bannerSlide
-    await context.store.dispatch("getBannerSlider", {
-      method: "get",
-      url: `/pimresponse.php`,
-      params: {
-        service: "banner_slider",
-        store: 1,
-      },
-    });
-
     // is new api call
     let bestSellerForm = {};
     bestSellerForm.service = "is_new";
-    bestSellerForm.count = 6;
+    bestSellerForm.count = 10;
     bestSellerForm.store = 1;
     context.store.dispatch("getBestSeller", {
       method: "get",
