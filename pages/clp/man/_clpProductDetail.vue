@@ -9,6 +9,8 @@
       <NewIn :slideImg="Footwear" />
     </div>
 
+    <div class=""></div>
+
     <span v-html="cmsData.content_1"></span>
   </div>
 </template>
@@ -25,7 +27,6 @@ export default {
   },
   data() {
     return {
-      slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
       FitGuides: [
         {
           image:
@@ -125,7 +126,7 @@ export default {
     this.cmsData = cmsData.result["man-clp"];
     this.getProductList("man-apparel-jackets", "jackets");
     this.getProductList("mlp-new-in", "newIn");
-    this.getProductList("man-shoes-all-shoes", "Footwear");
+    this.getProductList("man-shoes-sneakers", "Footwear");
     this.getProductList("mlp-best sellers", "trending");
     this.getProductList("mlp-all-accessories", "accessories");
   }
