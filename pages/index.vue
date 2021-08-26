@@ -7,7 +7,7 @@
       </div>
     </LazyHydrate>
 
-    <LazyHydrate ssr-only >
+    <LazyHydrate when-visible >
       <div class="collections_slide">
         <div class="slide_content" v-if="bannerSlide.length > 0">
           <VueSlickCarousel ref="slick" v-bind="settings2">
