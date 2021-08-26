@@ -1,15 +1,9 @@
 <template>
   <div class="clp_pages">
     <div v-html="cmsData.content"></div>
-    <div class="fit_guide">
-      <FitGuide :FitGuides="FitGuides" />
-    </div>
-    <NewIn :slideImg="newIn" />
-    <div class="footwear">
-      <NewIn :slideImg="Footwear" />
-    </div>
-
-    <div class=""></div>
+    <FitGuide :FitGuides="FitGuides" />
+    <NewIn :slideImg="newIn"  header="NEW IN"/>
+    <NewIn :slideImg="Footwear"  header="FOOTWEAR"/>
 
     <span v-html="cmsData.content_1"></span>
   </div>
@@ -23,7 +17,7 @@ import { mapState } from "vuex";
 export default {
   components: {
     NewIn,
-    FitGuide
+    FitGuide,
   },
   data() {
     return {
@@ -32,51 +26,49 @@ export default {
           image:
             "https://diesel.gumlet.io/fit_images/man-denim-skinny.jpg?w=200&dpr=1.0",
           name: "SKINNY",
-          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~skinny"
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~skinny",
         },
         {
           image:
             "https://diesel.gumlet.io/fit_images/man-denim-slim.jpg?w=200&dpr=1.0",
           name: "Slim",
-          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim"
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim",
         },
         {
           image:
             "https://diesel.gumlet.io/fit_images/man-denim-straight.jpg?w=200&dpr=1.0",
           name: "Straight",
-          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~straight"
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~straight",
         },
         {
           image:
             "https://diesel.gumlet.io/fit_images/man-denim-tapered.jpg?w=200&dpr=1.0",
           name: "Tapered",
-          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered"
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered",
         },
         {
           image:
             "https://diesel.gumlet.io/fit_images/man-denim-carrot.jpg?w=200&dpr=1.0",
           name: "Carrot",
-          url:
-            "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered&filter=fit~carrot"
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered&filter=fit~carrot",
         },
         {
           image:
             "https://diesel.gumlet.io/fit_images/man-denim-bootcut.jpg?w=200&dpr=1.0",
           name: "Bootcut",
-          url:
-            "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered&filter=fit~carrot&filter=fit~bootcut"
-        }
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered&filter=fit~carrot&filter=fit~bootcut",
+        },
       ],
       jackets: [],
       newIn: [],
       Footwear: [],
       accessories: [],
       trending: [],
-      cmsData: []
+      cmsData: [],
     };
   },
   computed: {
-    ...mapState(["is_new"])
+    ...mapState(["is_new"]),
   },
 
   methods: {
@@ -94,7 +86,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
 
         if (response) {
@@ -106,11 +98,12 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error: "Oops there seems to be some Network issue, please try again"
+            error:
+              "Oops there seems to be some Network issue, please try again",
           });
         }
       }
-    }
+    },
   },
   async created() {
     let form = {};
@@ -121,7 +114,7 @@ export default {
     let cmsData = await this.$store.dispatch("pimAjax", {
       method: "get",
       url: `/pimresponse.php`,
-      params: form
+      params: form,
     });
     this.cmsData = cmsData.result["man-clp"];
     this.getProductList("man-apparel-jackets", "jackets");
@@ -129,7 +122,7 @@ export default {
     this.getProductList("man-shoes-sneakers", "Footwear");
     this.getProductList("mlp-best sellers", "trending");
     this.getProductList("mlp-all-accessories", "accessories");
-  }
+  },
 };
 </script>
 

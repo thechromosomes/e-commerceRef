@@ -6,29 +6,11 @@
       <FitGuide :FitGuides="FitGuides" />
     </div>
 
-    <NewIn :slideImg="newOne" />
+    <NewIn :slideImg="newOne" header="NEW IN" />
 
-    <div class="footwear">
-      <NewIn :slideImg="topsWear" />
-    </div>
+    <NewIn :slideImg="topsWear" header="TOP WEAR" />
 
-    <div class="dresses_box">
-      <div class="dresses_item">
-        <div
-          class="item"
-          v-for="(dressesItem, dressesIndex) in dresses"
-          :key="dressesIndex"
-        >
-          <div class="img-box w-100">
-            <img :src="dressesItem.image" alt="img" class="w-100" />
-          </div>
-          <div class="content">
-            <span>{{ dressesItem.color }}</span>
-            <h4>{{ dressesItem.name }}</h4>
-          </div>
-        </div>
-      </div>
-    </div>
+    <NewIn :slideImg="dresses" header="DRESS" />
   </div>
 </template>
 
@@ -57,7 +39,7 @@ export default {
           image:
             "https://diesel.gumlet.io/fit_images/man-denim-slim.jpg?w=200&dpr=1.0",
           name: "Slim",
-          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim"
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim",
         },
         {
           image:

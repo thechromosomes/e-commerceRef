@@ -3,15 +3,15 @@
     <div class="fit_guide_items">
       <VueSlickCarousel ref="slick" v-bind="settings">
         <div class="item" v-for="(item, index) in FitGuides" :key="index">
-          <img :src="item.image" alt="img" class="w-100" />
-          <div class="content">
-            <h3 class="title">
-              {{ item.name }}
-            </h3>
-            <Nuxt-link :to="item.url">
+          <Nuxt-link :to="item.url">
+            <img :src="item.image" alt="img" class="w-100" />
+            <div class="content">
+              <h3 class="title">
+                {{ item.name }}
+              </h3>
               shop now
-            </Nuxt-link>
-          </div>
+            </div>
+          </Nuxt-link>
         </div>
       </VueSlickCarousel>
     </div>
@@ -36,24 +36,24 @@ export default {
             breakpoint: 991,
             settings: {
               arrows: false,
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
             settings: {
               arrows: false,
-              slidesToShow: 2
-            }
-          }
-        ]
-      }
+              slidesToShow: 2,
+            },
+          },
+        ],
+      },
     };
   },
   components: {
-    VueSlickCarousel
+    VueSlickCarousel,
   },
-  props: ["FitGuides"]
+  props: ["FitGuides"],
 };
 </script>
 

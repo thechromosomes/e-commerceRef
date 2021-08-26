@@ -3,7 +3,7 @@
     <section class="new_in">
       <div class="container-fluid">
         <div class="content_new_in">
-          <h2 class="swiper-header">NEW IN</h2>
+          <h2 class="swiper-header">{{header || `NEW IN`}}</h2>
           <div class="slide_new_in" v-if="slideImg && slideImg.length > 0">
             <client-only>
               <VueSlickCarousel ref="slick" v-bind="settings">
@@ -36,7 +36,7 @@ import VueSlickCarousel from "vue-slick-carousel";
 
 export default {
   components: { VueSlickCarousel },
-  props: ["slideImg"],
+  props: ["slideImg", "header"],
   data() {
     return {
       settings: {
