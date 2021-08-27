@@ -66,7 +66,7 @@
         </div>
         <div class="col-lg-6 social-media col-12">
           <div class="content-asset">
-            <h4 class="social-header">Connect with us on social media:</h4>
+            <h4 class="social-header">Connect with us on social media</h4>
             <div class="social-icons-container">
               <div class="social-icons">
                 <a
