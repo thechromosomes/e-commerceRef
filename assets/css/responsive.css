@@ -1032,6 +1032,18 @@
   .dresses_box .dresses_item .item {
     width: 50%;
   }
+  /* ===================== news latter================= */
+  #bb-footer-original .newsletter-social .content-asset .form-box .input-error {
+    position: absolute;
+    top: 32%;
+    right: -17px;
+  }
+  .newsletter {
+    padding: 20px 15px;
+  }
+  .footer {
+    background-color: transparent !important;
+  }
 }
 
 @media (max-width: 767px) {

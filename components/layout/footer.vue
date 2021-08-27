@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer-container" id="bb-footer-clone">
       <div class="row newsletter-social">
-        <div class="newsletter col-lg-6 col-12 mt-4">
+        <div class="newsletter col-lg-6 col-12">
           <div id="bb-footer-original" class="footer-container">
             <div class="newsletter-social">
               <div class="content-asset">
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid footer-hlp-container">
       <div class="footer-wrapper">
         <div class="flex-content">
           <!-- dropdown-open class -->
@@ -244,14 +244,16 @@ export default {
       help: false,
       cooPolicyOpen: false,
       worldOpen: false,
-      langOpen: false,
+      langOpen: false
     };
   },
   // form validatiors
   validators: {
-    email: function (value) {
-      return Validator.value(value).required().email();
-    },
+    email: function(value) {
+      return Validator.value(value)
+        .required()
+        .email();
+    }
   },
 
   methods: {
@@ -262,7 +264,7 @@ export default {
           let response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/newsletter/news-letter`,
-            params: { email: this.email, email_for: this.emailFor },
+            params: { email: this.email, email_for: this.emailFor }
           });
 
           if (response.success) {
@@ -275,10 +277,76 @@ export default {
       } catch (error) {
         this.$globalError(`error from the all subcribe email footer ${error}`);
       }
-    },
+    }
   },
   mounted() {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  },
+  }
 };
 </script>
+<style scoped>
+.footer {
+  width: 100%;
+  padding-top: 0px;
+  margin: 30px 0px;
+  background: #cccccc54;
+}
+#bb-footer-original .button-signup-container .button-signup {
+  width: 100%;
+}
+#bb-footer-original
+  .newsletter-social
+  .content-asset
+  .form-box
+  .gender
+  .radio-button-wrapper {
+  width: auto;
+}
+#bb-footer-original .newsletter-social {
+  padding: 0px 0;
+}
+.social-icons-container {
+  justify-content: center;
+}
+.footer .col-lg-6.social-media.col-12 {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.social-media h4 {
+  font-weight: 700;
+  font-size: 24px;
+  text-transform: capitalize;
+}
+.footer-hlp-container,
+.footer-container .copyright {
+  background: #fff;
+}
+.footer-container .copyright {
+  margin: 0px;
+  padding: 5px 0px;
+}
+#bb-footer-original .newsletter-social .content-asset h5 {
+  text-transform: capitalize;
+}
+#bb-footer-original .newsletter-social .content-asset .form-box {
+  position: relative;
+}
+#bb-footer-original .newsletter-social .content-asset .form-box .input-error {
+  position: absolute;
+  top: 35%;
+  left: 59%;
+}
+.social-icons-container {
+  margin-top: 27px;
+}
+.footer .social-icons-container .social-icons a {
+  width: 28px;
+  height: 28px;
+  width: 28px;
+  transform: scale(2);
+}
+.privacy-policy-newsletter {
+  opacity: 1;
+}
+</style>
