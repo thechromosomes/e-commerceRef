@@ -10,7 +10,7 @@
 
     <NewIn :slideImg="topsWear" header="TOP WEAR" />
 
-    <NewIn :slideImg="dresses" header="DRESS" />
+    <NewIn :slideImg="dresses" header="DRESSES" />
   </div>
 </template>
 

@@ -2,43 +2,23 @@
   <footer class="footer">
     <div class="footer-container" id="bb-footer-clone">
       <div class="row newsletter-social">
-        <!-- <div class="col-lg-8 newsletter">
-          <div class="content-asset">
-            <div class="complete-registration">
-              <div class="img-box">
-                <img src="@/assets/img/footer-dcode-image.png" alt="" />
-              </div>
-              <div class="complete-registration__body">
-                <span class="complete-registration__title social-header"
-                  >Join the tribe, become a D:CODE member</span
-                ><span class="complete-registration__text"
-                  >Complete your registration, discover our loyalty program and
-                  get all D:CODE benefits</span
-                ><NuxtLink
-                  id="bb_dcode_signup"
-                  to="/login"
-                  class="complete-registration__cta social-header"
-                  >Become a D:CODE member</NuxtLink
-                >
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <div class="newsletter col-lg-6 col-12">
+        <div class="newsletter col-lg-6 col-12 mt-4">
           <div id="bb-footer-original" class="footer-container">
             <div class="newsletter-social">
               <div class="content-asset">
-                <h5>SIGN UP FOR THE NEWSLETTER</h5>
+                <h5>Sign up to never miss the update.</h5>
                 <div class="form-box">
                   <div class="email-box">
                     <input
                       type="text"
+                      v-model="email"
                       placeholder="Enter your Email address*"
                     />
                   </div>
                   <div class="gender">
                     <div class="radio-button-wrapper">
                       <input
+                        v-model="emailFor"
                         class="gender-radio is-valid"
                         type="radio"
                         id="formMaleId"
@@ -48,6 +28,7 @@
                     </div>
                     <div class="radio-button-wrapper">
                       <input
+                        v-model="emailFor"
                         class="gender-radio is-valid"
                         type="radio"
                         id="formFemaleId"
@@ -65,10 +46,15 @@
                       ></a
                     >
                   </p>
+                  <span v-if="validation.hasError('email')">
+                    <p class="input-error">
+                      {{ validation.firstError("email") }}
+                    </p>
+                  </span>
                   <div class="button-signup-container">
                     <input
                       class="button-signup btn-d-code"
-                      type="submit"
+                      @click="subscribeNews()"
                       tabindex="0"
                       value="Sign up"
                     />
@@ -140,9 +126,7 @@
                   >Size Conversion</NuxtLink
                 >
               </div>
-              <!-- <div class="link-text">
-                <NuxtLink to="/cms/contact-us">Send us a message</NuxtLink>
-              </div> -->
+
               <div class="link-text">
                 <NuxtLink to="/cms/contact-us">Contact Us</NuxtLink>
               </div>
@@ -165,9 +149,6 @@
               <span class="dropdown-arrow_icon"></span>
             </div>
             <div class="footer-link-content">
-              <!-- <div class="link-text">
-                <a class="link-text" href="#">Privacy Policy</a>
-              </div> -->
               <div class="link-text">
                 <NuxtLink
                   class="link-text"
@@ -213,11 +194,6 @@
                   >About Diesel</NuxtLink
                 >
               </div>
-              <!-- <div class="link-text">
-                <NuxtLink class="link-text" to="/cmsLive/dcode-program"
-                  >D:Code Program</NuxtLink
-                >
-              </div> -->
               <div class="link-text">
                 <NuxtLink
                   class="link-text living"
@@ -225,14 +201,6 @@
                   >For Responsible Living</NuxtLink
                 >
               </div>
-              <!-- <div class="link-text">
-                <a
-                  class="link-text"
-                  target="_blank"
-                  href="https://www.otb.net/en/otb-career/"
-                  >Work with us</a
-                >
-              </div> -->
               <div class="link-text">
                 <a
                   class="link-text"
@@ -243,41 +211,6 @@
               </div>
             </div>
           </div>
-          <!-- <div
-            class="footer-items"
-            :class="CorporateOpen ? 'dropdown-open' : ''"
-          >
-            <div
-              class="footer-navigation"
-              @click="() => (CorporateOpen = !CorporateOpen)"
-            >
-              <span class="footer-link-text">CORPORATE</span>
-              <span class="dropdown-arrow_icon"></span>
-            </div>
-            <div class="footer-link-content">
-              <div class="link-text">
-                <a
-                  class="link-text"
-                  target="_blank"
-                  href="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw4e137934/document/OTB_CodeOfEthics.pdf"
-                  >Code of Ethics</a
-                >
-              </div>
-              <div class="link-text">
-                <a
-                  class="link-text"
-                  target="_blank"
-                  href="https://uk.diesel.com/on/demandware.static/-/Library-Sites-DieselMFSharedLibrary/default/dw70aed053/document/Diesel_Organisation-Management-Control_Model231.pdf"
-                  >Organisation, Management, and Control Model</a
-                >
-              </div>
-              <div class="link-text">
-                <NuxtLink class="link-text" to="/cms/legal-area"
-                  >Other Corporate information
-                </NuxtLink>
-              </div>
-            </div>
-          </div> -->
           <div class="footer-items">
             <div class="footer-navigation">
               <span class="footer-link-text"
@@ -300,19 +233,52 @@
 </template>
 
 <script>
+import { Validator } from "simple-vue-validator";
 export default {
   data() {
     return {
       wodOpen: false,
+      email: "",
+      emailFor: "",
       CorporateOpen: false,
       help: false,
       cooPolicyOpen: false,
       worldOpen: false,
-      langOpen: false
+      langOpen: false,
     };
+  },
+  // form validatiors
+  validators: {
+    email: function (value) {
+      return Validator.value(value).required().email();
+    },
+  },
+
+  methods: {
+    async subscribeNews() {
+      try {
+        var validation = await this.$validate();
+        if (validation) {
+          let response = await this.$store.dispatch("cartAjax/actCartAjax", {
+            method: "post",
+            url: `/newsletter/news-letter`,
+            params: { email: this.email, email_for: this.emailFor },
+          });
+
+          if (response.success) {
+            this.$toast.default(response.message);
+          } else {
+            this.$toast.error(response.message);
+            throw `${response.message}`;
+          }
+        }
+      } catch (error) {
+        this.$globalError(`error from the all subcribe email footer ${error}`);
+      }
+    },
   },
   mounted() {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+  },
 };
 </script>

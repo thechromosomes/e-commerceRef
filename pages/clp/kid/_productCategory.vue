@@ -3,8 +3,6 @@
     <div v-html="cmsData.content"></div>
 
     <NewIn :slideImg="newIn" />
-    <!-- <ProductSilder :slideImg="jeans" /> -->
-    <!-- <div v-html="cmsData.content_1"></div> -->
 
     <div class="shop_by_category kids">
       <div class="shop_by_category_items w-100">

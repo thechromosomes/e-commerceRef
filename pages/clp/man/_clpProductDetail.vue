@@ -3,7 +3,7 @@
     <div v-html="cmsData.content"></div>
     <FitGuide :FitGuides="FitGuides" />
     <NewIn :slideImg="newIn"  header="NEW IN"/>
-    <NewIn :slideImg="Footwear"  header="FOOTWEAR"/>
+    <NewIn :slideImg="Footwear"  header="SNEAKERS"/>
 
     <span v-html="cmsData.content_1"></span>
   </div>

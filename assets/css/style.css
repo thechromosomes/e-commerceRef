@@ -4705,3 +4705,29 @@ p.input-success {
   max-width: 1320px;
   margin: 0 auto;
 }
+.slide-img .content.kid-content a.secondary-white-btn{
+  position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--fontFamily);
+    font-size: 14px;
+    color: #000;
+    margin: 0px 10px 10px 0px;
+    padding: 10px 40px;
+    background: #fff;
+    font-weight: 700;
+    border: 1px solid #fff;
+    display: inline-block;
+    line-height: 26px;
+}
+@media(max-width:500px){
+.slide-img .content.kid-content a.secondary-white-btn{
+  bottom: 50px;
+}
+}
+@media(max-width:1200px) and (min-width:991px){
+.slide-img .content.kid-content a.secondary-white-btn{
+  bottom: 70px;
+}
+}

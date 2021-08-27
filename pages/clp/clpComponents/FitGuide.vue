@@ -1,6 +1,7 @@
 <template>
   <div class="fit_guide">
     <div class="fit_guide_items">
+    <h2 class="swiper-header">DENIM FIT GUIDE</h2>
       <VueSlickCarousel ref="slick" v-bind="settings">
         <div class="item" v-for="(item, index) in FitGuides" :key="index">
           <Nuxt-link :to="item.url">
@@ -9,7 +10,6 @@
               <h3 class="title">
                 {{ item.name }}
               </h3>
-              shop now
             </div>
           </Nuxt-link>
         </div>
