@@ -757,6 +757,7 @@ button:hover {
   margin: 20px 0;
   font-family: var(--fontFamily);
   letter-spacing: 1px;
+  text-transform: uppercase;
 }
 .collections_slide .slide_content .item .img_content a {
   font-family: var(--fontFamily);
