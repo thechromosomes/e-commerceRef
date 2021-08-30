@@ -86,19 +86,35 @@
         <div class="col-lg-6 col-12">
           <div class="img-box w-100">
             <img
-              src="https://diesel.gumlet.io/cms_images/1628750180placeholder.jpg?w=1300&dpr=1.0"
+              src="~/assets/img/Male Header-f1.jpg"
               alt=" img "
               class="w-100"
             />
+            <div class="my-cata-define-div">
+              <a
+                class="button secondary-white-btn"
+                role="button"
+                href="collections/hp-second-banner-man"
+                >SHOP MAN</a
+              >
+            </div>
           </div>
         </div>
         <div class="col-lg-6 col-12">
           <div class="img-box w-100">
             <img
-              src="https://diesel.gumlet.io/cms_images/1628750180placeholder.jpg?w=1300&dpr=1.0"
+              src="~/assets/img/Female Header-f1.jpg"
               alt=" img "
               class="w-100"
             />
+            <div class="my-cata-define-div">
+              <a
+                class="button secondary-white-btn"
+                role="button"
+                href="collections/collections/hp-second-banner-woman/"
+                >SHOP WOMEN</a
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -107,16 +123,18 @@
     <div class="shop_by_category">
       <div class="shop_by_category_items w-100">
         <VueSlickCarousel ref="slick" v-bind="settings3">
-          <div
-            class="item"
-            v-for="(ShopByItem, ShopByIndex) in ShopByCategory"
-            :key="ShopByIndex"
-          >
-            <div class="img-box">
-              <img :src="ShopByItem.image" alt="img" class="w-100" />
+          <template v-for="(ShopByItem, ShopByIndex) in bannerSlide">
+            <div
+              v-if="ShopByItem.banner_type === 'homePage_footer_banner'"
+              :key="ShopByIndex"
+              class="item"
+            >
+              <div class="img-box">
+                <img :src="ShopByItem.desktop_image" alt="img" class="w-100" />
+              </div>
+              <h5 v-html="ShopByItem.description"></h5>
             </div>
-            <h5>{{ ShopByItem.name }}</h5>
-          </div>
+          </template>
         </VueSlickCarousel>
       </div>
     </div>
@@ -230,33 +248,33 @@ export default {
             }
           }
         ]
-      },
-      ShopByCategory: [
-        {
-          image: require("@/assets/img/2placeholder.jpg"),
-          name: "Male Denim"
-        },
-        {
-          image: require("@/assets/img/2placeholder.jpg"),
-          name: "Female Denim"
-        },
-        {
-          image: require("@/assets/img/2placeholder.jpg"),
-          name: "T-Shirts"
-        },
-        {
-          image: require("@/assets/img/2placeholder.jpg"),
-          name: "Footwear"
-        },
-        {
-          image: require("@/assets/img/2placeholder.jpg"),
-          name: "Underwear"
-        },
-        {
-          image: require("@/assets/img/2placeholder.jpg"),
-          name: "Bags & Accessories"
-        }
-      ]
+      }
+      // ShopByCategory: [
+      //   {
+      //     image: require("@/assets/img/2placeholder.jpg"),
+      //     name: "Male Denim"
+      //   },
+      //   {
+      //     image: require("@/assets/img/2placeholder.jpg"),
+      //     name: "Female Denim"
+      //   },
+      //   {
+      //     image: require("@/assets/img/2placeholder.jpg"),
+      //     name: "T-Shirts"
+      //   },
+      //   {
+      //     image: require("@/assets/img/2placeholder.jpg"),
+      //     name: "Footwear"
+      //   },
+      //   {
+      //     image: require("@/assets/img/2placeholder.jpg"),
+      //     name: "Underwear"
+      //   },
+      //   {
+      //     image: require("@/assets/img/2placeholder.jpg"),
+      //     name: "Bags & Accessories"
+      //   }
+      // ]
     };
   },
 
