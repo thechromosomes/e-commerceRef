@@ -748,6 +748,7 @@
   }
   .social-media h4 {
     margin-top: 20px;
+    font-size: 20px !important;
   }
   .visual-filters .visual-filter-texts h6 {
     margin-top: 10px;
@@ -1047,6 +1048,10 @@
 }
 
 @media (max-width: 767px) {
+  .footer-container .copyright {
+    padding: 5px 0px;
+    text-align: center;
+  }
   .shop_by_category {
     padding: 0;
   }
@@ -1070,7 +1075,7 @@
     margin-bottom: 30px;
   }
   .collections_slide {
-    margin-top: 30px;
+    margin-top: 0px;
   }
   .content-asset {
     width: 100%;

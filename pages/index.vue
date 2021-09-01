@@ -195,7 +195,7 @@ export default {
         ]
       },
       settings2: {
-        lazyLoad: "ondemand",
+        lazyLoad: "ondemandl",
         focusOnSelect: true,
         dots: true,
         infinite: true,

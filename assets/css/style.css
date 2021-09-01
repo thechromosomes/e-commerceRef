@@ -1002,6 +1002,9 @@ button:hover {
   margin: 5px 0px;
   font-family: var(--fontFamily);
 }
+.copyright-notice .copyright {
+  padding: 0px 32px !important;
+}
 
 .icon-close-black {
   content: "";
