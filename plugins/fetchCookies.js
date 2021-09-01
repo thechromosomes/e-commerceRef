@@ -26,6 +26,10 @@ export default async (context) => {
         customerSession,
         customerToken,
       };
+
+      // needs to commit twice to work asynchronous
+      context.store.commit("cartAjax/updateUserInfo", { userData });
+
       context.store
         .dispatch("cartAjax/actCartAjax", {
           method: "post",
@@ -35,7 +39,7 @@ export default async (context) => {
             customer_id: customerId,
             store: 1,
             customer_session: customerSession,
-            noLoader: true
+            noLoader: true,
           },
         })
         .then((userInfo) => {
@@ -69,7 +73,7 @@ export default async (context) => {
         cart_token: cartToken,
         customer_session: customerSession,
         customer_id: customerId,
-        noLoader: true
+        noLoader: true,
       };
 
       context.store.commit("cartAjax/updateCartCookieData", { form });
@@ -102,7 +106,7 @@ export default async (context) => {
           params: {
             customer_id: customerId,
             customer_session: customerSession,
-            noLoader: true
+            noLoader: true,
           },
         })
         .then((response) => {

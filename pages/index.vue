@@ -253,32 +253,6 @@ export default {
           },
         ],
       },
-      // ShopByCategory: [
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "Male Denim"
-      //   },
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "Female Denim"
-      //   },
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "T-Shirts"
-      //   },
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "Footwear"
-      //   },
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "Underwear"
-      //   },
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "Bags & Accessories"
-      //   }
-      // ]
     };
   },
 
