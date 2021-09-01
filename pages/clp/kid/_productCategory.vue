@@ -12,10 +12,12 @@
             v-if="ShopByItem.banner_type === 'Kid'"
             :key="ShopByIndex"
           >
-            <div class="img-box">
-              <img :src="ShopByItem.desktop_image" alt="img" class="w-100" />
-            </div>
-            <h5>{{ ShopByItem.title }}</h5>
+            <nuxtLink :to="`/${ShopByItem.url}`">
+              <div class="img-box">
+                <img :src="ShopByItem.desktop_image" alt="img" class="w-100" />
+              </div>
+              <h5>{{ ShopByItem.title }}</h5>
+            </nuxtLink>
           </div>
         </template>
       </div>
