@@ -3942,7 +3942,7 @@ p.p-price span.line-throu {
 .clp_pages.woman .slide-img {
   position: relative;
 }
-.clp_pages.woman .slide-img .clp-banner-txt-burron {
+.slide-img .clp-banner-txt-burron {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -3951,11 +3951,11 @@ p.p-price span.line-throu {
   color: #fff;
   text-transform: uppercase;
 }
-.clp_pages.woman .slide-img .clp-banner-txt-burron h3 {
+.slide-img .clp-banner-txt-burron h3 {
   font-size: 40px;
   font-weight: bold;
 }
-.clp_pages.woman .slide-img .clp-banner-txt-burron > a {
+.slide-img .clp-banner-txt-burron > a {
   padding: 10px 31px;
   background: #fff;
   margin-top: 15px;
@@ -4080,12 +4080,15 @@ p.p-price span.line-throu {
     width: 100%;
     padding: 10px;
   }
-  .clp_pages.woman .slide-img .clp-banner-txt-burron h3 {
+  .slide-img .clp-banner-txt-burron h3 {
     font-size: 24px;
     font-weight: bold;
   }
   .new-in-men-wo {
     display: inline-block;
+  }
+  .slide-img .clp-banner-txt-burron {
+    width: 100%;
   }
 }
 @media (max-width: 991px) {
