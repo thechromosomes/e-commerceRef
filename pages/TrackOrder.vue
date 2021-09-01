@@ -77,7 +77,7 @@ export default {
     return {
       showProductDetail: false,
       order_id: "",
-      orders: []
+      orders: [],
     };
   },
   methods: {
@@ -93,9 +93,9 @@ export default {
         .dispatch("cartAjax/actCartAjax", {
           method: "post",
           url: `/cart/track-order`,
-          params: form
+          params: form,
         })
-        .then(response => {
+        .then((response) => {
           if (response.success === true) {
             this.showProductDetail = true;
             this.orders = response.data.orders;
@@ -103,18 +103,19 @@ export default {
             this.$toast.error(response.message);
           }
         });
-    }
+    },
   },
 
   mounted() {
     if (
       this.$store.state.cartAjax.customer_id == "" &&
-      this.$store.state.cartAjax.customer_session == ""
+      this.$store.state.cartAjax.customer_session == "" 
     ) {
+      alert(this.$store.state.cartAjax.customer_id);
       this.$router.push("/login");
       return;
     }
-  }
+  },
 };
 </script>
 <style scoped>

@@ -49,9 +49,7 @@
               <div class="col-lg-3 col-12">
                 <div class="new_in_new">
                   <h2 class="swiper-header">NEW IN | man</h2>
-                  <Nuxt-link to="/" class="btn-shop">
-                    shop now
-                  </Nuxt-link>
+                  <Nuxt-link to="/" class="btn-shop"> shop now </Nuxt-link>
                 </div>
               </div>
               <div class="col-lg-9 col-12">
@@ -129,10 +127,16 @@
               :key="ShopByIndex"
               class="item"
             >
-              <div class="img-box">
-                <img :src="ShopByItem.desktop_image" alt="img" class="w-100" />
-              </div>
-              <h5 v-html="ShopByItem.description"></h5>
+              <nuxt-link :to="ShopByItem.url">
+                <div class="img-box">
+                  <img
+                    :src="ShopByItem.desktop_image"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <h5 v-html="ShopByItem.description"></h5>
+              </nuxt-link>
             </div>
           </template>
         </VueSlickCarousel>
@@ -171,8 +175,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -180,8 +184,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -189,10 +193,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
+              slidesToShow: 1,
+            },
+          },
+        ],
       },
       settings2: {
         lazyLoad: "ondemandl",
@@ -211,18 +215,18 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1
-            }
+              slidesToScroll: 1,
+            },
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1
-            }
-          }
-        ]
+              slidesToScroll: 1,
+            },
+          },
+        ],
       },
       settings3: {
         infinite: true,
@@ -237,44 +241,18 @@ export default {
             breakpoint: 991,
             settings: {
               arrows: false,
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
             settings: {
               arrows: false,
-              slidesToShow: 1.5
-            }
-          }
-        ]
-      }
-      // ShopByCategory: [
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "Male Denim"
-      //   },
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "Female Denim"
-      //   },
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "T-Shirts"
-      //   },
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "Footwear"
-      //   },
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "Underwear"
-      //   },
-      //   {
-      //     image: require("@/assets/img/2placeholder.jpg"),
-      //     name: "Bags & Accessories"
-      //   }
-      // ]
+              slidesToShow: 1.5,
+            },
+          },
+        ],
+      },
     };
   },
 
@@ -290,7 +268,7 @@ export default {
       potentialAction: {
         "@type": "SearchAction",
         target: `${this.$store.state.BASE_URL}/searchpage/?q={search_term_string}`,
-        "query-input": "required name=search_term_string"
+        "query-input": "required name=search_term_string",
       },
       address: {
         "@type": "PostalAddress",
@@ -298,9 +276,9 @@ export default {
           "Diesel Fashion India Reliance Pvt. Ltd, 7th Floor, Maker Towers E, Cuffe Parade",
         addressLocality: "Mumbai",
         postalCode: "400005",
-        addressCountry: "IN"
+        addressCountry: "IN",
       },
-      sameAs: [" https://www.instagram.com/diesel/"]
+      sameAs: [" https://www.instagram.com/diesel/"],
     };
   },
   head() {
@@ -310,24 +288,24 @@ export default {
         {
           hid: this.description,
           name: this.description,
-          content: this.description
+          content: this.description,
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title"
+          property: "og:title",
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description"
+          property: "og:description",
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url"
-        }
-      ]
+          property: "og:url",
+        },
+      ],
     };
   },
 
@@ -349,8 +327,8 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

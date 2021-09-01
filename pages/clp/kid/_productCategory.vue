@@ -6,16 +6,18 @@
 
     <div class="shop_by_category kids">
       <div class="shop_by_category_items w-100">
-        <div
-          class="item"
-          v-for="(ShopByItem, ShopByIndex) in ShopByCategory"
-          :key="ShopByIndex"
-        >
-          <div class="img-box">
-            <img :src="ShopByItem.image" alt="img" class="w-100" />
+        <template v-for="(ShopByItem, ShopByIndex) in bannerSlide">
+          <div
+            class="item"
+            v-if="ShopByItem.banner_type === 'Kid'"
+            :key="ShopByIndex"
+          >
+            <div class="img-box">
+              <img :src="ShopByItem.desktop_image" alt="img" class="w-100" />
+            </div>
+            <h5>{{ ShopByItem.title }}</h5>
           </div>
-          <h5>{{ ShopByItem.name }}</h5>
-        </div>
+        </template>
       </div>
     </div>
     <!-- new design -->
@@ -44,35 +46,21 @@
 
 <script>
 import NewIn from "../clpComponents/newIn";
+import { mapState } from "vuex";
+
 export default {
   components: {
-    NewIn
+    NewIn,
+  },
+
+  computed: {
+    ...mapState(["bannerSlide"]),
   },
   data() {
     return {
-      slideItem: [1, 2, 3, 4, 5, 6, 7, 8],
-      Item: [1, 2, 3, 4],
       jboys: [],
       cmsData: [],
       newIn: [],
-      ShopByCategory: [
-        {
-          image: require("@/assets/img/2placeholder.jpg"),
-          name: "Denim"
-        },
-        {
-          image: require("@/assets/img/2placeholder.jpg"),
-          name: "T-shirts"
-        },
-        {
-          image: require("@/assets/img/2placeholder.jpg"),
-          name: "Shirts"
-        },
-        {
-          image: require("@/assets/img/2placeholder.jpg"),
-          name: "Loungewear"
-        }
-      ]
     };
   },
   methods: {
@@ -90,7 +78,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form
+          params: form,
         });
 
         if (response) {
@@ -102,11 +90,12 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error: "Oops there seems to be some Network issue, please try again"
+            error:
+              "Oops there seems to be some Network issue, please try again",
           });
         }
       }
-    }
+    },
   },
   async created() {
     let form = {};
@@ -117,12 +106,12 @@ export default {
     let cmsData = await this.$store.dispatch("pimAjax", {
       method: "get",
       url: `/pimresponse.php`,
-      params: form
+      params: form,
     });
     this.cmsData = cmsData.result["kid-clp"];
     this.getProductList("kid-apparel-all-apparel", "jboys");
     this.getProductList("kid-new-arrivals", "newIn");
-  }
+  },
 };
 </script>
 
