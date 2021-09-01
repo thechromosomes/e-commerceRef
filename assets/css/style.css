@@ -3929,6 +3929,40 @@ p.p-price span.line-throu {
   display: block;
   max-height: 100vh;
 }
+.new_in_new {
+  text-align: left;
+}
+.new-in-men-wo {
+  display: block;
+  text-align: left;
+}
+.content_new_in-roww {
+  align-items: center;
+}
+.clp_pages.woman .slide-img {
+  position: relative;
+}
+.clp_pages.woman .slide-img .clp-banner-txt-burron {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+}
+.clp_pages.woman .slide-img .clp-banner-txt-burron h3 {
+  font-size: 40px;
+  font-weight: bold;
+}
+.clp_pages.woman .slide-img .clp-banner-txt-burron > a {
+  padding: 10px 31px;
+  background: #fff;
+  margin-top: 15px;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+}
 /* end help dropdown css */
 
 /* login button mobile css */
@@ -4046,10 +4080,20 @@ p.p-price span.line-throu {
     width: 100%;
     padding: 10px;
   }
+  .clp_pages.woman .slide-img .clp-banner-txt-burron h3 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .new-in-men-wo {
+    display: inline-block;
+  }
 }
 @media (max-width: 991px) {
   .header .navbar .navbar-collapse .navbar-nav .nav-item:hover .dropdown_menu {
     display: none;
+  }
+  .new-in-men-wo {
+    display: inline-block;
   }
   .header
     .navbar
