@@ -31,37 +31,37 @@ export default {
       FitGuides: [
         {
           image:
-            "https://diesel.gumlet.io/fit_images/woman-denim-skinny.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/woman-denim-skinny.jpg?w=500&dpr=1.0",
           name: "Super Skinny",
           url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~skinny",
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/man-denim-slim.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/man-denim-slim.jpg?w=500&dpr=1.0",
           name: "Slim",
           url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim",
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/woman-denim-straight.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/woman-denim-straight.jpg?w=500&dpr=1.0",
           name: "Straight",
           url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~straight",
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/woman-denim-boyfriend.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/woman-denim-boyfriend.jpg?w=500&dpr=1.0",
           name: "Boyfriend",
           url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~boyfriend",
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/woman-denim-wide.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/woman-denim-wide.jpg?w=500&dpr=1.0",
           name: "Flare/Wide",
           url: "/collections/woman-jeans-new-arrival-jeans/?filter=fit~wide",
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/woman-denim-bootcut.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/woman-denim-bootcut.jpg?w=500&dpr=1.0",
           name: "Bootcut",
           url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~bootcut",
         },

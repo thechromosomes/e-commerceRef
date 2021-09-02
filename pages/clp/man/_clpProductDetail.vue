@@ -24,37 +24,37 @@ export default {
       FitGuides: [
         {
           image:
-            "https://diesel.gumlet.io/fit_images/man-denim-skinny.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/man-denim-skinny.jpg?w=500&dpr=1.0",
           name: "SKINNY",
           url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~skinny",
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/man-denim-slim.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/man-denim-slim.jpg?w=500&dpr=1.0",
           name: "Slim",
           url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim",
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/man-denim-straight.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/man-denim-straight.jpg?w=500&dpr=1.0",
           name: "Straight",
           url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~straight",
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/man-denim-tapered.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/man-denim-tapered.jpg?w=500&dpr=1.0",
           name: "Tapered",
           url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered",
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/man-denim-carrot.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/man-denim-carrot.jpg?w=500&dpr=1.0",
           name: "Carrot",
           url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered&filter=fit~carrot",
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/man-denim-bootcut.jpg?w=200&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/man-denim-bootcut.jpg?w=500&dpr=1.0",
           name: "Bootcut",
           url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~tapered&filter=fit~carrot&filter=fit~bootcut",
         },
