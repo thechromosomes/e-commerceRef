@@ -1,4 +1,6 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap"); */
+@import "//fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese";
+@import "https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap";
+
 @import url("../fonts/stylesheet.css");
 
 :root {
@@ -731,9 +733,9 @@ button:hover {
 
 .collections_slide .slide_content .item .img_content {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
+  bottom: 2%;
+
+  left: 9%;
   text-align: left;
   padding: 30px;
   color: #fff;
@@ -741,8 +743,10 @@ button:hover {
 .collections_slide .slide_content .item .img_content h4 {
   color: #fff;
   font-weight: 700;
-  font-size: 40px;
-  letter-spacing: 0.8px;
+  font-size: 60px;
+  letter-spacing: 0px;
+  line-height: 1;
+  font-family: roboto condensed, sans-serif;
 }
 
 .collections_slide .slide_content .item .img_content h5 {
@@ -752,12 +756,13 @@ button:hover {
   letter-spacing: 0.8px;
 }
 .collections_slide .slide_content .item .img_content p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.9;
   margin: 20px 0;
-  font-family: var(--fontFamily);
-  letter-spacing: 1px;
+  font-family: roboto condensed, sans-serif;
+  letter-spacing: 0px;
   text-transform: uppercase;
+  font-weight: bold;
 }
 .collections_slide .slide_content .item .img_content a {
   font-family: var(--fontFamily);
@@ -784,7 +789,7 @@ button:hover {
   width: 100%;
   padding: 10px 20px;
 }
-.new_in .content_new_in .swiper-header {
+.content_new_in .swiper-header {
   font-weight: 700;
   /* padding: 20px 0px; */
   font-size: 30px;
@@ -2264,6 +2269,7 @@ p.p-price span.line-throu {
   padding: 8px 40px;
   background: transparent;
   font-weight: 700;
+  text-align: center;
 }
 #bb-footer-original .button-signup-container .button-signup:hover {
   color: #000;
@@ -2271,9 +2277,7 @@ p.p-price span.line-throu {
 }
 .newsletter-social {
   position: relative;
-  /* max-width: 1270px;
-  padding: 20px 15px; */
-  /* padding-top: 40px; */
+
   margin: 0 auto;
 }
 .complete-registration {
@@ -3944,16 +3948,23 @@ p.p-price span.line-throu {
 }
 .slide-img .clp-banner-txt-burron {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  bottom: 8%;
+  left: 12%;
+  /* transform: translate(-50%, -50%); */
+  text-align: left;
   color: #fff;
   text-transform: uppercase;
 }
 .slide-img .clp-banner-txt-burron h3 {
-  font-size: 40px;
+  font-size: 60px;
   font-weight: bold;
+  font-family: var(--fontFamily);
+}
+.slide-img .clp-banner-txt-burron p {
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: var(--fontFamily);
 }
 .slide-img .clp-banner-txt-burron > a {
   padding: 10px 31px;
@@ -4080,15 +4091,26 @@ p.p-price span.line-throu {
     width: 100%;
     padding: 10px;
   }
-  .slide-img .clp-banner-txt-burron h3 {
+  /* .slide-img .clp-banner-txt-burron h3 {
     font-size: 24px;
     font-weight: bold;
-  }
+  } */
   .new-in-men-wo {
     display: inline-block;
   }
   .slide-img .clp-banner-txt-burron {
-    width: 100%;
+    position: absolute;
+    bottom: 4%;
+    left: 4%;
+    top: auto;
+    /* transform: translate(-50%, -50%); */
+    text-align: left;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .slide-img .clp-banner-txt-burron h3 {
+    line-height: 49px;
+    font-size: 50px;
   }
 }
 @media (max-width: 991px) {

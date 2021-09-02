@@ -274,25 +274,20 @@
   }
 
   .collections_slide .slide_content .slick-dots {
-    left: 20px;
+    left: 12%;
     right: unset;
+    bottom: 0;
   }
-  .collections_slide .slide_content .item .img_content {
-    /* bottom: 0; */
-    left: 0%;
-    /* transform: translateX(-50%); */
-    text-align: center;
-    width: 100%;
-    padding: 10px;
-  }
-  .collections_slide .slide_content .item .img_content h4 {
+
+  /* .collections_slide .slide_content .item .img_content h4 {
     font-size: 30px;
-  }
+  } */
   .collections_slide .slide_content .item .img_content p br {
     display: none;
   }
   .collections_slide .slide_content .item .img_content a {
-    width: 100%;
+    display: inline-block;
+    padding: 5px 30px;
   }
   .footer .footer-wrapper .flex-content {
     flex-direction: column;
@@ -1045,6 +1040,12 @@
   .footer {
     background-color: transparent !important;
   }
+  .fit_guide .swiper-header {
+    text-align: center;
+  }
+  .new-sneakers h4 {
+    text-align: center !important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1238,6 +1239,23 @@
   .slide-img.banner-top .content-text .button {
     display: block;
     width: 80%;
+  }
+  .slide-img .clp-banner-txt-burron p {
+    display: none;
+  }
+  .collections_slide .slide_content .item .img_content p {
+    display: block;
+  }
+  .collections_slide .slide_content .item .img_content .module-text {
+    display: none;
+  }
+  .collections_slide .slide_content .item .img_content {
+    padding: 0px;
+    left: 4%;
+  }
+  .collections_slide .slide_content .item .img_content h4 {
+    line-height: 50px;
+    font-size: 50px;
   }
 }
 @media (max-width: 1010px) {

@@ -1,7 +1,7 @@
 <template>
   <div class="fit_guide">
     <div class="fit_guide_items ">
-    <h2 class="swiper-header">DENIM FIT GUIDE</h2>
+      <h2 class="swiper-header">DENIM FIT GUIDE</h2>
       <VueSlickCarousel ref="slick" v-bind="settings">
         <div class="item" v-for="(item, index) in FitGuides" :key="index">
           <Nuxt-link :to="item.url">
@@ -36,24 +36,24 @@ export default {
             breakpoint: 991,
             settings: {
               arrows: false,
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
             settings: {
               arrows: false,
-              slidesToShow: 2,
-            },
-          },
-        ],
-      },
+              slidesToShow: 2
+            }
+          }
+        ]
+      }
     };
   },
   components: {
-    VueSlickCarousel,
+    VueSlickCarousel
   },
-  props: ["FitGuides"],
+  props: ["FitGuides"]
 };
 </script>
 
@@ -74,6 +74,9 @@ export default {
 }
 .fit_guide .swiper-header {
   font-weight: 700;
+  padding: 60px 0px 10px 0px !important;
+  color: #212529;
+  font-size: 30px;
 }
 .fit_guide .fit_guide_items .item .content {
   position: absolute;
@@ -109,6 +112,17 @@ export default {
 @media (max-width: 991px) {
   .fit_guide .fit_guide_items {
     padding: 10px;
+  }
+  .new_in .content_new_in .swiper-header {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .fit_guide .swiper-header {
+    font-size: 30px;
+    text-align: center !important;
+    padding: 20px 0px !important;
   }
 }
 </style>
