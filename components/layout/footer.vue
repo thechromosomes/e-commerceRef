@@ -39,7 +39,7 @@
                   </div>
                   <p class="privacy-policy-newsletter">
                     By clicking Sign up you have read and agreed to our
-                    <a href="" class="more"
+                    <a href="cms/legal-area/?for=privacy-policy" class="more"
                       ><span class="svgMore"></span
                       ><span class="learn-more-text"
                         ><u> privacy policy</u></span
@@ -316,7 +316,7 @@ export default {
 .social-media h4 {
   font-weight: 700;
   font-size: 24px;
-  text-transform: capitalize;
+  text-transform: none;
 }
 .footer-hlp-container,
 .footer-container .copyright {

@@ -647,6 +647,7 @@ export default {
 
         if (response.success) {
           if (response.data) {
+            this.markers = []
             this.serviceCenters = response.data;
             this.serviceCenters.map((element) => {
               if (element.lat != "") {

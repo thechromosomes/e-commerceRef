@@ -2305,7 +2305,7 @@ p.p-price span.line-throu {
 .social-media h4 {
   font-weight: 700;
   font-size: 14px;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .social-icons-container {

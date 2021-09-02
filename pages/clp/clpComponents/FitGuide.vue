@@ -1,6 +1,6 @@
 <template>
   <div class="fit_guide">
-    <div class="fit_guide_items">
+    <div class="fit_guide_items ">
     <h2 class="swiper-header">DENIM FIT GUIDE</h2>
       <VueSlickCarousel ref="slick" v-bind="settings">
         <div class="item" v-for="(item, index) in FitGuides" :key="index">
@@ -71,6 +71,9 @@ export default {
 }
 .fit_guide .fit_guide_items .item {
   position: relative;
+}
+.fit_guide .swiper-header {
+  font-weight: 700;
 }
 .fit_guide .fit_guide_items .item .content {
   position: absolute;
