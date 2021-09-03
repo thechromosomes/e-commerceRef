@@ -24,7 +24,6 @@
       </div>
     </div>
     <!-- <LazyHydrate when-visible> -->
-    <client-only>
 
     <section class="new_in" style="min-height: 250px" v-if="is_new.length > 0">
       <div class="container-fluid">
@@ -38,7 +37,7 @@
                 <Nuxt-link to="/" class="btn-shop"> shop now </Nuxt-link>
               </div>
             </div>
-            <div class="col-lg-9 col-12">
+            <div class="col-lg-9 col-12 pd-0-mob">
               <div class="slide_new_in">
                 <VueSlickCarousel class="for-right-croual" v-bind="settings">
                   <div
@@ -68,7 +67,7 @@
       <span v-html="homePageData.content_1"></span>
     </LazyHydrate>
     <div class="shop_by_category" v-if="bannerSlide.length > 0">
-      <div class="shop_by_category_items w-100">
+      <div class="shop_by_category_items w-100 c-crosal">
         <VueSlickCarousel class="for-right-croual" v-bind="settings3">
           <template v-for="(ShopByItem, ShopByIndex) in bannerSlide">
             <div
@@ -91,7 +90,7 @@
         </VueSlickCarousel>
       </div>
     </div>
-    </client-only>
+
     <!-- Start of bottom images Section -->
     <LazyHydrate never>
       <span v-html="homePageData.content_2"></span>
@@ -121,8 +120,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -130,8 +129,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 480,
@@ -139,10 +138,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
+              slidesToShow: 1.5
+            }
+          }
+        ]
       },
       settings2: {
         focusOnSelect: true,
@@ -160,18 +159,18 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
+              slidesToScroll: 1
+            }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
-            },
-          },
-        ],
+              slidesToScroll: 1
+            }
+          }
+        ]
       },
       settings3: {
         infinite: true,
@@ -186,18 +185,18 @@ export default {
             breakpoint: 991,
             settings: {
               arrows: false,
-              slidesToShow: 1.5,
-            },
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 767,
             settings: {
               arrows: false,
-              slidesToShow: 1.5,
-            },
-          },
-        ],
-      },
+              slidesToShow: 1.5
+            }
+          }
+        ]
+      }
     };
   },
   jsonld() {
@@ -212,7 +211,7 @@ export default {
       potentialAction: {
         "@type": "SearchAction",
         target: `${this.$store.state.BASE_URL}/searchpage/?q={search_term_string}`,
-        "query-input": "required name=search_term_string",
+        "query-input": "required name=search_term_string"
       },
       address: {
         "@type": "PostalAddress",
@@ -220,9 +219,9 @@ export default {
           "Diesel Fashion India Reliance Pvt. Ltd, 7th Floor, Maker Towers E, Cuffe Parade",
         addressLocality: "Mumbai",
         postalCode: "400005",
-        addressCountry: "IN",
+        addressCountry: "IN"
       },
-      sameAs: [" https://www.instagram.com/diesel/"],
+      sameAs: [" https://www.instagram.com/diesel/"]
     };
   },
   head() {
@@ -232,24 +231,24 @@ export default {
         {
           hid: this.description,
           name: this.description,
-          content: this.description,
+          content: this.description
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title",
+          property: "og:title"
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description",
+          property: "og:description"
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url",
-        },
-      ],
+          property: "og:url"
+        }
+      ]
     };
   },
   computed: {
@@ -269,8 +268,8 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
-  },
+    }
+  }
 };
 </script>
 <style>

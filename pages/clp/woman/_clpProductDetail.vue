@@ -2,7 +2,7 @@
   <div class="clp_pages woman">
     <div v-html="cmsData.content"></div>
 
-    <div class="fit_guide">
+    <div class="">
       <FitGuide :FitGuides="FitGuides" />
     </div>
 
@@ -24,7 +24,7 @@ export default {
   components: {
     VueSlickCarousel,
     NewIn,
-    FitGuide,
+    FitGuide
   },
   data() {
     return {
@@ -33,48 +33,48 @@ export default {
           image:
             "https://diesel.gumlet.io/fit_images/woman-denim-skinny.jpg?w=500&dpr=1.0",
           name: "Super Skinny",
-          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~skinny",
+          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~skinny"
         },
         {
           image:
             "https://diesel.gumlet.io/fit_images/woman-denim-slim.jpg?w=500&dpr=1.0",
           name: "Slim",
-          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim",
+          url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim"
         },
         {
           image:
             "https://diesel.gumlet.io/fit_images/woman-denim-straight.jpg?w=500&dpr=1.0",
           name: "Straight",
-          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~straight",
+          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~straight"
         },
         {
           image:
             "https://diesel.gumlet.io/fit_images/woman-denim-boyfriend.jpg?w=500&dpr=1.0",
           name: "Boyfriend",
-          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~boyfriend",
+          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~boyfriend"
         },
         {
           image:
             "https://diesel.gumlet.io/fit_images/woman-denim-wide.jpg?w=500&dpr=1.0",
           name: "Flare/Wide",
-          url: "/collections/woman-jeans-new-arrival-jeans/?filter=fit~wide",
+          url: "/collections/woman-jeans-new-arrival-jeans/?filter=fit~wide"
         },
         {
           image:
             "https://diesel.gumlet.io/fit_images/woman-denim-bootcut.jpg?w=500&dpr=1.0",
           name: "Bootcut",
-          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~bootcut",
-        },
+          url: "collections/woman-jeans-new-arrival-jeans/?filter=fit~bootcut"
+        }
       ],
       newOne: [],
       sneakers: [],
       topsWear: [],
       dresses: [],
-      cmsData: [],
+      cmsData: []
     };
   },
   computed: {
-    ...mapState(["is_new", "cmsPagesData", "bannerSlide"]),
+    ...mapState(["is_new", "cmsPagesData", "bannerSlide"])
   },
 
   methods: {
@@ -92,7 +92,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
@@ -104,12 +104,11 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
-    },
+    }
   },
   async created() {
     let form = {};
@@ -120,13 +119,13 @@ export default {
     let cmsData = await this.$store.dispatch("pimAjax", {
       method: "get",
       url: `/pimresponse.php`,
-      params: form,
+      params: form
     });
     this.cmsData = cmsData.result["women-clp"];
     this.getProductList("woman-apparel-tshirts---tops", "topsWear");
     this.getProductList("wlp-new-in", "newOne");
     this.getProductList("wlp-new-in", "dresses");
-  },
+  }
 };
 </script>
 
