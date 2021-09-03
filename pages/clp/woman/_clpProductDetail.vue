@@ -37,7 +37,7 @@ export default {
         },
         {
           image:
-            "https://diesel.gumlet.io/fit_images/man-denim-slim.jpg?w=500&dpr=1.0",
+            "https://diesel.gumlet.io/fit_images/woman-denim-slim.jpg?w=500&dpr=1.0",
           name: "Slim",
           url: "/collections/man-jeans-new-arrival-jeans/?filter=fit~slim",
         },

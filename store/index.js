@@ -107,15 +107,14 @@ export const actions = {
         params: form.params,
       };
 
-      this.$axios(authOptions1).then((tempResponse) => {
-        if (tempResponse.data.response.success == 1) {
-          context.commit("updateBestSeller", {
-            is_new: tempResponse.data.result.is_new,
-          });
-        } else {
-          throw "encountered error while fetching best seller data";
-        }
-      });
+      let tempResponse = await this.$axios(authOptions1);
+      if (tempResponse.data.response.success == 1) {
+        await context.commit("updateBestSeller", {
+          is_new: tempResponse.data.result.is_new,
+        });
+      } else {
+        throw "encountered error while fetching best seller data";
+      }
     } catch (error) {
       console.log("error from the get best seller Store action >>", error);
     }
@@ -139,24 +138,12 @@ export const actions = {
         bannerSliderData.data.response &&
         bannerSliderData.data.response.success == 1
       ) {
-        context.commit("updateBannerSlider", {
+       await context.commit("updateBannerSlider", {
           bannerSlide: bannerSliderData.data.result.banner,
         });
       } else {
         throw "encountered error while fetching best seller data";
       }
-      // this.$axios(authOpt).then((bannerSliderData) => {
-      //   if (
-      //     bannerSliderData.data.response &&
-      //     bannerSliderData.data.response.success == 1
-      //   ) {
-      //     context.commit("updateBannerSlider", {
-      //       bannerSlide: bannerSliderData.data.result.banner,
-      //     });
-      //   } else {
-      //     throw "encountered error while fetching best seller data";
-      //   }
-      // });
     } catch (error) {
       console.log("error from the get getBannerSlider Store action >>", error);
     }

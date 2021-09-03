@@ -353,19 +353,9 @@
                 </li>
               </ul>
             </li>
-            <!-- <client-only> -->
-            <li>
-              <nuxt-link
-                v-if="
-                  $store.state.cartAjax.customer_id != null &&
-                  $store.state.cartAjax.customer_id != '' &&
-                  $store.state.cartAjax.customer_session != '' &&
-                  $store.state.cartAjax.customer_session != null
-                "
-                to="/Dashboard"
-              >
-                <div
-                  class="login login-user"
+            <client-only>
+              <li>
+                <nuxt-link
                   v-if="
                     $store.state.cartAjax.customer_id != null &&
                     $store.state.cartAjax.customer_id != '' &&
@@ -374,57 +364,59 @@
                   "
                   to="/Dashboard"
                 >
-                  <span class="desktop_only"> account </span>
-                  <span class="mobile_only user-icon"></span>
-                  <div class="dropdown-menu-account">
-                    <ul>
-                      <li>
-                        <nuxt-link
-                          :class="[
-                            $route.path == '/Dashboard'
-                              ? 'active-account-sidebar'
-                              : '',
-                          ]"
-                          to="/Dashboard"
-                          >Account Dashboard</nuxt-link
-                        >
-                      </li>
-                      <li>
-                        <nuxt-link
-                          :class="[
-                            $route.path == '/addresses'
-                              ? 'active-account-sidebar'
-                              : '',
-                          ]"
-                          to="/addresses"
-                          >My Address Book</nuxt-link
-                        >
-                      </li>
-                      <li>
-                        <nuxt-link
-                          :class="[
-                            $route.path == '/myorder'
-                              ? 'active-account-sidebar'
-                              : '',
-                          ]"
-                          to="/myorder"
-                          >My Orders</nuxt-link
-                        >
-                      </li>
-                      <li>
-                        <a @click.prevent="logOut">Logout</a>
-                      </li>
-                    </ul>
+                  <div class="login login-user">
+                    <span class="desktop_only"> account </span>
+                    <span class="mobile_only user-icon"></span>
+                    <div class="dropdown-menu-account">
+                      <ul>
+                        <li>
+                          <nuxt-link
+                            :class="[
+                              $route.path == '/Dashboard'
+                                ? 'active-account-sidebar'
+                                : '',
+                            ]"
+                            to="/Dashboard"
+                            >Account Dashboard</nuxt-link
+                          >
+                        </li>
+                        <li>
+                          <nuxt-link
+                            :class="[
+                              $route.path == '/addresses'
+                                ? 'active-account-sidebar'
+                                : '',
+                            ]"
+                            to="/addresses"
+                            >My Address Book</nuxt-link
+                          >
+                        </li>
+                        <li>
+                          <nuxt-link
+                            :class="[
+                              $route.path == '/myorder'
+                                ? 'active-account-sidebar'
+                                : '',
+                            ]"
+                            to="/myorder"
+                            >My Orders</nuxt-link
+                          >
+                        </li>
+                        <li>
+                          <a @click.prevent="logOut">Logout</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </nuxt-link>
-              <nuxt-link v-else to="/login">
-                <div class="login">
-                  <span class="desktop_only">Login</span>
-                  <span class="mobile_only user-icon"></span>
-                </div>
-              </nuxt-link>
-            </li>
+                </nuxt-link>
+                <nuxt-link v-else to="/login">
+                  <div class="login">
+                    <span class="desktop_only">Login</span>
+                    <span class="mobile_only user-icon"></span>
+                  </div>
+                </nuxt-link>
+              </li>
+            </client-only>
             <li>
               <nuxt-link to="/wishlist">
                 <div class="wishlist">

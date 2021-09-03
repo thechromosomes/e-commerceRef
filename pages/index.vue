@@ -1,41 +1,30 @@
 <template>
   <div>
-    <!-- home page cms -->
-    <!-- <LazyHydrate ssr-only>
-      <div v-if="Object.keys(homePageData).length != 0">
-        <span v-html="homePageData.content"></span>
-      </div>
-    </LazyHydrate> -->
-    <LazyHydrate when-visible>
-      <div class="collections_slide">
-        <div class="slide_content" v-if="bannerSlide.length > 0">
-          <VueSlickCarousel ref="slick" v-bind="settings2">
-            <template v-for="(item, index) in bannerSlide">
-              <div
-                class="item"
-                v-if="item.banner_type === 'Banner'"
-                :key="index"
-              >
-                <img
-                  :src="item.desktop_image"
-                  alt="img"
-                  class="desktop_only w-100"
-                />
-                <img
-                  :src="item.mobile_image"
-                  alt="img"
-                  class="mobile_only w-100"
-                />
-                <div class="img_content">
-                  <div class="" v-html="item.description"></div>
-                </div>
+     <LazyHydrate never>
+    <div class="collections_slide">
+      <div class="slide_content" v-if="bannerSlide.length > 0">
+        <VueSlickCarousel ref="slick" v-bind="settings2">
+          <template v-for="(item, index) in bannerSlide">
+            <div class="item" v-if="item.banner_type === 'Banner'" :key="index">
+              <img
+                :src="item.desktop_image"
+                alt="img"
+                class="desktop_only w-100"
+              />
+              <img
+                :src="item.mobile_image"
+                alt="img"
+                class="mobile_only w-100"
+              />
+              <div class="img_content">
+                <div class="" v-html="item.description"></div>
               </div>
-            </template>
-          </VueSlickCarousel>
-        </div>
+            </div>
+          </template>
+        </VueSlickCarousel>
       </div>
-    </LazyHydrate>
-    <LazyHydrate when-visible>
+    </div>
+     </LazyHydrate>
       <section
         class="new_in"
         style="min-height: 250px"
@@ -81,8 +70,7 @@
           </div>
         </div>
       </section>
-    </LazyHydrate>
-    <LazyHydrate when-visible>
+    <LazyHydrate never>
       <span v-html="homePageData.content_1"></span>
     </LazyHydrate>
     <div class="shop_by_category">
@@ -114,7 +102,7 @@
       </div>
     </div>
     <!-- Start of bottom images Section -->
-    <LazyHydrate when-visible>
+    <LazyHydrate never>
       <span v-html="homePageData.content_2"></span>
     </LazyHydrate>
   </div>
