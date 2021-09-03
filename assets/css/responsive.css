@@ -1261,6 +1261,29 @@
     padding: 0px 20px;
     margin: 0px;
   }
+  .slick-slide {
+    float: right;
+  }
+  .fit_guide .fit_guide_items .slick-initialized .slick-slide {
+    padding: 0px 5px !important;
+  }
+  .slide_new_in .item {
+    padding: 0px 5px !important;
+  }
+
+  .fit_guide .fit_guide_items {
+    padding: 0px !important;
+  }
+  .fit_guide,
+  .new_in {
+    padding-left: 5px;
+  }
+  .new_in .container-fluid {
+    padding: 0px !important;
+  }
+  .slide_new_in {
+    margin: 0 0px;
+  }
 }
 @media (max-width: 1010px) {
   .header .navbar .search_box .searchbox input {
