@@ -81,44 +81,9 @@
       </section>
     </LazyHydrate>
 
-    <div class="shop_category">
-      <div class="row">
-        <div class="col-lg-6 col-12">
-          <div class="img-box w-100">
-            <img
-              src="~/assets/img/Male Header-f1.jpg"
-              alt=" img "
-              class="w-100"
-            />
-            <div class="my-cata-define-div">
-              <a
-                class="button secondary-white-btn"
-                role="button"
-                href="collections/hp-second-banner-man"
-                >SHOP MAN</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-12">
-          <div class="img-box w-100">
-            <img
-              src="~/assets/img/Female Header-f1.jpg"
-              alt=" img "
-              class="w-100"
-            />
-            <div class="my-cata-define-div">
-              <a
-                class="button secondary-white-btn"
-                role="button"
-                href="collections/collections/hp-second-banner-woman/"
-                >SHOP WOMEN</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <LazyHydrate when-visible>
+      <span v-html="homePageData.content_1"></span>
+    </LazyHydrate>
 
     <div class="shop_by_category">
       <div class="shop_by_category_items w-100">
@@ -147,7 +112,7 @@
 
     <!-- Start of bottom images Section -->
     <LazyHydrate when-visible>
-      <span v-html="homePageData.content_1"></span>
+      <span v-html="homePageData.content_2"></span>
     </LazyHydrate>
   </div>
 </template>
@@ -177,8 +142,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
@@ -186,8 +151,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+              slidesToShow: 1.5,
+            },
           },
           {
             breakpoint: 480,
@@ -195,10 +160,10 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
-            }
-          }
-        ]
+              slidesToShow: 1,
+            },
+          },
+        ],
       },
       settings2: {
         lazyLoad: "ondemandl",
@@ -217,25 +182,25 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1
-            }
+              slidesToScroll: 1,
+            },
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1
-            }
-          }
-        ]
+              slidesToScroll: 1,
+            },
+          },
+        ],
       },
       settings3: {
         infinite: true,
         slidesToShow: 5,
         slidesToScroll: 1,
         dots: false,
-        arrows: false,
+        arrows: true,
         autoplay: true,
         autoplaySpeed: 2000,
         responsive: [
@@ -243,18 +208,18 @@ export default {
             breakpoint: 991,
             settings: {
               arrows: false,
-              slidesToShow: 2.5
-            }
+              slidesToShow: 2.5,
+            },
           },
           {
             breakpoint: 767,
             settings: {
               arrows: false,
-              slidesToShow: 1.5
-            }
-          }
-        ]
-      }
+              slidesToShow: 1.5,
+            },
+          },
+        ],
+      },
     };
   },
 
@@ -270,7 +235,7 @@ export default {
       potentialAction: {
         "@type": "SearchAction",
         target: `${this.$store.state.BASE_URL}/searchpage/?q={search_term_string}`,
-        "query-input": "required name=search_term_string"
+        "query-input": "required name=search_term_string",
       },
       address: {
         "@type": "PostalAddress",
@@ -278,9 +243,9 @@ export default {
           "Diesel Fashion India Reliance Pvt. Ltd, 7th Floor, Maker Towers E, Cuffe Parade",
         addressLocality: "Mumbai",
         postalCode: "400005",
-        addressCountry: "IN"
+        addressCountry: "IN",
       },
-      sameAs: [" https://www.instagram.com/diesel/"]
+      sameAs: [" https://www.instagram.com/diesel/"],
     };
   },
   head() {
@@ -290,24 +255,24 @@ export default {
         {
           hid: this.description,
           name: this.description,
-          content: this.description
+          content: this.description,
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title"
+          property: "og:title",
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description"
+          property: "og:description",
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url"
-        }
-      ]
+          property: "og:url",
+        },
+      ],
     };
   },
 
@@ -329,8 +294,8 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
