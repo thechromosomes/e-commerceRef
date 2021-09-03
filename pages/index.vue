@@ -1,6 +1,5 @@
 <template>
   <div>
-     <LazyHydrate never>
     <div class="collections_slide">
       <div class="slide_content" v-if="bannerSlide.length > 0">
         <VueSlickCarousel ref="slick" v-bind="settings2">
@@ -24,52 +23,47 @@
         </VueSlickCarousel>
       </div>
     </div>
-     </LazyHydrate>
-      <section
-        class="new_in"
-        style="min-height: 250px"
-        v-if="is_new.length > 0"
-      >
-        <div class="container-fluid">
-          <div class="content_new_in">
-            <div class="row content_new_in-roww">
-              <div class="col-lg-3 col-12">
-                <div class="new_in_new">
-                  <h2 class="swiper-header">
-                    <span class="new-in-men-wo">NEW IN </span> men | women
-                  </h2>
-                  <Nuxt-link to="/" class="btn-shop"> shop now </Nuxt-link>
-                </div>
+    <section class="new_in" style="min-height: 250px" v-if="is_new.length > 0">
+      <div class="container-fluid">
+        <div class="content_new_in">
+          <div class="row content_new_in-roww">
+            <div class="col-lg-3 col-12">
+              <div class="new_in_new">
+                <h2 class="swiper-header">
+                  <span class="new-in-men-wo">NEW IN </span> men | women
+                </h2>
+                <Nuxt-link to="/" class="btn-shop"> shop now </Nuxt-link>
               </div>
-              <div class="col-lg-9 col-12">
-                <div class="slide_new_in">
-                  <VueSlickCarousel
-                    ref="slick"
-                    class="for-right-croual"
-                    v-bind="settings"
+            </div>
+            <div class="col-lg-9 col-12">
+              <div class="slide_new_in">
+                <VueSlickCarousel
+                  ref="slick"
+                  class="for-right-croual"
+                  v-bind="settings"
+                >
+                  <div
+                    class="item"
+                    v-for="(item, index) in is_new"
+                    :key="index"
                   >
-                    <div
-                      class="item"
-                      v-for="(item, index) in is_new"
-                      :key="index"
-                    >
-                      <NuxtLink :to="`product/${item.url_key}`"
-                        ><img :src="item.image" alt="img" class="w-100"
-                      /></NuxtLink>
-                      <div class="tile-body">
-                        <p>{{ item.color }}</p>
-                        <NuxtLink :to="`product/${item.url_key}`">
-                          {{ item.name }}
-                        </NuxtLink>
-                      </div>
+                    <NuxtLink :to="`product/${item.url_key}`"
+                      ><img :src="item.image" alt="img" class="w-100"
+                    /></NuxtLink>
+                    <div class="tile-body">
+                      <p>{{ item.color }}</p>
+                      <NuxtLink :to="`product/${item.url_key}`">
+                        {{ item.name }}
+                      </NuxtLink>
                     </div>
-                  </VueSlickCarousel>
-                </div>
+                  </div>
+                </VueSlickCarousel>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
     <LazyHydrate never>
       <span v-html="homePageData.content_1"></span>
     </LazyHydrate>
@@ -154,7 +148,6 @@ export default {
         ],
       },
       settings2: {
-        lazyLoad: "ondemandl",
         focusOnSelect: true,
         dots: true,
         infinite: true,
