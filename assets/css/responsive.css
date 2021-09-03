@@ -786,6 +786,7 @@
   .login-box .systemForm {
     transform: unset;
     position: static;
+    margin: 80px 0px;
   }
   .login-box {
     padding: 10px 0px;

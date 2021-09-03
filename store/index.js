@@ -81,8 +81,6 @@ export const actions = {
       params: request,
     };
 
- 
-
     return new Promise((resolve, reject) => {
       this.$axios(authOptions)
         .then((response) => {
@@ -109,15 +107,15 @@ export const actions = {
         params: form.params,
       };
 
-      let tempResponse = await this.$axios(authOptions1);
-
-      if (tempResponse.data.response.success == 1) {
-        context.commit("updateBestSeller", {
-          is_new: tempResponse.data.result.is_new,
-        });
-      } else {
-        throw "encountered error while fetching best seller data";
-      }
+      this.$axios(authOptions1).then((tempResponse) => {
+        if (tempResponse.data.response.success == 1) {
+          context.commit("updateBestSeller", {
+            is_new: tempResponse.data.result.is_new,
+          });
+        } else {
+          throw "encountered error while fetching best seller data";
+        }
+      });
     } catch (error) {
       console.log("error from the get best seller Store action >>", error);
     }
@@ -147,6 +145,18 @@ export const actions = {
       } else {
         throw "encountered error while fetching best seller data";
       }
+      // this.$axios(authOpt).then((bannerSliderData) => {
+      //   if (
+      //     bannerSliderData.data.response &&
+      //     bannerSliderData.data.response.success == 1
+      //   ) {
+      //     context.commit("updateBannerSlider", {
+      //       bannerSlide: bannerSliderData.data.result.banner,
+      //     });
+      //   } else {
+      //     throw "encountered error while fetching best seller data";
+      //   }
+      // });
     } catch (error) {
       console.log("error from the get getBannerSlider Store action >>", error);
     }
@@ -186,16 +196,10 @@ export const mutations = {
     state.list.Product_count = "";
 
     state.list.sort = [
-      // { code: "default", dir: "desc", label: "default" },
-      // { code: "best_matches", dir: "asc", label: "Best Matches" },
-      // { code: "Product_name", dir: "asc", label: "Product Name A-Z" },
-      // { code: "Product_name", dir: "desc", label: "Product Name Z-A" },
       { code: "most_popular", dir: "asc", label: "Most popular" },
       { code: "new_arrival", dir: "asc", label: "New Arrival" },
       { code: "selling_price", dir: "asc", label: "Price Low to High" },
       { code: "selling_price", dir: "desc", label: "Price High to Low" },
-      // { code: "brand", dir: "asc", label: "Brand" },
-      // { code: "top_sellers", dir: "asc", label: "Top Sellers" },
     ];
 
     if (pageNo == 1) {

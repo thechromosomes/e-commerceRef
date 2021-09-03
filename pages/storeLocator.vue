@@ -89,6 +89,7 @@
                     :position="m.position"
                     :clickable="true"
                     @click="toggleInfoWindow(m, index)"
+                    :icon="{ url: require('~/static/icon.png')}"
                   />
                 </GmapMap>
               </div>
