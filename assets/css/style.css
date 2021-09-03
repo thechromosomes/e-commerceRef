@@ -2265,7 +2265,7 @@ p.p-price span.line-throu {
 #bb-footer-original .button-signup-container .button-signup {
   border: 2px solid #fff;
   color: #fff;
-  text-transform: uppercase;
+
   padding: 8px 40px;
   background: transparent;
   font-weight: 700;
@@ -4776,6 +4776,8 @@ p.input-success {
 .shop_by_category .shop_by_category_items .item h5 {
   text-align: center;
   text-transform: uppercase;
+  font-size: 18px;
+  line-height: 1;
 }
 .shop_by_category.kids .shop_by_category_items {
   display: flex;

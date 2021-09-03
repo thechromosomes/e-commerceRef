@@ -1241,22 +1241,26 @@
     width: 80%;
   }
   .slide-img .clp-banner-txt-burron p {
-    display: none;
+    display: block;
   }
   .collections_slide .slide_content .item .img_content p {
     display: block;
   }
   .collections_slide .slide_content .item .img_content .module-text {
-    display: none;
+    display: block;
+    line-height: 20px;
   }
   .collections_slide .slide_content .item .img_content {
-    padding: 0px;
+    padding: 0px 10px 0px 0px;
     left: 4%;
   }
   .collections_slide .slide_content .item .img_content h4 {
-    line-height: 50px;
-    font-size: 50px;
+    line-height: 1px;
+    font-size: 35px;
   }
+  /* .collections_slide .slide_content .item .img_content .module-text {
+    line-height: 1;
+  } */
   .social-icons {
     padding: 0px 20px;
     margin: 0px;
@@ -1283,6 +1287,21 @@
   }
   .slide_new_in {
     margin: 0 0px;
+  }
+  .slide-img .clp-banner-txt-burron > a {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  .slide-img .clp-banner-txt-burron h3 {
+    line-height: 1;
+    font-size: 35px;
+  }
+  .clp_pages.woman .slide-img p {
+    margin: 0px;
+  }
+  .clp_pages.woman .slide-img,
+  .clp_pages.kid .slide-img {
+    margin-bottom: 0;
   }
 }
 @media (max-width: 1010px) {
