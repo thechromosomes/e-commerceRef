@@ -6,7 +6,11 @@
           <h2 class="swiper-header">{{ header || `NEW IN` }}</h2>
           <div class="slide_new_in" v-if="slideImg && slideImg.length > 0">
             <client-only>
-              <VueSlickCarousel ref="slick_new_in" v-bind="settings">
+              <VueSlickCarousel
+                class="for-right-croual"
+                ref="slick_new_in"
+                v-bind="settings"
+              >
                 <div
                   class="item"
                   v-for="(item, index) in slideImg"

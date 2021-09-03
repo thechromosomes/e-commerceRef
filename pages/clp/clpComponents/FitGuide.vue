@@ -2,7 +2,7 @@
   <div class="fit_guide">
     <div class="fit_guide_items ">
       <h2 class="swiper-header">DENIM FIT GUIDE</h2>
-      <VueSlickCarousel ref="slick" v-bind="settings">
+      <VueSlickCarousel class="for-right-croual" ref="slick" v-bind="settings">
         <div class="item" v-for="(item, index) in FitGuides" :key="index">
           <Nuxt-link :to="item.url">
             <img :src="item.image" alt="img" class="w-100" />

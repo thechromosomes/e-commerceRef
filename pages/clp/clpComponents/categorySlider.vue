@@ -7,7 +7,11 @@
         </div>
         <div class="swiper-overflow-gift-swiper">
           <div class="slide-item" v-if="slideImg && slideImg.length > 0">
-            <VueSlickCarousel ref="slick" v-bind="settings">
+            <VueSlickCarousel
+              class="for-right-croual"
+              ref="slick"
+              v-bind="settings"
+            >
               <div class="item" v-for="(item, index) in slideImg" :key="index">
                 <div class="img-box ">
                   <Nuxt-link :to="`/product/${item.url_key}`"

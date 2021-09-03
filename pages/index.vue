@@ -56,7 +56,11 @@
               </div>
               <div class="col-lg-9 col-12">
                 <div class="slide_new_in">
-                  <VueSlickCarousel ref="slick" v-bind="settings">
+                  <VueSlickCarousel
+                    ref="slick"
+                    class="for-right-croual"
+                    v-bind="settings"
+                  >
                     <div
                       class="item"
                       v-for="(item, index) in is_new"
@@ -87,7 +91,11 @@
 
     <div class="shop_by_category">
       <div class="shop_by_category_items w-100">
-        <VueSlickCarousel ref="slick" v-bind="settings3">
+        <VueSlickCarousel
+          class="for-right-croual"
+          ref="slick"
+          v-bind="settings3"
+        >
           <template v-for="(ShopByItem, ShopByIndex) in bannerSlide">
             <div
               v-if="ShopByItem.banner_type === 'homePage_footer_banner'"

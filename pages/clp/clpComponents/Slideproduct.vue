@@ -9,7 +9,11 @@
           <h2 class="swiper-header">DENIM MUST-HAVE</h2>
           <div class="slide_new_in" v-if="slideImg && slideImg.length > 0">
             <client-only>
-              <VueSlickCarousel ref="slick" v-bind="settings">
+              <VueSlickCarousel
+                class="for-right-croual"
+                ref="slick"
+                v-bind="settings"
+              >
                 <div
                   class="item"
                   v-for="(item, index) in slideImg"
