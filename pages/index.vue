@@ -2,7 +2,7 @@
   <div>
     <div class="collections_slide">
       <div class="slide_content" v-if="bannerSlide.length > 0">
-        <VueSlickCarousel ref="slick" v-bind="settings2">
+        <VueSlickCarousel v-bind="settings2">
           <template v-for="(item, index) in bannerSlide">
             <div class="item" v-if="item.banner_type === 'Banner'" :key="index">
               <img
@@ -23,6 +23,9 @@
         </VueSlickCarousel>
       </div>
     </div>
+    <!-- <LazyHydrate when-visible> -->
+    <client-only>
+
     <section class="new_in" style="min-height: 250px" v-if="is_new.length > 0">
       <div class="container-fluid">
         <div class="content_new_in">
@@ -37,11 +40,7 @@
             </div>
             <div class="col-lg-9 col-12">
               <div class="slide_new_in">
-                <VueSlickCarousel
-                  ref="slick"
-                  class="for-right-croual"
-                  v-bind="settings"
-                >
+                <VueSlickCarousel class="for-right-croual" v-bind="settings">
                   <div
                     class="item"
                     v-for="(item, index) in is_new"
@@ -64,16 +63,13 @@
         </div>
       </div>
     </section>
+    <!-- </LazyHydrate> -->
     <LazyHydrate never>
       <span v-html="homePageData.content_1"></span>
     </LazyHydrate>
-    <div class="shop_by_category">
+    <div class="shop_by_category" v-if="bannerSlide.length > 0">
       <div class="shop_by_category_items w-100">
-        <VueSlickCarousel
-          class="for-right-croual"
-          ref="slick"
-          v-bind="settings3"
-        >
+        <VueSlickCarousel class="for-right-croual" v-bind="settings3">
           <template v-for="(ShopByItem, ShopByIndex) in bannerSlide">
             <div
               v-if="ShopByItem.banner_type === 'homePage_footer_banner'"
@@ -95,6 +91,7 @@
         </VueSlickCarousel>
       </div>
     </div>
+    </client-only>
     <!-- Start of bottom images Section -->
     <LazyHydrate never>
       <span v-html="homePageData.content_2"></span>
@@ -189,7 +186,7 @@ export default {
             breakpoint: 991,
             settings: {
               arrows: false,
-              slidesToShow: 2.5,
+              slidesToShow: 1.5,
             },
           },
           {
