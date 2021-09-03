@@ -9,7 +9,7 @@
       </div>
       <client-only>
         <div class="you_like_slide">
-          <VueSlickCarousel v-bind="settings">
+          <VueSlickCarousel v-bind="settings" class="for-right-croual">
             <div class="item" v-for="(item, index) in likeData" :key="index">
               <NuxtLink
                 :to="`/product/${item.url_key}`"
@@ -53,8 +53,8 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -62,8 +62,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 480,
@@ -71,11 +71,11 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5,
-            },
-          },
-        ],
-      },
+              slidesToShow: 1.5
+            }
+          }
+        ]
+      }
     };
   },
   methods: {
@@ -89,7 +89,7 @@ export default {
           click: {
             actionField: {
               action: "click",
-              list: "You may also like list",
+              list: "You may also like list"
             },
             products: [
               {
@@ -97,13 +97,13 @@ export default {
                 id: singleProd.sku,
                 price: singleProd.price,
                 category: "You may also like",
-                position: prodIndex,
-              },
-            ],
-          },
-        },
+                position: prodIndex
+              }
+            ]
+          }
+        }
       });
-    },
-  },
+    }
+  }
 };
 </script>

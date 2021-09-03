@@ -1266,7 +1266,7 @@
     padding: 0px 20px;
     margin: 0px;
   }
-  .slick-slide {
+  .for-right-croual .slick-slide {
     float: right;
   }
   .fit_guide .fit_guide_items .slick-initialized .slick-slide {
@@ -1303,6 +1303,9 @@
   .clp_pages.woman .slide-img,
   .clp_pages.kid .slide-img {
     margin-bottom: 0;
+  }
+  .product_list_item .slick-arrow {
+    display: block !important;
   }
 }
 @media (max-width: 1010px) {

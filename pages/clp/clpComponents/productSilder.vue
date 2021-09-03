@@ -5,7 +5,11 @@
         <div class="content_new_in">
           <div class="slide_new_in" v-if="slideImg && slideImg.length > 0">
             <client-only>
-              <VueSlickCarousel ref="slick" v-bind="settings">
+              <VueSlickCarousel
+                class="for-right-croual"
+                ref="slick"
+                v-bind="settings"
+              >
                 <div
                   class="item"
                   v-for="(item, index) in slideImg"
@@ -53,8 +57,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5,
-            },
+              slidesToShow: 2.5
+            }
           },
           {
             breakpoint: 767,
@@ -62,8 +66,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5,
-            },
+              slidesToShow: 1.5
+            }
           },
           {
             breakpoint: 480,
@@ -71,16 +75,16 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1,
-            },
-          },
-        ],
-      },
+              slidesToShow: 1
+            }
+          }
+        ]
+      }
     };
   },
   created() {
     // console.log(this.$route);
-  },
+  }
 };
 </script>
 

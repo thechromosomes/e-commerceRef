@@ -1468,6 +1468,7 @@ p.p-price span.line-throu {
 .product_list_item .slick-arrow.slick-prev {
   z-index: 2;
   left: 0px;
+  transform: rotate(0deg);
 }
 .product_list_item .slick-arrow.slick-prev::before {
   content: "";
@@ -1479,6 +1480,9 @@ p.p-price span.line-throu {
   height: 24px;
   text-indent: -9999px;
   transform: rotate(90deg);
+}
+.product_list_item .slick-arrow.slick-next {
+  transform: rotate(0);
 }
 .product_list_item .slick-arrow.slick-next::before {
   content: "";

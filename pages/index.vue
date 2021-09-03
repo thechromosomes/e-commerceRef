@@ -6,7 +6,6 @@
         <span v-html="homePageData.content"></span>
       </div>
     </LazyHydrate> -->
-
     <LazyHydrate when-visible>
       <div class="collections_slide">
         <div class="slide_content" v-if="bannerSlide.length > 0">
@@ -36,7 +35,6 @@
         </div>
       </div>
     </LazyHydrate>
-
     <LazyHydrate when-visible>
       <section
         class="new_in"
@@ -56,7 +54,11 @@
               </div>
               <div class="col-lg-9 col-12">
                 <div class="slide_new_in">
-                  <VueSlickCarousel ref="slick" v-bind="settings">
+                  <VueSlickCarousel
+                    ref="slick"
+                    class="for-right-croual"
+                    v-bind="settings"
+                  >
                     <div
                       class="item"
                       v-for="(item, index) in is_new"
@@ -80,14 +82,16 @@
         </div>
       </section>
     </LazyHydrate>
-
     <LazyHydrate when-visible>
       <span v-html="homePageData.content_1"></span>
     </LazyHydrate>
-
     <div class="shop_by_category">
       <div class="shop_by_category_items w-100">
-        <VueSlickCarousel ref="slick" v-bind="settings3">
+        <VueSlickCarousel
+          class="for-right-croual"
+          ref="slick"
+          v-bind="settings3"
+        >
           <template v-for="(ShopByItem, ShopByIndex) in bannerSlide">
             <div
               v-if="ShopByItem.banner_type === 'homePage_footer_banner'"
@@ -109,22 +113,18 @@
         </VueSlickCarousel>
       </div>
     </div>
-
     <!-- Start of bottom images Section -->
     <LazyHydrate when-visible>
       <span v-html="homePageData.content_2"></span>
     </LazyHydrate>
   </div>
 </template>
-
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
 import LazyHydrate from "vue-lazy-hydration";
 import { mapState } from "vuex";
-
 export default {
   components: { VueSlickCarousel, LazyHydrate },
-
   data() {
     return {
       settings: {
@@ -160,7 +160,7 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1,
+              slidesToShow: 1.5,
             },
           },
         ],
@@ -200,7 +200,7 @@ export default {
         slidesToShow: 5,
         slidesToScroll: 1,
         dots: false,
-        arrows: false,
+        arrows: true,
         autoplay: true,
         autoplaySpeed: 2000,
         responsive: [
@@ -222,7 +222,6 @@ export default {
       },
     };
   },
-
   jsonld() {
     return {
       "@context": "http://schema.org",
@@ -275,10 +274,8 @@ export default {
       ],
     };
   },
-
   computed: {
     ...mapState(["homePageData", "bannerSlide", "is_new"]),
-
     // render seo tags
     title() {
       if (this.homePageData.meta_title != "") {
