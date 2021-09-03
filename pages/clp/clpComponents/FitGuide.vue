@@ -28,7 +28,7 @@ export default {
         slidesToShow: 3.5,
         slidesToScroll: 2,
         dots: false,
-        arrows: false,
+        arrows: true,
         autoplay: true,
         autoplaySpeed: 2000,
         responsive: [
@@ -43,7 +43,7 @@ export default {
             breakpoint: 767,
             settings: {
               arrows: false,
-              slidesToShow: 2
+              slidesToShow: 1.5
             }
           }
         ]

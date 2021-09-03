@@ -2,7 +2,10 @@
   <div>
     <section class="new_in">
       <div class="container-fluid">
-        <div class="content_new_in">
+        <div
+          class="
+        "
+        >
           <h2 class="swiper-header">DENIM MUST-HAVE</h2>
           <div class="slide_new_in" v-if="slideImg && slideImg.length > 0">
             <client-only>
@@ -63,7 +66,8 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
+              slidesToShow: 1.5,
+              dots: true
             }
           },
           {
@@ -72,7 +76,7 @@ export default {
               arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1
+              slidesToShow: 1.5
             }
           }
         ]
