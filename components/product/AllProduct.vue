@@ -561,7 +561,7 @@ export default {
               arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 3.5,
+              slidesToShow: 3,
             },
           },
           {

@@ -45,47 +45,41 @@ export default {
     return {
       settings: {
         infinite: true,
-        slidesToShow: 4,
+        slidesToShow: this.$options.filters.renderSlideToShow(this.$device, 4),
         slidesToScroll: 1,
         dots: false,
-        arrows: true,
+        arrows: this.$options.filters.renderArrows(this.$device),
         autoplay: true,
         autoplaySpeed: 2000,
         responsive: [
           {
             breakpoint: 991,
             settings: {
-              arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5
-            }
+            },
           },
           {
             breakpoint: 767,
             settings: {
-              arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5
-            }
+            },
           },
           {
             breakpoint: 480,
             settings: {
-              arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     };
   },
   created() {
     // console.log(this.$route);
-  }
+  },
 };
 </script>
 

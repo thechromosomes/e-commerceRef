@@ -23,12 +23,12 @@
       </div>
     </div>
     <!-- new design -->
-    <div class="item-four-show d-none" v-if="jboys && jboys.length > 0">
+    <div class="item-four-show" v-if="jboys.length > 0">
       <h4 class="title" style="background: #2c3e50">JUNIOR BOYS & GIRLS</h4>
       <div class="item-box">
         <div
           class="item"
-          v-for="(item, index) in jboys.slice(0, 8)"
+          v-for="(item, index) in jboys.slice(0, 4)"
           :key="index"
         >
           <img :src="item.image" alt="" class="w-100" />
@@ -111,7 +111,7 @@ export default {
       params: form,
     });
     this.cmsData = cmsData.result["kid-clp"];
-    this.getProductList("kid-apparel-all-apparel", "jboys");
+    this.getProductList("kid-jeans", "jboys");
     this.getProductList("kid-new-arrivals", "newIn");
   },
 };

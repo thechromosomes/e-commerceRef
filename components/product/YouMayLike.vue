@@ -40,42 +40,36 @@ export default {
       settings: {
         focusOnSelect: true,
         infinite: true,
-        slidesToShow: 4,
+        slidesToShow: this.$options.filters.renderSlideToShow(this.$device, 4),
         slidesToScroll: 1,
         dots: false,
-        arrows: true,
+        arrows: this.$options.filters.renderArrows(this.$device),
         autoplay: true,
         autoplaySpeed: 2000,
         responsive: [
           {
             breakpoint: 991,
             settings: {
-              arrows: false,
               centerMode: true,
               centerPadding: "0px",
-              slidesToShow: 2.5
-            }
+            },
           },
           {
             breakpoint: 767,
             settings: {
-              arrows: false,
               centerMode: false,
               centerPadding: "0px",
-              slidesToShow: 2.5
-            }
+            },
           },
           {
             breakpoint: 480,
             settings: {
-              arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -89,7 +83,7 @@ export default {
           click: {
             actionField: {
               action: "click",
-              list: "You may also like list"
+              list: "You may also like list",
             },
             products: [
               {
@@ -97,13 +91,13 @@ export default {
                 id: singleProd.sku,
                 price: singleProd.price,
                 category: "You may also like",
-                position: prodIndex
-              }
-            ]
-          }
-        }
+                position: prodIndex,
+              },
+            ],
+          },
+        },
       });
-    }
-  }
+    },
+  },
 };
 </script>

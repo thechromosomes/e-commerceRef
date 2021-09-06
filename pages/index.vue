@@ -24,76 +24,75 @@
       </div>
     </div>
     <!-- <LazyHydrate when-visible> -->
-      <section
-        class="new_in"
-        style="min-height: 250px"
-        v-if="is_new.length > 0"
-      >
-        <div class="container-fluid">
-          <div class="content_new_in">
-            <div class="row content_new_in-roww">
-              <div class="col-lg-3 col-12">
-                <div class="new_in_new">
-                  <h2 class="swiper-header">
-                    <span class="new-in-men-wo">NEW IN </span> men | women
-                  </h2>
-                  <Nuxt-link to="/" class="btn-shop"> shop now </Nuxt-link>
-                </div>
+    <section class="new_in" style="min-height: 250px" v-if="is_new.length > 0">
+      <div class="container-fluid">
+        <div class="content_new_in">
+          <div class="row content_new_in-roww">
+            <div class="col-lg-3 col-12">
+              <div class="new_in_new">
+                <h2 class="swiper-header">
+                  <span class="new-in-men-wo">NEW IN </span> men | women
+                </h2>
+                <Nuxt-link to="/" class="btn-shop"> shop now </Nuxt-link>
               </div>
-              <div class="col-lg-9 col-12">
-                <div class="slide_new_in">
-                  <VueSlickCarousel class="for-right-croual" v-bind="settings">
-                    <div
-                      class="item"
-                      v-for="(item, index) in is_new"
-                      :key="index"
-                    >
-                      <NuxtLink :to="`product/${item.url_key}`"
-                        ><img :src="item.image" alt="img" class="w-100"
-                      /></NuxtLink>
-                      <div class="tile-body">
-                        <p>{{ item.color }}</p>
-                        <NuxtLink :to="`product/${item.url_key}`">
-                          {{ item.name }}
-                        </NuxtLink>
-                      </div>
+            </div>
+            <div class="col-lg-9 col-12 pd-0-mob">
+              <div class="slide_new_in">
+                <VueSlickCarousel class="for-right-croual" v-bind="settings">
+                  <div
+                    class="item"
+                    v-for="(item, index) in is_new"
+                    :key="index"
+                  >
+                    <NuxtLink :to="`product/${item.url_key}`"
+                      ><img :src="item.image" alt="img" class="w-100"
+                    /></NuxtLink>
+                    <div class="tile-body">
+                      <p>{{ item.color }}</p>
+                      <NuxtLink :to="`product/${item.url_key}`">
+                        {{ item.name }}
+                      </NuxtLink>
                     </div>
-                  </VueSlickCarousel>
-                </div>
+                  </div>
+                </VueSlickCarousel>
               </div>
             </div>
           </div>
         </div>
-      </section>
-      <!-- </LazyHydrate> -->
-      <LazyHydrate never>
-        <span v-html="homePageData.content_1"></span>
-      </LazyHydrate>
-      <div class="shop_by_category" v-if="bannerSlide.length > 0">
-        <div class="shop_by_category_items w-100">
-          <VueSlickCarousel class="for-right-croual" v-bind="settings3">
-            <template v-for="(ShopByItem, ShopByIndex) in bannerSlide">
-              <div
-                v-if="ShopByItem.banner_type === 'homePage_footer_banner'"
-                :key="ShopByIndex"
-                class="item"
-              >
-                <nuxt-link :to="ShopByItem.url">
-                  <div class="img-box">
-                    <img
-                      :src="ShopByItem.desktop_image"
-                      alt="img"
-                      class="w-100"
-                    />
-                  </div>
-                  <h5 v-html="ShopByItem.description"></h5>
-                </nuxt-link>
-              </div>
-            </template>
-          </VueSlickCarousel>
-        </div>
       </div>
-I    <!-- Start of bottom images Section -->
+    </section>
+    <!-- </LazyHydrate> -->
+
+    <LazyHydrate never>
+      <span v-html="homePageData.content_1"></span>
+    </LazyHydrate>
+
+    <div class="shop_by_category" v-if="bannerSlide.length > 0">
+      <div class="shop_by_category_items w-100">
+        <VueSlickCarousel class="for-right-croual" v-bind="settings3">
+          <template v-for="(ShopByItem, ShopByIndex) in bannerSlide">
+            <div
+              v-if="ShopByItem.banner_type === 'homePage_footer_banner'"
+              :key="ShopByIndex"
+              class="item"
+            >
+              <nuxt-link :to="ShopByItem.url">
+                <div class="img-box">
+                  <img
+                    :src="ShopByItem.desktop_image"
+                    alt="img"
+                    class="w-100"
+                  />
+                </div>
+                <h5 v-html="ShopByItem.description"></h5>
+              </nuxt-link>
+            </div>
+          </template>
+        </VueSlickCarousel>
+      </div>
+    </div>
+
+    <!-- Start of bottom images Section -->
     <LazyHydrate never>
       <span v-html="homePageData.content_2"></span>
     </LazyHydrate>
@@ -109,38 +108,32 @@ export default {
     return {
       settings: {
         infinite: true,
-        slidesToShow: 3,
+        slidesToShow: this.$options.filters.renderSlideToShow(this.$device, 3),
         slidesToScroll: 1,
         dots: false,
-        arrows: true,
+        arrows: this.$options.filters.renderArrows(this.$device),
         autoplay: true,
         autoplaySpeed: 2000,
         responsive: [
           {
             breakpoint: 991,
             settings: {
-              arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 2.5,
             },
           },
           {
             breakpoint: 767,
             settings: {
-              arrows: false,
               centerMode: false,
               centerPadding: "40px",
-              slidesToShow: 1.5,
             },
           },
           {
             breakpoint: 480,
             settings: {
-              arrows: false,
               centerMode: false,
               centerPadding: "20px",
-              slidesToShow: 1.5,
             },
           },
         ],
@@ -161,7 +154,6 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
             },
           },
           {
@@ -169,35 +161,18 @@ export default {
             settings: {
               slidesToShow: 1,
               autoplay: true,
-              slidesToScroll: 1,
             },
           },
         ],
       },
       settings3: {
         infinite: true,
-        slidesToShow: 5,
+        slidesToShow: this.$options.filters.renderSlideToShow(this.$device, 5),
         slidesToScroll: 1,
         dots: false,
-        arrows: true,
+        arrows: this.$options.filters.renderArrows(this.$device),
         autoplay: true,
         autoplaySpeed: 2000,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              slidesToShow: 1.5,
-            },
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              slidesToShow: 1.5,
-            },
-          },
-        ],
       },
     };
   },
@@ -255,6 +230,7 @@ export default {
   },
   computed: {
     ...mapState(["homePageData", "bannerSlide", "is_new"]),
+
     // render seo tags
     title() {
       if (this.homePageData.meta_title != "") {

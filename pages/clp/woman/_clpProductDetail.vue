@@ -2,7 +2,7 @@
   <div class="clp_pages woman">
     <div v-html="cmsData.content"></div>
 
-    <div class="fit_guide">
+    <div class="">
       <FitGuide :FitGuides="FitGuides" />
     </div>
 
@@ -15,14 +15,12 @@
 </template>
 
 <script>
-import VueSlickCarousel from "vue-slick-carousel";
 import NewIn from "../clpComponents/newIn";
 import FitGuide from "../clpComponents/FitGuide";
 import { mapState } from "vuex";
 
 export default {
   components: {
-    VueSlickCarousel,
     NewIn,
     FitGuide,
   },

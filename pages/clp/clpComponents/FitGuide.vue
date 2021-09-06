@@ -25,28 +25,12 @@ export default {
     return {
       settings: {
         infinite: true,
-        slidesToShow: 3.5,
+        slidesToShow: this.$options.filters.renderSlideToShow(this.$device, 3),
         slidesToScroll: 2,
         dots: false,
-        arrows: true,
+        arrows: this.$options.filters.renderArrows(this.$device),
         autoplay: true,
         autoplaySpeed: 2000,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              slidesToShow: 2.5
-            }
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              slidesToShow: 1.5
-            }
-          }
-        ]
       }
     };
   },
