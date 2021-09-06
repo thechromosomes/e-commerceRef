@@ -327,7 +327,7 @@ export default {
   padding: 5px 0px;
 }
 #bb-footer-original .newsletter-social .content-asset h5 {
-  text-transform: capitalize;
+  text-transform: none;
 }
 #bb-footer-original .newsletter-social .content-asset .form-box {
   position: relative;

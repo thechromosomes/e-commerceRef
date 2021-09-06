@@ -63,7 +63,7 @@ export const actions = {
     let request = data.params;
     // cancel request after n time
     const source = this.$axios.CancelToken.source();
-    let timeout = 1000 * 15;
+    let timeout = 1000 * 20;
     let id =
       timeout &&
       setTimeout(() => {
