@@ -727,7 +727,8 @@
   }
   .wish-list-icon.single .wishlist_blank.add,
   .wish-list-icon.single .wishlist_blank.wishlist-active {
-    margin-top: -10px;
+    margin-top: -13px;
+    margin-left: 38px;
   }
   #bb-footer-original .newsletter-social .content-asset .form-box {
     width: 100%;

@@ -804,7 +804,7 @@ export default {
             form.sku = this.selectedLengthAttr.sku;
           } else {
             form.fynd_size = this.selectedSizeAttr.fynd_size;
-            form.fynd_uid = this.singleProductList.fynd_uid;
+            form.fynd_uid = this.selectedSizeAttr.fynd_uid;
             form.sku = this.selectedSizeAttr.sku;
           }
           form.length = this.selectedLengthAttr.configrable_atribute_value;
