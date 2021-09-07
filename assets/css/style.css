@@ -801,8 +801,13 @@ button:hover {
 }
 .slide_new_in .item {
   padding: 0px 10px;
+  position: relative;
 }
-
+.slide_new_in .item .wish-list-icon {
+  position: absolute;
+  top: 1%;
+  right: 6%;
+}
 .slide_new_in .item .slick-slide {
   outline: none;
 }
@@ -4406,11 +4411,11 @@ p.p-price span.line-throu {
   justify-content: space-between;
 }
 .item-four-show {
-  padding: 0px 23px;
+  padding: 10px 23px;
 }
 .item-four-show .item-box .item {
-  margin: 0px 10px;
-  width: 23%;
+  padding: 0px 10px;
+  width: 25%;
 }
 .item-four-show .item-box .item .content {
   text-align: left;
@@ -4562,7 +4567,7 @@ p.p-price span.line-throu {
     text-align: center;
   }
   .item-four-show {
-    padding: 0 15px;
+    padding: 0 10px;
     text-align: left;
   }
   .item-four-show .item-box {
@@ -4570,7 +4575,8 @@ p.p-price span.line-throu {
   }
   .item-four-show .item-box .item {
     width: 100%;
-    margin: 20px 0px;
+    margin: 0px 0px;
+    padding: 0px 0px 20px 0px;
   }
   .clp_pages.kid .slide-img .content-text h4 {
     font-size: 45px;
@@ -4834,6 +4840,7 @@ p.input-success {
   font-size: 30px;
   margin-bottom: 20px;
   text-transform: uppercase;
+  padding-left: 10px;
   color: #212529;
 }
 @media (max-width: 500px) {

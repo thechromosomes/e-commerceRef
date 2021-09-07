@@ -1006,7 +1006,6 @@
     margin: 0 auto;
   }
   .new_in .content_new_in .swiper-header {
-    margin: 0;
     text-align: center;
   }
   .btn-shop {
@@ -1261,7 +1260,7 @@
     font-size: 35px;
   }
   .fit_guide {
-    padding: 0px 15px !important;
+    padding: 50px 15px 30px 15px !important;
   }
   /* .collections_slide .slide_content .item .img_content .module-text {
     line-height: 1;
@@ -1320,6 +1319,9 @@
   }
   .product_list_item .slick-arrow {
     display: block !important;
+  }
+  .slide_new_in .item .wish-list-icon {
+    margin-top: 0px;
   }
 }
 @media (max-width: 1010px) {

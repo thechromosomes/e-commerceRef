@@ -24,7 +24,7 @@
     </div>
     <!-- new design -->
     <div class="item-four-show junior-boy-girl-section" v-if="jboys.length > 0">
-      <h4 class="title swiper-header">JUNIOR BOYS & GIRLS</h4>
+      <h4 class="title swiper-header">Bestseller</h4>
       <div class="item-box">
         <div
           class="item"

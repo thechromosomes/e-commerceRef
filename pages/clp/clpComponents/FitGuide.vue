@@ -30,7 +30,7 @@ export default {
         dots: false,
         arrows: this.$options.filters.renderArrows(this.$device),
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 2000
       }
     };
   },
@@ -99,14 +99,14 @@ export default {
   }
   .new_in .content_new_in .swiper-header {
     text-align: center;
-    padding-bottom: 20px;
   }
 }
 @media (max-width: 767px) {
   .fit_guide .swiper-header {
     font-size: 30px;
     text-align: center !important;
-    padding: 20px 0px !important;
+    padding: 0px 0px 20px 0px !important;
+    margin-bottom: 0px;
   }
 }
 </style>
