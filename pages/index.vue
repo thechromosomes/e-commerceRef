@@ -134,24 +134,24 @@ export default {
             breakpoint: 991,
             settings: {
               centerMode: false,
-              centerPadding: "40px",
-            },
+              centerPadding: "40px"
+            }
           },
           {
             breakpoint: 767,
             settings: {
               centerMode: false,
-              centerPadding: "40px",
-            },
+              centerPadding: "40px"
+            }
           },
           {
             breakpoint: 480,
             settings: {
               centerMode: false,
-              centerPadding: "20px",
-            },
-          },
-        ],
+              centerPadding: "20px"
+            }
+          }
+        ]
       },
       settings2: {
         focusOnSelect: true,
@@ -168,17 +168,17 @@ export default {
             breakpoint: 800,
             settings: {
               slidesToShow: 1,
-              autoplay: true,
-            },
+              autoplay: true
+            }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
-              autoplay: true,
-            },
-          },
-        ],
+              autoplay: true
+            }
+          }
+        ]
       },
       settings3: {
         infinite: true,
@@ -187,8 +187,8 @@ export default {
         dots: false,
         arrows: this.$options.filters.renderArrows(this.$device),
         autoplay: true,
-        autoplaySpeed: 2000,
-      },
+        autoplaySpeed: 2000
+      }
     };
   },
   jsonld() {
@@ -203,7 +203,7 @@ export default {
       potentialAction: {
         "@type": "SearchAction",
         target: `${this.$store.state.BASE_URL}/searchpage/?q={search_term_string}`,
-        "query-input": "required name=search_term_string",
+        "query-input": "required name=search_term_string"
       },
       address: {
         "@type": "PostalAddress",
@@ -211,9 +211,9 @@ export default {
           "Diesel Fashion India Reliance Pvt. Ltd, 7th Floor, Maker Towers E, Cuffe Parade",
         addressLocality: "Mumbai",
         postalCode: "400005",
-        addressCountry: "IN",
+        addressCountry: "IN"
       },
-      sameAs: [" https://www.instagram.com/diesel/"],
+      sameAs: [" https://www.instagram.com/diesel/"]
     };
   },
   head() {
@@ -223,24 +223,24 @@ export default {
         {
           hid: this.description,
           name: this.description,
-          content: this.description,
+          content: this.description
         },
         {
           hid: "og:title",
           content: this.title,
-          property: "og:title",
+          property: "og:title"
         },
         {
           hid: "og:description",
           content: this.description,
-          property: "og:description",
+          property: "og:description"
         },
         {
           hid: "og:url",
           content: this.url,
-          property: "og:url",
-        },
-      ],
+          property: "og:url"
+        }
+      ]
     };
   },
   computed: {
@@ -261,7 +261,7 @@ export default {
     },
     url() {
       return this.$store.state.BASE_URL + this.$route.fullPath;
-    },
+    }
   },
   methods: {
     // render wish list class icon
@@ -273,10 +273,10 @@ export default {
       if (Object.keys(wishList).length != 0) {
         const groupResult = wishList.group
           .split(",")
-          .filter((word) => word == groupId);
+          .filter(word => word == groupId);
         const productResult = wishList.product
           .split(",")
-          .filter((word) => word == ProductId);
+          .filter(word => word == ProductId);
 
         if (groupResult.length > 0 && productResult.length > 0) {
           return "wishlist-active";
@@ -299,7 +299,7 @@ export default {
           product_id: item.id_product,
           customer_id: this.$store.state.cartAjax.customer_id,
           customer_session: this.$store.state.cartAjax.customer_session,
-          group_id: item.group_id,
+          group_id: item.group_id
         };
 
         if (data === "add") {
@@ -307,21 +307,21 @@ export default {
             method: "post",
             url: `/wishlist/add-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
         } else {
           var response = await this.$store.dispatch("cartAjax/actCartAjax", {
             method: "post",
             url: `/wishlist/remove-wishlist`,
             token: this.$store.state.cartAjax.customer_token,
-            params: form,
+            params: form
           });
         }
 
         if (response.success) {
           this.$toast.open(response.message);
           this.$store.commit("cartAjax/updateWishList", {
-            payload: response.data,
+            payload: response.data
           });
 
           this.$gtm.push({
@@ -337,11 +337,11 @@ export default {
                     id: item.sku,
                     price: item.selling_price,
                     category: item.category,
-                    position: 1,
-                  },
-                ],
-              },
-            },
+                    position: 1
+                  }
+                ]
+              }
+            }
           });
         } else {
           throw "no response from api";
@@ -349,8 +349,8 @@ export default {
       } catch (error) {
         this.$globalError(`error from add addRemoveWishList >>>> ${error}`);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style>

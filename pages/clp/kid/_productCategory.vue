@@ -23,8 +23,8 @@
       </div>
     </div>
     <!-- new design -->
-    <div class="item-four-show" v-if="jboys.length > 0">
-      <h4 class="title" style="background: #2c3e50">JUNIOR BOYS & GIRLS</h4>
+    <div class="item-four-show junior-boy-girl-section" v-if="jboys.length > 0">
+      <h4 class="title swiper-header">Bestseller</h4>
       <div class="item-box">
         <div
           class="item"
@@ -52,17 +52,17 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    NewIn,
+    NewIn
   },
 
   computed: {
-    ...mapState(["bannerSlide"]),
+    ...mapState(["bannerSlide"])
   },
   data() {
     return {
       jboys: [],
       cmsData: [],
-      newIn: [],
+      newIn: []
     };
   },
   methods: {
@@ -80,7 +80,7 @@ export default {
         let response = await this.$store.dispatch("pimAjax", {
           method: "post",
           url: `/pimresponse.php`,
-          params: form,
+          params: form
         });
 
         if (response) {
@@ -92,12 +92,11 @@ export default {
         this.$globalError(`error from all product page >>>> ${error}`);
         if (error.message === "Network Error") {
           this.$store.commit("updateState", {
-            error:
-              "Oops there seems to be some Network issue, please try again",
+            error: "Oops there seems to be some Network issue, please try again"
           });
         }
       }
-    },
+    }
   },
   async created() {
     let form = {};
@@ -108,12 +107,12 @@ export default {
     let cmsData = await this.$store.dispatch("pimAjax", {
       method: "get",
       url: `/pimresponse.php`,
-      params: form,
+      params: form
     });
     this.cmsData = cmsData.result["kid-clp"];
     this.getProductList("kid-jeans", "jboys");
     this.getProductList("kid-new-arrivals", "newIn");
-  },
+  }
 };
 </script>
 
