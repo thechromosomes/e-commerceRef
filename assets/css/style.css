@@ -4400,12 +4400,16 @@ p.p-price span.line-throu {
 }
 .item-four-show .item-box {
   display: flex;
-  justify-content: flex-start;
+
   width: 100%;
   flex-wrap: wrap;
+  justify-content: space-between;
+}
+.item-four-show {
+  padding: 0px 23px;
 }
 .item-four-show .item-box .item {
-  margin: 40px 10px;
+  margin: 0px 10px;
   width: 23%;
 }
 .item-four-show .item-box .item .content {
@@ -4821,6 +4825,16 @@ p.input-success {
   border: 1px solid #fff;
   display: inline-block;
   line-height: 26px;
+}
+.junior-boy-girl-section .title {
+  text-align: left;
+  display: block;
+  font-weight: 700;
+  /* padding: 20px 0px; */
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #212529;
 }
 @media (max-width: 500px) {
   .slide-img .content.kid-content a.secondary-white-btn {
