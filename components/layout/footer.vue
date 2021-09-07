@@ -6,7 +6,7 @@
           <div id="bb-footer-original" class="footer-container">
             <div class="newsletter-social">
               <div class="content-asset">
-                <h5>Sign up to never miss the update.</h5>
+                <h5>Sign up to never miss an update.</h5>
                 <div class="form-box">
                   <div class="email-box">
                     <input
