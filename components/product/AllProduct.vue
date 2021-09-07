@@ -428,7 +428,7 @@
                             :key="imgIndex"
                           >
                             <Nuxt-link :to="`/product/${singleProd.url_key}`">
-                              <img :data-src="image.image" class="w-100" />
+                              <img v-lazy="image.image" class="w-100" />
                             </Nuxt-link>
                           </div>
                         </VueSlickCarousel>
@@ -976,9 +976,9 @@ export default {
     this.$Lazyload.$once("loaded", async () => {
       this.youMayLike();
       this.showYouMayLike = true;
+      // add window event listner for lazy loading products
+      window.addEventListener("scroll", this.updatePage);
     });
-    // add window event listner for lazy loading products
-    window.addEventListener("scroll", this.updatePage);
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updatePage);
