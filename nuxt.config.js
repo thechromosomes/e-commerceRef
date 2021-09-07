@@ -10,7 +10,7 @@ export default {
         content:
           "Diesel Online Store: jeans, clothing, shoes, bags and watches",
       },
-      {
+      { 
         hid: "og:Diesel",
         property: "og:Diesel",
         content: "Diesel",

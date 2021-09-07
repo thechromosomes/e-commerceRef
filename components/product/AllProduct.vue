@@ -428,7 +428,7 @@
                             :key="imgIndex"
                           >
                             <Nuxt-link :to="`/product/${singleProd.url_key}`">
-                              <img v-lazy="image.image" class="w-100" />
+                              <img :data-src="image.image" class="w-100" />
                             </Nuxt-link>
                           </div>
                         </VueSlickCarousel>
@@ -789,13 +789,6 @@ export default {
       this.showSort = false;
     },
 
-    // async loadMore() {
-    //   await this.$store.commit("universalListMutate", {
-    //     data: Number(this.list.page) + 1,
-    //     changeState: "page",
-    //   });
-    //   this.getProductList(this.list.page);
-    // },
     // render wish list class icon
     renderWishList(item) {
       let ProductId = item.id_product;
@@ -983,9 +976,9 @@ export default {
     this.$Lazyload.$once("loaded", async () => {
       this.youMayLike();
       this.showYouMayLike = true;
-      // add window event listner for lazy loading products
-      window.addEventListener("scroll", this.updatePage);
     });
+    // add window event listner for lazy loading products
+    window.addEventListener("scroll", this.updatePage);
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.updatePage);

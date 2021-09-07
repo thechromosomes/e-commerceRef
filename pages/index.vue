@@ -6,12 +6,12 @@
           <template v-for="(item, index) in bannerSlide">
             <div class="item" v-if="item.banner_type === 'Banner'" :key="index">
               <img
-                :src="item.desktop_image"
+                :data-src="item.desktop_image"
                 alt="img"
                 class="desktop_only w-100"
               />
               <img
-                :src="item.mobile_image"
+                :data-src="item.mobile_image"
                 alt="img"
                 class="mobile_only w-100"
               />
@@ -23,82 +23,89 @@
         </VueSlickCarousel>
       </div>
     </div>
-    <!-- <LazyHydrate when-visible> -->
-    <section class="new_in" style="min-height: 250px" v-if="is_new.length > 0">
-      <div class="container-fluid">
-        <div class="content_new_in">
-          <div class="row content_new_in-roww">
-            <div class="col-lg-3 col-12">
-              <div class="new_in_new">
-                <h2 class="swiper-header">
-                  <span class="new-in-men-wo">NEW IN </span> men | women
-                </h2>
-                <Nuxt-link to="/" class="btn-shop"> shop now </Nuxt-link>
+
+    <LazyHydrate when-visible>
+      <section
+        class="new_in"
+        style="min-height: 250px"
+        v-if="is_new.length > 0"
+      >
+        <div class="container-fluid">
+          <div class="content_new_in">
+            <div class="row content_new_in-roww">
+              <div class="col-lg-3 col-12">
+                <div class="new_in_new">
+                  <h2 class="swiper-header">
+                    <span class="new-in-men-wo">NEW IN </span> men | women
+                  </h2>
+                  <Nuxt-link to="/" class="btn-shop"> shop now </Nuxt-link>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-9 col-12 pd-0-mob">
-              <div class="slide_new_in">
-                <VueSlickCarousel class="for-right-croual" v-bind="settings">
-                  <div
-                    class="item"
-                    v-for="(item, index) in is_new"
-                    :key="index"
-                  >
-                    <div class="wish-list-icon single">
-                      <span
-                        class="wishlist_blank"
-                        :id="$store.state.cartAjax.wishlist.group"
-                        :class="renderWishList(item)"
-                        @click="addRemoveWishList(item, renderWishList(item))"
-                      ></span>
-                    </div>
-                    <NuxtLink :to="`product/${item.url_key}`">
-                      <img :src="item.image" alt="img" class="w-100" />
-                    </NuxtLink>
-                    <div class="tile-body">
-                      <p>{{ item.color }}</p>
+              <div class="col-lg-9 col-12 pd-0-mob">
+                <div class="slide_new_in">
+                  <VueSlickCarousel class="for-right-croual" v-bind="settings">
+                    <div
+                      class="item"
+                      v-for="(item, index) in is_new"
+                      :key="index"
+                    >
+                      <div class="wish-list-icon single">
+                        <span
+                          class="wishlist_blank"
+                          :id="$store.state.cartAjax.wishlist.group"
+                          :class="renderWishList(item)"
+                          @click="addRemoveWishList(item, renderWishList(item))"
+                        ></span>
+                      </div>
                       <NuxtLink :to="`product/${item.url_key}`">
-                        {{ item.name }}
+                        <img :data-src="item.image" alt="img" class="w-100" />
                       </NuxtLink>
+                      <div class="tile-body">
+                        <p>{{ item.color }}</p>
+                        <NuxtLink :to="`product/${item.url_key}`">
+                          {{ item.name }}
+                        </NuxtLink>
+                      </div>
                     </div>
-                  </div>
-                </VueSlickCarousel>
+                  </VueSlickCarousel>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <!-- </LazyHydrate> -->
+      </section>
+    </LazyHydrate>
 
     <LazyHydrate never>
       <span v-html="homePageData.content_1"></span>
     </LazyHydrate>
 
-    <div class="shop_by_category" v-if="bannerSlide.length > 0">
-      <div class="shop_by_category_items w-100">
-        <VueSlickCarousel class="for-right-croual" v-bind="settings3">
-          <template v-for="(ShopByItem, ShopByIndex) in bannerSlide">
-            <div
-              v-if="ShopByItem.banner_type === 'homePage_footer_banner'"
-              :key="ShopByIndex"
-              class="item"
-            >
-              <nuxt-link :to="ShopByItem.url">
-                <div class="img-box">
-                  <img
-                    :src="ShopByItem.desktop_image"
-                    alt="img"
-                    class="w-100"
-                  />
-                </div>
-                <h5 v-html="ShopByItem.description"></h5>
-              </nuxt-link>
-            </div>
-          </template>
-        </VueSlickCarousel>
+    <LazyHydrate when-visible>
+      <div class="shop_by_category" v-if="bannerSlide.length > 0">
+        <div class="shop_by_category_items w-100">
+          <VueSlickCarousel class="for-right-croual" v-bind="settings3">
+            <template v-for="(ShopByItem, ShopByIndex) in bannerSlide">
+              <div
+                v-if="ShopByItem.banner_type === 'homePage_footer_banner'"
+                :key="ShopByIndex"
+                class="item"
+              >
+                <nuxt-link :to="ShopByItem.url">
+                  <div class="img-box">
+                    <img
+                      :data-src="ShopByItem.desktop_image"
+                      alt="img"
+                      class="w-100"
+                    />
+                  </div>
+                  <h5 v-html="ShopByItem.description"></h5>
+                </nuxt-link>
+              </div>
+            </template>
+          </VueSlickCarousel>
+        </div>
       </div>
-    </div>
+    </LazyHydrate>
 
     <!-- Start of bottom images Section -->
     <LazyHydrate never>
